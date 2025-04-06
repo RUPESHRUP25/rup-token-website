@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RUP Token | Buy & Sell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body style="font-family:Arial; text-align:center; padding:20px;">
+  <h1>Buy RUP Token</h1>
+  <p>Wallet Address: <b>0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4</b></p>
+
+  <button onclick="connectWallet()">Connect MetaMask</button><br><br>
+
+  <input type="number" id="maticAmount" placeholder="Enter MATIC amount" /><br><br>
+  <button onclick="buyRUP()">Buy RUP</button>
+
+  <script>
+    let userAccount;
+
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          userAccount = accounts[0];
+          alert("Connected: " + userAccount);
+        } catch (error) {
+          alert("Connection failed!");
+        }
+      } else {
+        alert("MetaMask not found!");
+      }
+    }
+
+    async function buyRUP() {
+      const matic = document.getElementById("maticAmount").value;
+      if (!userAccount || !matic) return alert("Please connect wallet and enter amount.");
+
+      const web3 = new Web3(window.ethereum);
+      const value = web3.utils.toWei(matic, 'ether');
+      const toAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4";
+
+      try {
+        await web3.eth.sendTransaction({
+          from: userAccount,
+          to: toAddress,
+          value: value
+        });
+        alert("Transaction sent!");
+      } catch (err) {
+        alert("Transaction failed.");
+      }
+    }
+  </script>
+</body>
+</html>
