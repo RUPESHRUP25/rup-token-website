@@ -13,6 +13,7 @@
     }
     header img {
       width: 120px;
+      margin-bottom: 10px;
     }
     h1 {
       color: #333;
@@ -32,14 +33,8 @@
     .sell {
       background-color: #dc3545;
     }
-    .airdrop {
-      margin-top: 30px;
-    }
-    iframe {
-      border: none;
-      width: 100%;
-      height: 500px;
-      max-width: 600px;
+    .airdrop-btn {
+      background-color: #007bff;
     }
     .terms {
       margin-top: 20px;
@@ -68,11 +63,7 @@
   <div>
     <button class="button buy" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0xYourTokenAddressHere', '_blank')">Buy RUP</button>
     <button class="button sell" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0xYourTokenAddressHere&outputCurrency=MATIC', '_blank')">Sell RUP</button>
-  </div>
-
-  <div class="airdrop">
-    <h2>Claim Free Airdrop</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQULoXp4NEXEbo0QQs5q66Nn6FBEl-jw4DM2G..." allowfullscreen></iframe>
+    <button class="button airdrop-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdMQULoXp4NEXEbo0QQs5q66Nn6FBEl-jw4DM2G...', '_blank')">Claim Airdrop</button>
   </div>
 
   <div class="terms">
@@ -84,7 +75,4 @@
   </div>
 
   <footer>
-    <a href="https://t.me/yourtelegramgroup" class="social-button" target="_blank">Join us on Telegram</a>
-  </footer>
-</body>
-</html>
+    <a href="https://t.me/yourtelegramgroup" class="social
