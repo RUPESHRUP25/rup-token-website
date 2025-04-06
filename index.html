@@ -2,56 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUP Token - Buy & Sell</title>
-  <link rel="icon" href="https://yourdomain.com/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RUP Token</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
       text-align: center;
-    }
-    header {
+      background-color: #f4f4f4;
       padding: 20px;
     }
-    img.logo {
-      height: 80px;
+    header img {
+      width: 120px;
     }
     h1 {
-      margin-top: 10px;
-      font-size: 2.5rem;
+      color: #333;
     }
     .button {
+      padding: 12px 24px;
       margin: 10px;
-      padding: 15px 30px;
-      font-size: 1.2rem;
       border: none;
-      border-radius: 30px;
+      border-radius: 10px;
+      font-size: 16px;
+      color: white;
       cursor: pointer;
-      transition: 0.3s;
     }
     .buy {
-      background-color: #00c853;
-      color: #fff;
-    }
-    .buy:hover {
-      background-color: #00e676;
+      background-color: #28a745;
     }
     .sell {
-      background-color: #d50000;
-      color: #fff;
+      background-color: #dc3545;
     }
-    .sell:hover {
-      background-color: #ff1744;
+    .airdrop {
+      margin-top: 30px;
     }
     iframe {
-      margin-top: 30px;
       border: none;
-      width: 90%;
-      height: 600px;
-      max-width: 800px;
+      width: 100%;
+      height: 500px;
+      max-width: 600px;
+    }
+    .terms {
+      margin-top: 20px;
+      color: #555;
+      font-size: 14px;
     }
     footer {
       margin-top: 40px;
@@ -60,26 +53,34 @@
       background: #0088cc;
       color: white;
       padding: 12px 24px;
-      border: none;
       border-radius: 25px;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://yourdomain.com/logo.png" alt="RUP Logo" class="logo" />
+    <img src="https://yourdomain.com/logo.png" alt="RUP Logo" />
     <h1>RUP Token</h1>
   </header>
 
   <div>
-    <button class="button buy" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0xAa93C8282927c384e5C40C8C0fE11a4B860B6074', '_blank')">Buy RUP</button>
-    <button class="button sell" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0xAa93C8282927c384e5C40C8C0fE11a4B860B6074&outputCurrency=MATIC', '_blank')">Sell RUP</button>
+    <button class="button buy" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0xYourTokenAddressHere', '_blank')">Buy RUP</button>
+    <button class="button sell" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0xYourTokenAddressHere&outputCurrency=MATIC', '_blank')">Sell RUP</button>
   </div>
 
-  <div>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?embedded=true">Loading…</iframe>
+  <div class="airdrop">
+    <h2>Claim Free Airdrop</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQULoXp4NEXEbo0QQs5q66Nn6FBEl-jw4DM2G..." allowfullscreen></iframe>
+  </div>
+
+  <div class="terms">
+    <h3>Terms & Conditions</h3>
+    <p>1. One airdrop per wallet address only.<br>
+       2. Fake or duplicate submissions will be disqualified.<br>
+       3. Airdrop tokens will be distributed within 7 days.<br>
+       4. We reserve the right to modify or cancel the airdrop at any time.</p>
   </div>
 
   <footer>
