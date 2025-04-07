@@ -1,99 +1,88 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RUP Token</title>
-  <link rel="icon" type="image/png" href="rup-logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: #fff;
       text-align: center;
-      padding: 2rem;
-    }header img {
-  height: 100px;
-  margin-bottom: 10px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.section {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 1rem auto;
-  max-width: 400px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
-button {
-  background: #4a00e0;
-  background: linear-gradient(to right, #8e2de2, #4a00e0);
-  color: #fff;
-  border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 25px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #8e2de2;
-}
-
-footer {
-  margin-top: 2rem;
-  font-size: 0.8rem;
-  color: #aaa;
-}
-
+      padding: 40px 20px;
+    }
+    img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      margin: 10px;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #ffcc00;
+    }
   </style>
-</head><body>
-  <header>
-    <img src="rup-logo.png" alt="RUP Logo" />
-    <h1>RUP Token</h1>
-  </header>  <div class="section">
-    <h2>Buy RUP Token</h2>
-    <button onclick="buyRUP()">Buy</button>
-  </div>  <div class="section">
-    <h2>Sell RUP Token</h2>
-    <button onclick="sellRUP()">Sell</button>
-  </div>  <div class="section">
-    <h2>Claim Free Airdrop</h2>
-    <button onclick="claimAirdrop()">Claim</button>
-  </div>  <footer>
-    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected. Online
-    participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.
-  </footer>  <script>
-    const adminWallet = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4";
+</head>
+<body>
+  <img src="rup-logo.png" alt="RUP Logo">
+  <h1>RUP Token</h1>  <h2>Buy RUP Token</h2>
+  <button onclick="buyToken()">Buy</button>  <h2>Sell RUP Token</h2>
+  <button onclick="sellToken()">Sell</button>  <h2>Claim Free Airdrop</h2>
+  <button onclick="claimAirdrop()">Claim</button>  <div class="footer">
+    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected.<br>
+    Online participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.
+  </div>  <script>
+    const contractAddress = "0xYourTokenContractAddress"; // Replace with your contract address
+    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // Your MATIC wallet address
 
-    async function buyRUP() {
+    async function buyToken() {
       if (typeof window.ethereum !== 'undefined') {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
 
-        const tx = await signer.sendTransaction({
-          to: adminWallet,
-          value: ethers.utils.parseEther("0.1") // Change value if needed
-        });
-        alert("Transaction sent! Hash: " + tx.hash);
+        const accounts = await web3.eth.getAccounts();
+        const amountInWei = web3.utils.toWei("0.1", "ether");
+
+        web3.eth.sendTransaction({
+          from: accounts[0],
+          to: receiverAddress,
+          value: amountInWei
+        })
+        .then(() => alert("Transaction sent! You will receive RUP soon."))
+        .catch(err => alert("Transaction failed: " + err.message));
       } else {
-        alert("MetaMask not detected");
+        alert("MetaMask is not installed!");
       }
     }
 
-    function sellRUP() {
-      alert("To sell RUP token, please use QuickSwap or another supported DEX.");
+    function sellToken() {
+      alert("To sell RUP, please visit QuickSwap DEX and search for RUP token.");
     }
 
     function claimAirdrop() {
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
     }
-  </script>  <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script></body></html>
+  </script></body>
+</html>
