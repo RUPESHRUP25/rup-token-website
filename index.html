@@ -3,48 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUP Token</title>
-  <link rel="icon" type="image/png" href="rup-logo.png">
+  <title>RUP Token | Buy, Sell & Airdrop</title>
+  <link rel="icon" type="image/png" href="rup-logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <style>
     body {
-      font-family: sans-serif;
-      background: #1e1e2f;
-      color: white;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
       text-align: center;
-      padding: 2rem;
+      padding: 20px;
     }
-    header img {
-      width: 100px;
-      border-radius: 50%;
+    .logo {
+      max-width: 150px;
+      margin-bottom: 20px;
     }
     .btn {
-      padding: 10px 20px;
+      padding: 12px 25px;
       margin: 10px;
-      background-color: #00c6ff;
+      background-color: #f39c12;
+      color: white;
       border: none;
       border-radius: 8px;
-      color: white;
       cursor: pointer;
     }
+    .btn:hover {
+      background-color: #e67e22;
+    }
     .section {
-      margin-top: 3rem;
+      margin: 30px 0;
     }
     .terms {
-      max-width: 600px;
-      margin: auto;
       font-size: 14px;
-      background-color: #2c2c3e;
-      padding: 1rem;
-      border-radius: 10px;
+      color: #aaa;
+      margin-top: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="rup-logo.png" alt="RUP Logo" />
-    <h1>RUP Token</h1>
-    <p>Buy, Sell & Claim Airdrops</p>
-  </header>
+  <img src="rup-logo.png" alt="RUP Logo" class="logo" />
+  <h1>RUP Token (RUP)</h1>
+
+  <div class="section">
+    <button class="btn" onclick="connectWallet()">Connect Wallet</button>
+    <p><strong>Wallet Address:</strong> <span id="wallet-address">Not connected</span></p>
+  </div>
 
   <div class="section">
     <button class="btn" onclick="buyTokens()">Buy RUP</button>
@@ -52,25 +59,55 @@
   </div>
 
   <div class="section">
-    <button class="btn" onclick="window.open('https://forms.gle/your-form-link', '_blank')">Claim Free Airdrop</button>
+    <button class="btn" onclick="openAirdropForm()">Claim Airdrop</button>
   </div>
 
-  <div class="section terms">
-    <h3>Airdrop Terms & Conditions</h3>
-    <p>1. Har wallet sirf ek baar airdrop le sakta hai.<br>
-       2. Fake ya multiple entries detect hone par airdrop cancel hoga.<br>
-       3. Airdrop tokens 24-48 hours ke andar bheje jaayenge.<br>
-       4. Project team kisi bhi rule ko badal sakti hai bina notice ke.
+  <div class="terms">
+    <h3>Terms & Conditions</h3>
+    <p>
+      1. One airdrop claim per wallet address.<br>
+      2. Airdrops are manually verified and distributed.<br>
+      3. Any suspicious activity will lead to disqualification.<br>
+      4. Project owners reserve the right to change terms.<br>
+      5. Participation in the project is at your own risk.
     </p>
   </div>
 
   <script>
+    let web3;
+    const recipientAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // Your wallet
+
+    async function connectWallet() {
+      if (window.ethereum) {
+        web3 = new Web3(window.ethereum);
+        try {
+          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+          document.getElementById("wallet-address").textContent = accounts[0];
+        } catch (error) {
+          alert("Wallet connection failed!");
+        }
+      } else {
+        alert("Please install MetaMask to use this feature.");
+      }
+    }
+
     async function buyTokens() {
-      alert('Buy function coming soon via MetaMask integration');
+      const amount = prompt("Enter amount of MATIC to spend:");
+      if (!amount || isNaN(amount)) return alert("Invalid amount.");
+      const accounts = await web3.eth.getAccounts();
+      web3.eth.sendTransaction({
+        from: accounts[0],
+        to: recipientAddress,
+        value: web3.utils.toWei(amount, "ether")
+      });
     }
 
     async function sellTokens() {
-      alert('Sell function coming soon via MetaMask integration');
+      alert("To sell RUP tokens, please contact admin via Telegram or use a DEX like QuickSwap.");
+    }
+
+    function openAirdropForm() {
+      window.open("https://forms.gle/YOUR_GOOGLE_FORM_ID", "_blank");
     }
   </script>
 </body>
