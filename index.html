@@ -1,82 +1,92 @@
-<!DOCTYPE html><html lang="en">
+
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RUP Token</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 30px;
     }
-    img {
-      width: 150px;
-      margin-bottom: 20px;
-    }
-    h1, h2 {
-      margin: 10px 0;
+    h1 {
+      font-size: 2.5em;
     }
     button {
-      background: linear-gradient(to right, #00b09b, #96c93d);
-      border: none;
-      padding: 10px 25px;
+      padding: 15px 25px;
+      font-size: 18px;
       margin: 10px;
+      border: none;
       border-radius: 10px;
-      font-size: 16px;
-      color: white;
+      background: linear-gradient(to right, #00c9ff, #92fe9d);
       cursor: pointer;
+      color: black;
     }
     button:hover {
-      opacity: 0.85;
+      opacity: 0.8;
     }
     .terms {
-      margin-top: 30px;
-      font-size: 14px;
-      color: #ffcc00;
+      color: gold;
+      font-weight: bold;
+      margin-top: 40px;
+    }
+    img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <img src="rup-logo.png" alt="RUP Logo">
-  <h1>RUP Token</h1>  <h2>Buy RUP Token</h2>
-  <button onclick="buyToken()">Buy</button>  <h2>Sell RUP Token</h2>
-  <button onclick="sellToken()">Sell</button>  <h2>Claim Free Airdrop</h2>
-  <button onclick="claimAirdrop()">Claim</button>  <div class="terms">
-    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected. <br />
-    Online participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.
-  </div>  <script>
-    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // your wallet address
+  <img src="rup-logo.png" alt="RUP Logo" />
+  <h1>RUP Token</h1>
+  <h2>Buy RUP Token</h2>
+  <button onclick="buyRUP()">Buy</button>
+  <h2>Sell RUP Token</h2>
+  <button onclick="sellRUP()">Sell</button>
+  <h2>Claim Free Airdrop</h2>
+  <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSd7-T4RfK9oKy-xxxxx/viewform', '_blank')">Claim</button>
 
-    async function buyToken() {
+  <p class="terms">
+    This airdrop is free and only for promotional purposes.<br>
+    Multiple submissions or fake entries will be rejected.<br>
+    Online participants with valid wallet addresses will be rewarded.<br>
+    We reserve the right to cancel suspicious entries.
+  </p>
+
+  <script>
+    const receiver = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4";
+
+    async function buyRUP() {
       if (typeof window.ethereum !== 'undefined') {
+        const provider = window.ethereum;
+        await provider.request({ method: 'eth_requestAccounts' });
+        const accounts = await provider.request({ method: 'eth_accounts' });
+        const transaction = {
+          to: receiver,
+          from: accounts[0],
+          value: '0x16345785D8A0000'  // 0.1 MATIC in hex
+        };
         try {
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const tx = await window.ethereum.request({
+          const txHash = await provider.request({
             method: 'eth_sendTransaction',
-            params: [{
-              from: accounts[0],
-              to: receiverAddress,
-              value: '0x16345785D8A0000', // 0.1 MATIC in hex (in wei)
-              chainId: '0x89' // Polygon Mainnet
-            }]
+            params: [transaction],
           });
-          alert("Transaction sent! Tx Hash: " + tx);
-        } catch (err) {
-          alert("Transaction failed: " + err.message);
+          alert('Transaction sent! Hash: ' + txHash);
+        } catch (error) {
+          alert('Transaction failed: ' + error.message);
         }
       } else {
-        alert("Please install MetaMask to buy token.");
+        alert('MetaMask not detected!');
       }
     }
 
-    function sellToken() {
-      alert("Please visit QuickSwap or another DEX to sell RUP token.");
+    function sellRUP() {
+      alert('To sell RUP Token, please visit QuickSwap or your DEX.');
     }
-
-    function claimAirdrop() {
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
-    }
-  </script></body>
+  </script>
+</body>
 </html>
