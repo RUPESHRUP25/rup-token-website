@@ -1,102 +1,95 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUP Token</title>
-  <link rel="icon" href="rup-logo.png" />
+  <link rel="icon" type="image/png" href="rup-logo.png">
   <style>
     body {
-      font-family: sans-serif;
-      background: #f4f4f4;
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
       text-align: center;
-      padding: 2rem;
-    }
-    header img {
-      width: 120px;
-    }
-    .card {
-      background: white;
-      padding: 2rem;
-      margin: 1rem auto;
-      max-width: 500px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    button {
-      background: #5b6dfc;
-      color: white;
-      padding: 0.8rem 2rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin: 0.5rem;
-    }
-    button:hover {
-      background: #4051db;
+      padding: 20px;
     }
     .logo {
-      width: 100px;
-      border-radius: 50%;
-      margin: 1rem auto;
+      width: 120px;
+      margin-bottom: 20px;
     }
-    a {
-      color: #5b6dfc;
-      text-decoration: none;
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .section {
+      margin: 30px 0;
+    }
+    button {
+      background-color: orange;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #ff9900;
     }
     .terms {
-      font-size: 0.9rem;
-      margin-top: 2rem;
-      color: #333;
+      font-size: 12px;
+      color: #bbb;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-    <h1>RUP Token</h1>
-  </header>  <div class="card">
+  <img src="rup-logo.png" alt="RUP Logo" class="logo">
+  <h1>RUP Token</h1>  <div class="section">
     <h2>Buy RUP Token</h2>
     <button onclick="buyRUP()">Buy</button>
-  </div>  <div class="card">
+  </div>  <div class="section">
     <h2>Sell RUP Token</h2>
     <button onclick="sellRUP()">Sell</button>
-  </div>  <div class="card">
+  </div>  <div class="section">
     <h2>Claim Free Airdrop</h2>
     <button onclick="claimAirdrop()">Claim</button>
   </div>  <div class="terms">
-    <h3>Terms & Conditions</h3>
     <p>This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected.</p>
-    <p>Only genuine participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.</p>
+    <p>Genuine participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.</p>
   </div>  <script>
+    const ownerAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4";
+
     async function buyRUP() {
-      if (typeof window.ethereum !== 'undefined') {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      if (typeof window.ethereum === 'undefined') {
+        alert('Please install MetaMask to buy RUP');
+        return;
+      }
+      try {
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const from = accounts[0];
+        const amountInMatic = '0.01';
         const transactionParameters = {
-          to: '0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4',
-          from: accounts[0],
-          value: '0x2386F26FC10000' // 0.01 MATIC in hex
+          to: ownerAddress,
+          from: from,
+          value: parseInt(window.ethereum.utils.toWei(amountInMatic, 'ether')).toString(16)
         };
-        try {
-          await window.ethereum.request({
-            method: 'eth_sendTransaction',
-            params: [transactionParameters]
-          });
-          alert('Transaction Sent!');
-        } catch (error) {
-          alert('Transaction Failed');
-        }
-      } else {
-        alert('MetaMask not found');
+        await ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [transactionParameters]
+        });
+        alert('RUP Token purchase request sent!');
+      } catch (error) {
+        alert('Transaction failed.');
       }
     }
 
     function sellRUP() {
-      alert('To sell your RUP tokens, please visit QuickSwap or contact admin.');
+      alert("To sell RUP tokens, please use a DEX like QuickSwap or contact admin via Telegram.");
     }
 
     function claimAirdrop() {
-      window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit', '_blank');
+      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", '_blank');
     }
   </script></body>
 </html>
