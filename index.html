@@ -1,100 +1,102 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
-  <title>RUP Token | Buy, Sell & Airdrop</title>
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-  <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RUP Token</title>
+  <link rel="icon" href="rup-logo.png" />
   <style>
     body {
-      background-color: #1e1e1e;
-      color: white;
-      font-family: Arial;
+      font-family: sans-serif;
+      background: #f4f4f4;
       text-align: center;
+      padding: 2rem;
+    }
+    header img {
+      width: 120px;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      margin: 1rem auto;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     button {
-      padding: 10px 20px;
-      margin: 10px;
+      background: #5b6dfc;
+      color: white;
+      padding: 0.8rem 2rem;
       border: none;
-      background-color: orange;
-      color: black;
-      font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: 8px;
+      font-size: 1rem;
+      margin: 0.5rem;
     }
-    img.logo {
-      width: 120px;
-      margin-top: 20px;
+    button:hover {
+      background: #4051db;
+    }
+    .logo {
+      width: 100px;
+      border-radius: 50%;
+      margin: 1rem auto;
+    }
+    a {
+      color: #5b6dfc;
+      text-decoration: none;
+    }
+    .terms {
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <img class="logo" src="rup-logo.png" alt="RUP Token Logo">
-  <h1>RUP Token</h1>
-
-  <button onclick="connectWallet()">Connect Wallet</button>
-  <p><strong>Wallet Address:</strong> <span id="wallet">Not connected</span></p>
-
-  <button onclick="buyRUP()">Buy RUP</button>
-  <button onclick="sellRUP()">Sell RUP</button>
-  <button onclick="claimAirdrop()">Claim Airdrop</button>
-
-  <h3>Terms & Conditions</h3>
-  <ol style="text-align:left; display:inline-block;">
-    <li>One airdrop claim per wallet address.</li>
-    <li>Airdrops are manually verified and distributed.</li>
-    <li>Any suspicious activity will lead to disqualification.</li>
-    <li>Project owners reserve the right to change terms.</li>
-    <li>Participation in the project is at your own risk.</li>
-  </ol>
-
-  <script>
-    let userAccount;
-    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // your wallet
-    const rupTokenAddress = "<ENTER_YOUR_RUP_TOKEN_ADDRESS_HERE>"; // RUP token contract
-    const rupAbi = [
-      {
-        "constant": false,
-        "inputs": [
-          { "name": "_to", "type": "address" },
-          { "name": "_value", "type": "uint256" }
-        ],
-        "name": "transfer",
-        "outputs": [ { "name": "", "type": "bool" } ],
-        "type": "function"
-      }
-    ];
-
-    async function connectWallet() {
-      const provider = await detectEthereumProvider();
-      if (provider) {
-        window.web3 = new Web3(provider);
-        await provider.request({ method: 'eth_requestAccounts' });
-        const accounts = await web3.eth.getAccounts();
-        userAccount = accounts[0];
-        document.getElementById("wallet").textContent = userAccount;
-      } else {
-        alert('MetaMask not detected');
-      }
-    }
-
+  <header>
+    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
+    <h1>RUP Token</h1>
+  </header>  <div class="card">
+    <h2>Buy RUP Token</h2>
+    <button onclick="buyRUP()">Buy</button>
+  </div>  <div class="card">
+    <h2>Sell RUP Token</h2>
+    <button onclick="sellRUP()">Sell</button>
+  </div>  <div class="card">
+    <h2>Claim Free Airdrop</h2>
+    <button onclick="claimAirdrop()">Claim</button>
+  </div>  <div class="terms">
+    <h3>Terms & Conditions</h3>
+    <p>This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected.</p>
+    <p>Only genuine participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.</p>
+  </div>  <script>
     async function buyRUP() {
-      if (!userAccount) return alert('Please connect wallet');
-      const value = web3.utils.toWei('1', 'ether'); // 1 MATIC
-      await web3.eth.sendTransaction({
-        from: userAccount,
-        to: receiverAddress,
-        value
-      });
-      alert('MATIC sent. Admin will send RUP tokens.');
+      if (typeof window.ethereum !== 'undefined') {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const transactionParameters = {
+          to: '0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4',
+          from: accounts[0],
+          value: '0x2386F26FC10000' // 0.01 MATIC in hex
+        };
+        try {
+          await window.ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [transactionParameters]
+          });
+          alert('Transaction Sent!');
+        } catch (error) {
+          alert('Transaction Failed');
+        }
+      } else {
+        alert('MetaMask not found');
+      }
     }
 
-    async function sellRUP() {
-      alert("To sell RUP tokens, please use QuickSwap DEX or contact admin.");
+    function sellRUP() {
+      alert('To sell your RUP tokens, please visit QuickSwap or contact admin.');
     }
 
-    async function claimAirdrop() {
-      window.open("https://forms.gle/YOUR_GOOGLE_FORM_LINK", "_blank");
+    function claimAirdrop() {
+      window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit', '_blank');
     }
-  </script>
-</body>
+  </script></body>
 </html>
