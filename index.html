@@ -3,70 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token</title>
+  <title>RUP Token Website</title>
   <style>
     body {
-      background-color: #0e0e0e;
-      font-family: Arial, sans-serif;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
       text-align: center;
       padding: 20px;
     }
-    img.logo {
-      max-width: 200px;
+
+    header img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
       margin-bottom: 20px;
     }
-    h1 {
-      color: #ffcc00;
+
+    .button-row {
+      margin: 30px 0;
     }
-    .button {
-      background-color: #0088cc;
-      color: #fff;
-      border: none;
-      padding: 12px 24px;
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
       margin: 10px;
-      font-size: 1.2rem;
+      border: none;
       border-radius: 10px;
+      font-size: 1.2rem;
       cursor: pointer;
     }
-    .button:hover {
-      background-color: #00aaff;
+
+    .btn:hover {
+      background-color: #0056b3;
     }
+
+    .terms {
+      max-width: 700px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 0.95rem;
+      margin-top: 40px;
+    }
+
     footer {
       margin-top: 40px;
     }
-    .terms {
-      background-color: #1c1c1c;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 10px;
+
+    a.social {
+      color: #00acee;
+      text-decoration: none;
+      font-size: 1.1rem;
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="rup-logo.png" alt="RUP Token Logo" />
+    <h1>RUP Token</h1>
+  </header>
 
-  <img src="https://raw.githubusercontent.com/yourusername/yourrepo/main/rup-logo.png" alt="RUP Logo" class="logo" />
-  <h1>Welcome to RUP Token</h1>
-
-  <div>
-    <button class="button" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0x...&outputCurrency=0xAa93C8282927c384e5C40C8C0fE11a4B860B6074', '_blank')">Buy RUP</button>
-    <button class="button" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0xAa93C8282927c384e5C40C8C0fE11a4B860B6074&outputCurrency=0x...', '_blank')">Sell RUP</button>
-    <button class="button" onclick="window.open('https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform', '_blank')">Claim Airdrop</button>
+  <div class="button-row">
+    <button class="btn" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0xYourTokenAddress')">Buy RUP</button>
+    <button class="btn" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0xYourTokenAddress&outputCurrency=MATIC')">Sell RUP</button>
+    <button class="btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdMQULoXp4NEXbc0QQs56E66NeFBEIi-yw4DN26')">Claim Airdrop</button>
   </div>
 
   <div class="terms">
-    <h2>Terms & Conditions</h2>
-    <p>
-      1. Har user sirf ek baar airdrop claim kar sakta hai.<br>
-      2. Fake or duplicate entries cancel kiye jaayenge.<br>
-      3. Airdrop distribution 24-48 ghante mein hoga.<br>
-      4. RUP team kisi bhi samay terms change kar sakti hai.
-    </p>
+    <h2>Terms & Conditions for Airdrop</h2>
+    <ul>
+      <li>Airdrop is limited to 1 claim per wallet.</li>
+      <li>Use only valid wallet addresses.</li>
+      <li>Fake submissions will be rejected.</li>
+      <li>Distribution of tokens may take up to 48 hours.</li>
+    </ul>
   </div>
 
   <footer>
-    <p>Join our <a href="https://t.me/rupeshelectronics2003"_blank" style="color:#00ccff;">Telegram Group</a></p>
+    <a class="social" href="https://t.me/yourtelegramgroup" target="_blank">Join us on Telegram</a>
   </footer>
-
 </body>
 </html>
