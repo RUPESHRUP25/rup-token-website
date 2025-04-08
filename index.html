@@ -2,113 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUP Token | Buy, Sell & Airdrop</title>
-  <link rel="icon" type="image/png" href="rup-logo.png" />
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RUP Token Website</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
       text-align: center;
       padding: 20px;
     }
-    .logo {
-      max-width: 150px;
+
+    header img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
       margin-bottom: 20px;
     }
-    .btn {
-      padding: 12px 25px;
-      margin: 10px;
-      background-color: #f39c12;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background-color: #e67e22;
-    }
-    .section {
+
+    .button-row {
       margin: 30px 0;
     }
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
     .terms {
-      font-size: 14px;
-      color: #aaa;
-      margin-top: 20px;
+      max-width: 700px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
       text-align: left;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 0.95rem;
+      margin-top: 40px;
+    }
+
+    footer {
+      margin-top: 40px;
+    }
+
+    a.social {
+      color: #00acee;
+      text-decoration: none;
+      font-size: 1.1rem;
     }
   </style>
 </head>
 <body>
-  <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-  <h1>RUP Token (RUP)</h1>
+  <header>
+    <img src="rup-logo.png" alt="RUP Token Logo" />
+    <h1>RUP Token</h1>
+  </header>
 
-  <div class="section">
-    <button class="btn" onclick="connectWallet()">Connect Wallet</button>
-    <p><strong>Wallet Address:</strong> <span id="wallet-address">Not connected</span></p>
-  </div>
-
-  <div class="section">
-    <button class="btn" onclick="buyTokens()">Buy RUP</button>
-    <button class="btn" onclick="sellTokens()">Sell RUP</button>
-  </div>
-
-  <div class="section">
-    <button class="btn" onclick="openAirdropForm()">Claim Airdrop</button>
+  <div class="button-row">
+    <button class="btn" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0xYourTokenAddress')">Buy RUP</button>
+    <button class="btn" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0xYourTokenAddress&outputCurrency=MATIC')">Sell RUP</button>
+    <button class="btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdMQULoXp4NEXbc0QQs56E66NeFBEIi-yw4DN26')">Claim Airdrop</button>
   </div>
 
   <div class="terms">
-    <h3>Terms & Conditions</h3>
-    <p>
-      1. One airdrop claim per wallet address.<br>
-      2. Airdrops are manually verified and distributed.<br>
-      3. Any suspicious activity will lead to disqualification.<br>
-      4. Project owners reserve the right to change terms.<br>
-      5. Participation in the project is at your own risk.
-    </p>
+    <h2>Terms & Conditions for Airdrop</h2>
+    <ul>
+      <li>Airdrop is limited to 1 claim per wallet.</li>
+      <li>Use only valid wallet addresses.</li>
+      <li>Fake submissions will be rejected.</li>
+      <li>Distribution of tokens may take up to 48 hours.</li>
+    </ul>
   </div>
 
-  <script>
-    let web3;
-    const recipientAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // Your wallet
-
-    async function connectWallet() {
-      if (window.ethereum) {
-        web3 = new Web3(window.ethereum);
-        try {
-          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-          document.getElementById("wallet-address").textContent = accounts[0];
-        } catch (error) {
-          alert("Wallet connection failed!");
-        }
-      } else {
-        alert("Please install MetaMask to use this feature.");
-      }
-    }
-
-    async function buyTokens() {
-      const amount = prompt("Enter amount of MATIC to spend:");
-      if (!amount || isNaN(amount)) return alert("Invalid amount.");
-      const accounts = await web3.eth.getAccounts();
-      web3.eth.sendTransaction({
-        from: accounts[0],
-        to: recipientAddress,
-        value: web3.utils.toWei(amount, "ether")
-      });
-    }
-
-    async function sellTokens() {
-      alert("To sell RUP tokens, please contact admin via Telegram or use a DEX like QuickSwap.");
-    }
-
-    function openAirdropForm() {
-      window.open("https://forms.gle/YOUR_GOOGLE_FORM_ID", "_blank");
-    }
-  </script>
+  <footer>
+    <a class="social" href="https://t.me/yourtelegramgroup" target="_blank">Join us on Telegram</a>
+  </footer>
 </body>
 </html>
