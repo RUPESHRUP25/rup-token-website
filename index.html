@@ -1,82 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUPESH Token</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>RUP Token | Buy, Sell & Airdrop</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
   <style>
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #1e1e2f, #23234b);
+      background-color: #1e1e1e;
       color: white;
+      font-family: Arial;
       text-align: center;
-      padding: 2rem;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      color: #ccc;
-    }
-    .info {
-      background: #333;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-    }
-    .info strong {
-      color: #00ffcc;
-    }
-    .button {
-      display: block;
-      margin: 1rem auto;
-      padding: 0.75rem 1.5rem;
-      background: #00bfff;
-      color: white;
+    button {
+      padding: 10px 20px;
+      margin: 10px;
       border: none;
-      border-radius: 10px;
-      font-size: 1rem;
+      background-color: orange;
+      color: black;
+      font-weight: bold;
       cursor: pointer;
-      text-decoration: none;
+      border-radius: 8px;
     }
-    .button:hover {
-      background: #009acb;
+    img.logo {
+      width: 120px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="RUP Logo">
-    <h1>RUPESH (RUP)</h1>
-    <p>RUPESH is a community-powered utility token on the Polygon network — fast, secure, and future-ready.</p>
+  <img class="logo" src="rup-logo.png" alt="RUP Token Logo">
+  <h1>RUP Token</h1>
 
-    <div class="info">
-      <p><strong>Symbol:</strong> RUP</p>
-      <p><strong>Network:</strong> Polygon (MATIC)</p>
-      <p><strong>Contract:</strong><br> 0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</p>
-    </div>
+  <button onclick="connectWallet()">Connect Wallet</button>
+  <p><strong>Wallet Address:</strong> <span id="wallet">Not connected</span></p>
 
-    <a class="button" href="https://polygonscan.com/token/0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" target="_blank">View on PolygonScan</a>
-    <a class="button" href="https://t.me/rupeshelectronics2003" target="_blank">Join Telegram</a>
-  </div>
+  <button onclick="buyRUP()">Buy RUP</button>
+  <button onclick="sellRUP()">Sell RUP</button>
+  <button onclick="claimAirdrop()">Claim Airdrop</button>
+
+  <h3>Terms & Conditions</h3>
+  <ol style="text-align:left; display:inline-block;">
+    <li>One airdrop claim per wallet address.</li>
+    <li>Airdrops are manually verified and distributed.</li>
+    <li>Any suspicious activity will lead to disqualification.</li>
+    <li>Project owners reserve the right to change terms.</li>
+    <li>Participation in the project is at your own risk.</li>
+  </ol>
+
+  <script>
+    let userAccount;
+    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // your wallet
+    const rupTokenAddress = "<ENTER_YOUR_RUP_TOKEN_ADDRESS_HERE>"; // RUP token contract
+    const rupAbi = [
+      {
+        "constant": false,
+        "inputs": [
+          { "name": "_to", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "outputs": [ { "name": "", "type": "bool" } ],
+        "type": "function"
+      }
+    ];
+
+    async function connectWallet() {
+      const provider = await detectEthereumProvider();
+      if (provider) {
+        window.web3 = new Web3(provider);
+        await provider.request({ method: 'eth_requestAccounts' });
+        const accounts = await web3.eth.getAccounts();
+        userAccount = accounts[0];
+        document.getElementById("wallet").textContent = userAccount;
+      } else {
+        alert('MetaMask not detected');
+      }
+    }
+
+    async function buyRUP() {
+      if (!userAccount) return alert('Please connect wallet');
+      const value = web3.utils.toWei('1', 'ether'); // 1 MATIC
+      await web3.eth.sendTransaction({
+        from: userAccount,
+        to: receiverAddress,
+        value
+      });
+      alert('MATIC sent. Admin will send RUP tokens.');
+    }
+
+    async function sellRUP() {
+      alert("To sell RUP tokens, please use QuickSwap DEX or contact admin.");
+    }
+
+    async function claimAirdrop() {
+      window.open("https://forms.gle/YOUR_GOOGLE_FORM_LINK", "_blank");
+    }
+  </script>
 </body>
 </html>
