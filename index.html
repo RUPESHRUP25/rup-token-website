@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RUP Token</title>
   <style>
     body {
@@ -10,75 +10,85 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: url('gold-bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
+      color: white;
       text-align: center;
     }
 
-    header {
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.6);
+    .container {
+      padding: 20px;
     }
 
-    header img {
-      width: 120px;
-      height: auto;
+    .logo {
+      width: 200px;
+      margin-top: 40px;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-top: 0.5rem;
+      font-size: 2.8em;
+      margin: 10px 0 30px;
     }
 
-    .content {
-      padding: 3rem 1rem;
-      background-color: rgba(0, 0, 0, 0.4);
+    .btn {
+      display: block;
+      margin: 15px auto;
+      padding: 15px 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: white;
+      background: #00bcd4;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 160px;
     }
 
-    .roadmap, .terms {
+    .btn:hover {
+      background: #0097a7;
+    }
+
+    .terms-box {
       background-color: rgba(0, 0, 0, 0.6);
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 15px;
-      max-width: 800px;
-      text-align: left;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 90%;
     }
 
-    .roadmap h2, .terms h2 {
+    .terms-box h2 {
       color: gold;
+      font-size: 1.5em;
     }
 
-    footer {
-      padding: 1rem;
+    .roadmap {
+      font-size: 1.3em;
+      color: gold;
       background-color: rgba(0, 0, 0, 0.7);
+      padding: 12px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 40px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="rup-logo.png" alt="RUP Token Logo">
-    <h1>Welcome to RUP Token</h1>
-    <p>Digital Future with Golden Opportunities</p>
-  </header>
+  <div class="container">
+    <img src="rup-logo.png" alt="RUP Logo" class="logo">
+    <h1>RUP Token</h1>
 
-  <div class="content">
-    <div class="roadmap">
-      <h2>RUP Token Roadmap</h2>
-      <ul>
-        <li>Phase 1: Token Launch and Website Release</li>
-        <li>Phase 2: Airdrop Distribution and Community Building</li>
-        <li>Phase 3: Listing on DEX and Marketing Campaign</li>
-        <li>Phase 4: NFT Integration and RUP Utility Expansion</li>
-      </ul>
-    </div>
+    <button class="btn" onclick="window.location.href='https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform'">
+      Claim
+    </button>
 
-    <div class="terms">
+    <div class="terms-box">
       <h2>Terms and Conditions</h2>
-      <p>The RUP Token is provided for community engagement and development purposes. Please make sure to verify wallet addresses before sending any transactions. RUP does not guarantee any financial returns. Participating in the airdrop or holding the token is voluntary. Use at your own risk.</p>
+      <p>
+        By participating in the airdrop, you agree not to misuse or attempt to game the system.<br>
+        One airdrop per person only.<br>
+        Fake or duplicate entries will be disqualified.
+      </p>
     </div>
-  </div>
 
-  <footer>
-    <p>&copy; 2025 RUP Token | All rights reserved</p>
-  </footer>
+    <div class="roadmap">Roadmap</div>
+  </div>
 </body>
 </html>
