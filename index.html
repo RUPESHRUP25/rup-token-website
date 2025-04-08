@@ -1,82 +1,84 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUP Token</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('gold-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
       text-align: center;
-      padding: 30px;
     }
-    img {
-      width: 150px;
-      margin-bottom: 20px;
+
+    header {
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.6);
     }
-    h1, h2 {
-      margin: 10px 0;
+
+    header img {
+      width: 120px;
+      height: auto;
     }
-    button {
-      background: linear-gradient(to right, #00b09b, #96c93d);
-      border: none;
-      padding: 10px 25px;
-      margin: 10px;
-      border-radius: 10px;
-      font-size: 16px;
-      color: white;
-      cursor: pointer;
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 0.5rem;
     }
-    button:hover {
-      opacity: 0.85;
+
+    .content {
+      padding: 3rem 1rem;
+      background-color: rgba(0, 0, 0, 0.4);
     }
-    .terms {
-      margin-top: 30px;
-      font-size: 14px;
-      color: #ffcc00;
+
+    .roadmap, .terms {
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 15px;
+      max-width: 800px;
+      text-align: left;
+    }
+
+    .roadmap h2, .terms h2 {
+      color: gold;
+    }
+
+    footer {
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
 <body>
-  <img src="rup-logo.png" alt="RUP Logo">
-  <h1>RUP Token</h1>  <h2>Buy RUP Token</h2>
-  <button onclick="buyToken()">Buy</button>  <h2>Sell RUP Token</h2>
-  <button onclick="sellToken()">Sell</button>  <h2>Claim Free Airdrop</h2>
-  <button onclick="claimAirdrop()">Claim</button>  <div class="terms">
-    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected. <br />
-    Online participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.
-  </div>  <script>
-    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // your wallet address
+  <header>
+    <img src="rup-logo.png" alt="RUP Token Logo">
+    <h1>Welcome to RUP Token</h1>
+    <p>Digital Future with Golden Opportunities</p>
+  </header>
 
-    async function buyToken() {
-      if (typeof window.ethereum !== 'undefined') {
-        try {
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const tx = await window.ethereum.request({
-            method: 'eth_sendTransaction',
-            params: [{
-              from: accounts[0],
-              to: receiverAddress,
-              value: '0x16345785D8A0000', // 0.1 MATIC in hex (in wei)
-              chainId: '0x89' // Polygon Mainnet
-            }]
-          });
-          alert("Transaction sent! Tx Hash: " + tx);
-        } catch (err) {
-          alert("Transaction failed: " + err.message);
-        }
-      } else {
-        alert("Please install MetaMask to buy token.");
-      }
-    }
+  <div class="content">
+    <div class="roadmap">
+      <h2>RUP Token Roadmap</h2>
+      <ul>
+        <li>Phase 1: Token Launch and Website Release</li>
+        <li>Phase 2: Airdrop Distribution and Community Building</li>
+        <li>Phase 3: Listing on DEX and Marketing Campaign</li>
+        <li>Phase 4: NFT Integration and RUP Utility Expansion</li>
+      </ul>
+    </div>
 
-    function sellToken() {
-      alert("Please visit QuickSwap or another DEX to sell RUP token.");
-    }
+    <div class="terms">
+      <h2>Terms and Conditions</h2>
+      <p>The RUP Token is provided for community engagement and development purposes. Please make sure to verify wallet addresses before sending any transactions. RUP does not guarantee any financial returns. Participating in the airdrop or holding the token is voluntary. Use at your own risk.</p>
+    </div>
+  </div>
 
-    function claimAirdrop() {
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
-    }
-  </script></body>
+  <footer>
+    <p>&copy; 2025 RUP Token | All rights reserved</p>
+  </footer>
+</body>
 </html>
