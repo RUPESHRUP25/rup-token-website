@@ -1,2 +1,9 @@
-
-blockchains/polygon/assets/0xAa93C8282927c384e5C40C8C0fE11a4B860B6074/logo.png
+{
+  "name": "RUPESH",
+  "symbol": "RUP",
+  "type": "ERC20",
+  "decimals": 18,
+  "description": "RUPESH is a community utility token on the Polygon network.",
+  "website": "https://<your-github-pages-link>",
+  "telegram": "https://t.me/rupeshelectronics2003"
+}
