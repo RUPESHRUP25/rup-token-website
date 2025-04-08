@@ -1,40 +1,27 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RUP Token</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="rup-logo.png" alt="RUP Token Logo" class="logo" />
+    <h1>RUP Token</h1>
+    
+    <button class="btn claim-btn" onclick="window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform')">Claim</button>
 
-interface IERC20 {
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+    <div class="terms-box">
+      <h2>Terms and Conditions</h2>
+      <p>
+        By participating in the airdrop, you agree not to misuse or attempt to game the system. One airdrop per person only.
+        Fake or duplicate entries will be disqualified.
+      </p>
+    </div>
 
-contract RupAirdrop {
-    address public owner;
-    IERC20 public rupToken;
-    uint256 public airdropAmount = 1000 * 10 ** 18; // 1000 RUP, adjust decimals as per token
-    mapping(address => bool) public claimed;
-
-    constructor(address _tokenAddress) {
-        owner = msg.sender;
-        rupToken = IERC20(_tokenAddress);
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not the owner");
-        _;
-    }
-
-    function claim() external {
-        require(!claimed[msg.sender], "Already claimed");
-        require(rupToken.balanceOf(address(this)) >= airdropAmount, "Not enough tokens in contract");
-
-        claimed[msg.sender] = true;
-        rupToken.transfer(msg.sender, airdropAmount);
-    }
-
-    function updateAmount(uint256 _amount) external onlyOwner {
-        airdropAmount = _amount;
-    }
-
-    function withdrawTokens() external onlyOwner {
-        rupToken.transfer(owner, rupToken.balanceOf(address(this)));
-    }
-}
+    <footer>Roadmap</footer>
+  </div>
+</body>
+</html>
