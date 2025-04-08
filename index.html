@@ -3,105 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUPESH Token</title>
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 30px; background: #f1f1f1; }
-    button { padding: 10px 20px; margin: 10px; font-size: 16px; border-radius: 10px; }
-    input { padding: 10px; font-size: 16px; border-radius: 10px; margin: 10px; width: 200px; }
-    .card { background: white; padding: 20px; margin: 20px auto; border-radius: 20px; max-width: 500px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-    .logo { width: 80px; }
-  </style>
+  <title>RUP Token</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="card">
-    <img src="logo.png" class="logo" alt="RUP Logo">
-    <h1>RUPESH Token (RUP)</h1>
-    <p><b>Wallet:</b> <span id="walletAddress">Not connected</span></p>
-    <button onclick="connectWallet()">Connect Wallet</button>
-
-    <div>
-      <h3>Buy RUP with MATIC</h3>
-      <input type="number" id="buyAmount" placeholder="Amount in MATIC" />
-      <button onclick="buyRUP()">Buy</button>
-    </div>
-
-    <div>
-      <h3>Sell RUP</h3>
-      <input type="number" id="sellAmount" placeholder="Amount in RUP" />
-      <button onclick="sellRUP()">Sell</button>
-    </div>
-
-    <div>
-      <h3>Claim Airdrop</h3>
-      <button onclick="claimAirdrop()">Claim</button>
-    </div>
-
-    <div>
-      <h3>Your RUP Balance</h3>
-      <p id="rupBalance">0</p>
-    </div>
-
-    <a href="https://t.me/RUPESHTOKEN" target="_blank">
-      <button style="background-color: #0088cc; color: white;">Join Telegram</button>
-    </a>
+  <div class="hero">
+    <img src="images/rup-logo.png" alt="RUP Token Logo" class="logo" />
+    <h1>Welcome to RUP Token</h1>
+    <p>The future of decentralized finance</p>
+    <a href="https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit" target="_blank" class="btn">Claim Airdrop</a>
   </div>
-
-  <script>
-    const tokenAddress = "YOUR_TOKEN_CONTRACT_ADDRESS";
-    const tokenAbi = [ /* paste your token ABI here */ ];
-    const receiverWallet = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4";
-
-    let web3;
-    let userAccount;
-    let tokenContract;
-
-    async function connectWallet() {
-      if (window.ethereum) {
-        web3 = new Web3(window.ethereum);
-        await ethereum.request({ method: "eth_requestAccounts" });
-        const accounts = await web3.eth.getAccounts();
-        userAccount = accounts[0];
-        document.getElementById("walletAddress").innerText = userAccount;
-        tokenContract = new web3.eth.Contract(tokenAbi, tokenAddress);
-        getRUPBalance();
-      } else {
-        alert("Install MetaMask!");
-      }
-    }
-
-    async function buyRUP() {
-      const amount = document.getElementById("buyAmount").value;
-      const value = web3.utils.toWei(amount, "ether");
-      await web3.eth.sendTransaction({
-        from: userAccount,
-        to: receiverWallet,
-        value: value
-      });
-      alert("MATIC sent. You'll receive RUP soon!");
-    }
-
-    async function sellRUP() {
-      const amount = document.getElementById("sellAmount").value;
-      const decimals = await tokenContract.methods.decimals().call();
-      const tokens = web3.utils.toBN(amount * 10 ** decimals);
-      await tokenContract.methods.transfer(receiverWallet, tokens).send({ from: userAccount });
-      alert("RUP sent. You'll receive MATIC soon!");
-    }
-
-    async function claimAirdrop() {
-      const decimals = await tokenContract.methods.decimals().call();
-      const amount = web3.utils.toBN(100 * 10 ** decimals);
-      await tokenContract.methods.transfer(userAccount, amount).send({ from: receiverWallet });
-      alert("100 RUP claimed!");
-    }
-
-    async function getRUPBalance() {
-      const balance = await tokenContract.methods.balanceOf(userAccount).call();
-      const decimals = await tokenContract.methods.decimals().call();
-      const formatted = balance / 10 ** decimals;
-      document.getElementById("rupBalance").innerText = formatted;
-    }
-  </script>
 </body>
 </html>
