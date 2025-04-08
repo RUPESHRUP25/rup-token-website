@@ -1,27 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>RUPESH Token Airdrop</title>
+  <style>
+    body {
+      background: #0e0e1c;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    .box {
+      background: #1a1a2e;
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 1rem;
+      width: 80%;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background: #00f7ff;
+      color: #000;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <img src="rup-logo.png" alt="RUP Token Logo" class="logo" />
-    <h1>RUP Token</h1>
-    
-    <button class="btn claim-btn" onclick="window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform')">Claim</button>
-
-    <div class="terms-box">
-      <h2>Terms and Conditions</h2>
-      <p>
-        By participating in the airdrop, you agree not to misuse or attempt to game the system. One airdrop per person only.
-        Fake or duplicate entries will be disqualified.
-      </p>
-    </div>
-
-    <footer>Roadmap</footer>
+  <div class="box">
+    <h2>Claim RUPESH Token Airdrop</h2>
+    <p>Enter your Polygon wallet address to claim free RUP tokens:</p>
+    <input type="text" placeholder="0x... Polygon Address" id="wallet" />
+    <br/>
+    <button onclick="claim()">Claim Now</button>
+    <p id="msg"></p>
   </div>
+
+  <script>
+    function claim() {
+      const wallet = document.getElementById("wallet").value;
+      if(wallet.startsWith("0x") && wallet.length === 42){
+        document.getElementById("msg").innerText = "Thank you! Airdrop will be processed soon.";
+      } else {
+        document.getElementById("msg").innerText = "Please enter a valid Polygon wallet address.";
+      }
+    }
+  </script>
 </body>
 </html>
