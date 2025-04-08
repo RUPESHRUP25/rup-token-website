@@ -1,93 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUPESH Token</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>RUP Token</title>
+  <link rel="icon" href="rup-logo.png" />
   <style>
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #1e1e2f, #23234b);
-      color: white;
+      font-family: sans-serif;
+      background: #f4f4f4;
       text-align: center;
       padding: 2rem;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    img {
+    header img {
       width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      color: #ccc;
-    }
-    .info {
-      background: #333;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-    }
-    .info strong {
-      color: #00ffcc;
-    }
-    .button {
-      display: block;
+    .card {
+      background: white;
+      padding: 2rem;
       margin: 1rem auto;
-      padding: 0.75rem 1.5rem;
-      background: #00bfff;
-      color: white;
-      border: none;
+      max-width: 500px;
       border-radius: 10px;
-      font-size: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #5b6dfc;
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
+      font-size: 1rem;
+      margin: 0.5rem;
+    }
+    button:hover {
+      background: #4051db;
+    }
+    .logo {
+      width: 100px;
+      border-radius: 50%;
+      margin: 1rem auto;
+    }
+    a {
+      color: #5b6dfc;
       text-decoration: none;
     }
-    .button:hover {
-      background: #009acb;
-    }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      border-radius: 10px;
+    .terms {
+      font-size: 0.9rem;
       margin-top: 2rem;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="RUP Logo">
-    <h1>RUPESH (RUP)</h1>
-    <p>RUPESH is a community-powered utility token on the Polygon network — fast, secure, and future-ready.</p>
+  <header>
+    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
+    <h1>RUP Token</h1>
+  </header>  <div class="card">
+    <h2>Buy RUP Token</h2>
+    <button onclick="buyRUP()">Buy</button>
+  </div>  <div class="card">
+    <h2>Sell RUP Token</h2>
+    <button onclick="sellRUP()">Sell</button>
+  </div>  <div class="card">
+    <h2>Claim Free Airdrop</h2>
+    <button onclick="claimAirdrop()">Claim</button>
+  </div>  <div class="terms">
+    <h3>Terms & Conditions</h3>
+    <p>This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected.</p>
+    <p>Only genuine participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.</p>
+  </div>  <script>
+    async function buyRUP() {
+      if (typeof window.ethereum !== 'undefined') {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const transactionParameters = {
+          to: '0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4',
+          from: accounts[0],
+          value: '0x2386F26FC10000' // 0.01 MATIC in hex
+        };
+        try {
+          await window.ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [transactionParameters]
+          });
+          alert('Transaction Sent!');
+        } catch (error) {
+          alert('Transaction Failed');
+        }
+      } else {
+        alert('MetaMask not found');
+      }
+    }
 
-    <div class="info">
-      <p><strong>Symbol:</strong> RUP</p>
-      <p><strong>Network:</strong> Polygon (MATIC)</p>
-      <p><strong>Contract:</strong><br> 0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</p>
-    </div>
+    function sellRUP() {
+      alert('To sell your RUP tokens, please visit QuickSwap or contact admin.');
+    }
 
-    <a class="button" href="https://quickswap.exchange/#/swap?outputCurrency=0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" target="_blank">Buy RUP on QuickSwap</a>
-    <a class="button" href="https://polygonscan.com/token/0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" target="_blank">View on PolygonScan</a>
-    <a class="button" href="https://t.me/rupeshelectronics2003" target="_blank">Join Telegram</a>
-
-    <h2 style="margin-top: 2rem;">Top Referrers Leaderboard</h2>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTJPNmzSYI3U4oFqLUY9uPthwG6HjvnJGg7myUmPoRYsmc6ZaH6t6fyz8J1Im7EQHMQ2MD-bIp_wMZt/pubhtml?widget=true&amp;headers=false"></iframe>
-  </div>
-</body>
+    function claimAirdrop() {
+      window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit', '_blank');
+    }
+  </script></body>
 </html>
