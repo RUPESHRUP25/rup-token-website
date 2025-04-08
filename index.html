@@ -1,100 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUP Token</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <style>
     body {
-      background: radial-gradient(circle at center, #083d3d, #001111);
-      color: white;
       font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top left, #001f1f, #002f2f);
+      color: white;
       text-align: center;
-      padding-top: 50px;
+      padding: 40px;
     }
-    img.logo {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 20px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #ffc107;
+    .logo {
+      width: 100px;
+      margin-bottom: 10px;
     }
     h1 {
-      font-size: 2.5em;
+      font-size: 2.5rem;
       margin-bottom: 10px;
     }
     h2 {
-      font-size: 1.5em;
+      font-size: 1.5rem;
       margin: 20px 0 10px;
     }
     button {
-      background-color: #007bff;
-      border: none;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
       color: white;
-      padding: 10px 25px;
+      border: none;
+      padding: 12px 24px;
       margin: 10px;
-      font-size: 16px;
+      font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
     }
     button:hover {
-      background-color: #0056b3;
+      opacity: 0.9;
     }
-    .terms {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #ffeb3b;
-      padding: 0 20px;
+    .airdrop-info {
+      margin-top: 30px;
+      color: yellow;
+      font-size: 0.9rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
-
-  <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-
-  <h1>RUP Token</h1>
-
-  <h2>Buy RUP Token</h2>
-  <button onclick="buyRUP()">Buy</button>
-
-  <h2>Sell RUP Token</h2>
-  <button onclick="sellRUP()">Sell</button>
-
-  <h2>Claim Free Airdrop</h2>
-  <button onclick="claimAirdrop()">Claim</button>
-
-  <div class="terms">
-    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected.<br>
+  <img src="rup-logo.png" alt="RUP Logo" class="logo">
+  <h1>RUP Token</h1>  <h2>Buy RUP Token</h2>
+  <button onclick="buyRUP()">Buy</button>  <h2>Sell RUP Token</h2>
+  <button onclick="sellRUP()">Sell</button>  <h2>Claim Free Airdrop</h2>
+  <button onclick="claimAirdrop()">Claim</button>  <div class="airdrop-info">
+    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected. <br>
     Online participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.
-  </div>
-
-  <script>
-    async function buyRUP() {
-      if (typeof window.ethereum !== 'undefined') {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const tx = await signer.sendTransaction({
-          to: "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4", // Your wallet
-          value: ethers.utils.parseEther("0.1") // Amount in MATIC (editable)
-        });
-        alert("Transaction sent: " + tx.hash);
-      } else {
-        alert("Please install MetaMask to proceed.");
-      }
+  </div>  <script>
+    function buyRUP() {
+      alert("Redirecting to MetaMask to Buy RUP Token...");
+      // MetaMask buy integration code here
     }
 
     function sellRUP() {
-      alert("To sell RUP Token, you will be redirected to QuickSwap.");
-      window.open("https://quickswap.exchange", "_blank");
+      alert("To sell RUP Token, please use a DEX like QuickSwap");
+      // Optionally redirect to QuickSwap
     }
 
     function claimAirdrop() {
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
+      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
     }
-  </script>
-
-</body>
+  </script></body>
 </html>
