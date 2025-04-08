@@ -4,82 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP Token</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url('gold-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-align: center;
-    }
-    .container {
-      padding: 40px 20px;
-    }
-    .logo {
-      width: 180px;
-      height: auto;
-      margin-top: 20px;
-    }
-    h1 {
-      font-size: 36px;
-      margin-top: 10px;
-    }
-    .btn {
-      display: block;
-      margin: 15px auto;
-      padding: 12px 30px;
-      font-size: 18px;
-      color: white;
-      background: #00aaff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 150px;
-    }
-    .btn:hover {
-      background: #0077aa;
-    }
-    .section {
-      background: rgba(0, 0, 0, 0.6);
-      margin-top: 30px;
-      padding: 20px;
-      border-radius: 12px;
-      display: inline-block;
-    }
-    .section h2 {
-      color: #ffd700;
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-    .roadmap {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ffd700;
-      margin-top: 40px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
+    <img src="rup-logo.png" alt="RUP Token Logo" class="logo" />
     <h1>RUP Token</h1>
+    
+    <button class="btn claim-btn" onclick="window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform')">Claim</button>
 
-    <button class="btn" onclick="window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform', '_blank')">
-      Claim
-    </button>
-
-    <div class="section">
+    <div class="terms-box">
       <h2>Terms and Conditions</h2>
       <p>
-        By participating in the airdrop, you agree not to misuse or attempt to game the system.<br>
-        One airdrop per person only.<br>
+        By participating in the airdrop, you agree not to misuse or attempt to game the system. One airdrop per person only.
         Fake or duplicate entries will be disqualified.
       </p>
     </div>
 
-    <div class="roadmap">Roadmap</div>
+    <footer>Roadmap</footer>
   </div>
 </body>
 </html>
