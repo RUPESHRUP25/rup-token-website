@@ -1,27 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="container">
-    <img src="rup-logo.png" alt="RUP Token Logo" class="logo" />
-    <h1>RUP Token</h1>
-    
-    <button class="btn claim-btn" onclick="window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform')">Claim</button>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-image: url('gold-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}
 
-    <div class="terms-box">
-      <h2>Terms and Conditions</h2>
-      <p>
-        By participating in the airdrop, you agree not to misuse or attempt to game the system. One airdrop per person only.
-        Fake or duplicate entries will be disqualified.
-      </p>
-    </div>
+.container {
+  padding: 40px 20px;
+}
 
-    <footer>Roadmap</footer>
-  </div>
-</body>
-</html>
+.logo {
+  width: 180px;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 20px 0;
+}
+
+.btn {
+  font-size: 20px;
+  padding: 12px 30px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.claim-btn {
+  background: linear-gradient(to right, #28a745, #34d058);
+  color: white;
+}
+
+.terms-box {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 20px;
+}
+
+.terms-box h2 {
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffda44;
+}
