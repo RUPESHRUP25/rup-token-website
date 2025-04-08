@@ -1,0 +1,9 @@
+{
+  "name": "RUPESH",
+  "symbol": "RUP",
+  "type": "ERC20",
+  "decimals": 18,
+  "description": "RUPESH is a community utility token on the Polygon network.",
+  "website": "https://<your-github-pages-link>",
+  "telegram": "https://t.me/rupeshelectronics2003"
+}
