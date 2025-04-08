@@ -1,69 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RUP Token Airdrop</title>
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-  <style>
-    body {
-      font-family: Arial;
-      background-image: url('logo.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      text-align: center;
-      padding: 60px;
-      color: white;
-    }
-    button {
-      padding: 15px 30px;
-      font-size: 20px;
-      background-color: #00cc66;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      margin: 10px;
-      cursor: pointer;
-    }
-    .logo {
-      width: 150px;
-      margin-bottom: 20px;
-    }
-  </style>
+  <title>RUP Token</title>
 </head>
 <body>
-  <img src="logo.png" class="logo" alt="RUP Logo" />
-  <h1>Claim Free RUP Tokens</h1>
-  <p>Connect your wallet to claim your airdrop</p>
-  <button onclick="connectWallet()">Connect Wallet</button>
-  <button onclick="claim()">Claim</button>
-
-  <script>
-    let web3;
-    let contract;
-    const contractAddress = "PASTE_YOUR_DEPLOYED_CONTRACT_ADDRESS_HERE";
-    const abi = [PASTE_YOUR_CONTRACT_ABI_HERE];
-
-    async function connectWallet() {
-      if (window.ethereum) {
-        web3 = new Web3(window.ethereum);
-        await ethereum.request({ method: "eth_requestAccounts" });
-        contract = new web3.eth.Contract(abi, contractAddress);
-        alert("Wallet Connected");
-      } else {
-        alert("Install MetaMask");
-      }
-    }
-
-    async function claim() {
-      const accounts = await web3.eth.getAccounts();
-      const user = accounts[0];
-      try {
-        await contract.methods.claim().send({ from: user });
-        alert("Claim successful!");
-      } catch (err) {
-        alert("Error: " + err.message);
-      }
-    }
-  </script>
+  <h1>Welcome to RUP Token</h1>
+  <p>This is the official website of the RUP token on Polygon.</p>
 </body>
 </html>
