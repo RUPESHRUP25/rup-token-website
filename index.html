@@ -1,46 +1,100 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RUP Token</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #083d3d, #001111);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    img.logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ffc107;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin: 20px 0 10px;
+    }
+    button {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 10px 25px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .terms {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #ffeb3b;
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
 
-interface IERC20 {
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+  <img src="rup-logo.png" alt="RUP Logo" class="logo" />
 
-contract RUPAirdrop {
-    address public owner;
-    IERC20 public token;
-    uint256 public airdropAmount;
+  <h1>RUP Token</h1>
 
-    mapping(address => bool) public claimed;
+  <h2>Buy RUP Token</h2>
+  <button onclick="buyRUP()">Buy</button>
 
-    constructor(address _token, uint256 _airdropAmount) {
-        owner = msg.sender;
-        token = IERC20(_token);
-        airdropAmount = _airdropAmount;
+  <h2>Sell RUP Token</h2>
+  <button onclick="sellRUP()">Sell</button>
+
+  <h2>Claim Free Airdrop</h2>
+  <button onclick="claimAirdrop()">Claim</button>
+
+  <div class="terms">
+    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected.<br>
+    Online participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.
+  </div>
+
+  <script>
+    async function buyRUP() {
+      if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const tx = await signer.sendTransaction({
+          to: "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4", // Your wallet
+          value: ethers.utils.parseEther("0.1") // Amount in MATIC (editable)
+        });
+        alert("Transaction sent: " + tx.hash);
+      } else {
+        alert("Please install MetaMask to proceed.");
+      }
     }
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not owner");
-        _;
+    function sellRUP() {
+      alert("To sell RUP Token, you will be redirected to QuickSwap.");
+      window.open("https://quickswap.exchange", "_blank");
     }
 
-    function claim() external {
-        require(!claimed[msg.sender], "Already claimed");
-        require(token.balanceOf(address(this)) >= airdropAmount, "Not enough tokens");
-
-        claimed[msg.sender] = true;
-        token.transfer(msg.sender, airdropAmount);
+    function claimAirdrop() {
+      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
     }
+  </script>
 
-    function hasClaimed(address user) external view returns (bool) {
-        return claimed[user];
-    }
-
-    function withdrawTokens(address to, uint256 amount) external onlyOwner {
-        token.transfer(to, amount);
-    }
-
-    function setAirdropAmount(uint256 amount) external onlyOwner {
-        airdropAmount = amount;
-    }
-}
+</body>
+</html>
