@@ -3,94 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buy & Sell RUP Token</title>
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <title>RUPESH Token</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      padding: 20px;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #1e1e2f, #23234b);
+      color: white;
       text-align: center;
+      padding: 2rem;
     }
     .container {
-      background: #fff;
-      padding: 20px;
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #ccc;
+    }
+    .info {
+      background: #333;
+      padding: 1rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
     }
-    input, button {
-      padding: 10px;
-      width: 80%;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+    .info strong {
+      color: #00ffcc;
     }
-    button {
-      background: #4caf50;
+    .button {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.75rem 1.5rem;
+      background: #00bfff;
       color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
       cursor: pointer;
+      text-decoration: none;
     }
-    button:hover {
-      background: #45a049;
+    .button:hover {
+      background: #009acb;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Buy/Sell RUP Token</h2>
-    <button onclick="connectWallet()">Connect Wallet</button>
-    <div>
-      <h3>Buy RUP</h3>
-      <input type="number" id="buyAmount" placeholder="Enter MATIC amount" />
-      <button onclick="buyTokens()">Buy</button>
+    <img src="logo.png" alt="RUP Logo">
+    <h1>RUPESH (RUP)</h1>
+    <p>RUPESH is a community-powered utility token on the Polygon network — fast, secure, and future-ready.</p>
+
+    <div class="info">
+      <p><strong>Symbol:</strong> RUP</p>
+      <p><strong>Network:</strong> Polygon (MATIC)</p>
+      <p><strong>Contract:</strong><br> 0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</p>
     </div>
-    <div>
-      <h3>Sell RUP</h3>
-      <input type="number" id="sellAmount" placeholder="Enter RUP amount" />
-      <button onclick="sellTokens()">Sell</button>
-    </div>
+
+    <a class="button" href="https://polygonscan.com/token/0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" target="_blank">View on PolygonScan</a>
+    <a class="button" href="https://t.me/rupeshelectronics2003" target="_blank">Join Telegram</a>
   </div>
-
-  <script>
-    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4";
-    const tokenAddress = "YOUR_RUP_TOKEN_CONTRACT_ADDRESS"; // Replace with your RUP token contract address
-    const tokenAbi = [/* your RUP token ABI here */];
-
-    let web3;
-    let accounts;
-
-    async function connectWallet() {
-      if (window.ethereum) {
-        web3 = new Web3(window.ethereum);
-        accounts = await ethereum.request({ method: "eth_requestAccounts" });
-        alert("Wallet connected: " + accounts[0]);
-      } else {
-        alert("MetaMask not detected");
-      }
-    }
-
-    async function buyTokens() {
-      const amount = document.getElementById("buyAmount").value;
-      if (!web3 || !accounts) return alert("Connect wallet first");
-      await web3.eth.sendTransaction({
-        from: accounts[0],
-        to: receiverAddress,
-        value: web3.utils.toWei(amount, "ether")
-      });
-      alert("MATIC sent to owner. RUP tokens will be sent manually.");
-    }
-
-    async function sellTokens() {
-      const amount = document.getElementById("sellAmount").value;
-      if (!web3 || !accounts) return alert("Connect wallet first");
-      const tokenContract = new web3.eth.Contract(tokenAbi, tokenAddress);
-      const decimals = await tokenContract.methods.decimals().call();
-      const value = web3.utils.toBN(10).pow(web3.utils.toBN(decimals)).mul(web3.utils.toBN(amount));
-      await tokenContract.methods.transfer(receiverAddress, value.toString()).send({ from: accounts[0] });
-      alert("RUP tokens sent. MATIC will be sent manually.");
-    }
-  </script>
 </body>
 </html>
