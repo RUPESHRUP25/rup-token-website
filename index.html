@@ -1,93 +1,36 @@
+import React from "react";
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('bg.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
-    .container {
-      padding-top: 40px;
-    }
-    img.logo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 36px;
-      color: white;
-    }
-    .btn {
-      display: block;
-      width: 150px;
-      margin: 10px auto;
-      padding: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .buy { background: #007bff; color: white; }
-    .sell { background: #28a745; color: white; }
-    .claim { background: #17a2b8; color: white; }
-    .terms {
-      margin-top: 40px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .roadmap {
-      margin-top: 30px;
-      background: #333;
-      color: gold;
-      padding: 10px;
-      border-radius: 10px;
-      font-size: 20px;
-    }
-  </style>
-  <script>
-    function buyToken() {
-      alert("Buy function will connect with MetaMask.");
-    }
-    function sellToken() {
-      alert("Redirecting to DEX...");
-    }
-    function claimAirdrop() {
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
-    }
-  </script>
-</head>
-<body>
-  <div class="container">
-    <img src="rup-logo.png" alt="RUP Logo" class="logo"/>
-    <h1>RUP Token</h1>
-    <button class="btn buy" onclick="buyToken()">Buy</button>
-    <button class="btn sell" onclick="sellToken()">Sell</button>
-    <button class="btn claim" onclick="claimAirdrop()">Claim</button>
+export default function RUPTokenPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-yellow-700 to-yellow-900 flex items-center justify-center px-4">
+      <div className="bg-yellow-100/10 backdrop-blur-md border border-yellow-500 rounded-2xl shadow-2xl p-8 max-w-md w-full text-center text-white">
 
-    <div class="terms">
-      <h2>Terms and Conditions</h2>
-      <p>By participating in the airdrop, you agree not to misuse or attempt to game the system.<br/>
-      One airdrop per person only.<br/>
-      Fake or duplicate entries will be disqualified.</p>
+        {/* Logo */}
+        <img src="/rup-logo.png" alt="RUP Token Logo" className="w-24 h-24 mx-auto mb-4" />
+
+        {/* Heading */}
+        <h1 className="text-3xl font-bold mb-6">RUP Token</h1>
+
+        {/* Buttons */}
+        <div className="space-y-4">
+          <button className="w-full bg-cyan-700 hover:bg-cyan-600 text-white py-3 rounded-xl text-lg font-semibold shadow">Buy</button>
+          <button className="w-full bg-green-600 hover:bg-green-500 text-white py-3 rounded-xl text-lg font-semibold shadow">Sell</button>
+          <button className="w-full bg-teal-500 hover:bg-teal-400 text-white py-3 rounded-xl text-lg font-semibold shadow">Claim</button>
+        </div>
+
+        {/* Terms & Conditions */}
+        <div className="mt-8 text-sm bg-black/40 p-4 rounded-xl">
+          <h2 className="font-bold text-yellow-300 mb-2">Terms and Conditions</h2>
+          <p>By participating in the airdrop, you agree not to misuse or attempt to game the system.<br/>
+            One airdrop per person only.<br/>
+            Fake or duplicate entries will be disqualified.</p>
+        </div>
+
+        {/* Roadmap */}
+        <div className="mt-6">
+          <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black py-3 rounded-xl text-lg font-bold shadow">Roadmap</button>
+        </div>
+      </div>
     </div>
-
-    <div class="roadmap">Roadmap</div>
-  </div>
-</body>
-</html>
+  );
+}
