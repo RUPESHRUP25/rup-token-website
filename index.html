@@ -11,7 +11,7 @@
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 40px 20px;
+      padding-top: 50px;
     }
     img.logo {
       width: 120px;
@@ -42,20 +42,6 @@
     button:hover {
       background-color: #0056b3;
     }
-    input[type="number"] {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      margin-top: 10px;
-      width: 200px;
-      text-align: center;
-    }
-    .wallet-info {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #ddd;
-    }
     .terms {
       margin-top: 40px;
       font-size: 0.9em;
@@ -70,15 +56,7 @@
 
   <h1>RUP Token</h1>
 
-  <div id="wallet-section">
-    <button onclick="connectWallet()">Connect Wallet</button>
-    <div class="wallet-info" id="walletAddress">Wallet not connected</div>
-    <div class="wallet-info" id="rupBalance"></div>
-  </div>
-
   <h2>Buy RUP Token</h2>
-  <input type="number" id="buyAmount" placeholder="Enter MATIC amount" min="0.01" step="0.01"/>
-  <br/>
   <button onclick="buyRUP()">Buy</button>
 
   <h2>Sell RUP Token</h2>
@@ -93,49 +71,18 @@
   </div>
 
   <script>
-    let signer;
-
-    async function connectWallet() {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        signer = provider.getSigner();
-        const address = await signer.getAddress();
-        document.getElementById("walletAddress").innerText = "Connected: " + address;
-        getTokenBalance(address);
-      } else {
-        alert("Please install MetaMask!");
-      }
-    }
-
-    async function getTokenBalance(address) {
-      const tokenAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // Replace with RUP contract
-      const tokenABI = [
-        "function balanceOf(address) view returns (uint256)"
-      ];
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
-      const balance = await contract.balanceOf(address);
-      const readable = ethers.utils.formatUnits(balance, 18); // Use actual decimals
-      document.getElementById("rupBalance").innerText = RUP Balance: ${readable};
-    }
-
     async function buyRUP() {
-      const maticAmount = document.getElementById("buyAmount").value;
-      if (!maticAmount || maticAmount <= 0) {
-        alert("Enter a valid MATIC amount.");
-        return;
-      }
       if (typeof window.ethereum !== 'undefined') {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
         const tx = await signer.sendTransaction({
-          to: "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4",
-          value: ethers.utils.parseEther(maticAmount)
+          to: "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4", // Your wallet
+          value: ethers.utils.parseEther("0.1") // Amount in MATIC (editable)
         });
         alert("Transaction sent: " + tx.hash);
       } else {
-        alert("Please install MetaMask.");
+        alert("Please install MetaMask to proceed.");
       }
     }
 
