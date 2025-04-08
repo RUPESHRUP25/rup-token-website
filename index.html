@@ -1,72 +1,82 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RUP Token</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top left, #001f1f, #002f2f);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
       text-align: center;
-      padding: 40px;
+      padding: 30px;
     }
-    .logo {
-      width: 100px;
-      margin-bottom: 10px;
+    img {
+      width: 150px;
+      margin-bottom: 20px;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    h2 {
-      font-size: 1.5rem;
-      margin: 20px 0 10px;
+    h1, h2 {
+      margin: 10px 0;
     }
     button {
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      color: white;
+      background: linear-gradient(to right, #00b09b, #96c93d);
       border: none;
-      padding: 12px 24px;
+      padding: 10px 25px;
       margin: 10px;
-      font-size: 1rem;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-size: 16px;
+      color: white;
       cursor: pointer;
     }
     button:hover {
-      opacity: 0.9;
+      opacity: 0.85;
     }
-    .airdrop-info {
+    .terms {
       margin-top: 30px;
-      color: yellow;
-      font-size: 0.9rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 14px;
+      color: #ffcc00;
     }
   </style>
 </head>
 <body>
-  <img src="rup-logo.png" alt="RUP Logo" class="logo">
+  <img src="rup-logo.png" alt="RUP Logo">
   <h1>RUP Token</h1>  <h2>Buy RUP Token</h2>
-  <button onclick="buyRUP()">Buy</button>  <h2>Sell RUP Token</h2>
-  <button onclick="sellRUP()">Sell</button>  <h2>Claim Free Airdrop</h2>
-  <button onclick="claimAirdrop()">Claim</button>  <div class="airdrop-info">
-    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected. <br>
+  <button onclick="buyToken()">Buy</button>  <h2>Sell RUP Token</h2>
+  <button onclick="sellToken()">Sell</button>  <h2>Claim Free Airdrop</h2>
+  <button onclick="claimAirdrop()">Claim</button>  <div class="terms">
+    This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected. <br />
     Online participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.
   </div>  <script>
-    function buyRUP() {
-      alert("Redirecting to MetaMask to Buy RUP Token...");
-      // MetaMask buy integration code here
+    const receiverAddress = "0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4"; // your wallet address
+
+    async function buyToken() {
+      if (typeof window.ethereum !== 'undefined') {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const tx = await window.ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [{
+              from: accounts[0],
+              to: receiverAddress,
+              value: '0x16345785D8A0000', // 0.1 MATIC in hex (in wei)
+              chainId: '0x89' // Polygon Mainnet
+            }]
+          });
+          alert("Transaction sent! Tx Hash: " + tx);
+        } catch (err) {
+          alert("Transaction failed: " + err.message);
+        }
+      } else {
+        alert("Please install MetaMask to buy token.");
+      }
     }
 
-    function sellRUP() {
-      alert("To sell RUP Token, please use a DEX like QuickSwap");
-      // Optionally redirect to QuickSwap
+    function sellToken() {
+      alert("Please visit QuickSwap or another DEX to sell RUP token.");
     }
 
     function claimAirdrop() {
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
     }
   </script></body>
 </html>
