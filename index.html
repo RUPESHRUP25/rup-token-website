@@ -1,102 +1,88 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP Token</title>
-  <link rel="icon" href="rup-logo.png" />
   <style>
     body {
-      font-family: sans-serif;
-      background: #f4f4f4;
-      text-align: center;
-      padding: 2rem;
-    }
-    header img {
-      width: 120px;
-    }
-    .card {
-      background: white;
-      padding: 2rem;
-      margin: 1rem auto;
-      max-width: 500px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    button {
-      background: #5b6dfc;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('gold-bg.jpg');
+      background-size: cover;
+      background-position: center;
       color: white;
-      padding: 0.8rem 2rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin: 0.5rem;
+      text-align: center;
     }
-    button:hover {
-      background: #4051db;
+
+    .container {
+      padding: 40px 20px;
     }
+
     .logo {
-      width: 100px;
-      border-radius: 50%;
-      margin: 1rem auto;
+      max-width: 200px;
+      margin: 20px auto;
     }
-    a {
-      color: #5b6dfc;
+
+    h1 {
+      font-size: 36px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: block;
+      margin: 15px auto;
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #28a745;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
       text-decoration: none;
+      width: 200px;
     }
+
+    .btn.telegram {
+      background-color: #0088cc;
+    }
+
+    .btn.whatsapp {
+      background-color: #25D366;
+    }
+
     .terms {
-      font-size: 0.9rem;
-      margin-top: 2rem;
-      color: #333;
+      background-color: rgba(0, 0, 0, 0.5);
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 90%;
+    }
+
+    .roadmap {
+      font-weight: bold;
+      color: gold;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
+  <div class="container">
+    <img src="rup-logo.png" alt="RUP Logo" class="logo"/>
     <h1>RUP Token</h1>
-  </header>  <div class="card">
-    <h2>Buy RUP Token</h2>
-    <button onclick="buyRUP()">Buy</button>
-  </div>  <div class="card">
-    <h2>Sell RUP Token</h2>
-    <button onclick="sellRUP()">Sell</button>
-  </div>  <div class="card">
-    <h2>Claim Free Airdrop</h2>
-    <button onclick="claimAirdrop()">Claim</button>
-  </div>  <div class="terms">
-    <h3>Terms & Conditions</h3>
-    <p>This airdrop is free and only for promotional purposes. Multiple submissions or fake entries will be rejected.</p>
-    <p>Only genuine participants with valid wallet addresses will be rewarded. We reserve the right to cancel suspicious entries.</p>
-  </div>  <script>
-    async function buyRUP() {
-      if (typeof window.ethereum !== 'undefined') {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const transactionParameters = {
-          to: '0x436bC1973B443c8a3c3E7C6D06271e68B49B32A4',
-          from: accounts[0],
-          value: '0x2386F26FC10000' // 0.01 MATIC in hex
-        };
-        try {
-          await window.ethereum.request({
-            method: 'eth_sendTransaction',
-            params: [transactionParameters]
-          });
-          alert('Transaction Sent!');
-        } catch (error) {
-          alert('Transaction Failed');
-        }
-      } else {
-        alert('MetaMask not found');
-      }
-    }
 
-    function sellRUP() {
-      alert('To sell your RUP tokens, please visit QuickSwap or contact admin.');
-    }
+    <a class="btn" href="https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform" target="_blank">Claim Airdrop</a>
+    <a class="btn telegram" href="https://t.me/YOUR_TELEGRAM_LINK" target="_blank">Join Telegram</a>
+    <a class="btn whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank">Join WhatsApp</a>
 
-    function claimAirdrop() {
-      window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit', '_blank');
-    }
-  </script></body>
+    <div class="terms">
+      <h3>Terms and Conditions</h3>
+      <p>By participating in the airdrop, you agree not to misuse or attempt to game the system.<br>
+      One airdrop per person only.<br>
+      Fake or duplicate entries will be disqualified.</p>
+    </div>
+
+    <div class="roadmap">Roadmap</div>
+  </div>
+</body>
 </html>
