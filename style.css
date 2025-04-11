@@ -1,43 +1,109 @@
-.telegram-button {
-  background-color: #0088cc;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('gold-bg.jpg');
+  background-size: cover;
+  background-position: center;
   color: white;
+  text-align: center;
 }
 
-.whatsapp-button {
-  background-color: #25D366;
-  color: white;
+.container {
+  padding: 30px 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* transparency for readability */
+  max-width: 800px;
+  margin: auto;
+  border-radius: 20px;
 }
 
-.youtube-button {
-  background-color: #FF0000;
-  color: white;
+.logo {
+  width: 120px;
+  margin-bottom: 15px;
 }
 
-.instagram-button {
-  background-color: #C13584;
-  color: white;
+h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: gold;
 }
 
-.twitter-button {
-  background-color: #1DA1F2;
-  color: white;
+.claim-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: gold;
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 10px auto;
+  transition: 0.3s ease;
+}
+.claim-button:hover {
+  background-color: orange;
 }
 
-.facebook-button {
-  background-color: #4267B2;
-  color: white;
+.social-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
 .social-buttons a {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 8px;
-  border-radius: 30px;
   text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 6px;
   font-weight: bold;
-  transition: 0.3s ease;
+  transition: 0.3s;
+  color: white;
+}
+
+.telegram-button {
+  background-color: #0088cc;
+}
+.whatsapp-button {
+  background-color: #25D366;
+}
+.youtube-button {
+  background-color: #FF0000;
+}
+.instagram-button {
+  background-color: #C13584;
+}
+.twitter-button {
+  background-color: #1DA1F2;
+}
+.facebook-button {
+  background-color: #3b5998;
 }
 
 .social-buttons a:hover {
-  opacity: 0.9;
+  opacity: 0.8;
+}
+
+.terms, .roadmap {
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.terms h3, .roadmap h3 {
+  color: gold;
+}
+
+.terms ul, .roadmap ul {
+  list-style: none;
+  padding: 0;
+}
+
+.terms ul li, .roadmap ul li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
