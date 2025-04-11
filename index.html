@@ -4,85 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP Token</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: url('gold-bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
+      color: #fff;
       text-align: center;
     }
-
     .container {
-      padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.6);
-      max-width: 700px;
-      margin: auto;
-      border-radius: 20px;
-    }
-
-    .logo {
-      width: 100px;
-      height: auto;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin: 10px 0 30px;
-    }
-
-    .claim-button {
-      background-color: gold;
-      color: black;
-      padding: 12px 30px;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-    .social-buttons a {
-      display: inline-block;
-      margin: 8px;
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      color: white;
-    }
-
-    .telegram-button { background: #0088cc; }
-    .whatsapp-button { background: #25D366; }
-    .youtube-button { background: #FF0000; }
-    .instagram-button { background: #C13584; }
-    .twitter-button { background: #1DA1F2; }
-    .facebook-button { background: #3b5998; }
-
-    .terms, .roadmap {
-      background: rgba(255, 255, 255, 0.1);
       padding: 20px;
-      margin-top: 30px;
+    }
+    .logo {
+      width: 120px;
+      margin-top: 20px;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+    .claim-button, .telegram-button, .whatsapp-button, .youtube-button, .twitter-button, .instagram-button, .facebook-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(to right, #FFD700, #FF8C00);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .terms, .roadmap-section {
+      margin: 40px 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
       border-radius: 15px;
     }
-
-    .terms h3, .roadmap h3 {
-      color: gold;
+    .terms h3, .roadmap-section h3 {
+      color: #FFD700;
+      font-size: 24px;
+      font-weight: bold;
     }
-
-    .terms p, .roadmap p {
-      color: #eee;
-      font-size: 0.95rem;
-      line-height: 1.6;
+    .terms p, .roadmap-section ul {
+      font-size: 16px;
+      color: #f0f0f0;
     }
-
     footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: #ccc;
+      margin: 40px 0 20px 0;
     }
   </style>
 </head>
@@ -97,39 +67,30 @@
       <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram-button">Join Telegram</a>
       <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp-button">Join WhatsApp</a>
       <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube-button">Join YouTube</a>
+      <a href="https://x.com/RupeshK30183542?t=ureeqUQj6FCai6C_LEJLDQ&s=09" target="_blank" class="twitter-button">Join Twitter (X)</a>
       <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram-button">Join Instagram</a>
-      <a href="https://x.com/RupeshK30183542" target="_blank" class="twitter-button">Follow on Twitter</a>
-      <a href="#" target="_blank" class="facebook-button">Follow on Facebook</a>
+      <a href="#" target="_blank" class="facebook-button">Join Facebook</a>
     </div>
 
     <div class="terms">
-      <h3>Terms and Conditions</h3>
-      <p>RUP टोकन लॉयल्टी प्रोग्राम में आपका स्वागत है!<br/>
-        RUP Token एक प्रमोशनल टोकन है जो मुफ्त में वितरित किया जा रहा है। यह किसी भी प्रकार का निवेश या गारंटी नहीं देता।<br/>
-        यह Rupesh Electronics के व्यवसायिक उपयोग के लिए बनाया गया है। एक व्यक्ति केवल एक बार क्लेम कर सकता है।<br/>
-        हम कभी भी नियमों में बदलाव या टोकन वितरण को रोक सकते हैं।
-      </p>
-
-      <h3>Disclaimer</h3>
-      <p>RUP Token कोई इन्वेस्टमेंट टोकन नहीं है और इसे किसी वित्तीय संस्था द्वारा अप्रूव नहीं किया गया है।<br/>
-        इसका उपयोग केवल प्रचार, लॉयल्टी रिवॉर्ड और आंतरिक कार्यों के लिए है। कृपया इसे केवल हमारी आधिकारिक घोषणाओं और उद्देश्य के अनुसार ही उपयोग करें।
-      </p>
+      <h3>Disclaimer & Terms and Conditions</h3>
+      <p>RUP टोकन एक निःशुल्क लॉयल्टी प्रोग्राम टोकन है, जो केवल हमारे बिजनेस नेटवर्क के अंतर्गत वितरित किया जा रहा है। इसमें किसी प्रकार की वित्तीय गारंटी या इन्वेस्टमेंट नहीं है। यह टोकन पूर्णतः प्रमोशनल उद्देश्य से उपयोग किया जा रहा है।</p>
     </div>
 
-    <div class="roadmap">
-      <h3>RUP Token Roadmap</h3>
-      <p>
-        <strong>Phase 1:</strong> Token Launch and Free Airdrop Distribution<br/>
-        <strong>Phase 2:</strong> Community Building via Telegram, WhatsApp, YouTube, Instagram Twitter x, Facebook<br/>
-        <strong>Phase 3:</strong> Website Launch and Wallet Integration<br/>
-        <strong>Phase 4:</strong> Local Business Integration (POS & Loyalty Rewards)<br/>
-        <strong>Phase 5:</strong> Token Utility Expansion in Online Sales<br/>
-        <strong>Phase 6:</strong> Listing on Free DEX Platforms
-      </p>
+    <div class="roadmap-section">
+      <h3>📍 Roadmap</h3>
+      <ul>
+        <li>✅ Token Creation & Website Launch (Completed)</li>
+        <li>🎁 Airdrop Campaign for Early Users</li>
+        <li>📢 Community Building (Telegram, WhatsApp, YouTube, Twitter, Instagram)</li>
+        <li>🛠 Listing Info on PolygonScan & QuickSwap</li>
+        <li>📱 Mobile App Release</li>
+        <li>📈 Business Integration of RUP Token</li>
+      </ul>
     </div>
 
     <footer>
-      © 2025 RUP Token. All rights reserved.
+      <p>&copy; 2025 RUP Token - Powered by Rupesh Electronics</p>
     </footer>
   </div>
 </body>
