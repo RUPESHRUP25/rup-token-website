@@ -1,68 +1,43 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-image: url('clean-gold-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  text-align: center;
-}
-
-.container {
-  padding: 20px;
-  backdrop-filter: brightness(90%);
-}
-
-.logo {
-  width: 120px;
-  margin-top: 30px;
-}
-
-h1 {
-  font-size: 2.5em;
-  margin: 10px 0;
-}
-
-.claim-button, .telegram-button, .whatsapp-button,.youtub-button {
-  display: block;
-  margin: 10px auto;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1em;
-  text-decoration: none;
-  color: white;
-  width: 200px;
-}
-
-.claim-button {
-  background-color: green;
-}
-
 .telegram-button {
   background-color: #0088cc;
+  color: white;
 }
 
 .whatsapp-button {
   background-color: #25D366;
+  color: white;
 }
 
-.terms {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 12px;
-  margin: 30px auto;
-  padding: 20px;
-  width: 90%;
-  max-width: 500px;
+.youtube-button {
+  background-color: #FF0000;
+  color: white;
 }
 
-.terms h3 {
-  color: gold;
+.instagram-button {
+  background-color: #C13584;
+  color: white;
 }
 
-footer .roadmap {
-  margin-top: 20px;
+.twitter-button {
+  background-color: #1DA1F2;
+  color: white;
+}
+
+.facebook-button {
+  background-color: #4267B2;
+  color: white;
+}
+
+.social-buttons a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 30px;
+  text-decoration: none;
   font-weight: bold;
-  color: gold;
+  transition: 0.3s ease;
+}
+
+.social-buttons a:hover {
+  opacity: 0.9;
 }
