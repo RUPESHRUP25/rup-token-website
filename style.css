@@ -24,7 +24,7 @@ h1 {
   margin: 10px 0;
 }
 
-.claim-button, .telegram-button, .whatsapp-button {
+.claim-button, .telegram-button, .whatsapp-button,.youtub-button {
   display: block;
   margin: 10px auto;
   padding: 10px 25px;
