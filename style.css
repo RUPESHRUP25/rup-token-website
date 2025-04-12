@@ -1,65 +1,71 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-image: url('background.jpg');
+  font-family: 'Arial', sans-serif;
+  background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-position: center;
   color: #fff;
   text-align: center;
 }
 
 .container {
+  padding: 30px;
   background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
+  margin: 20px;
+  border-radius: 12px;
 }
 
 .logo {
-  width: 100px;
-  margin-top: 20px;
-}
-
-h1 {
-  color: gold;
+  width: 120px;
+  height: auto;
   margin-bottom: 20px;
 }
 
-.nav-bar a {
-  margin: 10px;
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: gold;
+}
+
+.details {
+  margin: 20px 0;
+}
+
+.details h2 {
+  color: #FFD700;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #444;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 8px 15px;
-  border: 1px solid white;
-  border-radius: 5px;
-  background-color: #222;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.nav-bar a:hover {
-  background-color: gold;
-  color: black;
+button:hover {
+  background-color: #666;
 }
 
-section {
-  margin: 30px 0;
+.social-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .social-buttons a {
-  display: inline-block;
-  margin: 10px 5px;
-  padding: 10px 15px;
-  border-radius: 5px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
   color: white;
   font-weight: bold;
-  text-decoration: none;
 }
 
-.telegram-button { background: #0088cc; }
-.whatsapp-button { background: #25d366; }
-.youtube-button { background: #ff0000; }
-.instagram-button { background: #e4405f; }
-.twitter-button { background: #1da1f2; }
-.facebook-button { background: #3b5998; }
-
-h2 {
-  color: #f9d923;
-}
+.telegram { background-color: #0088cc; }
+.whatsapp { background-color: #25D366; }
+.youtube { background-color: #FF0000; }
+.instagram { background-color: #E1306C; }
+.facebook { background-color: #3b5998; }
+.x { background-color: black; }
