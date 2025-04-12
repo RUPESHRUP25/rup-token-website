@@ -3,85 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token</title>
+  <title>RUP Token Spin & Win</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="container">
     <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-    <h1>RUP Token</h1>
+    <h1>Spin & Win RUP Tokens</h1>
 
-    <a href="https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform" target="_blank" class="claim-button">Claim</a>
-
-    <div class="balance-section">
-      <h2>Check Your RUP Token Balance</h2>
-      <input type="text" id="walletInput" placeholder="Enter Wallet Address"/>
-      <button onclick="checkBalance()">Check Balance</button>
-      <p id="balanceOutput">Coming Soon...</p>
-    </div>
-
-    <a href="#" class="spin-button">Spin Now</a>
-
-    <section class="details">
-      <h2>Token Address</h2>
-      <p id="tokenAddress">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</p>
-      <button onclick="copyAddress()">Copy Address</button>
-    </section>
-
-    <section class="details">
-      <h2>Max Supply</h2>
-      <p>1,00,00,000 RUP</p>
-    </section>
-
-    <section class="details">
-      <h2>Sampark (Contact)</h2>
-      <p>For any queries, join us on social platforms below.</p>
-    </section>
-
-    <div class="social-buttons">
-      <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram">Join Telegram</a>
-      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp">Join WhatsApp</a>
-      <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube">Join YouTube</a>
-      <a href="https://x.com/RupeshK30183542" target="_blank" class="x">Join X</a>
-      <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram">Join Instagram</a>
-      <a href="https://facebook.com" target="_blank" class="facebook">Join Facebook</a>
-    </div>
-
-    <section class="extra-section">
-      <h2>Roadmap</h2>
-      <ul>
-        <li>YouTube channel launch</li>
-        <li>Website and airdrop system live</li>
-        <li>Community building (Telegram, WhatsApp)</li>
-        <li>Token listing on DEX (Coming Soon)</li>
-        <li>Partnerships and business integration</li>
-      </ul>
-    </section>
-
-    <section class="extra-section">
-      <h2>Terms & Conditions</h2>
-      <p>RUP Token is a promotional and community-driven utility token. It has no monetary value and is distributed as part of a loyalty program only within our business. No investment or return is guaranteed.</p>
-    </section>
-
-    <section class="extra-section">
-      <h2>Privacy Policy</h2>
-      <p>We do not collect any personal information through this website. All interactions happen on secure third-party platforms such as Google Forms, Telegram, WhatsApp, etc.</p>
-    </section>
-
+    <button class="spin-btn" onclick="spin()">Spin Now</button>
+    <div id="result"></div>
+    <a id="claimBtn" href="#" class="claim-btn" target="_blank" style="display:none;">Claim Reward</a>
   </div>
 
-  <script>
-    function copyAddress() {
-      const address = document.getElementById("tokenAddress").innerText;
-      navigator.clipboard.writeText(address).then(() => {
-        alert("Token address copied!");
-      });
-    }
-
-    function checkBalance() {
-      const wallet = document.getElementById("walletInput").value;
-      document.getElementById("balanceOutput").innerText = "Balance feature coming soon...";
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
