@@ -1,89 +1,109 @@
 body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-image: url('gold-bg.jpg');
   background-size: cover;
   background-position: center;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
   color: white;
+  text-align: center;
 }
 
 .container {
-  background: rgba(0, 0, 0, 0.7);
-  margin: 50px auto;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 600px;
-  text-align: center;
-  box-shadow: 0 0 20px gold;
+  padding: 30px 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* transparency for readability */
+  max-width: 800px;
+  margin: auto;
+  border-radius: 20px;
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 120px;
   margin-bottom: 15px;
 }
 
 h1 {
-  color: gold;
   font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: gold;
 }
 
 .claim-button {
+  display: inline-block;
+  padding: 12px 24px;
   background-color: gold;
   color: black;
-  padding: 12px 25px;
   font-weight: bold;
-  font-size: 16px;
-  text-decoration: none;
   border-radius: 8px;
-  display: inline-block;
-  margin-bottom: 20px;
-  transition: 0.3s;
+  text-decoration: none;
+  margin: 10px auto;
+  transition: 0.3s ease;
+}
+.claim-button:hover {
+  background-color: orange;
 }
 
-.claim-button:hover {
-  background-color: #e6b800;
+.social-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
 .social-buttons a {
-  display: inline-block;
-  margin: 8px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
   text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+  color: white;
 }
 
-.telegram { background: #229ED9; }
-.whatsapp { background: #25D366; }
-.youtube { background: #FF0000; }
-.twitter { background: #1DA1F2; }
-.instagram { background: #C13584; }
-.facebook { background: #1877F2; }
+.telegram-button {
+  background-color: #0088cc;
+}
+.whatsapp-button {
+  background-color: #25D366;
+}
+.youtube-button {
+  background-color: #FF0000;
+}
+.instagram-button {
+  background-color: #C13584;
+}
+.twitter-button {
+  background-color: #1DA1F2;
+}
+.facebook-button {
+  background-color: #3b5998;
+}
 
-.section {
-  background: rgba(0, 0, 0, 0.6);
+.social-buttons a:hover {
+  opacity: 0.8;
+}
+
+.terms, .roadmap {
+  background-color: rgba(255, 255, 255, 0.1);
   margin-top: 30px;
   padding: 20px;
-  border-left: 5px solid gold;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.section h2 {
+.terms h3, .roadmap h3 {
   color: gold;
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  border-bottom: 2px solid gold;
-  padding-bottom: 5px;
 }
 
-.section p {
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
+.terms ul, .roadmap ul {
+  list-style: none;
+  padding: 0;
+}
+
+.terms ul li, .roadmap ul li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
