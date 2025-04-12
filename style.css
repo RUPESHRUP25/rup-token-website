@@ -1,74 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: url('background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  text-align: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background-image: url('background.webp'); /* नीला-गोल्ड HD इमेज */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
-.container {
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  max-width: 800px;
-  margin: 40px auto;
-  border-radius: 10px;
+header {
+    background: rgba(10, 29, 55, 0.8); /* नीले थीम से मेल खाता ओवरले */
+    padding: 1.5rem;
+    text-align: center;
 }
 
-.logo {
-  max-width: 120px;
-  margin-bottom: 10px;
+header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    color: #ffd700; /* गोल्डन टाइटल */
+    text-transform: uppercase;
 }
 
-h1 {
-  font-size: 2.2em;
-  color: gold;
+nav ul {
+    list-style: none;
+    padding: 1rem 0;
 }
 
-.claim-button {
-  display: inline-block;
-  background: gold;
-  color: black;
-  padding: 12px 25px;
-  margin: 15px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
+nav ul li {
+    display: inline;
+    margin: 0 2rem;
 }
 
-.social-buttons a {
-  display: inline-block;
-  margin: 8px;
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
 }
 
-.telegram-button { background: #0088cc; }
-.whatsapp-button { background: #25d366; }
-.youtube-button { background: #ff0000; }
-.x-button { background: #1da1f2; }
-.instagram-button { background: #e1306c; }
-.facebook-button { background: #4267B2; }
-
-.section {
-  margin-top: 30px;
-  padding: 15px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  text-align: left;
+nav ul li a:hover {
+    color: #ffd700; /* गोल्डन हाइलाइट */
 }
 
-.section h2 {
-  color: gold;
-  font-weight: bold;
+section {
+    padding: 3rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(12px); /* ग्लासमॉर्फिज्म इफेक्ट */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
-.section p,
-.section li {
-  font-size: 1em;
-  color: #fff;
+section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #ffd700; /* गोल्डन हेडिंग */
+}
+
+section p {
+    font-size: 1.2rem;
+}
+
+footer {
+    background: rgba(10, 29, 55, 0.8);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
