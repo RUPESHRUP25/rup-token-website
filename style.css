@@ -1,42 +1,50 @@
 body {
+  margin: 0;
+  font-family: Arial, sans-serif;
   background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  font-family: Arial, sans-serif;
-  text-align: center;
   color: white;
-  margin: 0;
-  padding: 0;
+  text-align: center;
 }
 
 .container {
-  margin-top: 100px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 10px;
 }
 
 .logo {
   width: 100px;
-  margin-bottom: 20px;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
+.social-buttons a,
+.claim-button,
+.spin-button {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
-.spin-btn, .claim-btn {
-  padding: 15px 30px;
-  margin: 20px;
-  font-size: 18px;
+.telegram-button { background-color: #0088cc; }
+.whatsapp-button { background-color: #25d366; }
+.youtube-button { background-color: #FF0000; }
+.instagram-button { background-color: #E1306C; }
+.facebook-button { background-color: #3b5998; }
+.x-button { background-color: #000000; }
+.claim-button { background-color: #ffd700; color: black; }
+.spin-button { background-color: #ffa500; color: white; }
+
+button {
+  padding: 5px 10px;
   border: none;
-  border-radius: 10px;
+  background-color: #555;
   color: white;
   cursor: pointer;
-}
-
-.spin-btn {
-  background-color: #ff9800;
-}
-
-.claim-btn {
-  background-color: #4caf50;
-  text-decoration: none;
+  border-radius: 5px;
 }
