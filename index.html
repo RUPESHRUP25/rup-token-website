@@ -4,49 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP Token</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <img src="rup-logo.png" alt="RUP Logo" class="logo" />
     <h1>RUP Token</h1>
 
-    <nav class="nav-bar">
-      <a href="#home">Home</a>
-      <a href="#details">Token Details</a>
-      <a href="#supply">Max Supply</a>
-      <a href="#sampark">Sampark</a>
-    </nav>
-
-    <section id="home">
-      <p>Welcome to the official RUP Token page! Distributing tokens under our business ecosystem with transparency and trust.</p>
+    <section class="details">
+      <h2>Token Address</h2>
+      <p id="tokenAddress">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</p>
+      <button onclick="copyAddress()">Copy Address</button>
     </section>
 
-    <section id="details">
-      <h2>Token Details</h2>
-      <p><strong>Name:</strong> RUP Token</p>
-      <p><strong>Symbol:</strong> RUP</p>
-      <p><strong>Network:</strong> Polygon</p>
-      <p><strong>Utility:</strong> Business Rewards, Airdrops</p>
-    </section>
-
-    <section id="supply">
+    <section class="details">
       <h2>Max Supply</h2>
-      <p>10,00,000 RUP (Fixed supply)</p>
+      <p>1,00,00,000 RUP</p>
     </section>
 
-    <section id="sampark">
+    <section class="details">
       <h2>Sampark (Contact)</h2>
-      <p>Email: rupeshelectronics2003@gmail.com</p>
-      <div class="social-buttons">
-        <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram-button">Join Telegram</a>
-        <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp-button">Join WhatsApp</a>
-        <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube-button">Join YouTube</a>
-        <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram-button">Instagram</a>
-        <a href="https://x.com/RupeshK30183542" target="_blank" class="twitter-button">X (Twitter)</a>
-        <a href="#" class="facebook-button">Facebook</a>
-      </div>
+      <p>For any queries, join us on social platforms below.</p>
     </section>
+
+    <div class="social-buttons">
+      <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram">Join Telegram</a>
+      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp">Join WhatsApp</a>
+      <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube">Join YouTube</a>
+      <a href="https://x.com/RupeshK30183542" target="_blank" class="x">Join X</a>
+      <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram">Join Instagram</a>
+      <a href="https://facebook.com" target="_blank" class="facebook">Join Facebook</a>
+    </div>
   </div>
+
+  <script>
+    function copyAddress() {
+      const address = document.getElementById("tokenAddress").innerText;
+      navigator.clipboard.writeText(address).then(() => {
+        alert("Token address copied!");
+      });
+    }
+  </script>
 </body>
 </html>
