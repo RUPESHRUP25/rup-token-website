@@ -1,81 +1,65 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    line-height: 1.6;
-    color: #ffffff;
-    background-image: url('background.webp'); /* नीला-गोल्ड HD इमेज */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
 }
 
-header {
-    background: rgba(10, 29, 55, 0.8); /* नीले थीम से मेल खाता ओवरले */
-    padding: 1.5rem;
-    text-align: center;
+.container {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
 }
 
-header h1 {
-    font-size: 2.8rem;
-    letter-spacing: 3px;
-    color: #ffd700; /* गोल्डन टाइटल */
-    text-transform: uppercase;
+.logo {
+  width: 100px;
+  margin-top: 20px;
 }
 
-nav ul {
-    list-style: none;
-    padding: 1rem 0;
+h1 {
+  color: gold;
+  margin-bottom: 20px;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 2rem;
+.nav-bar a {
+  margin: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: #222;
 }
 
-nav ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.3rem;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #ffd700; /* गोल्डन हाइलाइट */
+.nav-bar a:hover {
+  background-color: gold;
+  color: black;
 }
 
 section {
-    padding: 3rem;
-    margin: 2rem auto;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(12px); /* ग्लासमॉर्फिज्म इफेक्ट */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  margin: 30px 0;
 }
 
-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    color: #ffd700; /* गोल्डन हेडिंग */
+.social-buttons a {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-section p {
-    font-size: 1.2rem;
-}
+.telegram-button { background: #0088cc; }
+.whatsapp-button { background: #25d366; }
+.youtube-button { background: #ff0000; }
+.instagram-button { background: #e4405f; }
+.twitter-button { background: #1da1f2; }
+.facebook-button { background: #3b5998; }
 
-footer {
-    background: rgba(10, 29, 55, 0.8);
-    color: #ffffff;
-    text-align: center;
-    padding: 1.5rem;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+h2 {
+  color: #f9d923;
 }
