@@ -1,28 +1,102 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+h1 {
+  font-size: 36px;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.claim-button {
+  background-color: gold;
+  color: black;
+  padding: 12px 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.details h2 {
+  color: #ffcc00;
+  margin-top: 20px;
+}
+
+.details p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+button {
+  background-color: #ffcc00;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.social-buttons a {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.telegram { background: #0088cc; }
+.whatsapp { background: #25D366; }
+.youtube { background: #FF0000; }
+.x { background: #000000; }
+.instagram { background: #E1306C; }
+.facebook { background: #1877F2; }
+
 .extra-section {
-  margin: 40px 0;
+  background: rgba(255, 215, 0, 0.1);
   padding: 20px;
-  background-color: rgba(255, 215, 0, 0.1);
+  margin-top: 30px;
   border: 2px solid gold;
   border-radius: 10px;
-  color: #fff;
 }
 
 .extra-section h2 {
   color: gold;
   font-size: 24px;
-  margin-bottom: 10px;
 }
 
 .extra-section ul {
-  list-style-type: disc;
   text-align: left;
-  margin: 10px auto;
-  max-width: 500px;
+  padding-left: 20px;
+  list-style: disc;
 }
 
 .extra-section p {
-  max-width: 700px;
-  margin: auto;
-  line-height: 1.6;
+  text-align: left;
   font-size: 16px;
+  line-height: 1.6;
 }
