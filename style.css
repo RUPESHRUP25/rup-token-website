@@ -1,65 +1,8 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-image: url("gold-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-}
-
-.container {
-  text-align: center;
-  padding: 30px 20px;
-  background: rgba(0, 0, 0, 0.6);
-  max-width: 800px;
-  margin: auto;
-  border-radius: 10px;
-}
-
-.logo {
-  width: 100px;
-  margin-bottom: 15px;
-}
-
-h1 {
-  margin-bottom: 20px;
-  font-size: 2.5em;
-}
-
-.claim-button {
-  background: gold;
-  color: black;
-  padding: 12px 24px;
-  font-size: 18px;
-  text-decoration: none;
-  border-radius: 25px;
-  margin-bottom: 20px;
-  display: inline-block;
-  font-weight: bold;
-}
-
-.social-buttons a {
-  display: inline-block;
-  margin: 10px 6px;
-  padding: 10px 18px;
-  border-radius: 25px;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-}
-
-.telegram-button { background: #0088cc; }
-.whatsapp-button { background: #25D366; }
-.youtube-button  { background: #FF0000; }
-.twitter-button  { background: #1DA1F2; }
-.instagram-button { background: #C13584; }
-.facebook-button { background: #3b5998; }
-
 .section {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.6);
   margin-top: 30px;
   padding: 15px 20px;
+  border-left: 5px solid gold;
   border-radius: 10px;
   text-align: left;
 }
@@ -67,14 +10,16 @@ h1 {
 .section h2 {
   color: gold;
   font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 2px solid gold;
+  padding-bottom: 5px;
 }
 
-.section p, .section ul {
+.section p,
+.section ul li {
+  color: white;
   font-size: 16px;
   line-height: 1.6;
-}
-
-footer {
-  margin-top: 40px;
-  color: #ccc;
+  font-weight: 500;
 }
