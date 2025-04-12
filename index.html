@@ -1,182 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <div class="container">
-    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-    <h1>RUP Token</h1>
-
-    <a href="https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform" target="_blank" class="claim-button">Claim</a>
-
-    <section class="details">
-      <h2>Token Address</h2>
-      <p id="tokenAddress">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</p>
-      <button onclick="copyAddress()">Copy Address</button>
-    </section>
-
-    <section class="details">
-      <h2>Max Supply</h2>
-      <p>1,00,00,000 RUP</p>
-    </section>
-
-    <section class="details">
-      <h2>Sampark (Contact)</h2>
-      <p>For any queries, join us on social platforms below.</p>
-    </section>
-
-    <div class="social-buttons">
-      <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram">Join Telegram</a>
-      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp">Join WhatsApp</a>
-      <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube">Join YouTube</a>
-      <a href="https://x.com/RupeshK30183542" target="_blank" class="x">Join X</a>
-      <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram">Join Instagram</a>
-      <a href="https://facebook.com" target="_blank" class="facebook">Join Facebook</a>
-    </div>
-
-    <section class="extra-section">
-      <h2>Roadmap</h2>
-      <ul>
-        <li>YouTube channel launch</li>
-        <li>Website and airdrop system live</li>
-        <li>Community building (Telegram, WhatsApp)</li>
-        <li>Token listing on DEX (Coming Soon)</li>
-        <li>Partnerships and business integration</li>
-      </ul>
-    </section>
-
-    <section class="extra-section">
-      <h2>Terms & Conditions</h2>
-      <p>RUP Token is a promotional and community-driven utility token. It has no monetary value and is distributed as part of a loyalty program only within our business. No investment or return is guaranteed.</p>
-    </section>
-
-    <section class="extra-section">
-      <h2>Privacy Policy</h2>
-      <p>We do not collect any personal information through this website. All interactions happen on secure third-party platforms such as Google Forms, Telegram, WhatsApp, etc.</p>
-    </section>
-
-  </div>
-
-  <script>
-    function copyAddress() {
-      const address = document.getElementById("tokenAddress").innerText;
-      navigator.clipboard.writeText(address).then(() => {
-        alert("Token address copied!");
-        <!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUP Token - Rewarded for Trust</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUP Token Balance & Spin</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #111;
-      color: #ffd700;
-    }.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-h1, h2 {
-  color: #fff8dc;
-}
-
-.hero {
-  text-align: center;
-  padding: 3rem 1rem;
-  background: linear-gradient(135deg, #333, #222);
-  border-radius: 12px;
-  box-shadow: 0 0 15px #ffd70044;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.2rem;
-}
-
-section {
-  margin-top: 3rem;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 2px solid #ffd70066;
-  display: inline-block;
-}
-
-ul {
-  list-style: square;
-  padding-left: 1.5rem;
-}
-
-.footer {
-  text-align: center;
-  margin-top: 4rem;
-  font-size: 0.9rem;
-  color: #999;
-}
-
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #f9d423, #ff4e50);
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      width: 80%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: gold;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #wheel {
+      margin: 20px auto;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 8px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: conic-gradient(#fbc531 0% 33%, #4cd137 33% 66%, #e84118 66% 100%);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      transition: transform 4s ease-out;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="hero">
-      <h1>Welcome to RUP Token</h1>
-      <p>Apne trusted customers ko hum RUP Token gift kar rahe hain. Yeh token future me value generate karega, sirf mobile shop ke users ke liye shuruat.</p>
-    </div><section>
-  <h2 class="section-title">Roadmap</h2>
-  <ul>
-    <li>Q2 2025: Token distribution starts (Gift system)</li>
-    <li>Q3 2025: Website & user portal launch</li>
-    <li>Q4 2025: Wallet integration & QR-based redemption</li>
-    <li>Q1 2026: Exchange listing application process begins</li>
-  </ul>
-</section>
+    <h1>RUP Token Dashboard</h1><h2>Check Balance</h2>
+<input type="text" id="wallet" placeholder="Enter your wallet address">
+<button onclick="checkBalance()">Check Balance</button>
+<p id="balance">Balance: -- RUP</p>
 
-<section>
-  <h2 class="section-title">Terms & Conditions</h2>
-  <ul>
-    <li>Token is a free gift, not a financial asset</li>
-    <li>No purchase necessary to receive the token</li>
-    <li>1 token per user, based on mobile shop interaction</li>
-  </ul>
-</section>
+<h2>Spin to Win</h2>
+<div id="wheel">Spin</div>
+<button onclick="spinWheel()">Spin Now</button>
+<p id="result"></p>
 
-<section>
-  <h2 class="section-title">Privacy Policy</h2>
-  <ul>
-    <li>We do not collect or store personal information</li>
-    <li>Wallet addresses are only used for sending tokens</li>
-    <li>No data is shared with third-party services</li>
-  </ul>
-</section>
-
-<section>
-  <h2 class="section-title">Future Exchange Listing</h2>
-  <p>Token listing ke liye hamara focus trusted Indian & global exchanges par hai. Listing process Q1 2026 se start hogi. Users ko timely updates diye jayenge.</p>
-</section>
-
-<div class="footer">
-  &copy; 2025 RUP Token | All Rights Reserved
-</div>
-
-  </div>
-</body>
-</html>
-      });
+  </div>  <script>
+    function checkBalance() {
+      const wallet = document.getElementById("wallet").value;
+      if (!wallet) return alert("Please enter wallet address");
+      document.getElementById("balance").innerText = "Balance: 100 RUP (demo)";
     }
-  </script>
-</body>
+
+    function spinWheel() {
+      const wheel = document.getElementById("wheel");
+      const result = document.getElementById("result");
+      const angle = Math.floor(Math.random() * 360 + 720); // random spin
+      wheel.style.transform = rotate(${angle}deg);
+
+      setTimeout(() => {
+        const sector = angle % 360;
+        if (sector < 120) result.innerText = "Congrats! You won 10 RUP!";
+        else if (sector < 240) result.innerText = "You won 5 RUP!";
+        else result.innerText = "Better luck next time!";
+      }, 4000);
+    }
+  </script></body>
 </html>
