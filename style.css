@@ -28,7 +28,8 @@ h1 {
   margin-bottom: 20px;
 }
 
-.claim-button {
+.claim-button,
+.spin-button {
   background-color: gold;
   color: black;
   padding: 12px 24px;
@@ -37,7 +38,19 @@ h1 {
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
-  margin-bottom: 30px;
+  margin: 10px;
+}
+
+.balance-section {
+  margin: 20px 0;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 70%;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
 }
 
 .details h2 {
