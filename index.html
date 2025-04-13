@@ -4,117 +4,77 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP Token</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-image: url('https://images.unsplash.com/photo-1611971261283-279889ba2df7');
-      background-size: cover;
-      background-position: center;
-      font-family: Arial, sans-serif;
-      color: #fff;
-    }
-    .container {
-      padding: 20px;
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    .logo {
-      width: 80px;
-    }
-    .claim-button,
-    .spin-button,
-    .check-button {
-      padding: 10px 20px;
-      background-color: gold;
-      color: #000;
-      margin: 10px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .social-buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-weight: bold;
-      color: #fff;
-      text-decoration: none;
-    }
-    .telegram-button { background-color: #0088cc; }
-    .whatsapp-button { background-color: #25D366; }
-    .youtube-button { background-color: #FF0000; }
-    .instagram-button { background-color: #C13584; }
-    .facebook-button { background-color: #1877F2; }
-    .twitter-button { background-color: #1DA1F2; }
-
-    .copy-address {
-      background-color: #444;
-      padding: 10px;
-      margin: 15px auto;
-      max-width: 300px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .section {
-      margin-top: 30px;
-      background-color: rgba(0,0,0,0.6);
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    h2 {
-      color: gold;
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-    <h1>RUP Token</h1>
+  <header>
+    <h1>RUP TOKEN</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#token">Token Details</a>
+      <a href="#supply">Max Supply</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#contact">Sampark</a>
+      <a href="#terms">Terms</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+  </header>
 
-    <button class="claim-button" onclick="window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform')">Claim</button>
-    <button class="spin-button" onclick="alert('Spin & Win Coming Soon!')">Spin & Win</button>
-    <button class="check-button" onclick="alert('Balance Check Coming Soon')">Check Balance</button>
+  <section id="home">
+    <h2>Welcome to RUP Token</h2>
+    <button onclick="connectWallet()">Connect Wallet</button>
+    <p id="walletAddress"></p>
+  </section>
 
-    <div class="copy-address" onclick="copyAddress()">Click here to copy Token Address</div>
+  <section id="token">
+    <h2>Token Address</h2>
+    <input type="text" value="0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" id="tokenAddress" readonly />
+    <button onclick="copyAddress()">Copy</button>
+  </section>
 
-    <div class="social-buttons">
-      <a href="https://t.me/rupeshelectronics2003" class="telegram-button">Telegram</a>
-      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" class="whatsapp-button">WhatsApp</a>
-      <a href="https://www.youtube.com/@ruptoken" class="youtube-button">YouTube</a>
-      <a href="https://www.instagram.com/rupeshelectronics" class="instagram-button">Instagram</a>
-      <a href="https://facebook.com" class="facebook-button">Facebook</a>
-      <a href="https://x.com/RupeshK30183542" class="twitter-button">X (Twitter)</a>
-    </div>
+  <section id="supply">
+    <h2>Max Supply</h2>
+    <p>1,000,000 RUP</p>
+  </section>
 
-    <div class="section">
-      <h2>Roadmap</h2>
-      <p>Phase 1: Token Launch<br>Phase 2: Community Airdrop<br>Phase 3: Listing on DEX<br>Phase 4: Utility Integration</p>
-    </div>
+  <section id="spin">
+    <h2>Spin & Win</h2>
+    <button onclick="spinNow()">Spin Now</button>
+    <p id="spinResult">Spin karne ke baad yahan result dikhai dega</p>
+    <button onclick="claimReward()">Claim Token</button>
+  </section>
 
-    <div class="section">
-      <h2>Terms & Conditions</h2>
-      <p>This token is for promotional and loyalty purposes only. RUP Token is distributed freely and not for investment or trading purposes. Users are responsible for using official channels only.</p>
-    </div>
+  <section id="roadmap">
+    <h2 style="color: lime;">Roadmap</h2>
+    <ul>
+      <li>YouTube Channel & Community Build</li>
+      <li>Free Airdrop & Promotion</li>
+      <li>MetaMask Integration</li>
+      <li>DEX Listing Plan</li>
+      <li>Utility Use Case Develop</li>
+      <li>App & Website Upgrade</li>
+    </ul>
+  </section>
 
-    <div class="section">
-      <h2>Privacy Policy</h2>
-      <p>We do not collect personal information from visitors. Any interaction is through third-party platforms like Telegram, WhatsApp, and YouTube.</p>
-    </div>
-  </div>
+  <section id="terms">
+    <h2 style="color: red;">Terms & Conditions</h2>
+    <p>Yeh token sirf promotion aur personal business ke liye hai. Koi financial guarantee nahi hai. Sirf apne risk par use karein.</p>
+  </section>
 
-  <script>
-    const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
-    function copyAddress() {
-      navigator.clipboard.writeText(tokenAddress);
-      alert("Token address copied!");
-    }
-  </script>
+  <section id="privacy">
+    <h2 style="color: blue;">Privacy Policy</h2>
+    <p>RUP Token kisi user ka personal data store nahi karta. Sirf MetaMask address ki interaction hoti hai.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Join Community</h2>
+    <a href="https://t.me/yourgroup" target="_blank" style="color: white; background-color: #0088cc; padding: 10px;">Join Telegram</a>
+    <a href="https://wa.me/yourwhatsapp" target="_blank" style="color: white; background-color: green; padding: 10px;">Join WhatsApp</a>
+    <a href="https://youtube.com/@yourchannel" target="_blank" style="color: white; background-color: red; padding: 10px;">Join YouTube</a>
+    <a href="https://x.com/RupeshK30183542" target="_blank" style="color: white; background-color: black; padding: 10px;">Join X</a>
+    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" style="color: white; background-color: #e1306c; padding: 10px;">Join Instagram</a>
+    <a href="https://facebook.com/yourpage" target="_blank" style="color: white; background-color: #4267B2; padding: 10px;">Join Facebook</a>
+  </section>
 </body>
 </html>
