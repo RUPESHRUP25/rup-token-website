@@ -1,6 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
+  font-family: Arial, sans-serif;
   background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #fff;
@@ -12,69 +12,68 @@ body {
 }
 
 .logo {
-  max-width: 150px;
-  margin: 10px auto;
+  width: 120px;
+  margin-top: 20px;
 }
 
 h1 {
   color: #FFD700;
 }
 
-.claim-button {
-  display: inline-block;
-  background-color: #28a745;
+.claim-button, .spin-button, .balance-section button {
+  background-color: #FFA500;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
   color: white;
-  padding: 12px 24px;
+  border-radius: 5px;
+}
+
+.token-address {
   margin: 15px;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: bold;
+}
+
+.token-address input {
+  width: 300px;
+  padding: 5px;
+}
+
+.token-address button {
+  padding: 6px 12px;
+  background-color: #FFD700;
+  border: none;
+  cursor: pointer;
+  color: #000;
 }
 
 .social-buttons a {
-  display: block;
-  margin: 10px auto;
-  padding: 10px;
-  width: 200px;
-  border-radius: 25px;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 15px;
   color: white;
-  font-weight: bold;
+  border-radius: 5px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .telegram-button { background-color: #0088cc; }
 .whatsapp-button { background-color: #25D366; }
 .youtube-button { background-color: #FF0000; }
-.twitter-button { background-color: #1DA1F2; }
+.x-button { background-color: #1DA1F2; }
 .instagram-button { background-color: #C13584; }
 .facebook-button { background-color: #3b5998; }
 
-.copy-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #FFD700;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #000;
+.sections h3 {
+  color: #FFD700;
+  font-size: 20px;
+  margin-top: 30px;
+  text-decoration: underline;
 }
 
-.info-sections {
-  margin: 40px 10px;
-  background-color: rgba(0,0,0,0.6);
-  padding: 20px;
-  border-radius: 15px;
-}
-
-.section h3 {
-  color: #00ffcc;
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.section p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #f0f0f0;
+.sections p {
+  margin: 10px auto;
+  width: 90%;
+  font-size: 14px;
 }
