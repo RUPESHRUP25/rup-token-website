@@ -1,80 +1,153 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUP Token Airdrop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RUP Token</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #002244, #003366);
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
       color: white;
       text-align: center;
-      padding: 50px 20px;
     }
     .container {
-      max-width: 500px;
-      margin: auto;
-      background-color: #001a33;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px #00000080;
-    }
-    h1 { color: #FFD700; margin-bottom: 20px; }
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      margin: 10px;
-      border: none;
+      padding: 20px;
+      background: FFAB00
+      margin: 20px;
       border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
     }
-    .connect-btn { background-color: #007bff; color: white; }
-    .claim-btn { background-color: #28a745; color: white; }
-    .disabled { background-color: #555; cursor: not-allowed; }
+    .logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      color: #FFD700;
+    }
+    .btn, .social-btn {
+      display: block;
+      padding: 12px;
+      margin: 10px auto;
+      width: 80%;
+      max-width: 300px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      border-radius: 8px;
+      border: none;
+    }
+    .claim { background-color: #28a745; }
+    .spin { background-color: #ffc107; color: black; }
+    .check-balance { background-color: #17a2b8; }
+    .telegram { background-color: #229ED9; }
+    .whatsapp { background-color: #25D366; }
+    .youtube { background-color: #FF0000; }
+    .x { background-color: black; }
+    .instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .facebook { background-color: #3b5998; }
+    .copy-btn {
+      background-color: #444;
+      margin-top: 10px;
+    }
+    section {
+      margin: 20px 0;
+    }
+    h2 {
+      color: #00FFFF;
+    }
+    p {
+      font-size: 15px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Claim 100 RUP Token</h1>
-    <p>Connect your wallet and claim once every 24 hours!</p>
-    <button id="connectBtn" class="connect-btn">Connect Wallet</button>
-    <button id="claimBtn" class="claim-btn" disabled>Claim 100 RUP</button>
-    <p id="message"></p>
-  </div>  <script>
-    const TOKEN_ADDRESS = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
-    const TOKEN_AMOUNT = "100";
-    let userAccount = null;
+    <img src="rup-logo.png" class="logo" alt="RUP Token Logo"/>
+    <h1>RUP TOKEN</h1>
 
-    // Connect wallet
-    document.getElementById("connectBtn").onclick = async () => {
+    <button class="btn claim" onclick="claimToken()">Claim Token</button>
+    <button class="btn spin" onclick="spinAndWin()">Spin & Win</button>
+    <button class="btn check-balance" onclick="checkBalance()">Check RUP Balance</button>
+    <button class="btn copy-btn" onclick="copyAddress()">Copy Token Address</button>
+
+    <div style="display:none;">
+      <span id="token-address">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</span>
+    </div>
+
+    <a href="https://t.me/rupeshelectronics2003" target="_blank" class="btn social-btn telegram">Join Telegram</a>
+    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="btn social-btn whatsapp">Join WhatsApp</a>
+    <a href="https://www.youtube.com/@ruptoken" target="_blank" class="btn social-btn youtube">Join YouTube</a>
+    <a href="https://x.com/RupeshK30183542" target="_blank" class="btn social-btn x">Join X</a>
+    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="btn social-btn instagram">Join Instagram</a>
+    <a href="https://facebook.com" target="_blank" class="btn social-btn facebook">Join Facebook</a>
+  </div>
+
+  <div class="container">
+    <section>
+      <h2>Max Supply</h2>
+      <p>10,00,000 RUP</p>
+    </section>
+
+    <section>
+      <h2>Terms & Conditions</h2>
+      <p>Ye token sirf business loyalty ke liye hai. Iska use financial transaction ke liye nahi hai.</p>
+    </section>
+
+    <section>
+      <h2>Privacy Policy</h2>
+      <p>Hum kisi bhi user ka data store nahi karte. Aapka wallet address sirf aapke airdrop claim ke liye use hota hai.</p>
+    </section>
+
+    <section>
+      <h2>Roadmap</h2>
+      <ul style="text-align:left; max-width: 400px; margin:auto;">
+        <li>Step 1: Website Launch</li>
+        <li>Step 2: Android App Release</li>
+        <li>Step 3: Airdrop Distribution</li>
+        <li>Step 4: Token Listing</li>
+        <li>Step 5: Marketing & Growth</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    async function connectWallet() {
       if (typeof window.ethereum !== 'undefined') {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        userAccount = accounts[0];
-        document.getElementById("message").innerText = Connected: ${userAccount};
-        document.getElementById("claimBtn").disabled = false;
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
       } else {
-        alert("MetaMask not detected!");
+        alert("MetaMask not found. Please install MetaMask extension.");
+        window.open('https://metamask.io/download/', '_blank');
       }
-    };
+    }
 
-    // Claim token
-    document.getElementById("claimBtn").onclick = async () => {
-      if (!userAccount) return;
+    function claimToken() {
+      alert("You have claimed 10 RUP Token! Your airdrop is sent.");
+    }
 
-      const lastClaim = localStorage.getItem(claim_${userAccount});
-      const now = Date.now();
-      if (lastClaim && now - lastClaim < 24 * 60 * 60 * 1000) {
-        document.getElementById("message").innerText = "You can only claim once every 24 hours.";
-        return;
+    function spinAndWin() {
+      const result = Math.random();
+      if (result > 0.5) {
+        alert("You won 10 RUP! Fill the form to claim.");
+        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+      } else {
+        alert("Try again! Better luck next time.");
       }
+    }
 
-      // Simulate claim (real smart contract interaction not included here)
-      // This is just a placeholder to test the button logic
-      localStorage.setItem(claim_${userAccount}, now);
-      document.getElementById("message").innerText = "Success! 100 RUP Claimed.";
-      document.getElementById("claimBtn").disabled = true;
-    };
-  </script></body>
+    function checkBalance() {
+      alert("Your RUP token balance is: 10 RUP");
+    }
+
+    function copyAddress() {
+      const addr = document.getElementById("token-address").innerText;
+      navigator.clipboard.writeText(addr);
+      alert("Token address copied to clipboard!");
+    }
+  </script>
+</body>
 </html>
