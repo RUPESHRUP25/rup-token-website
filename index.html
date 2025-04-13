@@ -3,144 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP TOKEN</title>
+  <title>RUP Token</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url('bg.jpg') no-repeat center center fixed;
+      background-image: url('bg.jpg');
       background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
       color: white;
       text-align: center;
     }
+    .container {
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin: 20px;
+      border-radius: 10px;
+    }
     .logo {
-      width: 100px;
-      margin: 20px auto;
+      width: 120px;
+      margin-bottom: 15px;
     }
     h1 {
-      margin: 10px;
-      font-size: 2em;
+      color: #FFD700;
     }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 25px;
-      border: none;
+    .btn, .social-btn {
+      display: block;
+      padding: 12px;
+      margin: 10px auto;
+      width: 80%;
+      max-width: 300px;
       font-size: 16px;
-      cursor: pointer;
-      border-radius: 8px;
       font-weight: bold;
-    }
-    .yellow { background-color: gold; color: black; }
-    .green { background-color: #28a745; }
-    .blue { background-color: #007bff; }
-    .red { background-color: #dc3545; }
-    .pink { background-color: #e83e8c; }
-    .black { background-color: #000000; }
-    .purple { background-color: #6f42c1; }
-    .section {
-      margin: 40px 20px;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 12px;
-    }
-    #addressCopy {
-      background-color: #28a745;
+      text-decoration: none;
       color: white;
-      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+    }
+    .claim { background-color: #28a745; }
+    .spin { background-color: #ffc107; color: black; }
+    .check-balance { background-color: #17a2b8; }
+    .telegram { background-color: #229ED9; }
+    .whatsapp { background-color: #25D366; }
+    .youtube { background-color: #FF0000; }
+    .x { background-color: black; }
+    .instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .facebook { background-color: #3b5998; }
+    .copy-btn {
+      background-color: #444;
+      margin-top: 10px;
+    }
+    section {
+      margin: 20px 0;
+    }
+    h2 {
+      color: #00FFFF;
+    }
+    p {
+      font-size: 15px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="rup-logo.png" class="logo" alt="RUP Token Logo"/>
+    <h1>RUP TOKEN</h1>
 
-  <img src="logo.png" alt="RUP TOKEN" class="logo"/>
-  <h1>RUP TOKEN</h1>
+    <button class="btn claim" onclick="claimToken()">Claim Token</button>
+    <button class="btn spin" onclick="spinAndWin()">Spin & Win</button>
+    <button class="btn check-balance" onclick="checkBalance()">Check RUP Balance</button>
+    <button class="btn copy-btn" onclick="copyAddress()">Copy Token Address</button>
 
-  <button class="btn yellow" onclick="claimTokens()">Claim</button>
-  <button class="btn yellow" onclick="spinWheel()">Spin & Win</button>
-  <button class="btn yellow" onclick="checkBalance()">Check Balance</button>
-  <br/>
+    <div style="display:none;">
+      <span id="token-address">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</span>
+    </div>
 
-  <button id="addressCopy" class="btn" onclick="copyAddress()">Copy Token Address</button>
-
-  <div>
-    <button class="btn blue" onclick="window.open('https://t.me/yourgroup')">Join Telegram</button>
-    <button class="btn green" onclick="window.open('https://wa.me/yourwhatsapp')">Join WhatsApp</button>
-    <button class="btn red" onclick="window.open('https://youtube.com')">Join YouTube</button>
-    <button class="btn black" onclick="window.open('https://twitter.com')">Join X</button>
-    <button class="btn pink" onclick="window.open('https://instagram.com')">Join Instagram</button>
-    <button class="btn purple" onclick="window.open('https://facebook.com')">Join Facebook</button>
+    <a href="https://t.me/rupeshelectronics2003" target="_blank" class="btn social-btn telegram">Join Telegram</a>
+    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="btn social-btn whatsapp">Join WhatsApp</a>
+    <a href="https://www.youtube.com/@ruptoken" target="_blank" class="btn social-btn youtube">Join YouTube</a>
+    <a href="https://x.com/RupeshK30183542" target="_blank" class="btn social-btn x">Join X</a>
+    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="btn social-btn instagram">Join Instagram</a>
+    <a href="https://facebook.com" target="_blank" class="btn social-btn facebook">Join Facebook</a>
   </div>
 
-  <div class="section">
-    <h2>Roadmap</h2>
-    <p>Phase 1: Launch Token<br/>Phase 2: Airdrop & Marketing<br/>Phase 3: DEX Listing</p>
-  </div>
+  <div class="container">
+    <section>
+      <h2>Max Supply</h2>
+      <p>10,00,000 RUP</p>
+    </section>
 
-  <div class="section">
-    <h2>Terms & Conditions</h2>
-    <p>Participation in the airdrop is subject to verification. No spam or bots allowed.</p>
-  </div>
+    <section>
+      <h2>Terms & Conditions</h2>
+      <p>Ye token sirf business loyalty ke liye hai. Iska use financial transaction ke liye nahi hai.</p>
+    </section>
 
-  <div class="section">
-    <h2>Privacy Policy</h2>
-    <p>We respect your privacy and do not collect personal data through this site.</p>
+    <section>
+      <h2>Privacy Policy</h2>
+      <p>Hum kisi bhi user ka data store nahi karte. Aapka wallet address sirf aapke airdrop claim ke liye use hota hai.</p>
+    </section>
+
+    <section>
+      <h2>Roadmap</h2>
+      <ul style="text-align:left; max-width: 400px; margin:auto;">
+        <li>Step 1: Website Launch</li>
+        <li>Step 2: Android App Release</li>
+        <li>Step 3: Airdrop Distribution</li>
+        <li>Step 4: Token Listing</li>
+        <li>Step 5: Marketing & Growth</li>
+      </ul>
+    </section>
   </div>
 
   <script>
-    const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
-    const tokenSymbol = "RUP";
-    const tokenDecimals = 18;
-
     async function connectWallet() {
-      if (typeof window.ethereum === 'undefined') {
-        alert('MetaMask is not installed. Redirecting...');
-        window.location.href = 'https://metamask.io/download/';
-        return;
-      }
-      await ethereum.request({ method: 'eth_requestAccounts' });
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
-      return accounts[0];
-    }
-
-    async function checkBalance() {
-      const account = await connectWallet();
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(tokenAddress, [
-        "function balanceOf(address owner) view returns (uint256)"
-      ], provider);
-      const balance = await contract.balanceOf(account);
-      alert(Your RUP Token Balance: ${ethers.utils.formatUnits(balance, tokenDecimals)} RUP);
-    }
-
-    function claimTokens() {
-      const won = Math.random() < 0.5;
-      if (won) {
-        alert("Congratulations! You won 10 RUP Tokens.");
-        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform");
+      if (typeof window.ethereum !== 'undefined') {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
       } else {
-        alert("Try Again Next Time!");
+        alert("MetaMask not found. Please install MetaMask extension.");
+        window.open('https://metamask.io/download/', '_blank');
       }
     }
 
-    function spinWheel() {
-      const won = Math.random() < 0.5;
-      if (won) {
-        alert("You spun and won 10 RUP Tokens!");
-        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform");
+    function claimToken() {
+      alert("You have claimed 10 RUP Token! Your airdrop is sent.");
+    }
+
+    function spinAndWin() {
+      const result = Math.random();
+      if (result > 0.5) {
+        alert("You won 10 RUP! Fill the form to claim.");
+        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
       } else {
-        alert("Try Again Next Time!");
+        alert("Try again! Better luck next time.");
       }
+    }
+
+    function checkBalance() {
+      alert("Your RUP token balance is: 10 RUP");
     }
 
     function copyAddress() {
-      navigator.clipboard.writeText(tokenAddress).then(() => {
-        alert("Token address copied!");
-      });
+      const addr = document.getElementById("token-address").innerText;
+      navigator.clipboard.writeText(addr);
+      alert("Token address copied to clipboard!");
     }
   </script>
-
-  <!-- Load ethers.js from CDN -->
-  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 </body>
 </html>
