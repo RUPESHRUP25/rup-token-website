@@ -7,60 +7,42 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-
   <div class="container">
     <img src="rup-logo.png" alt="RUP Logo" class="logo" />
     <h1>RUP Token</h1>
 
-    <a href="https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform" target="_blank" class="claim-button">Claim</a>
+    <button class="claim-button" onclick="claimTokens()">Claim</button>
+    <button class="spin-button" onclick="spinWheel()">Spin & Win</button>
+
+    <div class="balance-section">
+      <button onclick="checkBalance()">Check RUP Balance</button>
+      <p id="balance">Balance: --</p>
+    </div>
+
+    <div class="token-address">
+      <input type="text" value="0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" id="tokenAddress" readonly>
+      <button onclick="copyTokenAddress()">Copy</button>
+    </div>
 
     <div class="social-buttons">
-      <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram-button">Join Telegram</a>
-      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp-button">Join WhatsApp</a>
-      <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube-button">Join YouTube</a>
-      <a href="https://x.com/RupeshK30183542" target="_blank" class="twitter-button">Follow on X (Twitter)</a>
-      <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram-button">Follow on Instagram</a>
+      <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram-button">Telegram</a>
+      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp-button">WhatsApp</a>
+      <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube-button">YouTube</a>
+      <a href="https://x.com/RupeshK30183542" target="_blank" class="x-button">Twitter (X)</a>
+      <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram-button">Instagram</a>
+      <a href="https://facebook.com" target="_blank" class="facebook-button">Facebook</a>
     </div>
 
-    <!-- Token Address -->
-    <div class="token-info">
-      <p>Token Address: <span id="tokenAddress">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</span></p>
-      <button onclick="copyTokenAddress()" class="claim-button">Copy</button>
-    </div>
+    <div class="sections">
+      <h3>Roadmap</h3>
+      <p>1. Token Launch<br>2. Airdrop & Marketing<br>3. Community Growth<br>4. Exchange Listing<br>5. Mobile App</p>
 
-    <!-- Spin & Win Section -->
-    <div class="info-sections">
-      <div class="section">
-        <h3>Spin & Win</h3>
-        <button onclick="spinWheel()" class="claim-button">Spin Now</button>
-        <p id="rewardText"></p>
-      </div>
-
-      <!-- Balance Checker -->
-      <div class="section">
-        <h3>Check RUP Token Balance</h3>
-        <input type="text" id="walletAddress" placeholder="Enter Wallet Address" />
-        <button onclick="checkBalance()" class="claim-button">Check Balance</button>
-        <p id="balanceResult"></p>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="terms">
       <h3>Terms and Conditions</h3>
-      <p>This project is for educational and promotional use only. No financial guarantees.</p>
+      <p>RUP Token is for community reward and loyalty. No investment or guarantee involved.</p>
+
+      <h3>Privacy Policy</h3>
+      <p>We do not collect personal data. All transactions are decentralized.</p>
     </div>
-
-    <footer>
-      <h3 class="roadmap">Roadmap</h3>
-      <ul>
-        <li>Step 1: Website Launch</li>
-        <li>Step 2: Token Distribution</li>
-        <li>Step 3: Community Building</li>
-        <li>Step 4: DEX Listing</li>
-      </ul>
-    </footer>
-
   </div>
 
   <script src="script.js"></script>
