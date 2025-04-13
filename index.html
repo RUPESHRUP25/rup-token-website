@@ -124,12 +124,27 @@
       alert("Token address copied!");
     }
 
-    function connectWallet() {
-      if (typeof window.ethereum !== 'undefined') {
-        ethereum.request({ method: 'eth_requestAccounts' });
-      } else {
-        alert("Please install MetaMask to use this feature.");
-        window.open("https://metamask.io/download.html", "_blank");
+   function connectWallet() {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  
+  if (typeof window.ethereum !== 'undefined') {
+    ethereum.request({ method: 'eth_requestAccounts' })
+      .then(() => {
+        alert('Wallet connected!');
+      })
+      .catch((err) => {
+        alert('Connection failed: ' + err.message);
+      });
+  } else {
+    if (isMobile) {
+      alert('MetaMask not detected on mobile. Please open this website inside the MetaMask app browser.');
+      window.open("https://metamask.io/download.html", "_blank");
+    } else {
+      alert('MetaMask not found. Please install MetaMask extension in your browser.');
+      window.open("https://metamask.io/download.html", "_blank");
+    }
+  }
+}
       }
     }
 
