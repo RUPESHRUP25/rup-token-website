@@ -2,154 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>RUP Token</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>RUP Token</title>
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
-      background-image: url('https://images.unsplash.com/photo-1611971261283-279889ba2df7'); /* Replace with your image */
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1611971261283-279889ba2df7');
       background-size: cover;
       background-position: center;
-      color: white;
-      margin: 0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: #fff;
     }
     .container {
-      text-align: center;
-      background: rgba(0,0,0,0.7);
       padding: 20px;
-      border-radius: 15px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
     }
     .logo {
-      width: 100px;
+      width: 80px;
     }
-    h1 {
-      color: gold;
-    }
-    .button {
-      display: inline-block;
+    .claim-button,
+    .spin-button,
+    .check-button {
       padding: 10px 20px;
-      margin: 10px 5px;
-      font-size: 16px;
+      background-color: gold;
+      color: #000;
+      margin: 10px;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
+      font-weight: bold;
       cursor: pointer;
-      color: white;
+    }
+    .social-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      color: #fff;
       text-decoration: none;
     }
     .telegram-button { background-color: #0088cc; }
     .whatsapp-button { background-color: #25D366; }
     .youtube-button { background-color: #FF0000; }
-    .x-button { background-color: black; }
-    .instagram-button { background: linear-gradient(#feda75, #d62976, #962fbf); }
-    .facebook-button { background-color: #4267B2; }
-    .claim-button { background-color: #ff9800; }
+    .instagram-button { background-color: #C13584; }
+    .facebook-button { background-color: #1877F2; }
+    .twitter-button { background-color: #1DA1F2; }
+
     .copy-address {
-      background-color: #333;
-      padding: 8px;
-      border-radius: 6px;
-      margin-top: 10px;
+      background-color: #444;
+      padding: 10px;
+      margin: 15px auto;
+      max-width: 300px;
+      border-radius: 5px;
       cursor: pointer;
+      font-weight: bold;
     }
-    .section-title {
-      color: gold;
-      margin-top: 40px;
-    }
-    .footer {
+
+    .section {
       margin-top: 30px;
-      color: #ccc;
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: gold;
+      text-decoration: underline;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
 </head>
 <body>
+  <div class="container">
+    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
+    <h1>RUP Token</h1>
 
-<div class="container">
-  <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-  <h1>RUP Token</h1>
+    <button class="claim-button" onclick="window.open('https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform')">Claim</button>
+    <button class="spin-button" onclick="alert('Spin & Win Coming Soon!')">Spin & Win</button>
+    <button class="check-button" onclick="alert('Balance Check Coming Soon')">Check Balance</button>
 
-  <div>
-    <button class="button" onclick="connectWallet()">Connect Wallet</button>
-    <button class="button" onclick="checkBalance()">Check RUP Balance</button>
-    <button class="button claim-button" onclick="claimToken()">Claim</button>
-    <button class="button" onclick="spinNow()">Spin & Win</button>
+    <div class="copy-address" onclick="copyAddress()">Click here to copy Token Address</div>
+
+    <div class="social-buttons">
+      <a href="https://t.me/rupeshelectronics2003" class="telegram-button">Telegram</a>
+      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" class="whatsapp-button">WhatsApp</a>
+      <a href="https://www.youtube.com/@ruptoken" class="youtube-button">YouTube</a>
+      <a href="https://www.instagram.com/rupeshelectronics" class="instagram-button">Instagram</a>
+      <a href="https://facebook.com" class="facebook-button">Facebook</a>
+      <a href="https://x.com/RupeshK30183542" class="twitter-button">X (Twitter)</a>
+    </div>
+
+    <div class="section">
+      <h2>Roadmap</h2>
+      <p>Phase 1: Token Launch<br>Phase 2: Community Airdrop<br>Phase 3: Listing on DEX<br>Phase 4: Utility Integration</p>
+    </div>
+
+    <div class="section">
+      <h2>Terms & Conditions</h2>
+      <p>This token is for promotional and loyalty purposes only. RUP Token is distributed freely and not for investment or trading purposes. Users are responsible for using official channels only.</p>
+    </div>
+
+    <div class="section">
+      <h2>Privacy Policy</h2>
+      <p>We do not collect personal information from visitors. Any interaction is through third-party platforms like Telegram, WhatsApp, and YouTube.</p>
+    </div>
   </div>
 
-  <div class="copy-address" onclick="copyAddress()">Token Address: 0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</div>
-
-  <div class="social-buttons">
-    <a href="https://t.me/rupeshelectronics2003" class="button telegram-button">Join Telegram</a>
-    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" class="button whatsapp-button">Join WhatsApp</a>
-    <a href="https://www.youtube.com/@ruptoken" class="button youtube-button">Join YouTube</a>
-    <a href="https://x.com/RupeshK30183542" class="button x-button">Join X</a>
-    <a href="https://www.instagram.com/rupeshelectronics" class="button instagram-button">Join Instagram</a>
-    <a href="#" class="button facebook-button">Join Facebook</a>
-  </div>
-
-  <h2 class="section-title">Max Supply</h2>
-  <p>10,00,000 RUP</p>
-
-  <h2 class="section-title">Token Details</h2>
-  <p>Name: RUP Token</p>
-  <p>Symbol: RUP</p>
-
-  <h2 class="section-title">Terms and Conditions</h2>
-  <p>RUP टोकन एक निःशुल्क लॉयल्टी प्रोग्राम है जो केवल व्यापारिक प्रचार हेतु उपयोग किया जा रहा है।</p>
-
-  <h2 class="section-title">Privacy Policy</h2>
-  <p>हम आपके किसी भी व्यक्तिगत डेटा को एकत्र नहीं करते। यह वेबसाइट केवल टोकन डेमो हेतु है।</p>
-
-  <h2 class="section-title">Roadmap</h2>
-  <ol style="text-align:left; max-width:600px; margin:auto;">
-    <li>Token Launch</li>
-    <li>Website Launch</li>
-    <li>MetaMask Integration</li>
-    <li>Spin & Win Feature</li>
-    <li>Community Growth (Telegram, WhatsApp)</li>
-    <li>Social Media Marketing</li>
-    <li>Listing on DEX</li>
-    <li>Partnership with local businesses</li>
-    <li>App Launch</li>
-    <li>Future Expansion</li>
-  </ol>
-
-  <div class="footer">
-    &copy; 2025 RUP Token
-  </div>
-</div>
-
-<script>
-  let userAccount;
-  const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
-
-  async function connectWallet() {
-    if (window.ethereum) {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      userAccount = accounts[0];
-      alert("Wallet Connected: " + userAccount);
-    } else {
-      alert("Please install MetaMask!");
+  <script>
+    const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
+    function copyAddress() {
+      navigator.clipboard.writeText(tokenAddress);
+      alert("Token address copied!");
     }
-  }
-
-  async function checkBalance() {
-    alert("Balance feature coming soon!");
-  }
-
-  function copyAddress() {
-    navigator.clipboard.writeText(tokenAddress);
-    alert("Token Address copied!");
-  }
-
-  function claimToken() {
-    window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
-  }
-
-  function spinNow() {
-    alert("Spin & Win coming soon!");
-  }
-</script>
-
+  </script>
 </body>
 </html>
