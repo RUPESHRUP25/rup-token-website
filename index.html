@@ -1,136 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP TOKEN</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url('https://i.ibb.co/4ZgyKt4/bg.jpg') no-repeat center center fixed;
+      background: url('bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      text-align: center;
       color: white;
+      text-align: center;
     }
-    .container {
-      padding: 20px;
-    }
-    img.logo {
-      width: 120px;
-      margin: 10px auto;
+    .logo {
+      width: 100px;
+      margin: 20px auto;
     }
     h1 {
-      font-size: 2.5em;
-      color: #fff;
-      margin-bottom: 30px;
-    }
-    button {
-      padding: 15px 25px;
       margin: 10px;
+      font-size: 2em;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 25px;
       border: none;
-      border-radius: 10px;
-      color: #fff;
       font-size: 16px;
       cursor: pointer;
-      min-width: 160px;
+      border-radius: 8px;
+      font-weight: bold;
     }
-    .yellow { background-color: #ffc107; color: black; }
+    .yellow { background-color: gold; color: black; }
     .green { background-color: #28a745; }
     .blue { background-color: #007bff; }
     .red { background-color: #dc3545; }
     .pink { background-color: #e83e8c; }
-    .black { background-color: #343a40; }
+    .black { background-color: #000000; }
     .purple { background-color: #6f42c1; }
-    .address-btn {
+    .section {
+      margin: 40px 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+    }
+    #addressCopy {
       background-color: #28a745;
-    }
-    .address-btn::after {
-      content: "Copy Token Address";
-    }
-    .social-buttons {
-      margin-top: 20px;
+      color: white;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img class="logo" src="https://i.ibb.co/MN0XmFX/rup-logo.png" alt="RUP Logo">
-    <h1>RUP TOKEN</h1>
 
-    <button class="yellow" onclick="openClaimForm()">Claim</button>
-    <button class="yellow" onclick="spinAndWin()">Spin & Win</button>
-    <button class="yellow" onclick="checkBalance()">Check Balance</button>
-    <br>
+  <img src="logo.png" alt="RUP TOKEN" class="logo"/>
+  <h1>RUP TOKEN</h1>
 
-    <button class="green" onclick="copyAddress()">Copy Token Address</button>
+  <button class="btn yellow" onclick="claimTokens()">Claim</button>
+  <button class="btn yellow" onclick="spinWheel()">Spin & Win</button>
+  <button class="btn yellow" onclick="checkBalance()">Check Balance</button>
+  <br/>
 
-    <div class="social-buttons">
-      <button class="blue" onclick="window.open('https://t.me/YourTelegramLink','_blank')">Join Telegram</button>
-      <button class="green" onclick="window.open('https://wa.me/YourWhatsAppNumber','_blank')">Join WhatsApp</button>
-      <button class="red" onclick="window.open('https://youtube.com/YourChannel','_blank')">Join YouTube</button>
-      <button class="black" onclick="window.open('https://x.com/YourTwitter','_blank')">Join X</button>
-      <button class="pink" onclick="window.open('https://instagram.com/YourInstagram','_blank')">Join Instagram</button>
-      <button class="purple" onclick="window.open('https://facebook.com/YourPage','_blank')">Join Facebook</button>
-    </div>
+  <button id="addressCopy" class="btn" onclick="copyAddress()">Copy Token Address</button>
+
+  <div>
+    <button class="btn blue" onclick="window.open('https://t.me/yourgroup')">Join Telegram</button>
+    <button class="btn green" onclick="window.open('https://wa.me/yourwhatsapp')">Join WhatsApp</button>
+    <button class="btn red" onclick="window.open('https://youtube.com')">Join YouTube</button>
+    <button class="btn black" onclick="window.open('https://twitter.com')">Join X</button>
+    <button class="btn pink" onclick="window.open('https://instagram.com')">Join Instagram</button>
+    <button class="btn purple" onclick="window.open('https://facebook.com')">Join Facebook</button>
+  </div>
+
+  <div class="section">
+    <h2>Roadmap</h2>
+    <p>Phase 1: Launch Token<br/>Phase 2: Airdrop & Marketing<br/>Phase 3: DEX Listing</p>
+  </div>
+
+  <div class="section">
+    <h2>Terms & Conditions</h2>
+    <p>Participation in the airdrop is subject to verification. No spam or bots allowed.</p>
+  </div>
+
+  <div class="section">
+    <h2>Privacy Policy</h2>
+    <p>We respect your privacy and do not collect personal data through this site.</p>
   </div>
 
   <script>
-    const tokenAddress = '0xAa93C8282927c384e5C40C8C0fE11a4B860B6074';
-    const tokenABI = [{
-      "constant": true,
-      "inputs": [{ "name": "_owner", "type": "address" }],
-      "name": "balanceOf",
-      "outputs": [{ "name": "balance", "type": "uint256" }],
-      "type": "function"
-    }];
+    const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
+    const tokenSymbol = "RUP";
+    const tokenDecimals = 18;
 
     async function connectWallet() {
-      if (window.ethereum) {
-        try {
-          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-          return accounts[0];
-        } catch (err) {
-          alert("Wallet connection failed");
-        }
-      } else {
-        alert("Please install MetaMask to continue.");
+      if (typeof window.ethereum === 'undefined') {
+        alert('MetaMask is not installed. Redirecting...');
+        window.location.href = 'https://metamask.io/download/';
+        return;
       }
+      await ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      return accounts[0];
     }
 
     async function checkBalance() {
       const account = await connectWallet();
-      if (!account) return;
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(tokenAddress, [
+        "function balanceOf(address owner) view returns (uint256)"
+      ], provider);
+      const balance = await contract.balanceOf(account);
+      alert(Your RUP Token Balance: ${ethers.utils.formatUnits(balance, tokenDecimals)} RUP);
+    }
 
-      const web3 = new Web3(window.ethereum);
-      const contract = new web3.eth.Contract(tokenABI, tokenAddress);
-      try {
-        const balance = await contract.methods.balanceOf(account).call();
-        alert("Your RUP Token Balance: " + web3.utils.fromWei(balance, 'ether') + " RUP");
-      } catch (e) {
-        alert("Error checking balance.");
+    function claimTokens() {
+      const won = Math.random() < 0.5;
+      if (won) {
+        alert("Congratulations! You won 10 RUP Tokens.");
+        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform");
+      } else {
+        alert("Try Again Next Time!");
+      }
+    }
+
+    function spinWheel() {
+      const won = Math.random() < 0.5;
+      if (won) {
+        alert("You spun and won 10 RUP Tokens!");
+        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform");
+      } else {
+        alert("Try Again Next Time!");
       }
     }
 
     function copyAddress() {
-      navigator.clipboard.writeText(tokenAddress);
-      alert("Token address copied!");
-    }
-
-    function openClaimForm() {
-      let reward = ["5 RUP", "10 RUP", "15 RUP", "20 RUP", "Better luck next time"];
-      let won = reward[Math.floor(Math.random() * reward.length)];
-      alert("You won: " + won + "\nNow fill the form to claim it!");
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
-    }
-
-    function spinAndWin() {
-      let reward = ["10 RUP", "25 RUP", "50 RUP", "Try again!", "1 Lucky Spin"];
-      let won = reward[Math.floor(Math.random() * reward.length)];
-      alert("Spin Result: " + won + "\nFill form to claim it.");
-      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+      navigator.clipboard.writeText(tokenAddress).then(() => {
+        alert("Token address copied!");
+      });
     }
   </script>
+
+  <!-- Load ethers.js from CDN -->
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 </body>
 </html>
