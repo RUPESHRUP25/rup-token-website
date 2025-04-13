@@ -2,152 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RUP Token</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url('bg.jpg');
+      background: url('https://i.ibb.co/zGc7t8X/clean-bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      color: white;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
       text-align: center;
-    }
-    .container {
+      background-color: rgba(0,0,0,0.7);
       padding: 20px;
-      background: FFAB00
-      margin: 20px;
+    }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    section { padding: 20px; background-color: rgba(0,0,0,0.6); margin: 20px; border-radius: 15px; }
+    button, .social-button {
+      padding: 15px 25px;
+      font-size: 1em;
+      margin: 10px;
+      border: none;
       border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
     }
-    .logo {
-      width: 120px;
-      margin-bottom: 15px;
-    }
-    h1 {
-      color: #FFD700;
-    }
-    .btn, .social-btn {
-      display: block;
-      padding: 12px;
-      margin: 10px auto;
-      width: 80%;
-      max-width: 300px;
-      font-size: 16px;
-      font-weight: bold;
+    .gold { background: gold; color: black; }
+    .green { background: limegreen; }
+    .red { background: crimson; }
+    .blue { background: deepskyblue; }
+    .socials a {
+      display: inline-block;
+      margin: 5px;
       text-decoration: none;
       color: white;
-      border-radius: 8px;
-      border: none;
+      font-weight: bold;
     }
-    .claim { background-color: #28a745; }
-    .spin { background-color: #ffc107; color: black; }
-    .check-balance { background-color: #17a2b8; }
-    .telegram { background-color: #229ED9; }
-    .whatsapp { background-color: #25D366; }
-    .youtube { background-color: #FF0000; }
-    .x { background-color: black; }
-    .instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-    .facebook { background-color: #3b5998; }
     .copy-btn {
-      background-color: #444;
-      margin-top: 10px;
+      background: #444;
+      color: white;
     }
-    section {
-      margin: 20px 0;
-    }
-    h2 {
-      color: #00FFFF;
-    }
-    p {
-      font-size: 15px;
+    .section-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: gold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="rup-logo.png" class="logo" alt="RUP Token Logo"/>
-    <h1>RUP TOKEN</h1>
+  <header>
+    <img src="https://i.ibb.co/7JfqXxB/rup-logo.png" alt="RUP Token Logo" height="100" />
+    <h1>RUP Token</h1>
+  </header>
 
-    <button class="btn claim" onclick="claimToken()">Claim Token</button>
-    <button class="btn spin" onclick="spinAndWin()">Spin & Win</button>
-    <button class="btn check-balance" onclick="checkBalance()">Check RUP Balance</button>
-    <button class="btn copy-btn" onclick="copyAddress()">Copy Token Address</button>
+  <section>
+    <div class="section-title">Token Details</div>
+    <p><strong>Max Supply:</strong> 1,00,00,000 RUP</p>
+    <p><strong>Token Address:</strong> <button class="copy-btn" onclick="copyAddress()">Copy Token Address</button></p>
+  </section>
 
-    <div style="display:none;">
-      <span id="token-address">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</span>
-    </div>
+  <section>
+    <div class="section-title">Wallet</div>
+    <button class="green" onclick="connectWallet()">Connect Wallet</button>
+    <button class="blue" onclick="checkBalance()">Check Balance</button>
+  </section>
 
-    <a href="https://t.me/rupeshelectronics2003" target="_blank" class="btn social-btn telegram">Join Telegram</a>
-    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="btn social-btn whatsapp">Join WhatsApp</a>
-    <a href="https://www.youtube.com/@ruptoken" target="_blank" class="btn social-btn youtube">Join YouTube</a>
-    <a href="https://x.com/RupeshK30183542" target="_blank" class="btn social-btn x">Join X</a>
-    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="btn social-btn instagram">Join Instagram</a>
-    <a href="https://facebook.com" target="_blank" class="btn social-btn facebook">Join Facebook</a>
-  </div>
+  <section>
+    <div class="section-title">Airdrop & Spin</div>
+    <button class="gold" onclick="spinWheel()">Spin & Win</button>
+    <button class="red" onclick="claimTokens()">Claim Airdrop</button>
+  </section>
 
-  <div class="container">
-    <section>
-      <h2>Max Total Supply</h2>
-      <p>100,000,000 RUP</p>
-    </section>
+  <section class="socials">
+    <div class="section-title">Join Us</div>
+    <a class="social-button" style="background:#0088cc;" href="https://t.me/rupeshelectronics" target="_blank">Telegram</a>
+    <a class="social-button" style="background:#25D366;" href="https://wa.me/919999999999" target="_blank">WhatsApp</a>
+    <a class="social-button" style="background:#FF0000;" href="https://youtube.com" target="_blank">YouTube</a>
+    <a class="social-button" style="background:#1DA1F2;" href="https://x.com" target="_blank">X</a>
+    <a class="social-button" style="background:#E1306C;" href="https://instagram.com/rupeshelectronics" target="_blank">Instagram</a>
+    <a class="social-button" style="background:#3b5998;" href="https://facebook.com" target="_blank">Facebook</a>
+  </section>
 
-    <section>
-      <h2>Terms & Conditions</h2>
-      <p>Ye token sirf business loyalty ke liye hai. Iska use financial transaction ke liye nahi hai.</p>
-    </section>
+  <section>
+    <div class="section-title">Roadmap</div>
+    <ul>
+      <li>2024 Q4: Token Launch and Website Setup</li>
+      <li>2025 Q1: Airdrop & Spin-to-Win Campaign</li>
+      <li>2025 Q2: Android App Launch & Community Growth</li>
+      <li>2025 Q3: Token Utility in Store & Digital Discounts</li>
+      <li>2025 Q4: DEX Listing (Community-Based)</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>Privacy Policy</h2>
-      <p>Hum kisi bhi user ka data store nahi karte. Aapka wallet address sirf aapke airdrop claim ke liye use hota hai.</p>
-    </section>
+  <section>
+    <div class="section-title">Disclaimer</div>
+    <p>RUP Token is a community-based digital token and is not recognized or regulated by any government or financial authority, including RBI or SEBI. यह टोकन केवल प्रमोशनल और शैक्षिक उद्देश्य के लिए जारी किया गया है। कृपया कोई भी लेन-देन करने से पहले अपनी जानकारी से निर्णय लें।</p>
+  </section>
 
-    <section>
-      <h2>Roadmap</h2>
-      <ul style="text-align:left; max-width: 400px; margin:auto;">
-        <li>Step 1: Website Launch</li>
-        <li>Step 2: Android App Release</li>
-        <li>Step 3: Airdrop Distribution</li>
-        <li>Step 4: Token Listing</li>
-        <li>Step 5: Marketing & Growth</li>
-      </ul>
-    </section>
-  </div>
+  <section>
+    <div class="section-title">Terms of Use</div>
+    <p>RUP Token का उपयोग करते समय आप हमारी शर्तों से सहमत होते हैं। यह केवल प्रचार और जागरूकता के लिए है, किसी भी प्रकार की वित्तीय गारंटी नहीं दी जाती है।</p>
+  </section>
+
+  <section>
+    <div class="section-title">Privacy Policy</div>
+    <p>आपके द्वारा प्रदान की गई जानकारी (जैसे नाम, वॉलेट एड्रेस) केवल RUP Token वितरण के लिए ली जाती है और किसी अन्य के साथ साझा नहीं की जाती।</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 RUP Token. All rights reserved.</p>
+  </footer>
 
   <script>
-    async function connectWallet() {
+    const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
+
+    function copyAddress() {
+      navigator.clipboard.writeText(tokenAddress);
+      alert("Token address copied!");
+    }
+
+    function connectWallet() {
       if (typeof window.ethereum !== 'undefined') {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        ethereum.request({ method: 'eth_requestAccounts' });
       } else {
-        alert("MetaMask not found. Please install MetaMask extension.");
-        window.open('https://metamask.io/download/', '_blank');
+        alert("Please install MetaMask to use this feature.");
+        window.open("https://metamask.io/download.html", "_blank");
       }
     }
 
-    function claimToken() {
-      alert("You have claimed 10 RUP Token! Your airdrop is sent.");
+    async function checkBalance() {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        alert("Wallet Connected: " + address);
+        // Add token balance logic if needed
+      }
     }
 
-    function spinAndWin() {
-      const result = Math.random();
-      if (result > 0.5) {
-        alert("You won 10 RUP! Fill the form to claim.");
-        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+    function spinWheel() {
+      const win = Math.random() < 0.3; // 30% chance to win
+      if (win) {
+        alert("Congratulations! You won RUP Tokens!");
+        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
       } else {
         alert("Try again! Better luck next time.");
       }
     }
 
-    function checkBalance() {
-      alert("Your RUP token balance is: 10 RUP");
-    }
-
-    function copyAddress() {
-      const addr = document.getElementById("token-address").innerText;
-      navigator.clipboard.writeText(addr);
-      alert("Token address copied to clipboard!");
+    function claimTokens() {
+      window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/edit", "_blank");
     }
   </script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 </body>
 </html>
