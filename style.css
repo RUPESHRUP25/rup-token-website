@@ -1,79 +1,27 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
   background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: #fff;
+  font-family: Arial, sans-serif;
+  color: white;
   text-align: center;
 }
 
-.container {
-  padding: 20px;
+header {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
 }
 
-.logo {
-  width: 120px;
-  margin-top: 20px;
-}
-
-h1 {
-  color: #FFD700;
-}
-
-.claim-button, .spin-button, .balance-section button {
-  background-color: #FFA500;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  color: white;
-  border-radius: 5px;
-}
-
-.token-address {
-  margin: 15px;
-}
-
-.token-address input {
-  width: 300px;
-  padding: 5px;
-}
-
-.token-address button {
-  padding: 6px 12px;
-  background-color: #FFD700;
-  border: none;
-  cursor: pointer;
-  color: #000;
-}
-
-.social-buttons a {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 15px;
-  color: white;
-  border-radius: 5px;
+nav a {
+  color: #fff;
   text-decoration: none;
-  font-weight: bold;
+  margin: 0 10px;
 }
 
-.telegram-button { background-color: #0088cc; }
-.whatsapp-button { background-color: #25D366; }
-.youtube-button { background-color: #FF0000; }
-.x-button { background-color: #1DA1F2; }
-.instagram-button { background-color: #C13584; }
-.facebook-button { background-color: #3b5998; }
-
-.sections h3 {
-  color: #FFD700;
-  font-size: 20px;
-  margin-top: 30px;
-  text-decoration: underline;
-}
-
-.sections p {
-  margin: 10px auto;
-  width: 90%;
-  font-size: 14px;
+section {
+  padding: 20px;
+  background-color: rgba(0,0,0,0.6);
+  margin: 10px;
+  border-radius: 10px;
 }
