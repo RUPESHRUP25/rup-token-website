@@ -3,227 +3,155 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP TOKEN</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>RUP Token</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1605902711622-cfb43c44367e') no-repeat center center fixed;
+      font-family: Arial, sans-serif;
+      background-image: url('bg.jpg');
       background-size: cover;
-      color: #fff;
-      transition: background 0.3s, color 0.3s;
-    }
-    .dark-mode {
-      background: #111 !important;
-      color: #eee !important;
-    }
-    header {
+      background-attachment: fixed;
+      background-position: center;
+      color: white;
       text-align: center;
+    }
+    .container {
       padding: 20px;
+      background: FFAB00
+      margin: 20px;
+      border-radius: 10px;
+    }
+    .logo {
+      width: 120px;
+      margin-bottom: 15px;
     }
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+      color: #FFD700;
     }
-    .section {
-      padding: 30px 15px;
-      max-width: 800px;
-      margin: auto;
-      background: rgba(0,0,0,0.6);
-      border-radius: 15px;
-      margin-bottom: 20px;
-    }
-    button, .social-btn {
-      padding: 12px 20px;
-      margin: 10px 5px;
+    .btn, .social-btn {
+      display: block;
+      padding: 12px;
+      margin: 10px auto;
+      width: 80%;
+      max-width: 300px;
       font-size: 16px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      opacity: 0.9;
-    }
-    .btn-main {
-      background: #ffc107;
-      color: #000;
-    }
-    .socials a {
+      font-weight: bold;
       text-decoration: none;
-      color: #fff;
-      font-size: 24px;
-      margin: 0 10px;
+      color: white;
+      border-radius: 8px;
+      border: none;
     }
-    .token-address {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .claim { background-color: #28a745; }
+    .spin { background-color: #ffc107; color: black; }
+    .check-balance { background-color: #17a2b8; }
+    .telegram { background-color: #229ED9; }
+    .whatsapp { background-color: #25D366; }
+    .youtube { background-color: #FF0000; }
+    .x { background-color: black; }
+    .instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .facebook { background-color: #3b5998; }
+    .copy-btn {
+      background-color: #444;
+      margin-top: 10px;
     }
-    .faq h3 {
-      margin-top: 20px;
-      color: #ffd700;
+    section {
+      margin: 20px 0;
     }
-    .roadmap li {
-      margin: 10px 0;
+    h2 {
+      color: #00FFFF;
     }
-    .toggle-dark {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      padding: 10px;
-      background: #222;
-      color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
+    p {
+      font-size: 15px;
     }
   </style>
 </head>
 <body>
-  <div class="toggle-dark" onclick="toggleDarkMode()">🌙 Toggle Mode</div>
-
-  <header>
-    <img src="https://i.ibb.co/yVHDL2v/token-logo.png" width="100" alt="RUP Token Logo">
+  <div class="container">
+    <img src="rup-logo.png" class="logo" alt="RUP Token Logo"/>
     <h1>RUP TOKEN</h1>
-    <p>Welcome to the Official Airdrop + Spin & Win Portal</p>
-  </header>
 
-  <div class="section" id="wallet">
-    <button class="btn-main" onclick="connectWallet()">Connect Wallet</button>
-    <p id="wallet-address"></p>
-  </div>
+    <button class="btn claim" onclick="claimToken()">Claim Token</button>
+    <button class="btn spin" onclick="spinAndWin()">Spin & Win</button>
+    <button class="btn check-balance" onclick="checkBalance()">Check RUP Balance</button>
+    <button class="btn copy-btn" onclick="copyAddress()">Copy Token Address</button>
 
-  <div class="section">
-    <h2>Token Information</h2>
-    <p><strong>Token Name:</strong> RUP Token</p>
-    <p><strong>Max Supply:</strong> 1,000,000 RUP</p>
-    <div class="token-address">
-      <button class="btn-main" onclick="copyToken()">Copy Token Address</button>
+    <div style="display:none;">
+      <span id="token-address">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</span>
     </div>
+
+    <a href="https://t.me/rupeshelectronics2003" target="_blank" class="btn social-btn telegram">Join Telegram</a>
+    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="btn social-btn whatsapp">Join WhatsApp</a>
+    <a href="https://www.youtube.com/@ruptoken" target="_blank" class="btn social-btn youtube">Join YouTube</a>
+    <a href="https://x.com/RupeshK30183542" target="_blank" class="btn social-btn x">Join X</a>
+    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="btn social-btn instagram">Join Instagram</a>
+    <a href="https://facebook.com" target="_blank" class="btn social-btn facebook">Join Facebook</a>
   </div>
 
-  <div class="section">
-    <h2>Spin & Win</h2>
-    <button class="btn-main" onclick="spin()">Spin Now</button>
-    <p id="spin-result"></p>
-  </div>
+  <div class="container">
+    <section>
+      <h2>Max Total Supply</h2>
+      <p>100,000,000 RUP</p>
+    </section>
 
-  <div class="section">
-    <h2>Claim Airdrop</h2>
-    <a href="https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform" target="_blank">
-      <button class="btn-main">Claim Now</button>
-    </a>
-  </div>
+    <section>
+      <h2>Terms & Conditions</h2>
+      <p>Ye token sirf business loyalty ke liye hai. Iska use financial transaction ke liye nahi hai.
+      RUP Token का उपयोग करते समय आप हमारी शर्तों से सहमत होते हैं। यह केवल प्रचार और जागरूकता के लिए है, किसी भी प्रकार की वित्तीय गारंटी नहीं दी जाती है।</p>
+    </section>
 
-  <div class="section">
-    <h2>Airdrop Countdown</h2>
-    <p id="countdown"></p>
-  </div>
+    <section>
+      <h2>Privacy Policy</h2>
+      <p>Hum kisi bhi user ka data store nahi karte. Aapka wallet address sirf aapke airdrop claim ke liye use hota hai
+        आपके द्वारा प्रदान की गई जानकारी (जैसे नाम, वॉलेट एड्रेस) केवल RUP Token वितरण के लिए ली जाती है और किसी अन्य के साथ साझा नहीं की जाती।.</p>
+    </section>
 
-  <div class="section">
-    <h2>Referral Link</h2>
-    <p id="referral-link">Connect wallet to generate your referral link.</p>
-  </div>
-
-  <div class="section">
-    <h2>Leaderboard</h2>
-    <ol id="leaderboard">
-      <li>Wallet1 - 20 RUP</li>
-      <li>Wallet2 - 15 RUP</li>
-      <li>Wallet3 - 10 RUP</li>
-      <li>Wallet4 - 5 RUP</li>
-      <li>Wallet5 - 2 RUP</li>
-    </ol>
-  </div>
-
-  <div class="section">
-    <h2>Roadmap</h2>
-    <ul class="roadmap">
-      <li>✅ Token Launch</li>
-      <li>✅ Airdrop Phase 1</li>
-      <li>🔄 Spin & Win Live</li>
-      <li>🔜 Exchange Listing</li>
-      <li>🔜 Mobile App Integration</li>
-    </ul>
-  </div>
-
-  <div class="section faq">
-    <h2>FAQs</h2>
-    <h3>What is RUP Token?</h3>
-    <p>RUP Token is a decentralized reward token.</p>
-    <h3>How do I participate in airdrop?</h3>
-    <p>Connect wallet, spin, and claim via the form.</p>
-  </div>
-
-  <div class="section">
-    <h2>Token Burn Status</h2>
-    <p>10,000 RUP burned till date.</p>
-  </div>
-
-  <div class="section">
-    <h2>Join Our Community</h2>
-    <div class="socials">
-      <a href="#"><i class="fab fa-telegram"></i></a>
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-    </div>
+    <section>
+      <h2>Roadmap</h2>
+      <ul style="text-align:left; max-width: 400px; margin:auto;">
+        <li>Step 1: Token Launch and
+                     Website Setup</li>
+        <li>Step 2: Token Utility in Store & 
+                     Digital Discounts</li>
+        <li>Step 3: DEX Listing (Community-Based</li>
+        <li>Step 4: Token Listing</li>
+        <li>Step 5: Marketing & Growth</li>
+      </ul>
+    </section>
   </div>
 
   <script>
-    const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
-
-    function connectWallet() {
+    async function connectWallet() {
       if (typeof window.ethereum !== 'undefined') {
-        ethereum.request({ method: 'eth_requestAccounts' }).then(accounts => {
-          document.getElementById('wallet-address').innerText = "Wallet: " + accounts[0];
-          document.getElementById('referral-link').innerText = window.location.origin + "?ref=" + accounts[0];
-        });
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
       } else {
-        alert("MetaMask not installed. Redirecting...");
-        window.open("https://metamask.io", "_blank");
+        alert("MetaMask not found. Please install MetaMask extension.");
+        window.open('https://metamask.io/download/', '_blank');
       }
     }
 
-    function copyToken() {
-      navigator.clipboard.writeText(tokenAddress).then(() => {
-        alert("Token address copied!");
-      });
+    function claimToken() {
+      alert("You have claimed 10 RUP Token! Your airdrop is sent.");
     }
 
-    function spin() {
-      const result = Math.random() < 0.5 ? "Try Again!" : "You Win! Claim your reward!";
-      document.getElementById('spin-result').innerText = result;
-      if (result.includes("Win")) {
-        setTimeout(() => {
-          window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
-        }, 1000);
+    function spinAndWin() {
+      const result = Math.random();
+      if (result > 0.5) {
+        alert("You won 10 RUP! Fill the form to claim.");
+        window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+      } else {
+        alert("Try again! Better luck next time.");
       }
     }
 
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
+    function checkBalance() {
+      alert("Your RUP token balance is: 10 RUP");
     }
 
-    function countdownTimer() {
-      const nextDrop = new Date().getTime() + 3600 * 1000;
-      const x = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = nextDrop - now;
-        if (distance < 0) {
-          document.getElementById("countdown").innerText = "Airdrop Started!";
-          clearInterval(x);
-        } else {
-          const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const s = Math.floor((distance % (1000 * 60)) / 1000);
-          document.getElementById("countdown").innerText = ${h}h ${m}m ${s}s;
-        }
-      }, 1000);
+    function copyAddress() {
+      const addr = document.getElementById("token-address").innerText;
+      navigator.clipboard.writeText(addr);
+      alert("Token address copied to clipboard!");
     }
-    countdownTimer();
   </script>
 </body>
 </html>
