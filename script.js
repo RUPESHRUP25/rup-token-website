@@ -1,24 +1,42 @@
+const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
+const tokenDecimals = 18;
+
+async function connectWallet() {
+  if (window.ethereum) {
+    await ethereum.request({ method: 'eth_requestAccounts' });
+    window.web3 = new Web3(window.ethereum);
+  } else {
+    alert("Please install MetaMask to use this feature.");
+  }
+}
+
+async function checkBalance() {
+  await connectWallet();
+  const accounts = await ethereum.request({ method: 'eth_accounts' });
+  const wallet = accounts[0];
+
+  const contract = new web3.eth.Contract([
+    { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }],
+      "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }],
+      "type": "function" }
+  ], tokenAddress);
+
+  const balance = await contract.methods.balanceOf(wallet).call();
+  document.getElementById("balance").innerText = Balance: ${balance / (10 ** tokenDecimals)} RUP;
+}
+
+function claimTokens() {
+  window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+}
+
 function copyTokenAddress() {
-  const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
-  navigator.clipboard.writeText(tokenAddress).then(() => {
-    alert("Token Address Copied: " + tokenAddress);
-  });
+  const copyText = document.getElementById("tokenAddress");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  alert("Token address copied!");
 }
 
 function spinWheel() {
-  const rewards = [5, 10, 15, 25, 0];
-  const reward = rewards[Math.floor(Math.random() * rewards.length)];
-  document.getElementById("rewardText").innerText = reward > 0 
-    ? Congratulations! You won ${reward} RUP Tokens. 
-    : "Try again! Better luck next time.";
-}
-
-function checkBalance() {
-  const wallet = document.getElementById("walletAddress").value;
-  if (!wallet) {
-    alert("Please enter your wallet address.");
-    return;
-  }
-  // Dummy balance check
-  document.getElementById("balanceResult").innerText = Wallet ${wallet} has 100 RUP Tokens.;
+  alert("Spin & Win Coming Soon!");
 }
