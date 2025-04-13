@@ -1,80 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <title>RUP TOKEN</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      width: 120px;
+    }
+    h1 {
+      color: gold;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 10px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .copy-button {
+      background-color: #f39c12;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .copy-button:hover {
+      background-color: #e67e22;
+    }
+    .social-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    .telegram { background-color: #0088cc; color: white; }
+    .whatsapp { background-color: #25D366; color: white; }
+    .facebook { background-color: #3b5998; color: white; }
+    .instagram { background-color: #E1306C; color: white; }
+    .youtube { background-color: #FF0000; color: white; }
+    .x { background-color: #000000; color: white; }
+
+    .bold-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #00ffcc;
+      margin-bottom: 10px;
+    }
+
+    button.spin-btn, button.claim-btn, button.check-btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    .spin-btn { background: orange; color: #000; }
+    .claim-btn { background: green; color: #fff; }
+    .check-btn { background: #3498db; color: #fff; }
+  </style>
 </head>
 <body>
   <header>
+    <img src="logo.png" alt="RUP Token Logo">
     <h1>RUP TOKEN</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#token">Token Details</a>
-      <a href="#supply">Max Supply</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#contact">Sampark</a>
-      <a href="#terms">Terms</a>
-      <a href="#privacy">Privacy</a>
-    </nav>
   </header>
 
-  <section id="home">
-    <h2>Welcome to RUP Token</h2>
-    <button onclick="connectWallet()">Connect Wallet</button>
-    <p id="walletAddress"></p>
-  </section>
+  <div class="container">
+    
+    <div class="section">
+      <div class="bold-title">Token Address</div>
+      <input type="text" value="0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" id="tokenAddress" readonly style="position: absolute; left: -9999px;">
+      <button class="copy-button" onclick="copyTokenAddress()">Copy Token Address</button>
+      <span id="copyStatus"></span>
+    </div>
 
-  <section id="token">
-    <h2>Token Address</h2>
-    <input type="text" value="0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" id="tokenAddress" readonly />
-    <button onclick="copyAddress()">Copy</button>
-  </section>
+    <div class="section">
+      <div class="bold-title">Token Details</div>
+      <p><strong>Token Name:</strong> RUP TOKEN</p>
+      <p><strong>Max Supply:</strong> 1,00,00,000 RUP</p>
+    </div>
 
-  <section id="supply">
-    <h2>Max Supply</h2>
-    <p>1,000,000 RUP</p>
-  </section>
+    <div class="section">
+      <div class="bold-title">Spin & Win</div>
+      <button class="spin-btn">Spin Now</button>
+      <button class="claim-btn">Claim RUP</button>
+    </div>
 
-  <section id="spin">
-    <h2>Spin & Win</h2>
-    <button onclick="spinNow()">Spin Now</button>
-    <p id="spinResult">Spin karne ke baad yahan result dikhai dega</p>
-    <button onclick="claimReward()">Claim Token</button>
-  </section>
+    <div class="section">
+      <div class="bold-title">Check Token Balance</div>
+      <button class="check-btn">Check RUP Balance</button>
+    </div>
 
-  <section id="roadmap">
-    <h2 style="color: lime;">Roadmap</h2>
-    <ul>
-      <li>YouTube Channel & Community Build</li>
-      <li>Free Airdrop & Promotion</li>
-      <li>MetaMask Integration</li>
-      <li>DEX Listing Plan</li>
-      <li>Utility Use Case Develop</li>
-      <li>App & Website Upgrade</li>
-    </ul>
-  </section>
+    <div class="section social-buttons">
+      <div class="bold-title">Join Us</div>
+      <button class="telegram" onclick="window.open('https://t.me/yourgroup')">Telegram</button>
+      <button class="whatsapp" onclick="window.open('https://wa.me/yourwhatsapplink')">WhatsApp</button>
+      <button class="facebook" onclick="window.open('https://facebook.com/yourpage')">Facebook</button>
+      <button class="instagram" onclick="window.open('https://instagram.com/rupeshelectronics')">Instagram</button>
+      <button class="youtube" onclick="window.open('https://youtube.com')">YouTube</button>
+      <button class="x" onclick="window.open('https://x.com/RupeshK30183542')">X (Twitter)</button>
+    </div>
 
-  <section id="terms">
-    <h2 style="color: red;">Terms & Conditions</h2>
-    <p>Yeh token sirf promotion aur personal business ke liye hai. Koi financial guarantee nahi hai. Sirf apne risk par use karein.</p>
-  </section>
+    <div class="section">
+      <div class="bold-title">Roadmap</div>
+      <ul>
+        <li>Step 1: Website Launch</li>
+        <li>Step 2: Token Airdrop</li>
+        <li>Step 3: Community Growth</li>
+        <li>Step 4: DEX Listing</li>
+        <li>Step 5: Mobile App Launch</li>
+      </ul>
+    </div>
 
-  <section id="privacy">
-    <h2 style="color: blue;">Privacy Policy</h2>
-    <p>RUP Token kisi user ka personal data store nahi karta. Sirf MetaMask address ki interaction hoti hai.</p>
-  </section>
+    <div class="section">
+      <div class="bold-title">Terms & Conditions</div>
+      <p>This token is distributed for business purposes only. Users must participate at their own discretion.</p>
+    </div>
 
-  <section id="contact">
-    <h2>Join Community</h2>
-    <a href="https://t.me/yourgroup" target="_blank" style="color: white; background-color: #0088cc; padding: 10px;">Join Telegram</a>
-    <a href="https://wa.me/yourwhatsapp" target="_blank" style="color: white; background-color: green; padding: 10px;">Join WhatsApp</a>
-    <a href="https://youtube.com/@yourchannel" target="_blank" style="color: white; background-color: red; padding: 10px;">Join YouTube</a>
-    <a href="https://x.com/RupeshK30183542" target="_blank" style="color: white; background-color: black; padding: 10px;">Join X</a>
-    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" style="color: white; background-color: #e1306c; padding: 10px;">Join Instagram</a>
-    <a href="https://facebook.com/yourpage" target="_blank" style="color: white; background-color: #4267B2; padding: 10px;">Join Facebook</a>
-  </section>
+    <div class="section">
+      <div class="bold-title">Privacy Policy</div>
+      <p>We do not collect personal data from users. Your wallet address is only used for token distribution.</p>
+    </div>
+
+  </div>
+
+  <script>
+    function copyTokenAddress() {
+      var copyText = document.getElementById("tokenAddress");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      document.getElementById("copyStatus").innerText = "Copied!";
+      setTimeout(() => {
+        document.getElementById("copyStatus").innerText = "";
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
