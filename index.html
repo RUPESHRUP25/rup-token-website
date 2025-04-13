@@ -2,49 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP Token</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1611971261283-279889ba2df7'); /* Replace with your image */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      text-align: center;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .logo {
+      width: 100px;
+    }
+    h1 {
+      color: gold;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+    }
+    .telegram-button { background-color: #0088cc; }
+    .whatsapp-button { background-color: #25D366; }
+    .youtube-button { background-color: #FF0000; }
+    .x-button { background-color: black; }
+    .instagram-button { background: linear-gradient(#feda75, #d62976, #962fbf); }
+    .facebook-button { background-color: #4267B2; }
+    .claim-button { background-color: #ff9800; }
+    .copy-address {
+      background-color: #333;
+      padding: 8px;
+      border-radius: 6px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .section-title {
+      color: gold;
+      margin-top: 40px;
+    }
+    .footer {
+      margin-top: 30px;
+      color: #ccc;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <img src="rup-logo.png" alt="RUP Logo" class="logo" />
-    <h1>RUP Token</h1>
 
-    <button class="claim-button" onclick="claimTokens()">Claim</button>
-    <button class="spin-button" onclick="spinWheel()">Spin & Win</button>
+<div class="container">
+  <img src="rup-logo.png" alt="RUP Logo" class="logo" />
+  <h1>RUP Token</h1>
 
-    <div class="balance-section">
-      <button onclick="checkBalance()">Check RUP Balance</button>
-      <p id="balance">Balance: --</p>
-    </div>
-
-    <div class="token-address">
-      <input type="text" value="0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" id="tokenAddress" readonly>
-      <button onclick="copyTokenAddress()">Copy</button>
-    </div>
-
-    <div class="social-buttons">
-      <a href="https://t.me/rupeshelectronics2003" target="_blank" class="telegram-button">Telegram</a>
-      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="whatsapp-button">WhatsApp</a>
-      <a href="https://www.youtube.com/@ruptoken" target="_blank" class="youtube-button">YouTube</a>
-      <a href="https://x.com/RupeshK30183542" target="_blank" class="x-button">Twitter (X)</a>
-      <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="instagram-button">Instagram</a>
-      <a href="https://facebook.com" target="_blank" class="facebook-button">Facebook</a>
-    </div>
-
-    <div class="sections">
-      <h3>Roadmap</h3>
-      <p>1. Token Launch<br>2. Airdrop & Marketing<br>3. Community Growth<br>4. Exchange Listing<br>5. Mobile App</p>
-
-      <h3>Terms and Conditions</h3>
-      <p>RUP Token is for community reward and loyalty. No investment or guarantee involved.</p>
-
-      <h3>Privacy Policy</h3>
-      <p>We do not collect personal data. All transactions are decentralized.</p>
-    </div>
+  <div>
+    <button class="button" onclick="connectWallet()">Connect Wallet</button>
+    <button class="button" onclick="checkBalance()">Check RUP Balance</button>
+    <button class="button claim-button" onclick="claimToken()">Claim</button>
+    <button class="button" onclick="spinNow()">Spin & Win</button>
   </div>
 
-  <script src="script.js"></script>
+  <div class="copy-address" onclick="copyAddress()">Token Address: 0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</div>
+
+  <div class="social-buttons">
+    <a href="https://t.me/rupeshelectronics2003" class="button telegram-button">Join Telegram</a>
+    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" class="button whatsapp-button">Join WhatsApp</a>
+    <a href="https://www.youtube.com/@ruptoken" class="button youtube-button">Join YouTube</a>
+    <a href="https://x.com/RupeshK30183542" class="button x-button">Join X</a>
+    <a href="https://www.instagram.com/rupeshelectronics" class="button instagram-button">Join Instagram</a>
+    <a href="#" class="button facebook-button">Join Facebook</a>
+  </div>
+
+  <h2 class="section-title">Max Supply</h2>
+  <p>10,00,000 RUP</p>
+
+  <h2 class="section-title">Token Details</h2>
+  <p>Name: RUP Token</p>
+  <p>Symbol: RUP</p>
+
+  <h2 class="section-title">Terms and Conditions</h2>
+  <p>RUP टोकन एक निःशुल्क लॉयल्टी प्रोग्राम है जो केवल व्यापारिक प्रचार हेतु उपयोग किया जा रहा है।</p>
+
+  <h2 class="section-title">Privacy Policy</h2>
+  <p>हम आपके किसी भी व्यक्तिगत डेटा को एकत्र नहीं करते। यह वेबसाइट केवल टोकन डेमो हेतु है।</p>
+
+  <h2 class="section-title">Roadmap</h2>
+  <ol style="text-align:left; max-width:600px; margin:auto;">
+    <li>Token Launch</li>
+    <li>Website Launch</li>
+    <li>MetaMask Integration</li>
+    <li>Spin & Win Feature</li>
+    <li>Community Growth (Telegram, WhatsApp)</li>
+    <li>Social Media Marketing</li>
+    <li>Listing on DEX</li>
+    <li>Partnership with local businesses</li>
+    <li>App Launch</li>
+    <li>Future Expansion</li>
+  </ol>
+
+  <div class="footer">
+    &copy; 2025 RUP Token
+  </div>
+</div>
+
+<script>
+  let userAccount;
+  const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
+
+  async function connectWallet() {
+    if (window.ethereum) {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      userAccount = accounts[0];
+      alert("Wallet Connected: " + userAccount);
+    } else {
+      alert("Please install MetaMask!");
+    }
+  }
+
+  async function checkBalance() {
+    alert("Balance feature coming soon!");
+  }
+
+  function copyAddress() {
+    navigator.clipboard.writeText(tokenAddress);
+    alert("Token Address copied!");
+  }
+
+  function claimToken() {
+    window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
+  }
+
+  function spinNow() {
+    alert("Spin & Win coming soon!");
+  }
+</script>
+
 </body>
 </html>
