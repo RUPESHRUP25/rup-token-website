@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('bg.jpg') no-repeat center center fixed;
+      background: url('https://i.ibb.co/zGc7t8X/clean-bg.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       margin: 0;
@@ -15,7 +15,7 @@
     }
     header, footer {
       text-align: center;
-      background-color:
+      background-color: rgba(0,0,0,0.7);
       padding: 20px;
     }
     h1 { font-size: 2.5em; margin-bottom: 10px; }
@@ -54,7 +54,7 @@
 </head>
 <body>
   <header>
-    <img src="rup-logo.png" alt="RUP Token Logo" height="100" />
+    <img src="https://i.ibb.co/7JfqXxB/rup-logo.png" alt="RUP Token Logo" height="100" />
     <h1>RUP Token</h1>
   </header>
 
@@ -124,27 +124,25 @@
       alert("Token address copied!");
     }
 
-   function connectWallet() {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  
-  if (typeof window.ethereum !== 'undefined') {
-    ethereum.request({ method: 'eth_requestAccounts' })
-      .then(() => {
-        alert('Wallet connected!');
-      })
-      .catch((err) => {
-        alert('Connection failed: ' + err.message);
-      });
-  } else {
-    if (isMobile) {
-      alert('MetaMask not detected on mobile. Please open this website inside the MetaMask app browser.');
-      window.open("https://metamask.io/download.html", "_blank");
-    } else {
-      alert('MetaMask not found. Please install MetaMask extension in your browser.');
-      window.open("https://metamask.io/download.html", "_blank");
-    }
-  }
-}
+    function connectWallet() {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (typeof window.ethereum !== 'undefined') {
+        ethereum.request({ method: 'eth_requestAccounts' })
+          .then(() => {
+            alert('Wallet connected!');
+          })
+          .catch((err) => {
+            alert('Connection failed: ' + err.message);
+          });
+      } else {
+        if (isMobile) {
+          alert('MetaMask not detected on mobile. Please open this website inside the MetaMask app browser.');
+          window.open("https://metamask.io/download.html", "_blank");
+        } else {
+          alert('MetaMask not found. Please install MetaMask extension in your browser.');
+          window.open("https://metamask.io/download.html", "_blank");
+        }
       }
     }
 
