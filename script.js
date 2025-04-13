@@ -1,7 +1,8 @@
 function copyTokenAddress() {
-  const address = document.getElementById("tokenAddress").innerText;
-  navigator.clipboard.writeText(address);
-  alert("Token Address Copied!");
+  const tokenAddress = "0xAa93C8282927c384e5C40C8C0fE11a4B860B6074";
+  navigator.clipboard.writeText(tokenAddress).then(() => {
+    alert("Token Address Copied: " + tokenAddress);
+  });
 }
 
 function spinWheel() {
