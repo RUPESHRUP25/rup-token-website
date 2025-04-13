@@ -1,162 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUP TOKEN</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('background.jpg');
+      font-family: 'Segoe UI', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #fff;
-    }
-    header {
+      color: white;
       text-align: center;
-      padding: 20px;
     }
-    header img {
-      width: 120px;
-    }
-    h1 {
-      color: gold;
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+
     .container {
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
       max-width: 800px;
       margin: auto;
-      padding: 20px;
-      background-color: rgba(0,0,0,0.6);
       border-radius: 10px;
     }
-    .section {
-      margin-bottom: 30px;
+
+    .logo {
+      width: 100px;
+      margin: 10px auto;
     }
-    .copy-button {
-      background-color: #f39c12;
+
+    h1 {
+      margin-top: 10px;
+      font-size: 2.5em;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      margin: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
       color: white;
-      padding: 10px 20px;
-      border: none;
+      text-decoration: none;
       font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .copy-button:hover {
-      background-color: #e67e22;
-    }
-    .social-buttons button {
-      margin: 5px;
-      padding: 10px 20px;
-      font-weight: bold;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-    }
-    .telegram { background-color: #0088cc; color: white; }
-    .whatsapp { background-color: #25D366; color: white; }
-    .facebook { background-color: #3b5998; color: white; }
-    .instagram { background-color: #E1306C; color: white; }
-    .youtube { background-color: #FF0000; color: white; }
-    .x { background-color: #000000; color: white; }
-
-    .bold-title {
-      font-size: 1.4em;
-      font-weight: bold;
-      color: #00ffcc;
-      margin-bottom: 10px;
     }
 
-    button.spin-btn, button.claim-btn, button.check-btn {
-      padding: 10px 20px;
+    .telegram { background-color: #0088cc; }
+    .whatsapp { background-color: #25D366; }
+    .youtube { background-color: #FF0000; }
+    .x { background-color: #000000; }
+    .instagram { background-color: #E1306C; }
+    .facebook { background-color: #3b5998; }
+
+    .action-button {
+      background-color: #FFD700;
+      color: black;
+      margin-top: 15px;
       font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      margin: 10px 0;
-      cursor: pointer;
     }
-    .spin-btn { background: orange; color: #000; }
-    .claim-btn { background: green; color: #fff; }
-    .check-btn { background: #3498db; color: #fff; }
+
+    .section {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .section h2 {
+      color: #FFD700;
+    }
+
+    .copy-btn {
+      background-color: #4CAF50;
+    }
+
+    #copyAddress {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="RUP Token Logo">
-    <h1>RUP TOKEN</h1>
-  </header>
-
   <div class="container">
-    
+    <img src="rup-logo.png" alt="RUP Token Logo" class="logo" />
+    <h1>RUP TOKEN</h1>
+
+    <!-- Action Buttons -->
+    <button class="btn action-button">Claim</button>
+    <button class="btn action-button">Spin & Win</button>
+    <button class="btn action-button">Check Balance</button>
+
+    <!-- Token Address Copy -->
+    <div style="margin-top: 20px;">
+      <input type="text" value="0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" id="copyAddress">
+      <button class="btn copy-btn" onclick="copyToken()">Copy Token Address</button>
+    </div>
+
+    <!-- Social Media Buttons -->
+    <div style="margin-top: 20px;">
+      <a href="https://t.me/rupeshelectronics2003" class="btn telegram" target="_blank">Join Telegram</a>
+      <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" class="btn whatsapp" target="_blank">Join WhatsApp</a>
+      <a href="https://www.youtube.com/@ruptoken" class="btn youtube" target="_blank">Join YouTube</a>
+      <a href="https://x.com/RupeshK30183542" class="btn x" target="_blank">Join X</a>
+      <a href="https://www.instagram.com/rupeshelectronics" class="btn instagram" target="_blank">Join Instagram</a>
+      <a href="https://facebook.com" class="btn facebook" target="_blank">Join Facebook</a>
+    </div>
+
+    <!-- Roadmap -->
     <div class="section">
-      <div class="bold-title">Token Address</div>
-      <input type="text" value="0xAa93C8282927c384e5C40C8C0fE11a4B860B6074" id="tokenAddress" readonly style="position: absolute; left: -9999px;">
-      <button class="copy-button" onclick="copyTokenAddress()">Copy Token Address</button>
-      <span id="copyStatus"></span>
+      <h2>Roadmap</h2>
+      <p>1. Token Development Completed</p>
+      <p>2. Website Launch</p>
+      <p>3. Airdrop Live</p>
+      <p>4. Social Media Growth</p>
+      <p>5. DEX Listing (Coming Soon)</p>
     </div>
 
+    <!-- Terms -->
     <div class="section">
-      <div class="bold-title">Token Details</div>
-      <p><strong>Token Name:</strong> RUP TOKEN</p>
-      <p><strong>Max Supply:</strong> 1,00,00,000 RUP</p>
+      <h2>Terms & Conditions</h2>
+      <p>RUP टोकन केवल प्रमोशनल उपयोग के लिए है। कोई वित्तीय गारंटी नहीं दी जाती।</p>
     </div>
 
+    <!-- Privacy -->
     <div class="section">
-      <div class="bold-title">Spin & Win</div>
-      <button class="spin-btn">Spin Now</button>
-      <button class="claim-btn">Claim RUP</button>
+      <h2>Privacy Policy</h2>
+      <p>हम आपकी जानकारी सुरक्षित रखते हैं और किसी तीसरे पक्ष के साथ साझा नहीं करते।</p>
     </div>
-
-    <div class="section">
-      <div class="bold-title">Check Token Balance</div>
-      <button class="check-btn">Check RUP Balance</button>
-    </div>
-
-    <div class="section social-buttons">
-      <div class="bold-title">Join Us</div>
-      <button class="telegram" onclick="window.open('https://t.me/yourgroup')">Telegram</button>
-      <button class="whatsapp" onclick="window.open('https://wa.me/yourwhatsapplink')">WhatsApp</button>
-      <button class="facebook" onclick="window.open('https://facebook.com/yourpage')">Facebook</button>
-      <button class="instagram" onclick="window.open('https://instagram.com/rupeshelectronics')">Instagram</button>
-      <button class="youtube" onclick="window.open('https://youtube.com')">YouTube</button>
-      <button class="x" onclick="window.open('https://x.com/RupeshK30183542')">X (Twitter)</button>
-    </div>
-
-    <div class="section">
-      <div class="bold-title">Roadmap</div>
-      <ul>
-        <li>Step 1: Website Launch</li>
-        <li>Step 2: Token Airdrop</li>
-        <li>Step 3: Community Growth</li>
-        <li>Step 4: DEX Listing</li>
-        <li>Step 5: Mobile App Launch</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <div class="bold-title">Terms & Conditions</div>
-      <p>This token is distributed for business purposes only. Users must participate at their own discretion.</p>
-    </div>
-
-    <div class="section">
-      <div class="bold-title">Privacy Policy</div>
-      <p>We do not collect personal data from users. Your wallet address is only used for token distribution.</p>
-    </div>
-
   </div>
 
   <script>
-    function copyTokenAddress() {
-      var copyText = document.getElementById("tokenAddress");
+    function copyToken() {
+      const copyText = document.getElementById("copyAddress");
+      copyText.style.display = 'block';
       copyText.select();
-      copyText.setSelectionRange(0, 99999);
       document.execCommand("copy");
-      document.getElementById("copyStatus").innerText = "Copied!";
-      setTimeout(() => {
-        document.getElementById("copyStatus").innerText = "";
-      }, 2000);
+      copyText.style.display = 'none';
+      alert("Token address copied!");
     }
   </script>
 </body>
