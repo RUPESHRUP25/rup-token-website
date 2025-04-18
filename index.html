@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin & Win - Claim Exciting Prizes!</title>
+    <title>Rupesh Electronics - Spin & Win</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
@@ -37,16 +37,21 @@
             overflow: hidden;
         }
         
-        .header {
-            margin-bottom: 30px;
-            position: relative;
+        .brand-header {
+            margin-bottom: 15px;
         }
         
-        .header h1 {
+        .brand-header .shop-name {
+            font-size: 2rem;
+            font-weight: 700;
             color: #333;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-transform: uppercase;
+        }
+        
+        .brand-header .game-name {
+            font-size: 1.8rem;
+            font-weight: 700;
             background: linear-gradient(to right, #6e8efb, #a777e3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -56,6 +61,7 @@
         .header p {
             color: #666;
             font-size: 1.1rem;
+            margin-bottom: 20px;
         }
         
         .wheel-container {
@@ -84,14 +90,15 @@
             transform-origin: bottom right;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             font-weight: bold;
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            padding-left: 60px;
+            padding-left: 80px;
             box-sizing: border-box;
-            text-align: center;
+            text-align: left;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
         }
         
         .wheel-pointer {
@@ -383,8 +390,12 @@
                 padding: 20px;
             }
             
-            .header h1 {
-                font-size: 2.2rem;
+            .brand-header .shop-name {
+                font-size: 1.8rem;
+            }
+            
+            .brand-header .game-name {
+                font-size: 1.5rem;
             }
             
             .wheel {
@@ -394,8 +405,8 @@
             }
             
             .wheel-item {
-                font-size: 1rem;
-                padding-left: 40px;
+                font-size: 0.9rem;
+                padding-left: 60px;
             }
             
             .prize-item {
@@ -431,6 +442,11 @@
                 height: 280px;
             }
             
+            .wheel-item {
+                padding-left: 50px;
+                font-size: 0.8rem;
+            }
+            
             .prize-item {
                 width: 100px;
             }
@@ -444,13 +460,25 @@
                 padding: 15px 40px;
                 font-size: 1.1rem;
             }
+            
+            .brand-header .shop-name {
+                font-size: 1.5rem;
+            }
+            
+            .brand-header .game-name {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="brand-header">
+            <div class="shop-name">RUPESH ELECTRONICS</div>
+            <div class="game-name">SPIN & WIN</div>
+        </div>
+        
         <div class="header">
-            <h1>Spin & Win</h1>
             <p>Spin the wheel to win amazing prizes!</p>
         </div>
         
@@ -488,19 +516,19 @@
                 <p>Premium Earphones</p>
             </div>
             <div class="prize-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹500">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png" alt="₹500">
                 <p>₹500 Cash</p>
             </div>
             <div class="prize-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹100">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png" alt="₹100">
                 <p>₹100 Cash</p>
             </div>
             <div class="prize-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹50">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341163.png" alt="₹50">
                 <p>₹50 Cash</p>
             </div>
             <div class="prize-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹20">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341163.png" alt="₹20">
                 <p>₹20 Cash</p>
             </div>
         </div>
@@ -531,6 +559,8 @@
         </div>
     </div>
     
+    <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" preload="auto"></audio>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const wheel = document.getElementById('wheel');
@@ -539,6 +569,7 @@
             const prizeName = document.getElementById('prizeName');
             const prizeImage = document.getElementById('prizeImage');
             const closeModal = document.getElementById('closeModal');
+            const winSound = document.getElementById('winSound');
             
             // Social share buttons
             const fbShare = document.getElementById('fbShare');
@@ -552,14 +583,54 @@
             
             // Prizes configuration with improved colors
             const prizes = [
-                { name: "Smart TV", color: "#FF6B6B", image: "https://cdn-icons-png.flaticon.com/512/3659/3659899.png" },
-                { name: "Smartphone", color: "#4ECDC4", image: "https://cdn-icons-png.flaticon.com/512/3313/3313888.png" },
-                { name: "Wireless Earbuds", color: "#FFD166", image: "https://cdn-icons-png.flaticon.com/512/2933/2933245.png" },
-                { name: "Premium Earphones", color: "#A05195", image: "https://cdn-icons-png.flaticon.com/512/2936/2936886.png" },
-                { name: "₹500 Cash", color: "#06D6A0", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" },
-                { name: "₹100 Cash", color: "#118AB2", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" },
-                { name: "₹50 Cash", color: "#FF9F1C", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" },
-                { name: "₹20 Cash", color: "#7209B7", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" }
+                { 
+                    name: "Smart TV", 
+                    color: "#FF6B6B", 
+                    image: "https://cdn-icons-png.flaticon.com/512/3659/3659899.png",
+                    claimLink: "#"
+                },
+                { 
+                    name: "Smartphone", 
+                    color: "#4ECDC4", 
+                    image: "https://cdn-icons-png.flaticon.com/512/3313/3313888.png",
+                    claimLink: "#"
+                },
+                { 
+                    name: "Wireless Earbuds", 
+                    color: "#FFD166", 
+                    image: "https://cdn-icons-png.flaticon.com/512/2933/2933245.png",
+                    claimLink: "#"
+                },
+                { 
+                    name: "Premium Earphones", 
+                    color: "#A05195", 
+                    image: "https://cdn-icons-png.flaticon.com/512/2936/2936886.png",
+                    claimLink: "#"
+                },
+                { 
+                    name: "₹500 Cash", 
+                    color: "#06D6A0", 
+                    image: "https://cdn-icons-png.flaticon.com/512/4341/4341139.png",
+                    claimLink: "#"
+                },
+                { 
+                    name: "₹100 Cash", 
+                    color: "#118AB2", 
+                    image: "https://cdn-icons-png.flaticon.com/512/4341/4341139.png",
+                    claimLink: "#"
+                },
+                { 
+                    name: "₹50 Cash", 
+                    color: "#FF9F1C", 
+                    image: "https://cdn-icons-png.flaticon.com/512/4341/4341163.png",
+                    claimLink: "#"
+                },
+                { 
+                    name: "₹20 Cash", 
+                    color: "#7209B7", 
+                    image: "https://cdn-icons-png.flaticon.com/512/4341/4341163.png",
+                    claimLink: "#"
+                }
             ];
             
             // Create wheel segments
@@ -569,12 +640,17 @@
                 prizes.forEach((prize, index) => {
                     const segment = document.createElement('div');
                     segment.className = 'wheel-item';
-                    segment.textContent = prize.name;
-                    segment.style.backgroundColor = prize.color;
-                    segment.style.transform = `rotate(${index * segmentAngle}deg)`;
                     
-                    // Adjust text angle
-                    const textAngle = index * segmentAngle + segmentAngle / 2;
+                    // Create span for text to rotate it properly
+                    const textSpan = document.createElement('span');
+                    textSpan.textContent = prize.name;
+                    textSpan.style.display = 'inline-block';
+                    textSpan.style.transform = `rotate(${segmentAngle/2}deg)`;
+                    textSpan.style.transformOrigin = 'left center';
+                    textSpan.style.width = '150px';
+                    
+                    segment.appendChild(textSpan);
+                    segment.style.backgroundColor = prize.color;
                     segment.style.transform = `rotate(${index * segmentAngle}deg)`;
                     
                     wheel.appendChild(segment);
@@ -607,8 +683,17 @@
                 resultModal.style.display = 'flex';
                 createConfetti();
                 
+                // Play winning sound
+                winSound.currentTime = 0;
+                winSound.play();
+                
+                // Update claim button with prize link
+                closeModal.onclick = function() {
+                    window.location.href = prizes[prizeIndex].claimLink;
+                };
+                
                 // Update social share links with the prize info
-                const shareText = `I just won ${prizes[prizeIndex].name} on Spin & Win! Try your luck too!`;
+                const shareText = `I just won ${prizes[prizeIndex].name} at Rupesh Electronics Spin & Win! Try your luck too!`;
                 const shareUrl = encodeURIComponent(window.location.href);
                 const encodedText = encodeURIComponent(shareText);
                 
@@ -645,16 +730,6 @@
                     }, 5000);
                 }
             }
-            
-            // Close modal
-            closeModal.addEventListener('click', function() {
-                resultModal.style.display = 'none';
-                
-                // Remove any remaining confetti
-                document.querySelectorAll('.confetti').forEach(confetti => {
-                    confetti.remove();
-                });
-            });
             
             // Initialize
             createWheel();
