@@ -3,677 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupesh Electronics - Vivo Mobile Showroom</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Rupesh Electronics - Mobile Store</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Arial', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #000428, #004e92);
-            color: #fff;
-            overflow-x: hidden;
-            animation: gradientBG 15s ease infinite;
-            background-size: 400% 400%;
-        }
-        
-        @keyframes gradientBG {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-        
-        .floating-phones {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .floating-phone {
-            position: absolute;
-            width: 150px;
-            opacity: 0.1;
-            animation: float 15s linear infinite;
-        }
-        
-        @keyframes float {
-            0% {transform: translateY(0) rotate(0deg);}
-            100% {transform: translateY(-100vh) rotate(360deg);}
+            background-color: #f5f5f5;
+            color: #333;
         }
         
         header {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #0056b3;
+            color: white;
             padding: 20px 0;
             text-align: center;
-            border-bottom: 3px solid #ff4d4d;
-            box-shadow: 0 5px 20px rgba(255, 77, 77, 0.3);
         }
         
         .logo {
-            font-size: 2.8rem;
-            color: #ff4d4d;
-            margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         
-        @keyframes glow {
-            from {text-shadow: 0 0 5px #ff4d4d;}
-            to {text-shadow: 0 0 15px #ff4d4d, 0 0 20px #ff4d4d;}
-        }
-        
-        .tagline {
-            font-size: 1.3rem;
-            color: #ddd;
-        }
-        
-        .address {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 5px;
+        .contact-info {
+            background-color: #003366;
+            padding: 10px;
+            font-size: 16px;
         }
         
         nav {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background-color: #003366;
+            padding: 10px 0;
         }
         
         nav ul {
             display: flex;
             justify-content: center;
             list-style: none;
-            flex-wrap: wrap;
         }
         
         nav ul li {
             margin: 0 15px;
-            position: relative;
-        }
-        
-        nav ul li::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: #ff4d4d;
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s;
-        }
-        
-        nav ul li:hover::after {
-            width: 100%;
         }
         
         nav ul li a {
-            color: #fff;
+            color: white;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul li a i {
-            margin-right: 8px;
-        }
-        
-        nav ul li a:hover {
-            color: #ff4d4d;
+            font-weight: bold;
         }
         
         .container {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 20px auto;
             padding: 0 20px;
-            animation: fadeIn 1s ease-in;
         }
         
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-        
-        .hero {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            height: 400px;
+        .banner {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x300');
             background-size: cover;
-            background-position: center;
-            animation: zoomInOut 15s infinite alternate;
-        }
-        
-        @keyframes zoomInOut {
-            0% {background-size: 100% auto;}
-            100% {background-size: 110% auto;}
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            padding: 20px;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #ff4d4d;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #ff4d4d;
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
-            border: 2px solid #ff4d4d;
-        }
-        
-        .btn:hover {
-            background-color: transparent;
-            color: #ff4d4d;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 77, 77, 0.6);
+            color: white;
+            font-size: 36px;
         }
         
         .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            color: #ff4d4d;
-            position: relative;
-            display: inline-block;
+            text-align: center;
+            margin: 30px 0;
+            color: #0056b3;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: #ff4d4d;
-            bottom: -10px;
-            left: 0;
-            animation: underline 2s infinite;
-        }
-        
-        @keyframes underline {
-            0% {width: 0%; left: 50%;}
-            50% {width: 100%; left: 0;}
-            100% {width: 0%; left: 0;}
-        }
-        
-        .vivo-models {
+        .products {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
         
-        .vivo-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            border: 1px solid rgba(255, 77, 77, 0.3);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
         
-        .vivo-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 77, 77, 0.3);
-            border-color: #ff4d4d;
+        .product-card:hover {
+            transform: translateY(-5px);
         }
         
-        .vivo-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: #ff4d4d;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
-        }
-        
-        .vivo-image {
-            width: 100%;
-            height: 250px;
-            object-fit: contain;
-            background: linear-gradient(135deg, #111, #333);
-            padding: 20px;
-            transition: all 0.5s;
-        }
-        
-        .vivo-card:hover .vivo-image {
-            transform: scale(1.05);
-        }
-        
-        .vivo-details {
-            padding: 20px;
-        }
-        
-        .vivo-name {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        
-        .vivo-price {
-            font-size: 1.3rem;
-            color: #4cd137;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .vivo-features {
-            list-style-type: none;
-            margin-bottom: 20px;
-        }
-        
-        .vivo-features li {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+        .product-image {
+            height: 200px;
+            background-color: #eee;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
         
-        .vivo-features li i {
-            color: #ff4d4d;
-            margin-right: 8px;
-            font-size: 0.8rem;
+        .product-details {
+            padding: 15px;
         }
         
-        .vivo-actions {
-            display: flex;
-            justify-content: space-between;
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
         }
         
-        .btn-sm {
-            padding: 8px 15px;
-            font-size: 0.9rem;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid #ff4d4d;
-            color: #ff4d4d;
-        }
-        
-        .btn-outline:hover {
-            background-color: #ff4d4d;
-            color: #fff;
-        }
-        
-        .offer-banner {
-            background: linear-gradient(135deg, #ff4d4d, #ff8c66);
-            padding: 30px;
-            border-radius: 10px;
-            margin: 50px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.3);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {transform: scale(1);}
-            50% {transform: scale(1.02);}
-            100% {transform: scale(1);}
-        }
-        
-        .offer-banner h2 {
-            font-size: 2rem;
+        .product-price {
+            color: #e63946;
+            font-weight: bold;
+            font-size: 20px;
             margin-bottom: 15px;
-            color: #fff;
         }
         
-        .offer-banner p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
         }
         
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 50px 0 20px;
-            margin-top: 50px;
+        .buy-btn:hover {
+            background-color: #003d82;
         }
         
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .social-media {
+            background-color: #003366;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        .social-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
-        .footer-column h3 {
-            font-size: 1.3rem;
-            color: #ff4d4d;
+        .social-title {
+            color: white;
+            text-align: center;
             margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background: #ff4d4d;
-            bottom: -8px;
-            left: 0;
-        }
-        
-        .footer-column p, .footer-column a {
-            color: #aaa;
-            margin-bottom: 15px;
-            display: block;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column a:hover {
-            color: #ff4d4d;
         }
         
         .social-links {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            justify-content: center;
+            gap: 20px;
         }
         
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
+        .social-link {
+            color: white;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #fff;
-            transition: all 0.3s;
+            padding: 10px 15px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 4px;
         }
         
-        .social-links a:hover {
-            background-color: #ff4d4d;
-            transform: translateY(-3px);
+        .social-link:hover {
+            background-color: rgba(255,255,255,0.2);
         }
         
-        .copyright {
+        footer {
+            background-color: #001a33;
+            color: white;
             text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #777;
-            font-size: 0.9rem;
+            padding: 20px 0;
+            font-size: 14px;
         }
         
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .tagline {
-                font-size: 1rem;
+            nav ul {
+                flex-direction: column;
+                align-items: center;
             }
             
             nav ul li {
-                margin: 5px 10px;
+                margin: 5px 0;
             }
             
-            .hero h1 {
-                font-size: 2rem;
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
             
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .vivo-models {
-                grid-template-columns: 1fr;
+            .social-links {
+                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-phones">
-        <img src="https://www.vivo.com/in/vivo/images/phones/v29e/v29e.png" class="floating-phone" style="top: 10%; left: 5%; animation-delay: 0s;">
-        <img src="https://www.vivo.com/in/vivo/images/phones/v27/v27.png" class="floating-phone" style="top: 20%; left: 80%; animation-delay: 2s;">
-        <img src="https://www.vivo.com/in/vivo/images/phones/v25/v25.png" class="floating-phone" style="top: 60%; left: 10%; animation-delay: 4s;">
-        <img src="https://www.vivo.com/in/vivo/images/phones/t2x/t2x.png" class="floating-phone" style="top: 70%; left: 70%; animation-delay: 6s;">
-    </div>
-    
     <header>
         <div class="logo">Rupesh Electronics</div>
-        <div class="tagline">Authorized Vivo Mobile Retailer</div>
-        <div class="address">K52 Hanuman Nagar, Near Hanuman Temple</div>
+        <div class="contact-info">
+            Enquiry No: <a href="tel:9334113322" style="color: white;">9334113322</a> | 
+            WhatsApp: <a href="https://wa.me/9334113322" style="color: white;">9334113322</a>
+        </div>
     </header>
     
     <nav>
         <ul>
-            <li><a href="#new-launches"><i class="fas fa-rocket"></i> New Launches</a></li>
-            <li><a href="#vivo-models"><i class="fas fa-mobile-alt"></i> Vivo Models</a></li>
-            <li><a href="#best-deals"><i class="fas fa-tags"></i> Best Deals</a></li>
-            <li><a href="#compare"><i class="fas fa-exchange-alt"></i> Compare</a></li>
-            <li><a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
     
     <div class="container">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>VIVO 2024-25 COLLECTION</h1>
-                <p>Experience the latest Vivo smartphones with cutting-edge camera technology, stunning displays, and powerful performance</p>
-                <a href="#vivo-models" class="btn">Explore Now</a>
-            </div>
-        </section>
-        
-        <section id="new-launches">
-            <h2 class="section-title">New Vivo Launches 2024-25</h2>
-            <div class="vivo-models">
-                <div class="vivo-card">
-                    <span class="vivo-badge">New Launch</span>
-                    <img src="https://www.vivo.com/in/vivo/images/phones/v30e/v30e.png" alt="Vivo V30e" class="vivo-image">
-                    <div class="vivo-details">
-                        <h3 class="vivo-name">Vivo V30e</h3>
-                        <div class="vivo-price">₹27,999</div>
-                        <ul class="vivo-features">
-                            <li><i class="fas fa-check"></i> 6.78" FHD+ AMOLED 120Hz</li>
-                            <li><i class="fas fa-check"></i> Snapdragon 6 Gen 1</li>
-                            <li><i class="fas fa-check"></i> 50MP Sony IMX882 OIS</li>
-                            <li><i class="fas fa-check"></i> 5500mAh Battery</li>
-                            <li><i class="fas fa-check"></i> 44W Fast Charging</li>
-                        </ul>
-                        <div class="vivo-actions">
-                            <a href="#" class="btn btn-sm">Buy Now</a>
-                            <a href="#" class="btn btn-sm btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="vivo-card">
-                    <span class="vivo-badge">New Launch</span>
-                    <img src="https://www.vivo.com/in/vivo/images/phones/t3x/t3x.png" alt="Vivo T3x" class="vivo-image">
-                    <div class="vivo-details">
-                        <h3 class="vivo-name">Vivo T3x</h3>
-                        <div class="vivo-price">₹12,999</div>
-                        <ul class="vivo-features">
-                            <li><i class="fas fa-check"></i> 6.72" FHD+ 120Hz</li>
-                            <li><i class="fas fa-check"></i> Snapdragon 6 Gen 1</li>
-                            <li><i class="fas fa-check"></i> 50MP Dual Camera</li>
-                            <li><i class="fas fa-check"></i> 6000mAh Battery</li>
-                            <li><i class="fas fa-check"></i> 5G Support</li>
-                        </ul>
-                        <div class="vivo-actions">
-                            <a href="#" class="btn btn-sm">Buy Now</a>
-                            <a href="#" class="btn btn-sm btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="vivo-card">
-                    <span class="vivo-badge">Coming Soon</span>
-                    <img src="https://www.vivo.com/in/vivo/images/phones/v30pro/v30pro.png" alt="Vivo V30 Pro" class="vivo-image">
-                    <div class="vivo-details">
-                        <h3 class="vivo-name">Vivo V30 Pro</h3>
-                        <div class="vivo-price">₹44,999</div>
-                        <ul class="vivo-features">
-                            <li><i class="fas fa-check"></i> 6.78" AMOLED 120Hz</li>
-                            <li><i class="fas fa-check"></i> Dimensity 7200</li>
-                            <li><i class="fas fa-check"></i> 50MP Zeiss Triple Cam</li>
-                            <li><i class="fas fa-check"></i> 5000mAh Battery</li>
-                            <li><i class="fas fa-check"></i> 80W Fast Charging</li>
-                        </ul>
-                        <div class="vivo-actions">
-                            <a href="#" class="btn btn-sm">Pre-book</a>
-                            <a href="#" class="btn btn-sm btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <div class="offer-banner">
-            <h2>SPECIAL DISCOUNT FOR HANUMAN NAGAR RESIDENTS!</h2>
-            <p>Get additional 5% discount on all Vivo models with local address proof. Offer valid till 31st December 2024.</p>
-            <a href="#" class="btn">Claim Your Discount</a>
+        <div class="banner" id="home">
+            Your One Stop Mobile Destination
         </div>
         
-        <section id="vivo-models">
-            <h2 class="section-title">All Vivo Models Available</h2>
-            <div class="vivo-models">
-                <div class="vivo-card">
-                    <img src="https://www.vivo.com/in/vivo/images/phones/v29e/v29e.png" alt="Vivo V29e" class="vivo-image">
-                    <div class="vivo-details">
-                        <h3 class="vivo-name">Vivo V29e</h3>
-                        <div class="vivo-price">₹26,999</div>
-                        <ul class="vivo-features">
-                            <li><i class="fas fa-check"></i> 6.78" FHD+ AMOLED</li>
-                            <li><i class="fas fa-check"></i> Snapdragon 695</li>
-                            <li><i class="fas fa-check"></i> 64MP OIS Camera</li>
-                            <li><i class="fas fa-check"></i> 5000mAh Battery</li>
-                            <li><i class="fas fa-check"></i> 44W Fast Charging</li>
-                        </ul>
-                        <div class="vivo-actions">
-                            <a href="#" class="btn btn-sm">Buy Now</a>
-                            <a href="#" class="btn btn-sm btn-outline">Details</a>
-                        </div>
-                    </div>
+        <h2 class="section-title" id="products">Featured Mobiles</h2>
+        
+        <div class="products">
+            <!-- OPPO Phones -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=OPPO+Phone" alt="OPPO Phone">
                 </div>
-                
-                <div class="vivo-card">
-                    <img src="https://www.vivo.com/in/vivo/images/phones/v27/v27.png" alt="Vivo V27" class="vivo-image">
-                    <div class="vivo-details">
-                        <h3 class="vivo-name">Vivo V27</h3>
-                        <div class="vivo-price">₹32,999</div>
-                        <ul class="vivo-features">
-                            <li><i class="fas fa-check"></i> 6.78" FHD+ AMOLED</li>
-                            <li><i class="fas fa-check"></i> Dimensity 7200</li>
-                            <li><i class="fas fa-check"></i> 50MP Sony IMX766</li>
-                            <li><i class="fas fa-check"></i> 4600mAh Battery</li>
-                            <li><i class="fas fa-check"></i> 66W Fast Charging</li>
-                        </ul>
-                        <div class="vivo-actions">
-                            <a href="#" class="btn btn-sm">Buy Now</a>
-                            <a href="#" class="btn btn-sm btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="vivo-card">
-                    <img src="https://www.vivo.com/in/vivo/images/phones/t2x/t2x.png" alt="Vivo T2x" class="vivo-image">
-                    <div class="vivo-details">
-                        <h3 class="vivo-name">Vivo T2x</h3>
-                        <div class="vivo-price">₹12,999</div>
-                        <ul class="vivo-features">
-                            <li><i class="fas fa-check"></i> 6.58" HD+ Display</li>
-                            <li><i class="fas fa-check"></i> Dimensity 6020</li>
-                            <li><i class="fas fa-check"></i> 50MP Dual Camera</li>
-                            <li><i class="fas fa-check"></i> 5000mAh Battery</li>
-                            <li><i class="fas fa-check"></i> 5G Support</li>
-                        </ul>
-                        <div class="vivo-actions">
-                            <a href="#" class="btn btn-sm">Buy Now</a>
-                            <a href="#" class="btn btn-sm btn-outline">Details</a>
-                        </div>
-                    </div>
+                <div class="product-details">
+                    <h3 class="product-title">OPPO Reno 7 Pro 5G</h3>
+                    <div class="product-price">₹34,999</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
                 </div>
             </div>
-        </section>
+            
+            <!-- VIVO Phones -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=VIVO+Phone" alt="VIVO Phone">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">VIVO V25 Pro 5G</h3>
+                    <div class="product-price">₹35,999</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Apple Phones -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=iPhone" alt="iPhone">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">iPhone 14 Pro Max</h3>
+                    <div class="product-price">₹1,39,900</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Samsung Phones -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=Samsung" alt="Samsung Phone">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Samsung S23 Ultra</h3>
+                    <div class="product-price">₹1,24,999</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Redmi Phones -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=Redmi" alt="Redmi Phone">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Redmi Note 12 Pro</h3>
+                    <div class="product-price">₹23,999</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Realme Phones -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=Realme" alt="Realme Phone">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Realme 10 Pro+ 5G</h3>
+                    <div class="product-price">₹24,999</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- POCO Phones -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=POCO" alt="POCO Phone">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">POCO X5 Pro 5G</h3>
+                    <div class="product-price">₹22,999</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Another OPPO Phone -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/250x200?text=OPPO" alt="OPPO Phone">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">OPPO A78 5G</h3>
+                    <div class="product-price">₹18,999</div>
+                    <a href="#buy" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title" id="about">About Us</h2>
+        <p style="text-align: center; margin-bottom: 40px; line-height: 1.6;">
+            Rupesh Electronics is your trusted mobile store offering the latest smartphones from top brands like Apple, Samsung, OPPO, VIVO, Redmi, Realme, and POCO. 
+            With years of experience in the electronics market, we provide genuine products with manufacturer warranty and excellent after-sales support.
+            Visit us today for the best deals and offers!
+        </p>
+        
+        <h2 class="section-title" id="contact">Contact Us</h2>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <p><strong>Phone:</strong> <a href="tel:9334113322">9334113322</a></p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/9334113322">9334113322</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@rupeshelectronics.com">info@rupeshelectronics.com</a></p>
+            <p><strong>Address:</strong> [Your Store Address Here]</p>
+        </div>
     </div>
     
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Rupesh Electronics</h3>
-                <p>Authorized Vivo Mobile Retailer in Hanuman Nagar since 2018. We provide genuine products with best after-sales service.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <p><i class="fas fa-map-marker-alt"></i> K52, Hanuman Nagar, Near Canara Bank</p>
-                <p><i class="fas fa-phone-alt"></i> +91 9334113322</p>
-                <p><i class="fas fa-envelope"></i> info@rupeshelectronics2003@gmail.com</p>
-                <p><i class="fas fa-clock"></i> Open: 10AM - 10PM (Daily)</p>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <a href="#new-launches">New Launches</a>
-                <a href="#vivo-models">Vivo Models</a>
-                <a href="#best-deals">Best Deals</a>
-                <a href="#compare">Compare Phones</a>
-                <a href="#contact">Contact Us</a>
+    <div class="social-media">
+        <div class="social-container">
+            <h3 class="social-title">Connect With Us</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com/yourpage" class="social-link" target="_blank">Facebook</a>
+                <a href="https://www.youtube.com/yourchannel" class="social-link" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/yourprofile" class="social-link" target="_blank">Instagram</a>
+                <a href="https://twitter.com/yourhandle" class="social-link" target="_blank">Twitter</a>
+                <a href="https://wa.me/9334113322" class="social-link" target="_blank">WhatsApp</a>
             </div>
         </div>
-        
-        <div class="copyright">
-            &copy; 2024 Rupesh Electronics. All Rights Reserved. | Designed for Hanuman Nagar Kankarbagh Patna
-        </div>
+    </div>
+    
+    <footer>
+        &copy; 2023 Rupesh Electronics. All Rights Reserved.
     </footer>
+    
+    <!-- Simple Buy Modal (would need JavaScript for full functionality) -->
+    <div id="buy" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="background-color: white; padding: 30px; border-radius: 8px; max-width: 500px; text-align: center;">
+            <h3 style="margin-bottom: 20px;">Buy Now</h3>
+            <p style="margin-bottom: 20px;">Please contact us on WhatsApp at <a href="https://wa.me/9334113322">9334113322</a> to complete your purchase.</p>
+            <button onclick="document.getElementById('buy').style.display = 'none'" style="padding: 10px 20px; background-color: #0056b3; color: white; border: none; border-radius: 4px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        // Simple script to handle the buy now links
+        document.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('buy').style.display = 'flex';
+            });
+        });
+    </script>
 </body>
 </html>
