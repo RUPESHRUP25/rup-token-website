@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ruptoken.in | File Tools & Online Utilities</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- ✅ Google AdSense script for verification -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4134333140441390"
-     crossorigin="anonymous"></script>
-
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -104,22 +99,49 @@
       padding: 20px;
       font-size: 0.9rem;
     }
+    #cookieConsent {
+      background-color: #2f2f2f;
+      color: white;
+      padding: 15px 20px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      text-align: center;
+      font-size: 14px;
+    }
+    #cookieConsent button {
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #cookieConsent button:hover {
+      background-color: #e08700;
+    }
   </style>
 </head>
 <body>
 
+<!-- Header Section -->
 <header>
   <h1 class="fade-in">Welcome to Ruptoken.in</h1>
   <p class="fade-in">Your one-stop hub for free file tools and online utilities</p>
   <button class="btn fade-in" onclick="scrollToSection('tools')">Explore Tools</button>
 </header>
 
+<!-- Navigation Bar -->
 <nav>
   <a href="#tools">Tools</a>
   <a href="#formSection">Join</a>
   <a href="#legal">Legal</a>
 </nav>
 
+<!-- Main Content -->
 <div class="container">
   <section id="tools" class="fade-in">
     <div class="tools">
@@ -136,12 +158,12 @@
     </div>
     <div class="tools">
       <h2>📝 PDF to Word Converter</h2>
-      <p>Use a free tool like <a href="https://www.ilovepdf.com/pdf_to_word" target="_blank" style="color:yellow;">ilovepdf.com</a> for advanced conversion or integrate their API here.</p>
+      <p>Use a free tool like ilovepdf.com for advanced conversion or integrate their API here.</p>
       <input type="file" id="pdfFile" accept="application/pdf">
-      <p><em>(This feature requires server-side support or third-party API integration.)</em></p>
     </div>
   </section>
 
+  <!-- User Form Section -->
   <section id="formSection">
     <h2>📬 Stay Updated</h2>
     <form onsubmit="submitForm(event)">
@@ -153,6 +175,7 @@
     <p id="formResponse"></p>
   </section>
 
+  <!-- Legal Section -->
   <section id="legal" class="fade-in">
     <div class="legal">
       <h2>📜 Terms & Conditions</h2>
@@ -169,12 +192,41 @@
   </section>
 </div>
 
+<!-- Footer Section -->
 <footer>
   &copy; 2025 Ruptoken.in. All rights reserved.<br>
   <a href="mailto:info@ruptoken.in" style="color:#ccc; text-decoration: underline;">info@ruptoken.in</a>
 </footer>
 
+<!-- Cookie Consent Banner -->
+<div id="cookieConsent">
+  <p>We use cookies to personalize content and ads, provide social media features, and analyze our traffic. By clicking "Accept", you consent to our use of cookies. You can change your preferences at any time.</p>
+  <button id="acceptCookies">Accept</button>
+  <button id="rejectCookies">Decline</button>
+</div>
+
 <script>
+  // Cookie Consent Script
+  window.onload = function() {
+    var consentGiven = localStorage.getItem('cookieConsent');
+    if (!consentGiven) {
+      document.getElementById('cookieConsent').style.display = 'block';
+    } else {
+      document.getElementById('cookieConsent').style.display = 'none';
+    }
+  };
+
+  document.getElementById('acceptCookies').onclick = function() {
+    localStorage.setItem('cookieConsent', 'true');
+    document.getElementById('cookieConsent').style.display = 'none';
+  };
+
+  document.getElementById('rejectCookies').onclick = function() {
+    localStorage.setItem('cookieConsent', 'false');
+    document.getElementById('cookieConsent').style.display = 'none';
+  };
+
+  // File Compressor Function
   function compressFile() {
     const input = document.getElementById("fileInput");
     const result = document.getElementById("compressResult");
@@ -188,6 +240,7 @@
     }
   }
 
+  // YouTube Thumbnail Downloader
   function downloadThumbnail() {
     const url = document.getElementById("ytLink").value;
     const result = document.getElementById("thumbResult");
@@ -201,10 +254,12 @@
     }
   }
 
+  // Scroll to Section
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 
+  // Submit Form
   function submitForm(e) {
     e.preventDefault();
     document.getElementById("formResponse").textContent = "Thank you for reaching out! We'll contact you soon.";
