@@ -3,95 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUPESH ELECTRONICS - Spin & Win</title>
+    <title>Spin & Win - Claim Exciting Prizes!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #FF5722;
-            --secondary: #FFC107;
-            --accent: #4CAF50;
-            --dark: #333;
-            --light: #fff;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            color: var(--dark);
+            align-items: center;
+            padding: 20px;
             overflow-x: hidden;
         }
         
         .container {
-            width: 95%;
             max-width: 900px;
-            background: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            background: #fff;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             padding: 30px;
-            margin: 20px 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .header {
-            text-align: center;
             margin-bottom: 30px;
+            position: relative;
         }
         
-        .logo {
-            max-width: 250px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
-        }
-        
-        h1 {
-            color: var(--primary);
-            font-size: 2.5rem;
+        .header h1 {
+            color: #333;
+            font-size: 2.8rem;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
-        .subtitle {
-            color: var(--dark);
+        .header p {
+            color: #666;
             font-size: 1.1rem;
-            margin-bottom: 20px;
-            font-weight: 500;
         }
         
         .wheel-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 100%;
+            max-width: 500px;
             margin: 0 auto 30px;
         }
         
         .wheel {
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
+            height: 500px;
             position: relative;
+            border-radius: 50%;
             overflow: hidden;
-            border: 10px solid var(--dark);
-            box-shadow: 0 0 0 5px var(--secondary), 0 0 0 10px var(--dark), 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            border: 15px solid #fff;
+            box-shadow: 0 0 0 15px #6e8efb, 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
             transform: rotate(0deg);
-            background-color: white;
         }
         
-        .section {
+        .wheel-item {
             position: absolute;
             width: 50%;
             height: 50%;
@@ -101,162 +87,126 @@
             justify-content: center;
             font-weight: bold;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            font-size: 14px;
-            cursor: pointer;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            padding-left: 60px;
+            box-sizing: border-box;
+            text-align: center;
         }
         
-        .pointer {
+        .wheel-pointer {
             position: absolute;
-            top: -30px;
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            z-index: 10;
+        }
+        
+        .wheel-pointer:before {
+            content: '';
+            position: absolute;
             width: 0;
             height: 0;
             border-left: 25px solid transparent;
             border-right: 25px solid transparent;
-            border-top: 50px solid var(--primary);
-            z-index: 10;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
-        }
-        
-        .pointer::after {
-            content: '';
-            position: absolute;
-            top: -45px;
-            left: -15px;
-            width: 30px;
-            height: 30px;
-            background-color: var(--secondary);
-            border-radius: 50%;
-            border: 3px solid var(--dark);
+            border-top: 40px solid #ff4757;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
         }
         
         .spin-btn {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, var(--primary), #FF7043);
+            background: linear-gradient(to right, #6e8efb, #a777e3);
             color: white;
             border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
+            font-weight: 700;
+            letter-spacing: 1.5px;
             position: relative;
             overflow: hidden;
         }
         
         .spin-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .spin-btn:active {
+            transform: translateY(2px);
         }
         
         .spin-btn:disabled {
-            background: linear-gradient(45deg, #9E9E9E, #BDBDBD);
+            background: #ccc;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
         
-        .result-container {
-            width: 100%;
-            max-width: 500px;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-            border: 1px solid rgba(0,0,0,0.1);
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .result-title {
-            color: var(--primary);
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        
-        .prize-image {
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
-            background: white;
-            padding: 10px;
-            border: 3px solid var(--secondary);
-        }
-        
-        .prize-description {
-            text-align: center;
-            color: var(--dark);
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
-        .claim-btn {
-            padding: 12px 30px;
-            background: linear-gradient(45deg, var(--accent), #66BB6A);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
+        .spin-btn:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40px;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(30deg);
             transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-            margin-top: 10px;
         }
         
-        .social-media {
+        .spin-btn:hover:after {
+            left: 120%;
+        }
+        
+        .prizes {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
             flex-wrap: wrap;
-        }
-        
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: var(--dark);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            cursor: pointer;
+            gap: 20px;
+            margin-top: 40px;
         }
         
-        .facebook { color: #3b5998; }
-        .instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white; }
-        .twitter { color: #1DA1F2; }
-        .whatsapp { color: #25D366; }
-        .youtube { color: #FF0000; }
+        .prize-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px 15px;
+            width: 140px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
         
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: var(--dark);
-            font-size: 0.9rem;
-            opacity: 0.8;
+        .prize-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #6e8efb;
+            background: white;
+        }
+        
+        .prize-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .prize-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .prize-item p {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #333;
         }
         
         .modal {
@@ -266,40 +216,166 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 100;
             justify-content: center;
+            align-items: center;
         }
         
         .modal-content {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 550px;
             width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
             position: relative;
+            animation: modalOpen 0.6s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 5px solid #6e8efb;
+        }
+        
+        @keyframes modalOpen {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal h2 {
+            color: #6e8efb;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .modal p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .modal-img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            margin: 0 auto 25px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         
         .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 24px;
-            color: var(--dark);
-        }
-        
-        .terms-content {
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
             margin-top: 20px;
-            text-align: left;
-            line-height: 1.6;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .terms-content p {
-            margin-bottom: 10px;
+        .close-modal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: confetti 5s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(600px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .ads-container {
+            margin: 30px auto;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            max-width: 728px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .ads-placeholder {
+            background: #e9ecef;
+            color: #6c757d;
+            padding: 25px;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        
+        .social-share {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .facebook {
+            background: #3b5998;
+        }
+        
+        .twitter {
+            background: #1da1f2;
+        }
+        
+        .whatsapp {
+            background: #25d366;
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+        
+        .share-text {
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #555;
         }
         
         @media (max-width: 768px) {
@@ -307,18 +383,66 @@
                 padding: 20px;
             }
             
-            h1 {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .wheel {
+                height: 350px;
+                border-width: 12px;
+                box-shadow: 0 0 0 12px #6e8efb, 0 15px 30px rgba(0, 0, 0, 0.25);
+            }
+            
+            .wheel-item {
+                font-size: 1rem;
+                padding-left: 40px;
+            }
+            
+            .prize-item {
+                width: 120px;
+                padding: 15px 10px;
+            }
+            
+            .prize-item img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .modal-content {
+                padding: 30px;
+            }
+            
+            .modal h2 {
                 font-size: 2rem;
             }
             
-            .wheel-container {
-                width: 280px;
+            .modal p {
+                font-size: 1.2rem;
+            }
+            
+            .modal-img {
+                width: 140px;
+                height: 140px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .wheel {
                 height: 280px;
             }
             
-            .prize-image {
-                width: 150px;
-                height: 150px;
+            .prize-item {
+                width: 100px;
+            }
+            
+            .prize-item img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .spin-btn {
+                padding: 15px 40px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -326,229 +450,226 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://via.placeholder.com/250x100?text=RUPESH+ELECTRONICS" alt="RUPESH ELECTRONICS Logo" class="logo">
             <h1>Spin & Win</h1>
-            <p class="subtitle">Win Amazing Electronics & Cash Prizes!</p>
+            <p>Spin the wheel to win amazing prizes!</p>
         </div>
         
         <div class="wheel-container">
-            <div class="pointer"></div>
-            <div class="wheel" id="wheel"></div>
+            <div class="wheel" id="wheel">
+                <!-- Wheel segments will be added by JavaScript -->
+            </div>
+            <div class="wheel-pointer"></div>
         </div>
         
-        <button class="spin-btn" id="spin-btn">SPIN NOW</button>
+        <button class="spin-btn" id="spinBtn">SPIN NOW</button>
         
-        <div class="result-container" id="result-container">
-            <h2 class="result-title" id="result-title">Congratulations!</h2>
-            <img class="prize-image" id="prize-image" src="" alt="Prize">
-            <p class="prize-description" id="prize-description"></p>
-            <button class="claim-btn" id="claim-btn">CLAIM YOUR PRIZE</button>
+        <div class="ads-container">
+            <div class="ads-placeholder">
+                <!-- Replace this with your AdSense code -->
+                AdSense Ad Space (728x90)
+            </div>
         </div>
         
-        <div class="social-media">
-            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+        <div class="prizes">
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png" alt="Smart TV">
+                <p>Smart TV</p>
+            </div>
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/3313/3313888.png" alt="Smartphone">
+                <p>Smartphone</p>
+            </div>
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="Earbuds">
+                <p>Wireless Earbuds</p>
+            </div>
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Earphone">
+                <p>Premium Earphones</p>
+            </div>
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹500">
+                <p>₹500 Cash</p>
+            </div>
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹100">
+                <p>₹100 Cash</p>
+            </div>
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹50">
+                <p>₹50 Cash</p>
+            </div>
+            <div class="prize-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341133.png" alt="₹20">
+                <p>₹20 Cash</p>
+            </div>
         </div>
         
-        <div class="footer">
-            © 2023 RUPESH ELECTRONICS. All Rights Reserved.
+        <div class="social-share">
+            <p class="share-text">Share with friends:</p>
+            <a href="#" class="social-btn facebook" id="fbShare"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn twitter" id="twShare"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn whatsapp" id="waShare"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-btn instagram" id="igShare"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
     
-    <div class="modal" id="termsModal">
+    <div class="modal" id="resultModal">
         <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <h2>Terms & Conditions</h2>
-            <div class="terms-content">
-                <p>1. This offer is valid only at RUPESH ELECTRONICS authorized stores.</p>
-                <p>2. One spin per customer per day.</p>
-                <p>3. Prizes must be claimed within 7 days of winning.</p>
-                <p>4. Cash prizes will be provided as store credit only.</p>
-                <p>5. Product images are for representation only - actual product may vary.</p>
-                <p>6. Management reserves all rights to modify or cancel offers without prior notice.</p>
-                <p>7. Employees and family members of RUPESH ELECTRONICS are not eligible.</p>
-                <p>8. Prize claims require valid government ID proof.</p>
-                <p>9. All taxes and additional charges on prizes are the responsibility of the winner.</p>
+            <img class="modal-img" id="prizeImage" src="" alt="Prize">
+            <h2>Congratulations!</h2>
+            <p>You won: <span id="prizeName"></span></p>
+            <button class="close-modal" id="closeModal">CLAIM PRIZE</button>
+            
+            <div class="social-share" style="margin-top: 30px;">
+                <p class="share-text">Share your win:</p>
+                <a href="#" class="social-btn facebook" id="modalFbShare"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-btn twitter" id="modalTwShare"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-btn whatsapp" id="modalWaShare"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-btn instagram" id="modalIgShare"><i class="fab fa-instagram"></i></a>
             </div>
-            <button id="acceptTerms" class="claim-btn" style="margin-top: 20px; width: 100%;">I Accept Terms & Claim Prize</button>
         </div>
     </div>
-
+    
     <script>
-        // DOM Elements
-        const wheel = document.getElementById('wheel');
-        const spinBtn = document.getElementById('spin-btn');
-        const resultContainer = document.getElementById('result-container');
-        const resultTitle = document.getElementById('result-title');
-        const prizeImage = document.getElementById('prize-image');
-        const prizeDescription = document.getElementById('prize-description');
-        const claimBtn = document.getElementById('claim-btn');
-        const termsModal = document.getElementById('termsModal');
-        const closeModal = document.getElementById('closeModal');
-        const acceptTerms = document.getElementById('acceptTerms');
-        
-        // Game Variables
-        let currentPrize = null;
-        let isSpinning = false;
-        
-        // Prize data with images and Google Form links
-        const prizes = [
-            { 
-                text: "SMART TV", 
-                color: "#FF6384", 
-                description: "Congratulations! You won a 32-inch Smart TV worth ₹25,000!",
-                image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_TV_FORM_LINK/viewform"
-            },
-            { 
-                text: "5G SMARTPHONE", 
-                color: "#36A2EB", 
-                description: "Amazing! You won a latest 5G smartphone worth ₹18,000!",
-                image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_PHONE_FORM_LINK/viewform"
-            },
-            { 
-                text: "EARBUDS", 
-                color: "#FFCE56", 
-                description: "You won premium wireless earbuds worth ₹2,500!",
-                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_EARBUDS_FORM_LINK/viewform"
-            },
-            { 
-                text: "₹500", 
-                color: "#4BC0C0", 
-                description: "You won ₹500 store credit! Use it on any purchase.",
-                image: "https://images.unsplash.com/photo-1578320335171-aa9c8e8a068f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_500_FORM_LINK/viewform"
-            },
-            { 
-                text: "₹200", 
-                color: "#9966FF", 
-                description: "You won ₹200 store credit! Use it on any purchase.",
-                image: "https://images.unsplash.com/photo-1578320335171-aa9c8e8a068f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_200_FORM_LINK/viewform"
-            },
-            { 
-                text: "₹100", 
-                color: "#FF9F40", 
-                description: "You won ₹100 store credit! Use it on any purchase.",
-                image: "https://images.unsplash.com/photo-1578320335171-aa9c8e8a068f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_100_FORM_LINK/viewform"
-            },
-            { 
-                text: "₹50", 
-                color: "#FF3333", 
-                description: "You won ₹50 store credit! Use it on any purchase.",
-                image: "https://images.unsplash.com/photo-1578320335171-aa9c8e8a068f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_50_FORM_LINK/viewform"
-            },
-            { 
-                text: "₹20", 
-                color: "#4BC0C0", 
-                description: "You won ₹20 store credit! Use it on any purchase.",
-                image: "https://images.unsplash.com/photo-1578320335171-aa9c8e8a068f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_20_FORM_LINK/viewform"
-            },
-            { 
-                text: "₹10", 
-                color: "#36A2EB", 
-                description: "You won ₹10 store credit! Use it on any purchase.",
-                image: "https://images.unsplash.com/photo-1578320335171-aa9c8e8a068f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                formLink: "https://docs.google.com/forms/d/e/YOUR_10_FORM_LINK/viewform"
-            }
-        ];
-
-        // Initialize the wheel
-        function createWheel() {
-            wheel.innerHTML = '';
-            const sectionAngle = 360 / prizes.length;
+        document.addEventListener('DOMContentLoaded', function() {
+            const wheel = document.getElementById('wheel');
+            const spinBtn = document.getElementById('spinBtn');
+            const resultModal = document.getElementById('resultModal');
+            const prizeName = document.getElementById('prizeName');
+            const prizeImage = document.getElementById('prizeImage');
+            const closeModal = document.getElementById('closeModal');
             
-            prizes.forEach((prize, index) => {
-                const section = document.createElement('div');
-                section.className = 'section';
-                section.style.backgroundColor = prize.color;
-                section.style.transform = rotate(${index * sectionAngle}deg);
+            // Social share buttons
+            const fbShare = document.getElementById('fbShare');
+            const twShare = document.getElementById('twShare');
+            const waShare = document.getElementById('waShare');
+            const igShare = document.getElementById('igShare');
+            const modalFbShare = document.getElementById('modalFbShare');
+            const modalTwShare = document.getElementById('modalTwShare');
+            const modalWaShare = document.getElementById('modalWaShare');
+            const modalIgShare = document.getElementById('modalIgShare');
+            
+            // Prizes configuration with improved colors
+            const prizes = [
+                { name: "Smart TV", color: "#FF6B6B", image: "https://cdn-icons-png.flaticon.com/512/3659/3659899.png" },
+                { name: "Smartphone", color: "#4ECDC4", image: "https://cdn-icons-png.flaticon.com/512/3313/3313888.png" },
+                { name: "Wireless Earbuds", color: "#FFD166", image: "https://cdn-icons-png.flaticon.com/512/2933/2933245.png" },
+                { name: "Premium Earphones", color: "#A05195", image: "https://cdn-icons-png.flaticon.com/512/2936/2936886.png" },
+                { name: "₹500 Cash", color: "#06D6A0", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" },
+                { name: "₹100 Cash", color: "#118AB2", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" },
+                { name: "₹50 Cash", color: "#FF9F1C", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" },
+                { name: "₹20 Cash", color: "#7209B7", image: "https://cdn-icons-png.flaticon.com/512/4341/4341133.png" }
+            ];
+            
+            // Create wheel segments
+            function createWheel() {
+                const segmentAngle = 360 / prizes.length;
                 
-                const text = document.createElement('div');
-                text.textContent = prize.text;
-                text.style.transform = rotate(${sectionAngle / 2}deg);
-                text.style.transformOrigin = 'center';
-                text.style.marginLeft = '60px';
-                text.style.marginBottom = '60px';
-                text.style.textAlign = 'center';
-                text.style.width = '80px';
+                prizes.forEach((prize, index) => {
+                    const segment = document.createElement('div');
+                    segment.className = 'wheel-item';
+                    segment.textContent = prize.name;
+                    segment.style.backgroundColor = prize.color;
+                    segment.style.transform = `rotate(${index * segmentAngle}deg)`;
+                    
+                    // Adjust text angle
+                    const textAngle = index * segmentAngle + segmentAngle / 2;
+                    segment.style.transform = `rotate(${index * segmentAngle}deg)`;
+                    
+                    wheel.appendChild(segment);
+                });
+            }
+            
+            // Spin the wheel
+            function spinWheel() {
+                spinBtn.disabled = true;
                 
-                section.appendChild(text);
-                wheel.appendChild(section);
+                // Random rotation (5-10 full rotations plus segment offset)
+                const segmentAngle = 360 / prizes.length;
+                const extraRotations = 5 + Math.floor(Math.random() * 5);
+                const randomSegment = Math.floor(Math.random() * prizes.length);
+                const rotationAngle = 360 * extraRotations + (360 - (randomSegment * segmentAngle + segmentAngle / 2));
+                
+                wheel.style.transform = `rotate(${rotationAngle}deg)`;
+                
+                // After spinning animation completes
+                setTimeout(() => {
+                    spinBtn.disabled = false;
+                    showResult(randomSegment);
+                }, 5000);
+            }
+            
+            // Show winning result
+            function showResult(prizeIndex) {
+                prizeName.textContent = prizes[prizeIndex].name;
+                prizeImage.src = prizes[prizeIndex].image;
+                resultModal.style.display = 'flex';
+                createConfetti();
+                
+                // Update social share links with the prize info
+                const shareText = `I just won ${prizes[prizeIndex].name} on Spin & Win! Try your luck too!`;
+                const shareUrl = encodeURIComponent(window.location.href);
+                const encodedText = encodeURIComponent(shareText);
+                
+                fbShare.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodedText}`;
+                twShare.href = `https://twitter.com/intent/tweet?text=${encodedText}&url=${shareUrl}`;
+                waShare.href = `https://wa.me/?text=${encodedText}%20${shareUrl}`;
+                igShare.href = `https://www.instagram.com/?url=${shareUrl}`;
+                
+                modalFbShare.href = fbShare.href;
+                modalTwShare.href = twShare.href;
+                modalWaShare.href = waShare.href;
+                modalIgShare.href = igShare.href;
+            }
+            
+            // Create confetti effect
+            function createConfetti() {
+                const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
+                
+                for (let i = 0; i < 150; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.top = `-10px`;
+                    confetti.style.width = `${Math.random() * 15 + 5}px`;
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                    confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+            }
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                resultModal.style.display = 'none';
+                
+                // Remove any remaining confetti
+                document.querySelectorAll('.confetti').forEach(confetti => {
+                    confetti.remove();
+                });
             });
-        }
-
-        // Spin the wheel
-        function spinWheel() {
-            if (isSpinning) return;
             
-            isSpinning = true;
-            spinBtn.disabled = true;
-            resultContainer.style.display = 'none';
+            // Initialize
+            createWheel();
             
-            // Random spin (4-6 full rotations + random angle)
-            const spinAngle = 1440 + Math.floor(Math.random() * 720) + Math.floor(Math.random() * 360);
-            wheel.style.transform = rotate(${spinAngle}deg);
+            // Spin button click event
+            spinBtn.addEventListener('click', spinWheel);
             
-            // Determine result after spin completes
-            setTimeout(() => {
-                const normalizedAngle = spinAngle % 360;
-                const sectionAngle = 360 / prizes.length;
-                const winningIndex = Math.floor(((360 - normalizedAngle) % 360) / sectionAngle);
-                currentPrize = prizes[winningIndex];
-                
-                // Display result
-                resultTitle.textContent = You Won: ${currentPrize.text};
-                prizeImage.src = currentPrize.image;
-                prizeDescription.textContent = currentPrize.description;
-                resultContainer.style.display = 'flex';
-                
-                isSpinning = false;
-                spinBtn.disabled = false;
-            }, 4000);
-        }
-
-        // Show terms modal
-        function showTerms() {
-            if (!currentPrize) return;
-            termsModal.style.display = 'flex';
-        }
-
-        // Close modal
-        function closeTerms() {
-            termsModal.style.display = 'none';
-        }
-
-        // Accept terms and redirect
-        function acceptAndRedirect() {
-            if (!currentPrize) return;
-            window.open(currentPrize.formLink, '_blank');
-            closeTerms();
-        }
-
-        // Event Listeners
-        spinBtn.addEventListener('click', spinWheel);
-        claimBtn.addEventListener('click', showTerms);
-        closeModal.addEventListener('click', closeTerms);
-        acceptTerms.addEventListener('click', acceptAndRedirect);
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === termsModal) {
-                closeTerms();
-            }
+            // Open social links in new tab
+            [fbShare, twShare, waShare, igShare, modalFbShare, modalTwShare, modalWaShare, modalIgShare].forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open(this.href, '_blank', 'width=600,height=400');
+                });
+            });
         });
-
-        // Initialize the game
-        createWheel();
     </script>
 </body>
 </html>
