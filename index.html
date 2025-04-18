@@ -3,383 +3,1094 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupesh Electronics - Mobile Store</title>
+    <meta name="description" content="Rupesh Electronics - Best mobile prices with premium quality. Buy smartphones, accessories at discounted rates with warranty.">
+    <meta name="keywords" content="mobile store, smartphones, best prices, electronic gadgets, Rupesh Electronics">
+    <title>Rupesh Electronics | Premium Mobile Store | ruptoken.in</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #000000;
+            --white: #FFFFFF;
+            --light-bg: #FFF9E6;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
             color: #333;
+            line-height: 1.6;
         }
         
-        header {
-            background-color: #0056b3;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--black) 0%, #2c3e50 100%);
+            color: var(--gold);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
         
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .contact-info {
-            background-color: #003366;
-            padding: 10px;
-            font-size: 16px;
-        }
-        
-        nav {
-            background-color: #003366;
-            padding: 10px 0;
-        }
-        
-        nav ul {
             display: flex;
-            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--gold);
+        }
+        
+        .tagline {
+            font-style: italic;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
             list-style: none;
         }
         
-        nav ul li {
-            margin: 0 15px;
+        .nav-item {
+            margin-left: 1.5rem;
+            position: relative;
         }
         
-        nav ul li a {
-            color: white;
+        .nav-link {
+            color: var(--gold);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
+        .nav-link:hover {
+            color: var(--white);
         }
         
-        .banner {
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
             width: 100%;
-            height: 300px;
-            background-color: #ddd;
-            margin-bottom: 30px;
+        }
+        
+        .nav-icons {
+            display: flex;
+            margin-left: 2rem;
+        }
+        
+        .nav-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-left: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-icon:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x300');
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero-bg.jpg');
             background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
             color: white;
-            font-size: 36px;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .hero-title span {
+            color: var(--gold);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--dark-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: var(--white);
         }
         
         .section-title {
             text-align: center;
-            margin: 30px 0;
-            color: #0056b3;
+            margin-bottom: 3rem;
+            position: relative;
         }
         
-        .products {
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--black);
+            text-transform: uppercase;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .feature-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+        
+        .feature-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: var(--light-bg);
+        }
+        
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: #666;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .filter-btn:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            color: var(--black);
+        }
+        
+        .filter-btn:hover:after, .filter-btn.active:after {
+            width: 100%;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
         }
         
         .product-card {
-            background-color: white;
-            border-radius: 8px;
+            background: var(--white);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
         }
         
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
-        .product-image {
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .product-img {
             height: 200px;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            object-fit: contain;
+            padding: 1rem;
+            background: #f9f9f9;
         }
         
-        .product-details {
-            padding: 15px;
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-category {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
         }
         
         .product-title {
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+        
+        .product-rating {
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
         }
         
         .product-price {
-            color: #e63946;
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
         }
         
-        .buy-btn {
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        .original-price {
+            font-size: 1rem;
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 0.5rem;
+        }
+        
+        .discount {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-btn {
             display: block;
             width: 100%;
-            padding: 10px;
-            background-color: #0056b3;
-            color: white;
+            padding: 0.7rem;
+            background: var(--black);
+            color: var(--gold);
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
+            transition: all 0.3s ease;
         }
         
-        .buy-btn:hover {
-            background-color: #003d82;
+        .product-btn:hover {
+            background: var(--gold);
+            color: var(--black);
         }
         
-        .social-media {
-            background-color: #003366;
-            padding: 30px 0;
-            margin-top: 40px;
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: var(--white);
         }
         
-        .social-container {
+        .testimonials-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
         
-        .social-title {
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+            position: relative;
+        }
+        
+        .testimonial-text:before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .author-info h4 {
+            color: var(--black);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--black) 0%, #2c3e50 100%);
             color: white;
             text-align: center;
-            margin-bottom: 20px;
+        }
+        
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0 2rem;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background: var(--dark-gold);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-col h3 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-link a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact i {
+            color: var(--gold);
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
         }
         
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            margin-top: 1.5rem;
         }
         
         .social-link {
-            color: white;
-            text-decoration: none;
             display: flex;
             align-items: center;
-            padding: 10px 15px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 4px;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 0.8rem;
+            color: white;
+            transition: all 0.3s ease;
         }
         
         .social-link:hover {
-            background-color: rgba(255,255,255,0.2);
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
         }
         
-        footer {
-            background-color: #001a33;
-            color: white;
+        .footer-bottom {
             text-align: center;
-            padding: 20px 0;
-            font-size: 14px;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
         
+        .footer-bottom p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
+            .header-container {
                 flex-direction: column;
-                align-items: center;
+                text-align: center;
             }
             
-            nav ul li {
-                margin: 5px 0;
+            .logo {
+                margin-bottom: 1rem;
+                justify-content: center;
             }
             
-            .products {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            .nav {
+                margin-top: 1rem;
             }
             
-            .social-links {
+            .nav-list {
                 flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-item {
+                margin: 0 0.5rem 0.5rem;
+            }
+            
+            .nav-icons {
+                margin: 1rem 0 0;
+                justify-content: center;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: 30px;
+                padding: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Rupesh Electronics</div>
-        <div class="contact-info">
-            Enquiry No: <a href="tel:9334113322" style="color: white;">9334113322</a> | 
-            WhatsApp: <a href="https://wa.me/9334113322" style="color: white;">9334113322</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Rupesh Electronics Logo">
+                <div class="logo-text">RUPESH <span>ELECTRONICS</span></div>
+            </div>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Mobiles</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Accessories</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Deals</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-icons">
+                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                    <a href="#" class="nav-icon"><i class="fas fa-user"></i></a>
+                    <a href="#" class="nav-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </nav>
         </div>
     </header>
     
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Premium <span>Mobile Collection</span></h1>
+            <p class="hero-subtitle">Get the latest smartphones at unbeatable prices with exclusive offers</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn">Shop Now</a>
+                <a href="#" class="btn btn-outline">View Deals</a>
+            </div>
+        </div>
+    </section>
     
-    <div class="container">
-        <div class="banner" id="home">
-            Your One Stop Mobile Destination
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
         </div>
         
-        <h2 class="section-title" id="products">Featured Mobiles</h2>
-        
-        <div class="products">
-            <!-- OPPO Phones -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=OPPO+Phone" alt="OPPO Phone">
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
-                <div class="product-details">
-                    <h3 class="product-title">OPPO Reno 7 Pro 5G</h3>
-                    <div class="product-price">₹34,999</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
+                <h3 class="feature-title">1 Year Warranty</h3>
+                <p class="feature-text">All our products come with 1 year manufacturer warranty for your peace of mind.</p>
             </div>
             
-            <!-- VIVO Phones -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=VIVO+Phone" alt="VIVO Phone">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
                 </div>
-                <div class="product-details">
-                    <h3 class="product-title">VIVO V25 Pro 5G</h3>
-                    <div class="product-price">₹35,999</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
+                <h3 class="feature-title">Free Shipping</h3>
+                <p class="feature-text">Free delivery on all orders above ₹5000 across India with fast delivery.</p>
             </div>
             
-            <!-- Apple Phones -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=iPhone" alt="iPhone">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-undo"></i>
                 </div>
-                <div class="product-details">
-                    <h3 class="product-title">iPhone 14 Pro Max</h3>
-                    <div class="product-price">₹1,39,900</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
+                <h3 class="feature-title">Easy Returns</h3>
+                <p class="feature-text">7-day easy return policy if you're not completely satisfied.</p>
             </div>
             
-            <!-- Samsung Phones -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=Samsung" alt="Samsung Phone">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
                 </div>
-                <div class="product-details">
-                    <h3 class="product-title">Samsung S23 Ultra</h3>
-                    <div class="product-price">₹1,24,999</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
-            </div>
-            
-            <!-- Redmi Phones -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=Redmi" alt="Redmi Phone">
-                </div>
-                <div class="product-details">
-                    <h3 class="product-title">Redmi Note 12 Pro</h3>
-                    <div class="product-price">₹23,999</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
-            </div>
-            
-            <!-- Realme Phones -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=Realme" alt="Realme Phone">
-                </div>
-                <div class="product-details">
-                    <h3 class="product-title">Realme 10 Pro+ 5G</h3>
-                    <div class="product-price">₹24,999</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
-            </div>
-            
-            <!-- POCO Phones -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=POCO" alt="POCO Phone">
-                </div>
-                <div class="product-details">
-                    <h3 class="product-title">POCO X5 Pro 5G</h3>
-                    <div class="product-price">₹22,999</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
-            </div>
-            
-            <!-- Another OPPO Phone -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/250x200?text=OPPO" alt="OPPO Phone">
-                </div>
-                <div class="product-details">
-                    <h3 class="product-title">OPPO A78 5G</h3>
-                    <div class="product-price">₹18,999</div>
-                    <a href="#buy" class="buy-btn">Buy Now</a>
-                </div>
+                <h3 class="feature-title">24/7 Support</h3>
+                <p class="feature-text">Our customer care team is available round the clock to assist you.</p>
             </div>
         </div>
-        
-        <h2 class="section-title" id="about">About Us</h2>
-        <p style="text-align: center; margin-bottom: 40px; line-height: 1.6;">
-            Rupesh Electronics is your trusted mobile store offering the latest smartphones from top brands like Apple, Samsung, OPPO, VIVO, Redmi, Realme, and POCO. 
-            With years of experience in the electronics market, we provide genuine products with manufacturer warranty and excellent after-sales support.
-            Visit us today for the best deals and offers!
-        </p>
-        
-        <h2 class="section-title" id="contact">Contact Us</h2>
-        <div style="text-align: center; margin-bottom: 40px;">
-            <p><strong>Phone:</strong> <a href="tel:9334113322">9334113322</a></p>
-            <p><strong>WhatsApp:</strong> <a href="https://wa.me/9334113322">9334113322</a></p>
-            <p><strong>Email:</strong> <a href="mailto:info@rupeshelectronics.com">info@rupeshelectronics.com</a></p>
-            <p><strong>Address:</strong> [Your Store Address Here]</p>
-        </div>
-    </div>
+    </section>
     
-    <div class="social-media">
-        <div class="social-container">
-            <h3 class="social-title">Connect With Us</h3>
-            <div class="social-links">
-                <a href="https://www.facebook.com/yourpage" class="social-link" target="_blank">Facebook</a>
-                <a href="https://www.youtube.com/yourchannel" class="social-link" target="_blank">YouTube</a>
-                <a href="https://www.instagram.com/yourprofile" class="social-link" target="_blank">Instagram</a>
-                <a href="https://twitter.com/yourhandle" class="social-link" target="_blank">Twitter</a>
-                <a href="https://wa.me/9334113322" class="social-link" target="_blank">WhatsApp</a>
+    <!-- Products Section -->
+    <section class="products">
+        <div class="products-container">
+            <div class="section-title">
+                <h2>Featured Products</h2>
+            </div>
+            
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="smartphone">Smartphones</button>
+                <button class="filter-btn" data-filter="accessory">Accessories</button>
+                <button class="filter-btn" data-filter="deal">Deals</button>
+                <button class="filter-btn" data-filter="new">New Arrivals</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="smartphone,new">
+                    <span class="product-badge">New</span>
+                    <img src="product1.jpg" alt="Smartphone Model X" class="product-img">
+                    <div class="product-content">
+                        <span class="product-category">Smartphone</span>
+                        <h3 class="product-title">Premium Smartphone X Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(24)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">₹25,999</span>
+                            <span class="original-price">₹29,999</span>
+                            <span class="discount">13% off</span>
+                        </div>
+                        <button class="product-btn">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="smartphone,deal">
+                    <span class="product-badge">Deal</span>
+                    <img src="product2.jpg" alt="Smartphone Model Y" class="product-img">
+                    <div class="product-content">
+                        <span class="product-category">Smartphone</span>
+                        <h3 class="product-title">Budget Smartphone Y Plus</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(18)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">₹12,499</span>
+                            <span class="original-price">₹14,999</span>
+                            <span class="discount">17% off</span>
+                        </div>
+                        <button class="product-btn">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="accessory">
+                    <img src="product3.jpg" alt="Wireless Earbuds" class="product-img">
+                    <div class="product-content">
+                        <span class="product-category">Accessories</span>
+                        <h3 class="product-title">Premium Wireless Earbuds</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(42)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">₹1,999</span>
+                            <span class="original-price">₹2,499</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <button class="product-btn">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="smartphone">
+                    <img src="product4.jpg" alt="Smartphone Model Z" class="product-img">
+                    <div class="product-content">
+                        <span class="product-category">Smartphone</span>
+                        <h3 class="product-title">Mid-Range Smartphone Z</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(31)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">₹18,999</span>
+                            <span class="original-price">₹21,999</span>
+                            <span class="discount">14% off</span>
+                        </div>
+                        <button class="product-btn">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Add more products as needed -->
             </div>
         </div>
-    </div>
+    </section>
     
-    <footer>
-        &copy; 2023 Rupesh Electronics. All Rights Reserved.
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-title">
+                <h2>Customer Reviews</h2>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">I bought the Premium Smartphone X Pro and I'm extremely satisfied with the performance and camera quality. The delivery was super fast too!</p>
+                    <div class="testimonial-author">
+                        <img src="customer1.jpg" alt="Customer" class="author-img">
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Best prices I could find online with genuine products. The wireless earbuds work perfectly and the battery life is amazing.</p>
+                    <div class="testimonial-author">
+                        <img src="customer2.jpg" alt="Customer" class="author-img">
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Excellent customer service! Had an issue with my order and it was resolved within hours. Will definitely shop here again.</p>
+                    <div class="testimonial-author">
+                        <img src="customer3.jpg" alt="Customer" class="author-img">
+                        <div class="author-info">
+                            <h4>Vikram Singh</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest updates on new products, special offers and discount deals directly to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Rupesh Electronics</h3>
+                <p>Your one-stop destination for premium mobile phones and accessories at the best prices in the market.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Home</a></li>
+                    <li class="footer-link"><a href="#">Products</a></li>
+                    <li class="footer-link"><a href="#">About Us</a></li>
+                    <li class="footer-link"><a href="#">Contact</a></li>
+                    <li class="footer-link"><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">My Account</a></li>
+                    <li class="footer-link"><a href="#">Order Tracking</a></li>
+                    <li class="footer-link"><a href="#">Wishlist</a></li>
+                    <li class="footer-link"><a href="#">Returns & Exchanges</a></li>
+                    <li class="footer-link"><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Electronics Street, City, State 123456</p>
+                    <p><i class="fas fa-phone-alt"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> info@ruptoken.in</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 10:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Rupesh Electronics. All Rights Reserved. | Designed by ruptoken.in</p>
+        </div>
     </footer>
     
-    <!-- Simple Buy Modal (would need JavaScript for full functionality) -->
-    <div id="buy" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
-        <div style="background-color: white; padding: 30px; border-radius: 8px; max-width: 500px; text-align: center;">
-            <h3 style="margin-bottom: 20px;">Buy Now</h3>
-            <p style="margin-bottom: 20px;">Please contact us on WhatsApp at <a href="https://wa.me/9334113322">9334113322</a> to complete your purchase.</p>
-            <button onclick="document.getElementById('buy').style.display = 'none'" style="padding: 10px 20px; background-color: #0056b3; color: white; border: none; border-radius: 4px; cursor: pointer;">Close</button>
-        </div>
-    </div>
-    
     <script>
-        // Simple script to handle the buy now links
-        document.querySelectorAll('.buy-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+        // Simple filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    if (filter === 'all') {
+                        product.style.display = 'block';
+                    } else {
+                        const categories = product.dataset.category.split(' ');
+                        if (categories.includes(filter)) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Simple cart count functionality
+        document.querySelectorAll('.product-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.getElementById('buy').style.display = 'flex';
+                const countElement = document.querySelector('.cart-count');
+                let count = parseInt(countElement.textContent);
+                count++;
+                countElement.textContent = count;
+                
+                // Animation
+                countElement.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    countElement.style.transform = 'scale(1)';
+                }, 300);
+                
+                // Change button text temporarily
+                const originalText = btn.textContent;
+                btn.textContent = 'Added!';
+                btn.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '';
+                }, 2000);
             });
         });
     </script>
