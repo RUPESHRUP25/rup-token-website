@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Spin & Win - Rupesh Electronics</title>
+  <title>Spin & Win - Sure Prize</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -22,6 +22,12 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
     }
 
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #4a00e0;
+    }
+
     .arrow {
       width: 0; 
       height: 0; 
@@ -38,18 +44,22 @@
       height: 250px;
       border: 10px solid #4a00e0;
       border-radius: 50%;
-      position: relative;
       background-image: conic-gradient(
-        #f44336 0deg 45deg,
-        #e91e63 45deg 90deg,
-        #9c27b0 90deg 135deg,
-        #3f51b5 135deg 180deg,
-        #2196f3 180deg 225deg,
-        #4caf50 225deg 270deg,
-        #ffc107 270deg 315deg,
-        #ff9800 315deg 360deg
+        #f44336 0deg 30deg,
+        #e91e63 30deg 60deg,
+        #9c27b0 60deg 90deg,
+        #3f51b5 90deg 120deg,
+        #2196f3 120deg 150deg,
+        #4caf50 150deg 180deg,
+        #ffc107 180deg 210deg,
+        #ff9800 210deg 240deg,
+        #00bcd4 240deg 270deg,
+        #8bc34a 270deg 300deg,
+        #ff5722 300deg 330deg,
+        #795548 330deg 360deg
       );
       transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+      position: relative;
     }
 
     .glow {
@@ -64,7 +74,7 @@
       border-radius: 30px;
       font-size: 16px;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     input {
@@ -87,11 +97,12 @@
     }
 
     #loginSection {
-      margin-bottom: 20px;
+      display: none;
+      margin-top: 15px;
     }
 
     .footer {
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 13px;
     }
 
@@ -105,21 +116,21 @@
 <body>
 
   <div class="container">
-    <h2>RUPESH ELECTRONICS</h2>
-    <p>SPIN & WIN - Har grahak ke liye ek sure prize!</p>
-
-    <div id="loginSection">
-      <input type="tel" id="mobile" placeholder="Enter Mobile Number" />
-      <button onclick="loginUser()">LOGIN</button>
-    </div>
+    <h2>SPIN & WIN</h2>
+    <p>Har Grahak Ke Liye Sure Prize!</p>
 
     <div class="arrow"></div>
     <div class="wheel" id="wheel"></div>
 
     <button onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
-    <button onclick="claimPrize()" id="claimBtn" disabled>CLAIM PRIZE</button>
 
     <div class="prize" id="prizeText"></div>
+    <button onclick="showLogin()" id="claimBtn">CLAIM PRIZE</button>
+
+    <div id="loginSection">
+      <input type="tel" id="mobile" placeholder="Enter Mobile Number" />
+      <button onclick="loginUser()">LOGIN & CLAIM</button>
+    </div>
   </div>
 
   <div class="footer">
@@ -128,74 +139,70 @@
     <a href="#">Disclaimer</a>
   </div>
 
-  <audio id="winSound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3" preload="auto"></audio>
+  <audio id="spinSound" src="https://www.soundjay.com/button/beep-07.mp3" preload="auto"></audio>
+  <audio id="claimSound" src="https://www.soundjay.com/button/button-3.mp3" preload="auto"></audio>
 
   <script>
-    let isLoggedIn = false;
     const wheel = document.getElementById('wheel');
     const prizeText = document.getElementById('prizeText');
     const spinBtn = document.getElementById('spinBtn');
     const claimBtn = document.getElementById('claimBtn');
-    const winSound = document.getElementById('winSound');
+    const loginSection = document.getElementById('loginSection');
+    const spinSound = document.getElementById('spinSound');
+    const claimSound = document.getElementById('claimSound');
 
-    const prizes = [
-      "Smart TV", "Smartphone", "Wireless Earbuds", "Premium Earphones",
-      "₹500 Cash", "₹100 Cash", "₹50 Cash", "₹20 Cash"
-    ];
-
-    function loginUser() {
-      const mobile = document.getElementById('mobile').value.trim();
-      if (mobile.length === 10) {
-        isLoggedIn = true;
-        document.getElementById('loginSection').style.display = 'none';
-        alert("Login successful! Now spin to win.");
-      } else {
-        alert("Please enter a valid 10-digit mobile number.");
-      }
-    }
-
+    const points = [1,2,3,4,5,6,7,8,9,10,15,20];
+    let earnedPoints = 0;
     let spinning = false;
+    let prizeClaimed = false;
 
     function spinWheel() {
       if (spinning) return;
 
       spinning = true;
-      prizeText.innerText = "";
       spinBtn.disabled = true;
+      prizeText.innerText = "";
       claimBtn.style.display = "none";
       wheel.classList.remove("glow");
+      spinSound.play();
 
       const randomDegree = Math.floor(3600 + Math.random() * 720);
-      const prizeIndex = Math.floor((360 - (randomDegree % 360)) / 45) % 8;
+      const rewardIndex = Math.floor(Math.random() * points.length);
+      earnedPoints = points[rewardIndex];
 
       wheel.style.transform = rotate(${randomDegree}deg);
 
       setTimeout(() => {
-        const prize = prizes[prizeIndex];
-        prizeText.innerText = Congratulations! You won: ${prize};
         wheel.classList.add("glow");
-        winSound.play();
-
-        if (isLoggedIn) {
-          claimBtn.style.display = "inline-block";
-          claimBtn.disabled = false;
-        } else {
-          claimBtn.style.display = "inline-block";
-          claimBtn.disabled = true;
-          claimBtn.innerText = "Login Required to Claim";
-        }
-
+        prizeText.innerText = You Won: ${earnedPoints} Points;
+        claimBtn.style.display = "inline-block";
         spinBtn.disabled = false;
         spinning = false;
       }, 4000);
     }
 
-    function claimPrize() {
-      if (!isLoggedIn) {
-        alert("Please login to claim your prize.");
+    function showLogin() {
+      if (prizeClaimed) {
+        alert("Prize already claimed.");
         return;
       }
-      alert("Prize claimed successfully! Visit store or check SMS for details.");
+      loginSection.style.display = "block";
+    }
+
+    function loginUser() {
+      const mobile = document.getElementById('mobile').value.trim();
+      if (mobile.length !== 10) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+      }
+
+      prizeClaimed = true;
+      loginSection.style.display = "none";
+      claimBtn.style.display = "none";
+      claimSound.play();
+
+      const money = (earnedPoints / 1000).toFixed(2);
+      prizeText.innerHTML += <br>Claimed: ₹${money} <br><a href="https://wa.me/91${mobile}?text=I%20won%20${earnedPoints}%20points%20on%20Spin%20&%20Win!" target="_blank">Send via WhatsApp</a>;
     }
   </script>
 
