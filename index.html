@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUP Token | Earn & Compress</title>
+  <title>Ruptoken.in | File Tools & Online Utilities</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: linear-gradient(to right, #667eea, #764ba2);
+      background: linear-gradient(to right, #00c6ff, #0072ff);
       color: #fff;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
     header {
-      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1517511620798-cec17d428bc0?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
       color: white;
       padding: 100px 20px;
       text-align: center;
@@ -37,10 +37,10 @@
       font-size: 3rem;
     }
     header p {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
     nav {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.7);
       display: flex;
       justify-content: center;
       gap: 20px;
@@ -60,7 +60,7 @@
       margin: auto;
     }
     .btn {
-      background: #ff6600;
+      background: #ff9800;
       color: white;
       padding: 14px 28px;
       border: none;
@@ -70,16 +70,9 @@
       transition: 0.3s ease;
     }
     .btn:hover {
-      background: #e05500;
+      background: #e08700;
     }
-    .btn:disabled {
-      background: gray;
-      cursor: not-allowed;
-    }
-    section {
-      margin-top: 60px;
-    }
-    .compressor, form, .earn-grid .earn-item, .legal {
+    .tools, form, .legal {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
       padding: 20px;
@@ -93,17 +86,6 @@
       margin-top: 10px;
       border: none;
     }
-    .earn-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    footer {
-      background: #1e1e2f;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-    }
     .fade-in {
       animation: fadeIn 1.2s ease-in-out;
     }
@@ -111,64 +93,48 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    footer {
+      background: #0f0f1f;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1 class="fade-in">Welcome to RUP Token</h1>
-  <p class="fade-in">Earn, Compress, and Connect – All in one place!</p>
-  <button class="btn fade-in" onclick="scrollToSection('formSection')">Join Now</button>
+  <h1 class="fade-in">Welcome to Ruptoken.in</h1>
+  <p class="fade-in">Your one-stop hub for free file tools and online utilities</p>
+  <button class="btn fade-in" onclick="scrollToSection('tools')">Explore Tools</button>
 </header>
 
 <nav>
   <a href="#tools">Tools</a>
-  <a href="#earn">Earn</a>
   <a href="#formSection">Join</a>
   <a href="#legal">Legal</a>
 </nav>
 
 <div class="container">
-  <section id="tools">
-    <div class="compressor fade-in">
-      <h2>📦 File Compressor Tool</h2>
+  <section id="tools" class="fade-in">
+    <div class="tools">
+      <h2>📦 File Compressor (Mock)</h2>
       <input type="file" id="fileInput">
       <button class="btn" onclick="compressFile()">Compress Now</button>
       <p id="compressResult"></p>
     </div>
-  </section>
-
-  <section id="earn">
-    <div class="fade-in">
-      <h2>💸 Earning Features</h2>
-      <div class="earn-grid">
-        <div class="earn-item">
-          <h3>Refer & Earn</h3>
-          <p>Invite friends and earn RUP tokens every time they join.</p>
-        </div>
-        <div class="earn-item">
-          <h3>Daily Login Bonus</h3>
-          <p>Get free tokens just for checking in every day.</p>
-        </div>
-        <div class="earn-item">
-          <h3>Compression Rewards</h3>
-          <p>Compress files and get rewarded with RUP tokens.</p>
-        </div>
-        <div class="earn-item">
-          <h3>Watch Ads</h3>
-          <video id="adVideo" width="100%" controls onended="enableClaim()">
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            Your browser does not support HTML video.
-          </video>
-          <button class="btn" id="claimBtn" onclick="claimReward()" disabled>Claim RUP</button>
-          <p id="adResult"></p>
-        </div>
-      </div>
+    <div class="tools">
+      <h2>📝 PDF to Word Converter (Coming Soon)</h2>
+      <p>Convert PDF files into editable Word documents easily.</p>
+    </div>
+    <div class="tools">
+      <h2>🎥 YouTube Thumbnail Downloader (Coming Soon)</h2>
+      <p>Grab high-quality thumbnails from any YouTube video.</p>
     </div>
   </section>
 
   <section id="formSection">
-    <h2>📬 Join the Community</h2>
+    <h2>📬 Stay Updated</h2>
     <form onsubmit="submitForm(event)">
       <input type="text" placeholder="Your Name" required />
       <input type="email" placeholder="Email Address" required />
@@ -181,21 +147,21 @@
   <section id="legal" class="fade-in">
     <div class="legal">
       <h2>📜 Terms & Conditions</h2>
-      <p>By using RUP Token platform, you agree to not misuse any of the tools and abide by the rules stated on the platform. We reserve the right to update our terms at any time.</p>
+      <p>By using this website, you agree not to misuse any tool provided herein. We reserve the right to make changes anytime.</p>
     </div>
     <div class="legal">
       <h2>🔒 Privacy Policy</h2>
-      <p>We respect your privacy. All data submitted on this platform is securely stored and will never be shared with third parties without consent.</p>
+      <p>We respect your privacy and ensure your data remains confidential. No information is shared with third parties without consent.</p>
     </div>
     <div class="legal">
       <h2>⚠️ Disclaimer</h2>
-      <p>RUP Token is a community project. All earning methods are experimental and we do not guarantee any fixed returns or values associated with the token.</p>
+      <p>This site provides free tools. All functionalities are experimental. We do not collect payments or guarantee any outcome.</p>
     </div>
   </section>
 </div>
 
 <footer>
-  &copy; 2025 RUP Token. All rights reserved.<br>
+  &copy; 2025 Ruptoken.in. All rights reserved.<br>
   <a href="mailto:info@ruptoken.in" style="color:#ccc; text-decoration: underline;">info@ruptoken.in</a>
 </footer>
 
@@ -213,26 +179,13 @@
     }
   }
 
-  function enableClaim() {
-    const btn = document.getElementById("claimBtn");
-    btn.disabled = false;
-  }
-
-  function claimReward() {
-    const btn = document.getElementById("claimBtn");
-    const result = document.getElementById("adResult");
-    result.textContent = "🎉 You earned 5 RUP Tokens!";
-    btn.disabled = true;
-    btn.textContent = "Claimed";
-  }
-
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 
   function submitForm(e) {
     e.preventDefault();
-    document.getElementById("formResponse").textContent = "Thank you for joining us! We'll contact you soon.";
+    document.getElementById("formResponse").textContent = "Thank you for reaching out! We'll contact you soon.";
   }
 </script>
 
