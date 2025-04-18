@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupesh  - Spin & Win</title>
+    <title>Rupesh Electronics - Premium Spin & Win</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #10b981;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #6e8efb, #a777e3);
             min-height: 100vh;
@@ -24,7 +41,7 @@
             padding: 20px;
             overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 900px;
             width: 100%;
@@ -36,19 +53,35 @@
             position: relative;
             overflow: hidden;
         }
-        
+
+        /* Improved Brand Header */
         .brand-header {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
         }
-        
+
+        .brand-header:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+            border-radius: 2px;
+        }
+
         .brand-header .shop-name {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: #333;
             margin-bottom: 5px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        
+
         .brand-header .game-name {
             font-size: 1.8rem;
             font-weight: 700;
@@ -56,21 +89,28 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
         }
-        
+
         .header p {
             color: #666;
             font-size: 1.1rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 500;
         }
-        
+
+        /* Enhanced Wheel Container */
         .wheel-container {
             position: relative;
             width: 100%;
             max-width: 500px;
             margin: 0 auto 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        
+
         .wheel {
             width: 100%;
             height: 500px;
@@ -78,11 +118,14 @@
             border-radius: 50%;
             overflow: hidden;
             border: 15px solid #fff;
-            box-shadow: 0 0 0 15px #6e8efb, 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 0 0 15px #6e8efb,
+                inset 0 0 0 15px #6e8efb,
+                0 20px 40px rgba(0, 0, 0, 0.3);
             transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
             transform: rotate(0deg);
         }
-        
+
         .wheel-item {
             position: absolute;
             width: 50%;
@@ -93,14 +136,25 @@
             justify-content: flex-start;
             font-weight: bold;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            padding-left: 80px;
+            padding-left: 70px;
             box-sizing: border-box;
             text-align: left;
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
         }
-        
+
+        /* Better text fitting */
+        .wheel-item span {
+            display: inline-block;
+            transform: rotate(calc(360deg / 16));
+            transform-origin: left center;
+            width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .wheel-pointer {
             position: absolute;
             top: -25px;
@@ -109,8 +163,9 @@
             width: 60px;
             height: 60px;
             z-index: 10;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
         }
-        
+
         .wheel-pointer:before {
             content: '';
             position: absolute;
@@ -119,9 +174,9 @@
             border-left: 25px solid transparent;
             border-right: 25px solid transparent;
             border-top: 40px solid #ff4757;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
         }
-        
+
+        /* Enhanced Spin Button */
         .spin-btn {
             background: linear-gradient(to right, #6e8efb, #a777e3);
             color: white;
@@ -132,30 +187,32 @@
             cursor: pointer;
             margin-top: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 1.5px;
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
-        
+
         .spin-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255,255,255,0.3);
         }
-        
+
         .spin-btn:active {
-            transform: translateY(2px);
+            transform: translateY(2px) scale(0.98);
         }
-        
+
         .spin-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-        
+
         .spin-btn:after {
             content: '';
             position: absolute;
@@ -163,15 +220,16 @@
             left: -60%;
             width: 40px;
             height: 200%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.3);
             transform: rotate(30deg);
-            transition: all 0.3s;
+            transition: all 0.7s;
         }
-        
+
         .spin-btn:hover:after {
             left: 120%;
         }
-        
+
+        /* Improved Prizes Section */
         .prizes {
             display: flex;
             flex-wrap: wrap;
@@ -179,7 +237,7 @@
             gap: 20px;
             margin-top: 40px;
         }
-        
+
         .prize-item {
             background: #f8f9fa;
             border-radius: 15px;
@@ -188,15 +246,27 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.4s ease;
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .prize-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+        }
+
         .prize-item:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             border-color: #6e8efb;
             background: white;
         }
-        
+
         .prize-item img {
             width: 70px;
             height: 70px;
@@ -205,17 +275,19 @@
             filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
             transition: all 0.3s ease;
         }
-        
+
         .prize-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(5deg);
         }
-        
+
         .prize-item p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #333;
+            margin-top: 10px;
         }
-        
+
+        /* Enhanced Modal */
         .modal {
             display: none;
             position: fixed;
@@ -224,11 +296,12 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            z-index: 100;
+            z-index: 1000;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(5px);
         }
-        
+
         .modal-content {
             background: white;
             padding: 40px;
@@ -237,36 +310,47 @@
             max-width: 550px;
             width: 90%;
             position: relative;
-            animation: modalOpen 0.6s ease;
+            animation: modalOpen 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
             border: 5px solid #6e8efb;
+            overflow: hidden;
         }
-        
+
+        .modal-content:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+        }
+
         @keyframes modalOpen {
             from {
-                transform: scale(0.7);
+                transform: scale(0.7) translateY(50px);
                 opacity: 0;
             }
             to {
-                transform: scale(1);
+                transform: scale(1) translateY(0);
                 opacity: 1;
             }
         }
-        
+
         .modal h2 {
             color: #6e8efb;
             margin-bottom: 20px;
             font-size: 2.5rem;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
-        
+
         .modal p {
             font-size: 1.5rem;
             margin-bottom: 30px;
             color: #333;
             font-weight: 600;
         }
-        
+
         .modal-img {
             width: 180px;
             height: 180px;
@@ -275,12 +359,13 @@
             display: block;
             animation: bounce 2s infinite;
         }
-        
+
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-        
+
+        /* Improved Claim Button */
         .close-modal {
             background: linear-gradient(to right, #6e8efb, #a777e3);
             color: white;
@@ -289,17 +374,42 @@
             border-radius: 50px;
             cursor: pointer;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             font-weight: 600;
             margin-top: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
         }
-        
+
         .close-modal:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-color: rgba(255,255,255,0.3);
         }
-        
+
+        .close-modal:active {
+            transform: translateY(1px);
+        }
+
+        .close-modal:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(30deg);
+            transition: all 0.7s;
+        }
+
+        .close-modal:hover:after {
+            left: 120%;
+        }
+
+        /* Confetti Animation */
         .confetti {
             position: absolute;
             width: 15px;
@@ -309,7 +419,7 @@
             animation: confetti 5s ease-in-out infinite;
             z-index: 1;
         }
-        
+
         @keyframes confetti {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -320,7 +430,8 @@
                 opacity: 0;
             }
         }
-        
+
+        /* Ad Space */
         .ads-container {
             margin: 30px auto;
             padding: 15px;
@@ -329,8 +440,9 @@
             max-width: 728px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px dashed #6e8efb;
         }
-        
+
         .ads-placeholder {
             background: #e9ecef;
             color: #6c757d;
@@ -338,14 +450,21 @@
             border-radius: 10px;
             font-size: 1rem;
         }
-        
+
+        /* Social Share Buttons */
         .social-share {
             margin-top: 30px;
             display: flex;
             justify-content: center;
             gap: 15px;
         }
-        
+
+        .share-text {
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #555;
+        }
+
         .social-btn {
             width: 50px;
             height: 50px;
@@ -355,36 +474,49 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .social-btn:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(30deg);
+            transition: all 0.7s;
+        }
+
         .social-btn:hover {
             transform: translateY(-5px) scale(1.1);
         }
-        
+
+        .social-btn:hover:after {
+            left: 120%;
+        }
+
         .facebook {
             background: #3b5998;
         }
-        
+
         .twitter {
             background: #1da1f2;
         }
-        
+
         .whatsapp {
             background: #25d366;
         }
-        
+
         .instagram {
             background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
         }
-        
-        .share-text {
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #555;
-        }
-        
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -401,12 +533,19 @@
             .wheel {
                 height: 350px;
                 border-width: 12px;
-                box-shadow: 0 0 0 12px #6e8efb, 0 15px 30px rgba(0, 0, 0, 0.25);
+                box-shadow: 
+                    0 0 0 12px #6e8efb,
+                    inset 0 0 0 12px #6e8efb,
+                    0 15px 30px rgba(0, 0, 0, 0.25);
             }
             
             .wheel-item {
-                font-size: 0.9rem;
-                padding-left: 60px;
+                font-size: 0.8rem;
+                padding-left: 50px;
+            }
+            
+            .wheel-item span {
+                width: 90px;
             }
             
             .prize-item {
@@ -435,6 +574,11 @@
                 width: 140px;
                 height: 140px;
             }
+            
+            .spin-btn {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -443,8 +587,12 @@
             }
             
             .wheel-item {
-                padding-left: 50px;
-                font-size: 0.8rem;
+                padding-left: 40px;
+                font-size: 0.7rem;
+            }
+            
+            .wheel-item span {
+                width: 70px;
             }
             
             .prize-item {
@@ -454,11 +602,6 @@
             .prize-item img {
                 width: 50px;
                 height: 50px;
-            }
-            
-            .spin-btn {
-                padding: 15px 40px;
-                font-size: 1.1rem;
             }
             
             .brand-header .shop-name {
@@ -633,7 +776,7 @@
                 }
             ];
             
-            // Create wheel segments
+            // Create wheel segments with better text fitting
             function createWheel() {
                 const segmentAngle = 360 / prizes.length;
                 
@@ -641,15 +784,10 @@
                     const segment = document.createElement('div');
                     segment.className = 'wheel-item';
                     
-                    // Create span for text to rotate it properly
                     const textSpan = document.createElement('span');
                     textSpan.textContent = prize.name;
-                    textSpan.style.display = 'inline-block';
-                    textSpan.style.transform = `rotate(${segmentAngle/2}deg)`;
-                    textSpan.style.transformOrigin = 'left center';
-                    textSpan.style.width = '150px';
-                    
                     segment.appendChild(textSpan);
+                    
                     segment.style.backgroundColor = prize.color;
                     segment.style.transform = `rotate(${index * segmentAngle}deg)`;
                     
@@ -657,9 +795,10 @@
                 });
             }
             
-            // Spin the wheel
+            // Enhanced spin animation
             function spinWheel() {
                 spinBtn.disabled = true;
+                spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SPINNING...';
                 
                 // Random rotation (5-10 full rotations plus segment offset)
                 const segmentAngle = 360 / prizes.length;
@@ -672,11 +811,12 @@
                 // After spinning animation completes
                 setTimeout(() => {
                     spinBtn.disabled = false;
+                    spinBtn.textContent = 'SPIN AGAIN';
                     showResult(randomSegment);
                 }, 5000);
             }
             
-            // Show winning result
+            // Show winning result with enhanced animation
             function showResult(prizeIndex) {
                 prizeName.textContent = prizes[prizeIndex].name;
                 prizeImage.src = prizes[prizeIndex].image;
