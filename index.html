@@ -118,18 +118,22 @@
 <div class="container">
   <section id="tools" class="fade-in">
     <div class="tools">
-      <h2>📦 File Compressor (Mock)</h2>
+      <h2>📦 File Compressor</h2>
       <input type="file" id="fileInput">
       <button class="btn" onclick="compressFile()">Compress Now</button>
       <p id="compressResult"></p>
     </div>
     <div class="tools">
-      <h2>📝 PDF to Word Converter (Coming Soon)</h2>
-      <p>Convert PDF files into editable Word documents easily.</p>
+      <h2>🎥 YouTube Thumbnail Downloader</h2>
+      <input type="text" id="ytLink" placeholder="Enter YouTube Video URL">
+      <button class="btn" onclick="downloadThumbnail()">Get Thumbnail</button>
+      <p id="thumbResult"></p>
     </div>
     <div class="tools">
-      <h2>🎥 YouTube Thumbnail Downloader (Coming Soon)</h2>
-      <p>Grab high-quality thumbnails from any YouTube video.</p>
+      <h2>📝 PDF to Word Converter</h2>
+      <p>Use a free tool like ilovepdf.com for advanced conversion or integrate their API here.</p>
+      <input type="file" id="pdfFile" accept="application/pdf">
+      <p><em>(This feature requires server-side support or third-party API integration.)</em></p>
     </div>
   </section>
 
@@ -172,10 +176,23 @@
     if (input.files.length > 0) {
       result.textContent = "Compressing... Please wait...";
       setTimeout(() => {
-        result.textContent = "✅ File compressed successfully! (Mock Demo)";
+        result.textContent = "✅ File compressed successfully! (Simulated - Actual feature needs backend)";
       }, 2000);
     } else {
       alert("Please select a file first!");
+    }
+  }
+
+  function downloadThumbnail() {
+    const url = document.getElementById("ytLink").value;
+    const result = document.getElementById("thumbResult");
+    const videoIdMatch = url.match(/[?&]v=([^&#]*)/) || url.match(/youtu.be\/([^&#]*)/);
+    if (videoIdMatch) {
+      const videoId = videoIdMatch[1];
+      const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      result.innerHTML = `<a href="${thumbnailUrl}" target="_blank"><img src="${thumbnailUrl}" style="max-width:100%;border-radius:10px;"><br>Click to download</a>`;
+    } else {
+      result.textContent = "Invalid YouTube URL";
     }
   }
 
