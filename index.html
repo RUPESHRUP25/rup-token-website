@@ -58,8 +58,7 @@
         #ff5722 300deg 330deg,
         #795548 330deg 360deg
       );
-      transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
-      position: relative;
+      transition: transform 4s ease-out;
     }
 
     .glow {
@@ -122,10 +121,10 @@
     <div class="arrow"></div>
     <div class="wheel" id="wheel"></div>
 
-    <button onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
+    <button id="spinBtn">SPIN NOW</button>
 
     <div class="prize" id="prizeText"></div>
-    <button onclick="showLogin()" id="claimBtn">CLAIM PRIZE</button>
+    <button id="claimBtn">CLAIM PRIZE</button>
 
     <div id="loginSection">
       <input type="tel" id="mobile" placeholder="Enter Mobile Number" />
@@ -156,9 +155,8 @@
     let spinning = false;
     let prizeClaimed = false;
 
-    function spinWheel() {
+    spinBtn.addEventListener("click", () => {
       if (spinning) return;
-
       spinning = true;
       spinBtn.disabled = true;
       prizeText.innerText = "";
@@ -166,28 +164,30 @@
       wheel.classList.remove("glow");
       spinSound.play();
 
-      const randomDegree = Math.floor(3600 + Math.random() * 720);
       const rewardIndex = Math.floor(Math.random() * points.length);
       earnedPoints = points[rewardIndex];
 
-      wheel.style.transform = rotate(${randomDegree}deg);
+      const degreesPerSegment = 360 / points.length;
+      const rotateTo = 3600 + rewardIndex * degreesPerSegment + Math.random() * degreesPerSegment;
+
+      wheel.style.transform = rotate(${rotateTo}deg);
 
       setTimeout(() => {
         wheel.classList.add("glow");
         prizeText.innerText = You Won: ${earnedPoints} Points;
         claimBtn.style.display = "inline-block";
-        spinBtn.disabled = false;
         spinning = false;
+        spinBtn.disabled = false;
       }, 4000);
-    }
+    });
 
-    function showLogin() {
+    claimBtn.addEventListener("click", () => {
       if (prizeClaimed) {
         alert("Prize already claimed.");
         return;
       }
       loginSection.style.display = "block";
-    }
+    });
 
     function loginUser() {
       const mobile = document.getElementById('mobile').value.trim();
