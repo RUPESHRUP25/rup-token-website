@@ -1,270 +1,679 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruptoken.in | File Tools & Online Utilities</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      color: #fff;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-    header {
-      background: url('https://images.unsplash.com/photo-1517511620798-cec17d428bc0?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-      color: white;
-      padding: 100px 20px;
-      text-align: center;
-      position: relative;
-    }
-    header::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
-    }
-    header h1, header p, header button {
-      position: relative;
-      z-index: 1;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-    }
-    header p {
-      font-size: 1.3rem;
-    }
-    nav {
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .container {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .btn {
-      background: #ff9800;
-      color: white;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 30px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-    .btn:hover {
-      background: #e08700;
-    }
-    .tools, form, .legal {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      margin-top: 30px;
-    }
-    input[type="file"], input, textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 6px;
-      margin-top: 10px;
-      border: none;
-    }
-    .fade-in {
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    footer {
-      background: #0f0f1f;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-    }
-    #cookieConsent {
-      background-color: #2f2f2f;
-      color: white;
-      padding: 15px 20px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 9999;
-      text-align: center;
-      font-size: 14px;
-    }
-    #cookieConsent button {
-      background-color: #ff9800;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    #cookieConsent button:hover {
-      background-color: #e08700;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rupesh Electronics - Vivo Mobile Showroom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: #fff;
+            overflow-x: hidden;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        
+        .floating-phones {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-phone {
+            position: absolute;
+            width: 150px;
+            opacity: 0.1;
+            animation: float 15s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {transform: translateY(0) rotate(0deg);}
+            100% {transform: translateY(-100vh) rotate(360deg);}
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 3px solid #ff4d4d;
+            box-shadow: 0 5px 20px rgba(255, 77, 77, 0.3);
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            color: #ff4d4d;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {text-shadow: 0 0 5px #ff4d4d;}
+            to {text-shadow: 0 0 15px #ff4d4d, 0 0 20px #ff4d4d;}
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: #ddd;
+        }
+        
+        .address {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        
+        nav {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        nav ul li::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ff4d4d;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a i {
+            margin-right: 8px;
+        }
+        
+        nav ul li a:hover {
+            color: #ff4d4d;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            animation: zoomInOut 15s infinite alternate;
+        }
+        
+        @keyframes zoomInOut {
+            0% {background-size: 100% auto;}
+            100% {background-size: 110% auto;}
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff4d4d;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+            border: 2px solid #ff4d4d;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: #ff4d4d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 77, 0.6);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #ff4d4d;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: #ff4d4d;
+            bottom: -10px;
+            left: 0;
+            animation: underline 2s infinite;
+        }
+        
+        @keyframes underline {
+            0% {width: 0%; left: 50%;}
+            50% {width: 100%; left: 0;}
+            100% {width: 0%; left: 0;}
+        }
+        
+        .vivo-models {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .vivo-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 1px solid rgba(255, 77, 77, 0.3);
+        }
+        
+        .vivo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 77, 77, 0.3);
+            border-color: #ff4d4d;
+        }
+        
+        .vivo-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .vivo-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: linear-gradient(135deg, #111, #333);
+            padding: 20px;
+            transition: all 0.5s;
+        }
+        
+        .vivo-card:hover .vivo-image {
+            transform: scale(1.05);
+        }
+        
+        .vivo-details {
+            padding: 20px;
+        }
+        
+        .vivo-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .vivo-price {
+            font-size: 1.3rem;
+            color: #4cd137;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .vivo-features {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        
+        .vivo-features li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .vivo-features li i {
+            color: #ff4d4d;
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .vivo-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #ff4d4d;
+            color: #ff4d4d;
+        }
+        
+        .btn-outline:hover {
+            background-color: #ff4d4d;
+            color: #fff;
+        }
+        
+        .offer-banner {
+            background: linear-gradient(135deg, #ff4d4d, #ff8c66);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 50px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.02);}
+            100% {transform: scale(1);}
+        }
+        
+        .offer-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .offer-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            color: #ff4d4d;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: #ff4d4d;
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #aaa;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #ff4d4d;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #ff4d4d;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .vivo-models {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- Header Section -->
-<header>
-  <h1 class="fade-in">Welcome to Ruptoken.in</h1>
-  <p class="fade-in">Your one-stop hub for free file tools and online utilities</p>
-  <button class="btn fade-in" onclick="scrollToSection('tools')">Explore Tools</button>
-</header>
-
-<!-- Navigation Bar -->
-<nav>
-  <a href="#tools">Tools</a>
-  <a href="#formSection">Join</a>
-  <a href="#legal">Legal</a>
-</nav>
-
-<!-- Main Content -->
-<div class="container">
-  <section id="tools" class="fade-in">
-    <div class="tools">
-      <h2>📦 File Compressor</h2>
-      <input type="file" id="fileInput">
-      <button class="btn" onclick="compressFile()">Compress Now</button>
-      <p id="compressResult"></p>
+    <div class="floating-phones">
+        <img src="https://www.vivo.com/in/vivo/images/phones/v29e/v29e.png" class="floating-phone" style="top: 10%; left: 5%; animation-delay: 0s;">
+        <img src="https://www.vivo.com/in/vivo/images/phones/v27/v27.png" class="floating-phone" style="top: 20%; left: 80%; animation-delay: 2s;">
+        <img src="https://www.vivo.com/in/vivo/images/phones/v25/v25.png" class="floating-phone" style="top: 60%; left: 10%; animation-delay: 4s;">
+        <img src="https://www.vivo.com/in/vivo/images/phones/t2x/t2x.png" class="floating-phone" style="top: 70%; left: 70%; animation-delay: 6s;">
     </div>
-    <div class="tools">
-      <h2>🎥 YouTube Thumbnail Downloader</h2>
-      <input type="text" id="ytLink" placeholder="Enter YouTube Video URL">
-      <button class="btn" onclick="downloadThumbnail()">Get Thumbnail</button>
-      <p id="thumbResult"></p>
+    
+    <header>
+        <div class="logo">Rupesh Electronics</div>
+        <div class="tagline">Authorized Vivo Mobile Retailer</div>
+        <div class="address">K52 Hanuman Nagar, Near Hanuman Temple</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#new-launches"><i class="fas fa-rocket"></i> New Launches</a></li>
+            <li><a href="#vivo-models"><i class="fas fa-mobile-alt"></i> Vivo Models</a></li>
+            <li><a href="#best-deals"><i class="fas fa-tags"></i> Best Deals</a></li>
+            <li><a href="#compare"><i class="fas fa-exchange-alt"></i> Compare</a></li>
+            <li><a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>VIVO 2024-25 COLLECTION</h1>
+                <p>Experience the latest Vivo smartphones with cutting-edge camera technology, stunning displays, and powerful performance</p>
+                <a href="#vivo-models" class="btn">Explore Now</a>
+            </div>
+        </section>
+        
+        <section id="new-launches">
+            <h2 class="section-title">New Vivo Launches 2024-25</h2>
+            <div class="vivo-models">
+                <div class="vivo-card">
+                    <span class="vivo-badge">New Launch</span>
+                    <img src="https://www.vivo.com/in/vivo/images/phones/v30e/v30e.png" alt="Vivo V30e" class="vivo-image">
+                    <div class="vivo-details">
+                        <h3 class="vivo-name">Vivo V30e</h3>
+                        <div class="vivo-price">₹27,999</div>
+                        <ul class="vivo-features">
+                            <li><i class="fas fa-check"></i> 6.78" FHD+ AMOLED 120Hz</li>
+                            <li><i class="fas fa-check"></i> Snapdragon 6 Gen 1</li>
+                            <li><i class="fas fa-check"></i> 50MP Sony IMX882 OIS</li>
+                            <li><i class="fas fa-check"></i> 5500mAh Battery</li>
+                            <li><i class="fas fa-check"></i> 44W Fast Charging</li>
+                        </ul>
+                        <div class="vivo-actions">
+                            <a href="#" class="btn btn-sm">Buy Now</a>
+                            <a href="#" class="btn btn-sm btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vivo-card">
+                    <span class="vivo-badge">New Launch</span>
+                    <img src="https://www.vivo.com/in/vivo/images/phones/t3x/t3x.png" alt="Vivo T3x" class="vivo-image">
+                    <div class="vivo-details">
+                        <h3 class="vivo-name">Vivo T3x</h3>
+                        <div class="vivo-price">₹12,999</div>
+                        <ul class="vivo-features">
+                            <li><i class="fas fa-check"></i> 6.72" FHD+ 120Hz</li>
+                            <li><i class="fas fa-check"></i> Snapdragon 6 Gen 1</li>
+                            <li><i class="fas fa-check"></i> 50MP Dual Camera</li>
+                            <li><i class="fas fa-check"></i> 6000mAh Battery</li>
+                            <li><i class="fas fa-check"></i> 5G Support</li>
+                        </ul>
+                        <div class="vivo-actions">
+                            <a href="#" class="btn btn-sm">Buy Now</a>
+                            <a href="#" class="btn btn-sm btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vivo-card">
+                    <span class="vivo-badge">Coming Soon</span>
+                    <img src="https://www.vivo.com/in/vivo/images/phones/v30pro/v30pro.png" alt="Vivo V30 Pro" class="vivo-image">
+                    <div class="vivo-details">
+                        <h3 class="vivo-name">Vivo V30 Pro</h3>
+                        <div class="vivo-price">₹44,999</div>
+                        <ul class="vivo-features">
+                            <li><i class="fas fa-check"></i> 6.78" AMOLED 120Hz</li>
+                            <li><i class="fas fa-check"></i> Dimensity 7200</li>
+                            <li><i class="fas fa-check"></i> 50MP Zeiss Triple Cam</li>
+                            <li><i class="fas fa-check"></i> 5000mAh Battery</li>
+                            <li><i class="fas fa-check"></i> 80W Fast Charging</li>
+                        </ul>
+                        <div class="vivo-actions">
+                            <a href="#" class="btn btn-sm">Pre-book</a>
+                            <a href="#" class="btn btn-sm btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="offer-banner">
+            <h2>SPECIAL DISCOUNT FOR HANUMAN NAGAR RESIDENTS!</h2>
+            <p>Get additional 5% discount on all Vivo models with local address proof. Offer valid till 31st December 2024.</p>
+            <a href="#" class="btn">Claim Your Discount</a>
+        </div>
+        
+        <section id="vivo-models">
+            <h2 class="section-title">All Vivo Models Available</h2>
+            <div class="vivo-models">
+                <div class="vivo-card">
+                    <img src="https://www.vivo.com/in/vivo/images/phones/v29e/v29e.png" alt="Vivo V29e" class="vivo-image">
+                    <div class="vivo-details">
+                        <h3 class="vivo-name">Vivo V29e</h3>
+                        <div class="vivo-price">₹26,999</div>
+                        <ul class="vivo-features">
+                            <li><i class="fas fa-check"></i> 6.78" FHD+ AMOLED</li>
+                            <li><i class="fas fa-check"></i> Snapdragon 695</li>
+                            <li><i class="fas fa-check"></i> 64MP OIS Camera</li>
+                            <li><i class="fas fa-check"></i> 5000mAh Battery</li>
+                            <li><i class="fas fa-check"></i> 44W Fast Charging</li>
+                        </ul>
+                        <div class="vivo-actions">
+                            <a href="#" class="btn btn-sm">Buy Now</a>
+                            <a href="#" class="btn btn-sm btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vivo-card">
+                    <img src="https://www.vivo.com/in/vivo/images/phones/v27/v27.png" alt="Vivo V27" class="vivo-image">
+                    <div class="vivo-details">
+                        <h3 class="vivo-name">Vivo V27</h3>
+                        <div class="vivo-price">₹32,999</div>
+                        <ul class="vivo-features">
+                            <li><i class="fas fa-check"></i> 6.78" FHD+ AMOLED</li>
+                            <li><i class="fas fa-check"></i> Dimensity 7200</li>
+                            <li><i class="fas fa-check"></i> 50MP Sony IMX766</li>
+                            <li><i class="fas fa-check"></i> 4600mAh Battery</li>
+                            <li><i class="fas fa-check"></i> 66W Fast Charging</li>
+                        </ul>
+                        <div class="vivo-actions">
+                            <a href="#" class="btn btn-sm">Buy Now</a>
+                            <a href="#" class="btn btn-sm btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vivo-card">
+                    <img src="https://www.vivo.com/in/vivo/images/phones/t2x/t2x.png" alt="Vivo T2x" class="vivo-image">
+                    <div class="vivo-details">
+                        <h3 class="vivo-name">Vivo T2x</h3>
+                        <div class="vivo-price">₹12,999</div>
+                        <ul class="vivo-features">
+                            <li><i class="fas fa-check"></i> 6.58" HD+ Display</li>
+                            <li><i class="fas fa-check"></i> Dimensity 6020</li>
+                            <li><i class="fas fa-check"></i> 50MP Dual Camera</li>
+                            <li><i class="fas fa-check"></i> 5000mAh Battery</li>
+                            <li><i class="fas fa-check"></i> 5G Support</li>
+                        </ul>
+                        <div class="vivo-actions">
+                            <a href="#" class="btn btn-sm">Buy Now</a>
+                            <a href="#" class="btn btn-sm btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <div class="tools">
-      <h2>📝 PDF to Word Converter</h2>
-      <p>Use a free tool like ilovepdf.com for advanced conversion or integrate their API here.</p>
-      <input type="file" id="pdfFile" accept="application/pdf">
-    </div>
-  </section>
-
-  <!-- User Form Section -->
-  <section id="formSection">
-    <h2>📬 Stay Updated</h2>
-    <form onsubmit="submitForm(event)">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Email Address" required />
-      <textarea placeholder="Your message..." rows="5"></textarea>
-      <button type="submit" class="btn">Submit</button>
-    </form>
-    <p id="formResponse"></p>
-  </section>
-
-  <!-- Legal Section -->
-  <section id="legal" class="fade-in">
-    <div class="legal">
-      <h2>📜 Terms & Conditions</h2>
-      <p>By using this website, you agree not to misuse any tool provided herein. We reserve the right to make changes anytime.</p>
-    </div>
-    <div class="legal">
-      <h2>🔒 Privacy Policy</h2>
-      <p>We respect your privacy and ensure your data remains confidential. No information is shared with third parties without consent.</p>
-    </div>
-    <div class="legal">
-      <h2>⚠️ Disclaimer</h2>
-      <p>This site provides free tools. All functionalities are experimental. We do not collect payments or guarantee any outcome.</p>
-    </div>
-  </section>
-</div>
-
-<!-- Footer Section -->
-<footer>
-  &copy; 2025 Ruptoken.in. All rights reserved.<br>
-  <a href="mailto:info@ruptoken.in" style="color:#ccc; text-decoration: underline;">info@ruptoken.in</a>
-</footer>
-
-<!-- Cookie Consent Banner -->
-<div id="cookieConsent">
-  <p>We use cookies to personalize content and ads, provide social media features, and analyze our traffic. By clicking "Accept", you consent to our use of cookies. You can change your preferences at any time.</p>
-  <button id="acceptCookies">Accept</button>
-  <button id="rejectCookies">Decline</button>
-</div>
-
-<script>
-  // Cookie Consent Script
-  window.onload = function() {
-    var consentGiven = localStorage.getItem('cookieConsent');
-    if (!consentGiven) {
-      document.getElementById('cookieConsent').style.display = 'block';
-    } else {
-      document.getElementById('cookieConsent').style.display = 'none';
-    }
-  };
-
-  document.getElementById('acceptCookies').onclick = function() {
-    localStorage.setItem('cookieConsent', 'true');
-    document.getElementById('cookieConsent').style.display = 'none';
-  };
-
-  document.getElementById('rejectCookies').onclick = function() {
-    localStorage.setItem('cookieConsent', 'false');
-    document.getElementById('cookieConsent').style.display = 'none';
-  };
-
-  // File Compressor Function
-  function compressFile() {
-    const input = document.getElementById("fileInput");
-    const result = document.getElementById("compressResult");
-    if (input.files.length > 0) {
-      result.textContent = "Compressing... Please wait...";
-      setTimeout(() => {
-        result.textContent = "✅ File compressed successfully! (Simulated - Actual feature needs backend)";
-      }, 2000);
-    } else {
-      alert("Please select a file first!");
-    }
-  }
-
-  // YouTube Thumbnail Downloader
-  function downloadThumbnail() {
-    const url = document.getElementById("ytLink").value;
-    const result = document.getElementById("thumbResult");
-    const videoIdMatch = url.match(/[?&]v=([^&#]*)/) || url.match(/youtu.be\/([^&#]*)/);
-    if (videoIdMatch) {
-      const videoId = videoIdMatch[1];
-      const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-      result.innerHTML = `<a href="${thumbnailUrl}" target="_blank"><img src="${thumbnailUrl}" style="max-width:100%;border-radius:10px;"><br>Click to download</a>`;
-    } else {
-      result.textContent = "Invalid YouTube URL";
-    }
-  }
-
-  // Scroll to Section
-  function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // Submit Form
-  function submitForm(e) {
-    e.preventDefault();
-    document.getElementById("formResponse").textContent = "Thank you for reaching out! We'll contact you soon.";
-  }
-</script>
-
+    
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Rupesh Electronics</h3>
+                <p>Authorized Vivo Mobile Retailer in Hanuman Nagar since 2010. We provide genuine products with best after-sales service.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> K52, Hanuman Nagar, Near Hanuman Temple</p>
+                <p><i class="fas fa-phone-alt"></i> +91 9876543210</p>
+                <p><i class="fas fa-envelope"></i> info@rupeshelectronics.com</p>
+                <p><i class="fas fa-clock"></i> Open: 10AM - 8PM (Daily)</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#new-launches">New Launches</a>
+                <a href="#vivo-models">Vivo Models</a>
+                <a href="#best-deals">Best Deals</a>
+                <a href="#compare">Compare Phones</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2024 Rupesh Electronics. All Rights Reserved. | Designed for Hanuman Nagar Customers
+        </div>
+    </footer>
 </body>
 </html>
