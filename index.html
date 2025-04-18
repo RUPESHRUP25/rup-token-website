@@ -3,219 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin and Win Game</title>
+    <title>Perfect Spin and Win Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 20px;
         }
-        .game-container {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 400px;
-            margin: 0 auto;
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
         }
-        h1 {
+        .header h1 {
             color: #ff5722;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        .wheel-container {
+            position: relative;
+            margin: 30px auto;
+            width: 350px;
+            height: 350px;
         }
         .wheel {
-            width: 300px;
-            height: 300px;
-            margin: 20px auto;
-            position: relative;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            background: conic-gradient(
-                #ff5252 0% 25%,
-                #4caf50 25% 50%,
-                #2196f3 50% 75%,
-                #ffeb3b 75% 100%
-            );
-            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            position: relative;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
             transform: rotate(0deg);
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .wheel-section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 0.9rem;
         }
         .pointer {
             position: absolute;
-            top: -20px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 30px solid #333;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #ff5722;
             z-index: 10;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
         }
-        .btn-spin {
-            background-color: #ff5722;
+        .spin-btn {
+            background: linear-gradient(45deg, #ff5722, #ff9800);
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
             cursor: pointer;
-            margin: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+            transition: all 0.3s;
         }
-        .btn-spin:hover {
-            background-color: #e64a19;
+        .spin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
         }
-        .btn-spin:disabled {
-            background-color: #ccc;
+        .spin-btn:disabled {
+            background: #cccccc;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         .result {
-            font-size: 18px;
+            font-size: 1.3rem;
             font-weight: bold;
             margin: 20px 0;
-        }
-        .entry-fee {
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .prizes {
+            min-height: 60px;
             display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
         }
-        .prize {
-            padding: 5px 10px;
-            background-color: #eee;
-            border-radius: 5px;
+        .win-message {
+            color: #4CAF50;
         }
-        .wallet {
-            margin: 10px 0;
-            font-weight: bold;
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff5722;
+            animation: confetti 3s linear forwards;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
+    <div class="header">
         <h1>Spin and Win!</h1>
-        <p class="entry-fee">Entry Fee: ₹5 per spin</p>
-        <div class="wallet">Balance: ₹<span id="balance">100</span></div>
-        
-        <div class="wheel" id="wheel"></div>
-        <div class="pointer"></div>
-        
-        <button class="btn-spin" id="spinBtn">SPIN (₹5)</button>
-        
-        <div class="result" id="result">Spin to win!</div>
-        
-        <div class="prizes">
-            <div class="prize">1st: ₹500</div>
-            <div class="prize">2nd: ₹200</div>
-            <div class="prize">3rd: ₹100</div>
-            <div class="prize">4th: ₹50</div>
-        </div>
+        <p>Spin the wheel to win amazing prizes</p>
     </div>
 
+    <div class="wheel-container">
+        <div class="wheel" id="wheel">
+            <!-- 5 prize sections (72 degrees each) -->
+            <div class="wheel-section" style="background-color: #FF5252; transform: rotate(0deg);">Speaker</div>
+            <div class="wheel-section" style="background-color: #4CAF50; transform: rotate(72deg);">Earphone</div>
+            <div class="wheel-section" style="background-color: #2196F3; transform: rotate(144deg);">Earbuds</div>
+            <div class="wheel-section" style="background-color: #FFEB3B; transform: rotate(216deg);">Watch</div>
+            <div class="wheel-section" style="background-color: #9C27B0; transform: rotate(288deg);">Pendrive</div>
+        </div>
+        <div class="pointer"></div>
+    </div>
+
+    <button class="spin-btn" id="spinBtn">SPIN NOW</button>
+
+    <div class="result" id="result">Click SPIN to try your luck!</div>
+
+    <!-- Sound Effects -->
+    <audio id="spinSound" src="https://assets.mixkit.co/sfx/preview/mixkit-slot-machine-spin-1930.mp3" preload="auto"></audio>
+    <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" preload="auto"></audio>
+
     <script>
+        // Game variables
         const wheel = document.getElementById('wheel');
         const spinBtn = document.getElementById('spinBtn');
         const result = document.getElementById('result');
-        const balanceDisplay = document.getElementById('balance');
+        const spinSound = document.getElementById('spinSound');
+        const winSound = document.getElementById('winSound');
         let isSpinning = false;
-        let balance = 100; // Starting balance
-
-        // Prizes in order (1st, 2nd, 3rd, 4th)
-        const prizes = [500, 200, 100, 50];
         
+        // Prize data (order matches wheel sections)
+        const prizes = [
+            "Bluetooth Speaker",
+            "Earphone", 
+            "Earbuds",
+            "Smart Watch",
+            "64GB Pendrive"
+        ];
+
+        // Spin functionality
         spinBtn.addEventListener('click', () => {
-            if (isSpinning || balance < 5) return;
-            
-            // Deduct ₹5 entry fee
-            balance -= 5;
-            balanceDisplay.textContent = balance;
+            if (isSpinning) return;
             
             isSpinning = true;
-            result.textContent = "Spinning...";
             spinBtn.disabled = true;
-
-            // Random spin (1-4 full rotations + prize sector)
-            const spinDegrees = 1080 + Math.floor(Math.random() * 4) * 90; // 1080° = 3 full spins + random prize
+            result.innerHTML = "Spinning...";
+            
+            // Play spin sound
+            spinSound.currentTime = 0;
+            spinSound.play();
+            
+            // Select random prize section (0-4)
+            const targetSection = Math.floor(Math.random() * 5);
+            
+            // Calculate exact stopping position 
+            // (2 full rotations + prize angle + small offset to center)
+            const sectionAngle = 72; // 360/5 = 72 degrees per section
+            const spinDegrees = 720 + (targetSection * sectionAngle) + 36; // +36 to center on section
+            
             wheel.style.transform = `rotate(${spinDegrees}deg)`;
-
+            
             setTimeout(() => {
                 isSpinning = false;
-                const prizeIndex = (4 - Math.floor((spinDegrees % 360) / 90)) % 4;
-                const prizeAmount = prizes[prizeIndex];
-                <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin and Win - Pay via UPI</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .pay-btn {
-            background-color: #5e35b1;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 10px;
-        }
-        .pay-btn:hover {
-            background-color: #7e57c2;
-        }
-        .upi-qr {
-            margin: 20px auto;
-            max-width: 200px;
-        }
-    </style>
-</head>
-<body>
-    <h2>Pay ₹5 Entry Fee via UPI</h2>
-    <p>Scan the QR code or click "Pay Now" to proceed.</p>
-    
-    <!-- UPI QR Code (Replace with your QR) -->
-    <img src="https://example.com/your-upi-qr.png" alt="UPI QR Code" class="upi-qr">
-    
-    <br>
-    
-    <!-- Pay Now Button (Opens UPI App) -->
-    <button class="pay-btn" onclick="payViaUPI()">Pay Now (₹5)</button>
-    
-    <script>
-        function payViaUPI() {
-            // Replace with your UPI ID and name
-            const upiId = "yourname@upi"; // e.g., 1234567890@ybl (Yes Bank)
-            const name = "Your Name";
-            const amount = "5";
-            
-            // Generate UPI Deep Link
-            const upiLink = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR`;
-            
-            // Open UPI App (PhonePe/GPay/PayTM)
-            window.location.href = upiLink;
-            
-            // Fallback if UPI app not installed
-            setTimeout(() => {
-                alert("If UPI app didn't open, please scan the QR code.");
-            }, 1000);
-        }
-    </script>
-</body>
-</html>
+                spinBtn.disabled = false;
                 
-                // Add prize to balance
-                balance += prizeAmount;
-                balanceDisplay.textContent = balance;
+                const prize = prizes[targetSection];
+                result.innerHTML = `<span class="win-message">Congratulations! 🎉 You won: <strong>${prize}</strong></span>`;
                 
-                result.textContent = `You won: ₹${prizeAmount}!`;
-                spinBtn.disabled = balance < 5;
-            }, 3000);
+                // Play win sound
+                winSound.currentTime = 0;
+                winSound.play();
+                
+                createConfetti();
+            }, 4000);
         });
+        
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#ff5722', '#4caf50', '#2196f3', '#ffeb3b', '#9c27b0'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
     </script>
 </body>
 </html>
