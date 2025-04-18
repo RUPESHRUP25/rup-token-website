@@ -1,352 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn Money Online</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --accent: #fd79a8;
-            --light: #f8f9fa;
-            --dark: #2d3436;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 0;
-            color: var(--dark);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: rgba(255,255,255,0.9);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        h1 {
-            color: var(--primary);
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        
-        .balance-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .balance-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-        
-        .balance-amount {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 15px 0;
-            text-shadow: 0 3px 6px rgba(108,92,231,0.2);
-        }
-        
-        .task-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .task-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .task-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-        }
-        
-        .task-card .task-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .task-card .task-body {
-            padding: 20px;
-        }
-        
-        .task-reward {
-            font-size: 1.5rem;
-            color: var(--primary);
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 4px 15px rgba(108,92,231,0.4);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(108,92,231,0.6);
-        }
-        
-        .btn-primary:active {
-            transform: translateY(1px);
-        }
-        
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 40px;
-            height: 200%;
-            background: rgba(255,255,255,0.2);
-            transform: rotate(30deg);
-            transition: all 0.3s;
-        }
-        
-        .btn-primary:hover::after {
-            left: 120%;
-        }
-        
-        /* Ad Container */
-        .ad-container {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 30px 0;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        /* Animation Classes */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .float {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .task-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RUP Token | Earn & Compress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f4f7fb;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    .container {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section {
+      margin-bottom: 60px;
+    }
+    .btn {
+      background: #ff6600;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #e05500;
+    }
+    .compressor input[type="file"] {
+      margin-top: 10px;
+    }
+    .earn-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .earn-item {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Earn Money Online</h1>
-            <p>Complete simple tasks and earn rewards</p>
-        </header>
-        
-        <div class="balance-card float">
-            <h2>Your Balance</h2>
-            <div class="balance-amount">₹0.00</div>
-            <button class="btn btn-primary pulse">Withdraw Earnings</button>
-        </div>
-        
-        <!-- Ad Space 1 -->
-        <div class="ad-container">
-            <h3>Sponsored Ad</h3>
-            <!-- Replace with actual ad code -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                <p>Advertisement Space</p>
-                <!-- Example Google AdSense code (replace with your own) -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                crossorigin="anonymous"></script>
-            </div>
-        </div>
-        
-        <h2>Available Tasks</h2>
-        <div class="task-grid">
-            <!-- Task 1 -->
-            <div class="task-card">
-                <div class="task-header">
-                    <h3>Watch Video Ads</h3>
-                </div>
-                <div class="task-body">
-                    <p>Watch short video ads and earn money</p>
-                    <div class="task-reward">₹5 per video</div>
-                    <button class="btn btn-primary">Start Earning</button>
-                </div>
-            </div>
-            
-            <!-- Task 2 -->
-            <div class="task-card">
-                <div class="task-header">
-                    <h3>Complete Surveys</h3>
-                </div>
-                <div class="task-body">
-                    <p>Share your opinion and get paid</p>
-                    <div class="task-reward">₹10-₹50 per survey</div>
-                    <button class="btn btn-primary">Start Survey</button>
-                </div>
-            </div>
-            
-            <!-- Task 3 -->
-            <div class="task-card">
-                <div class="task-header">
-                    <h3>Refer Friends</h3>
-                </div>
-                <div class="task-body">
-                    <p>Invite friends and earn commission</p>
-                    <div class="task-reward">20% commission</div>
-                    <button class="btn btn-primary">Get Referral Link</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Ad Space 2 -->
-        <div class="ad-container">
-            <h3>Special Offer</h3>
-            <!-- Replace with actual ad code -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                <p>Premium Advertisement Space</p>
-            </div>
-        </div>
-        
-        <div class="task-grid">
-            <!-- Task 4 -->
-            <div class="task-card">
-                <div class="task-header">
-                    <h3>Play Games</h3>
-                </div>
-                <div class="task-body">
-                    <p>Play simple games and earn rewards</p>
-                    <div class="task-reward">₹2-₹10 per game</div>
-                    <button class="btn btn-primary">Play Now</button>
-                </div>
-            </div>
-            
-            <!-- Task 5 -->
-            <div class="task-card">
-                <div class="task-header">
-                    <h3>App Install</h3>
-                </div>
-                <div class="task-body">
-                    <p>Install apps and earn money</p>
-                    <div class="task-reward">₹15-₹100 per app</div>
-                    <button class="btn btn-primary">View Apps</button>
-                </div>
-            </div>
-            
-            <!-- Task 6 -->
-            <div class="task-card">
-                <div class="task-header">
-                    <h3>Daily Login Bonus</h3>
-                </div>
-                <div class="task-body">
-                    <p>Login daily to claim your bonus</p>
-                    <div class="task-reward">₹5 daily</div>
-                    <button class="btn btn-primary">Claim Now</button>
-                </div>
-            </div>
-        </div>
+
+<header>
+  <h1>Welcome to RUP Token</h1>
+  <p>Earn, Compress, and Connect – All in one place!</p>
+  <button class="btn">Join Now</button>
+</header>
+
+<div class="container">
+  <!-- File Compressor -->
+  <div class="section compressor">
+    <h2>📦 File Compressor Tool</h2>
+    <p>Select a file to compress (mock demo):</p>
+    <input type="file" id="fileInput">
+    <br/><br/>
+    <button class="btn" onclick="compressFile()">Compress Now</button>
+    <p id="compressResult"></p>
+  </div>
+
+  <!-- Earning Features -->
+  <div class="section">
+    <h2>💸 Earning Features</h2>
+    <div class="earn-grid">
+      <div class="earn-item">
+        <h3>1. Refer & Earn</h3>
+        <p>Invite friends and earn RUP tokens every time they join.</p>
+      </div>
+      <div class="earn-item">
+        <h3>2. Daily Login Bonus</h3>
+        <p>Get free tokens just for checking in every day.</p>
+      </div>
+      <div class="earn-item">
+        <h3>3. File Compression Rewards</h3>
+        <p>Use our tools regularly and earn bonus tokens.</p>
+      </div>
+      <div class="earn-item">
+        <h3>4. Watch Ads</h3>
+        <p>Earn RUP tokens for every ad you view.</p>
+      </div>
     </div>
-    
-    <script>
-        // Simple earning functionality
-        document.querySelectorAll('.btn-primary').forEach(button => {
-            button.addEventListener('click', function() {
-                // Add simple animation
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                setTimeout(() => {
-                    this.innerHTML = 'Completed!';
-                    this.style.background = 'linear-gradient(90deg, #00b894, #55efc4)';
-                    
-                    // Update balance (demo only)
-                    const balance = document.querySelector('.balance-amount');
-                    const current = parseFloat(balance.textContent.replace('₹', ''));
-                    balance.textContent = '₹' + (current + 5).toFixed(2);
-                }, 1500);
-            });
-        });
-        
-        // Ad rotation simulation
-        function rotateAds() {
-            const ads = [
-                "Special Offer: Earn 50% more this week!",
-                "Limited Time: Double earnings on surveys!",
-                "New: Premium tasks available now!"
-            ];
-            const adElement = document.querySelector('.ad-container h3');
-            let currentAd = 0;
-            
-            setInterval(() => {
-                currentAd = (currentAd + 1) % ads.length;
-                adElement.textContent = ads[currentAd];
-            }, 5000);
-        }
-        
-        rotateAds();
-    </script>
+  </div>
+
+  <!-- Form Section -->
+  <div class="section">
+    <h2>📬 Join the Community</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <textarea placeholder="Message / Suggestion..." rows="5"></textarea>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 RUP Token. All rights reserved. | <a style="color: #ffb74d;" href="mailto:contact@ruptoken.in">Contact Us</a>
+</footer>
+
+<script>
+  function compressFile() {
+    const fileInput = document.getElementById("fileInput");
+    if (fileInput.files.length > 0) {
+      document.getElementById("compressResult").innerText = "🎉 File compressed successfully (demo)";
+    } else {
+      alert("Please choose a file first.");
+    }
+  }
+</script>
+
 </body>
 </html>
