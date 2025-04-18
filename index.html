@@ -3,1095 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rupesh Electronics - Best mobile prices with premium quality. Buy smartphones, accessories at discounted rates with warranty.">
-    <meta name="keywords" content="mobile store, smartphones, best prices, electronic gadgets, Rupesh Electronics">
-    <title>Rupesh Electronics | Premium Mobile Store | ruptoken.in</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>AI Image Enhancer</title>
     <style>
-        :root {
-            --gold: #FFD700;
-            --dark-gold: #D4AF37;
-            --black: #000000;
-            --white: #FFFFFF;
-            --light-bg: #FFF9E6;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light-bg);
-            color: #333;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
         }
         
-        /* Header Styles */
-        .header {
-            background: linear-gradient(135deg, var(--black) 0%, #2c3e50 100%);
-            color: var(--gold);
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
         
-        .header-container {
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .upload-section {
+            border: 2px dashed #3498db;
+            padding: 30px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            background-color: #f8fafc;
+            transition: all 0.3s;
+        }
+        
+        .upload-section:hover {
+            border-color: #2980b9;
+            background-color: #eaf2f8;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .upload-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .preview-section {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-            margin-right: 15px;
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .logo-text span {
-            color: var(--gold);
-        }
-        
-        .tagline {
-            font-style: italic;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        /* Navigation */
-        .nav {
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-list {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-item {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        .nav-link {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-        
-        .nav-link:hover {
-            color: var(--white);
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover:after {
-            width: 100%;
-        }
-        
-        .nav-icons {
-            display: flex;
-            margin-left: 2rem;
-        }
-        
-        .nav-icon {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-left: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-icon:hover {
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: red;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .hero-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-        
-        .hero-title span {
-            color: var(--gold);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .btn:hover {
-            background: var(--dark-gold);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background: var(--gold);
-            color: var(--black);
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 5rem 0;
-            background: var(--white);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--black);
-            text-transform: uppercase;
-            display: inline-block;
-            position: relative;
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background: var(--gold);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .feature-card {
-            background: var(--light-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-title {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--black);
-        }
-        
-        .feature-text {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        /* Products Section */
-        .products {
-            padding: 5rem 0;
-            background: var(--light-bg);
-        }
-        
-        .products-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .product-filters {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 3rem;
+            margin-top: 30px;
             flex-wrap: wrap;
         }
         
-        .filter-btn {
-            background: transparent;
-            border: none;
-            color: #666;
-            font-weight: 600;
-            padding: 0.5rem 1.5rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+        .image-container {
+            width: 48%;
+            margin-bottom: 20px;
         }
         
-        .filter-btn:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s ease;
+        .image-container img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         
-        .filter-btn:hover, .filter-btn.active {
-            color: var(--black);
+        .image-title {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2c3e50;
         }
         
-        .filter-btn:hover:after, .filter-btn.active:after {
-            width: 100%;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .product-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.3rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 1;
-        }
-        
-        .product-img {
-            height: 200px;
-            width: 100%;
-            object-fit: contain;
-            padding: 1rem;
-            background: #f9f9f9;
-        }
-        
-        .product-content {
-            padding: 1.5rem;
-        }
-        
-        .product-category {
-            color: #666;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        
-        .product-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--black);
-        }
-        
-        .product-rating {
-            color: var(--gold);
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-        }
-        
-        .product-price {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .current-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--black);
-        }
-        
-        .original-price {
-            font-size: 1rem;
-            text-decoration: line-through;
-            color: #999;
-            margin-left: 0.5rem;
-        }
-        
-        .discount {
-            color: #e74c3c;
-            font-weight: 600;
-            margin-left: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .product-btn {
-            display: block;
-            width: 100%;
-            padding: 0.7rem;
-            background: var(--black);
-            color: var(--gold);
+        .enhance-btn {
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 24px;
             border: none;
             border-radius: 5px;
-            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s;
         }
         
-        .product-btn:hover {
-            background: var(--gold);
-            color: var(--black);
+        .enhance-btn:hover {
+            background-color: #27ae60;
         }
         
-        /* Testimonials */
-        .testimonials {
-            padding: 5rem 0;
-            background: var(--white);
+        .enhance-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
         }
         
-        .testimonials-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .loading {
+            text-align: center;
+            margin: 20px 0;
+            display: none;
         }
         
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .testimonial-card {
-            background: var(--light-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: #555;
-            position: relative;
-        }
-        
-        .testimonial-text:before {
-            content: '"';
-            font-size: 4rem;
-            color: var(--gold);
-            opacity: 0.3;
-            position: absolute;
-            top: -20px;
-            left: -10px;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .author-img {
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
         }
         
-        .author-info h4 {
-            color: var(--black);
-            margin-bottom: 0.2rem;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .author-info p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        /* Newsletter */
-        .newsletter {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--black) 0%, #2c3e50 100%);
+        .download-btn {
+            background-color: #e74c3c;
             color: white;
-            text-align: center;
-        }
-        
-        .newsletter-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .newsletter h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter p {
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .newsletter-input {
-            flex: 1;
-            padding: 0.8rem 1.5rem;
+            padding: 12px 24px;
             border: none;
-            border-radius: 30px 0 0 30px;
-            font-size: 1rem;
-        }
-        
-        .newsletter-btn {
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            padding: 0 2rem;
-            border-radius: 0 30px 30px 0;
-            font-weight: 600;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .newsletter-btn:hover {
-            background: var(--dark-gold);
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--black);
-            color: white;
-            padding: 5rem 0 2rem;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .footer-col h3 {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .footer-col h3:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background: var(--gold);
-            bottom: 0;
-            left: 0;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-link {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-link a {
-            color: #ccc;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-link a:hover {
-            color: var(--gold);
-            padding-left: 5px;
-        }
-        
-        .footer-contact p {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-contact i {
-            color: var(--gold);
-            margin-right: 0.5rem;
-            width: 20px;
             text-align: center;
+            transition: background-color 0.3s;
+            display: none;
         }
         
-        .social-links {
-            display: flex;
-            margin-top: 1.5rem;
+        .download-btn:hover {
+            background-color: #c0392b;
         }
         
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            margin-right: 0.8rem;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background: var(--gold);
-            color: var(--black);
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 3rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .footer-bottom p {
-            color: #999;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
         @media (max-width: 768px) {
-            .header-container {
+            .preview-section {
                 flex-direction: column;
-                text-align: center;
             }
             
-            .logo {
-                margin-bottom: 1rem;
-                justify-content: center;
-            }
-            
-            .nav {
-                margin-top: 1rem;
-            }
-            
-            .nav-list {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-item {
-                margin: 0 0.5rem 0.5rem;
-            }
-            
-            .nav-icons {
-                margin: 1rem 0 0;
-                justify-content: center;
-            }
-            
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .btn {
-                display: block;
+            .image-container {
                 width: 100%;
-                margin-bottom: 1rem;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .newsletter-input {
-                border-radius: 30px;
-                margin-bottom: 1rem;
-            }
-            
-            .newsletter-btn {
-                border-radius: 30px;
-                padding: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <img src="logo.png" alt="Rupesh Electronics Logo">
-                <div class="logo-text">RUPESH <span>ELECTRONICS</span></div>
-            </div>
-            
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Mobiles</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Accessories</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Deals</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-                </ul>
-                
-                <div class="nav-icons">
-                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
-                    <a href="#" class="nav-icon"><i class="fas fa-user"></i></a>
-                    <a href="#" class="nav-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">3</span>
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Premium <span>Mobile Collection</span></h1>
-            <p class="hero-subtitle">Get the latest smartphones at unbeatable prices with exclusive offers</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn">Shop Now</a>
-                <a href="#" class="btn btn-outline">View Deals</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Features Section -->
-    <section class="features">
-        <div class="section-title">
-            <h2>Why Choose Us</h2>
+    <div class="container">
+        <h1>AI Image Enhancer</h1>
+        
+        <div class="upload-section">
+            <h3>Upload Your Image</h3>
+            <p>Select an image to enhance its quality using AI</p>
+            <input type="file" id="fileInput" accept="image/*">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Choose Image</button>
+            <p id="fileName" style="margin-top: 10px;"></p>
         </div>
         
-        <div class="features-container">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 class="feature-title">1 Year Warranty</h3>
-                <p class="feature-text">All our products come with 1 year manufacturer warranty for your peace of mind.</p>
+        <div class="preview-section">
+            <div class="image-container">
+                <img id="originalImage" src="placeholder.jpg" alt="Original Image">
+                <div class="image-title">Original Image</div>
             </div>
             
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-truck"></i>
-                </div>
-                <h3 class="feature-title">Free Shipping</h3>
-                <p class="feature-text">Free delivery on all orders above ₹5000 across India with fast delivery.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-undo"></i>
-                </div>
-                <h3 class="feature-title">Easy Returns</h3>
-                <p class="feature-text">7-day easy return policy if you're not completely satisfied.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3 class="feature-title">24/7 Support</h3>
-                <p class="feature-text">Our customer care team is available round the clock to assist you.</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Products Section -->
-    <section class="products">
-        <div class="products-container">
-            <div class="section-title">
-                <h2>Featured Products</h2>
-            </div>
-            
-            <div class="product-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="smartphone">Smartphones</button>
-                <button class="filter-btn" data-filter="accessory">Accessories</button>
-                <button class="filter-btn" data-filter="deal">Deals</button>
-                <button class="filter-btn" data-filter="new">New Arrivals</button>
-            </div>
-            
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card" data-category="smartphone,new">
-                    <span class="product-badge">New</span>
-                    <img src="product1.jpg" alt="Smartphone Model X" class="product-img">
-                    <div class="product-content">
-                        <span class="product-category">Smartphone</span>
-                        <h3 class="product-title">Premium Smartphone X Pro</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(24)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">₹25,999</span>
-                            <span class="original-price">₹29,999</span>
-                            <span class="discount">13% off</span>
-                        </div>
-                        <button class="product-btn">Add to Cart</button>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card" data-category="smartphone,deal">
-                    <span class="product-badge">Deal</span>
-                    <img src="product2.jpg" alt="Smartphone Model Y" class="product-img">
-                    <div class="product-content">
-                        <span class="product-category">Smartphone</span>
-                        <h3 class="product-title">Budget Smartphone Y Plus</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(18)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">₹12,499</span>
-                            <span class="original-price">₹14,999</span>
-                            <span class="discount">17% off</span>
-                        </div>
-                        <button class="product-btn">Add to Cart</button>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card" data-category="accessory">
-                    <img src="product3.jpg" alt="Wireless Earbuds" class="product-img">
-                    <div class="product-content">
-                        <span class="product-category">Accessories</span>
-                        <h3 class="product-title">Premium Wireless Earbuds</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(42)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">₹1,999</span>
-                            <span class="original-price">₹2,499</span>
-                            <span class="discount">20% off</span>
-                        </div>
-                        <button class="product-btn">Add to Cart</button>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card" data-category="smartphone">
-                    <img src="product4.jpg" alt="Smartphone Model Z" class="product-img">
-                    <div class="product-content">
-                        <span class="product-category">Smartphone</span>
-                        <h3 class="product-title">Mid-Range Smartphone Z</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(31)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">₹18,999</span>
-                            <span class="original-price">₹21,999</span>
-                            <span class="discount">14% off</span>
-                        </div>
-                        <button class="product-btn">Add to Cart</button>
-                    </div>
-                </div>
-                
-                <!-- Add more products as needed -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="testimonials-container">
-            <div class="section-title">
-                <h2>Customer Reviews</h2>
-            </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">I bought the Premium Smartphone X Pro and I'm extremely satisfied with the performance and camera quality. The delivery was super fast too!</p>
-                    <div class="testimonial-author">
-                        <img src="customer1.jpg" alt="Customer" class="author-img">
-                        <div class="author-info">
-                            <h4>Rajesh Kumar</h4>
-                            <p>Verified Buyer</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">Best prices I could find online with genuine products. The wireless earbuds work perfectly and the battery life is amazing.</p>
-                    <div class="testimonial-author">
-                        <img src="customer2.jpg" alt="Customer" class="author-img">
-                        <div class="author-info">
-                            <h4>Priya Sharma</h4>
-                            <p>Verified Buyer</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">Excellent customer service! Had an issue with my order and it was resolved within hours. Will definitely shop here again.</p>
-                    <div class="testimonial-author">
-                        <img src="customer3.jpg" alt="Customer" class="author-img">
-                        <div class="author-info">
-                            <h4>Vikram Singh</h4>
-                            <p>Verified Buyer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="newsletter-container">
-            <h2>Subscribe to Our Newsletter</h2>
-            <p>Get the latest updates on new products, special offers and discount deals directly to your inbox.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <h3>Rupesh Electronics</h3>
-                <p>Your one-stop destination for premium mobile phones and accessories at the best prices in the market.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li class="footer-link"><a href="#">Home</a></li>
-                    <li class="footer-link"><a href="#">Products</a></li>
-                    <li class="footer-link"><a href="#">About Us</a></li>
-                    <li class="footer-link"><a href="#">Contact</a></li>
-                    <li class="footer-link"><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Customer Service</h3>
-                <ul class="footer-links">
-                    <li class="footer-link"><a href="#">My Account</a></li>
-                    <li class="footer-link"><a href="#">Order Tracking</a></li>
-                    <li class="footer-link"><a href="#">Wishlist</a></li>
-                    <li class="footer-link"><a href="#">Returns & Exchanges</a></li>
-                    <li class="footer-link"><a href="#">FAQs</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Contact Us</h3>
-                <div class="footer-contact">
-                    <p><i class="fas fa-map-marker-alt"></i>K-52 HANUMAN NAGAR KANKARBAGH PATNA</p>
-                    <p><i class="fas fa-phone-alt"></i> +91 9334113322</p>
-                    <p><i class="fas fa-envelope"></i> rupeshelectronics2003@gmail.com</p>
-                    <p><i class="fas fa-clock"></i> Mon-Sun: 10:00 AM - 8:00 PM</p>
-                </div>
+            <div class="image-container">
+                <img id="enhancedImage" src="placeholder.jpg" alt="Enhanced Image">
+                <div class="image-title">Enhanced Image</div>
             </div>
         </div>
         
-        <div class="footer-bottom">
-            <p>&copy; 2025 Rupesh Electronics. All Rights Reserved. | Designed by RUPESH KUMAR</p>
+        <button class="enhance-btn" id="enhanceBtn" disabled>Enhance Image</button>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Enhancing your image with AI...</p>
         </div>
-    </footer>
-    
+        
+        <a href="#" class="download-btn" id="downloadBtn">Download Enhanced Image</a>
+    </div>
+
     <script>
-        // Simple filter functionality
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                document.querySelectorAll('.filter-btn').forEach(b => {
-                    b.classList.remove('active');
-                });
+        // Elements
+        const fileInput = document.getElementById('fileInput');
+        const originalImage = document.getElementById('originalImage');
+        const enhancedImage = document.getElementById('enhancedImage');
+        const enhanceBtn = document.getElementById('enhanceBtn');
+        const loading = document.getElementById('loading');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const fileName = document.getElementById('fileName');
+        
+        // When file is selected
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                fileName.textContent = `Selected: ${file.name}`;
                 
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                const filter = btn.dataset.filter;
-                const products = document.querySelectorAll('.product-card');
-                
-                products.forEach(product => {
-                    if (filter === 'all') {
-                        product.style.display = 'block';
-                    } else {
-                        const categories = product.dataset.category.split(' ');
-                        if (categories.includes(filter)) {
-                            product.style.display = 'block';
-                        } else {
-                            product.style.display = 'none';
-                        }
-                    }
-                });
-            });
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    originalImage.src = event.target.result;
+                    enhanceBtn.disabled = false;
+                }
+                reader.readAsDataURL(file);
+            }
         });
         
-        // Simple cart count functionality
-        document.querySelectorAll('.product-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const countElement = document.querySelector('.cart-count');
-                let count = parseInt(countElement.textContent);
-                count++;
-                countElement.textContent = count;
+        // Enhance button click
+        enhanceBtn.addEventListener('click', function() {
+            // Show loading
+            loading.style.display = 'block';
+            enhanceBtn.disabled = true;
+            
+            // Simulate AI processing (in a real app, this would call your backend API)
+            setTimeout(function() {
+                // For demo purposes, we're just copying the original image
+                // In a real implementation, you would send the image to your AI backend
+                // and receive the enhanced version
+                enhancedImage.src = originalImage.src;
                 
-                // Animation
-                countElement.style.transform = 'scale(1.5)';
-                setTimeout(() => {
-                    countElement.style.transform = 'scale(1)';
-                }, 300);
+                // Hide loading
+                loading.style.display = 'none';
                 
-                // Change button text temporarily
-                const originalText = btn.textContent;
-                btn.textContent = 'Added!';
-                btn.style.backgroundColor = '#4CAF50';
+                // Show download button
+                downloadBtn.style.display = 'block';
                 
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.backgroundColor = '';
-                }, 2000);
-            });
+                // Set download link
+                downloadBtn.href = originalImage.src;
+                downloadBtn.download = 'enhanced_' + fileInput.files[0].name;
+            }, 2000);
         });
     </script>
 </body>
