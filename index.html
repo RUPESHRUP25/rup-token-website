@@ -12,6 +12,7 @@
       background: linear-gradient(to right, #667eea, #764ba2);
       color: #fff;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
     header {
       background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
@@ -38,6 +39,21 @@
     header p {
       font-size: 1.5rem;
     }
+    nav {
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
     .container {
       padding: 60px 20px;
       max-width: 1200px;
@@ -56,7 +72,14 @@
     .btn:hover {
       background: #e05500;
     }
-    .compressor, form, .earn-grid .earn-item {
+    .btn:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
+    section {
+      margin-top: 60px;
+    }
+    .compressor, form, .earn-grid .earn-item, .legal {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
       padding: 20px;
@@ -74,7 +97,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      margin-top: 30px;
     }
     footer {
       background: #1e1e2f;
@@ -99,40 +121,53 @@
   <button class="btn fade-in" onclick="scrollToSection('formSection')">Join Now</button>
 </header>
 
-<div class="container">
-  <!-- File Compressor -->
-  <div class="compressor fade-in">
-    <h2>📦 File Compressor Tool</h2>
-    <input type="file" id="fileInput">
-    <button class="btn" onclick="compressFile()">Compress Now</button>
-    <p id="compressResult"></p>
-  </div>
+<nav>
+  <a href="#tools">Tools</a>
+  <a href="#earn">Earn</a>
+  <a href="#formSection">Join</a>
+  <a href="#legal">Legal</a>
+</nav>
 
-  <!-- Earning Features -->
-  <div class="fade-in">
-    <h2>💸 Earning Features</h2>
-    <div class="earn-grid">
-      <div class="earn-item">
-        <h3>Refer & Earn</h3>
-        <p>Invite friends and earn RUP tokens every time they join.</p>
-      </div>
-      <div class="earn-item">
-        <h3>Daily Login Bonus</h3>
-        <p>Get free tokens just for checking in every day.</p>
-      </div>
-      <div class="earn-item">
-        <h3>Compression Rewards</h3>
-        <p>Compress files and get rewarded with RUP tokens.</p>
-      </div>
-      <div class="earn-item">
-        <h3>Watch Ads</h3>
-        <p>Earn RUP tokens by watching short sponsored videos.</p>
+<div class="container">
+  <section id="tools">
+    <div class="compressor fade-in">
+      <h2>📦 File Compressor Tool</h2>
+      <input type="file" id="fileInput">
+      <button class="btn" onclick="compressFile()">Compress Now</button>
+      <p id="compressResult"></p>
+    </div>
+  </section>
+
+  <section id="earn">
+    <div class="fade-in">
+      <h2>💸 Earning Features</h2>
+      <div class="earn-grid">
+        <div class="earn-item">
+          <h3>Refer & Earn</h3>
+          <p>Invite friends and earn RUP tokens every time they join.</p>
+        </div>
+        <div class="earn-item">
+          <h3>Daily Login Bonus</h3>
+          <p>Get free tokens just for checking in every day.</p>
+        </div>
+        <div class="earn-item">
+          <h3>Compression Rewards</h3>
+          <p>Compress files and get rewarded with RUP tokens.</p>
+        </div>
+        <div class="earn-item">
+          <h3>Watch Ads</h3>
+          <video id="adVideo" width="100%" controls onended="enableClaim()">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+          </video>
+          <button class="btn" id="claimBtn" onclick="claimReward()" disabled>Claim RUP</button>
+          <p id="adResult"></p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Form Section -->
-  <div class="fade-in" id="formSection">
+  <section id="formSection">
     <h2>📬 Join the Community</h2>
     <form onsubmit="submitForm(event)">
       <input type="text" placeholder="Your Name" required />
@@ -141,7 +176,22 @@
       <button type="submit" class="btn">Submit</button>
     </form>
     <p id="formResponse"></p>
-  </div>
+  </section>
+
+  <section id="legal" class="fade-in">
+    <div class="legal">
+      <h2>📜 Terms & Conditions</h2>
+      <p>By using RUP Token platform, you agree to not misuse any of the tools and abide by the rules stated on the platform. We reserve the right to update our terms at any time.</p>
+    </div>
+    <div class="legal">
+      <h2>🔒 Privacy Policy</h2>
+      <p>We respect your privacy. All data submitted on this platform is securely stored and will never be shared with third parties without consent.</p>
+    </div>
+    <div class="legal">
+      <h2>⚠️ Disclaimer</h2>
+      <p>RUP Token is a community project. All earning methods are experimental and we do not guarantee any fixed returns or values associated with the token.</p>
+    </div>
+  </section>
 </div>
 
 <footer>
@@ -160,6 +210,19 @@
     } else {
       alert("Please select a file first!");
     }
+  }
+
+  function enableClaim() {
+    const btn = document.getElementById("claimBtn");
+    btn.disabled = false;
+  }
+
+  function claimReward() {
+    const btn = document.getElementById("claimBtn");
+    const result = document.getElementById("adResult");
+    result.textContent = "🎉 You earned 5 RUP Tokens!";
+    btn.disabled = true;
+    btn.textContent = "Claimed";
   }
 
   function scrollToSection(id) {
