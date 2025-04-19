@@ -71,17 +71,17 @@
       border-radius: 8px;
       font-weight: bold;
     }
-    footer {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      margin-top: 40px;
-    }
     .social-icons a {
       margin: 0 10px;
       color: white;
       font-size: 24px;
       text-decoration: none;
+    }
+    footer {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      margin-top: 40px;
     }
     .section {
       text-align: left;
@@ -103,12 +103,52 @@
       border: 1px dashed #ccc;
       text-align: center;
     }
+
+    /* Fake Interstitial Ad popup */
+    #adPopup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #adPopupContent {
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 90%;
+      text-align: center;
+    }
+    #closeAdBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
-  <!-- AdSense Script Placeholder -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
   <header>RUP Token | Spin & Win</header>
+
+  <!-- Fake Ad Popup -->
+  <div id="adPopup">
+    <div id="adPopupContent">
+      <h3>Sponsored Ad</h3>
+      <p>यह एक डेमो विज्ञापन है। इसे बंद करने के बाद आप स्पिन कर सकेंगे।</p>
+      <button id="closeAdBtn">विज्ञापन बंद करें</button>
+    </div>
+  </div>
 
   <!-- Ad 1 -->
   <div class="ad">
@@ -172,10 +212,15 @@
       "Rs. 200"
     ];
     let spun = false;
+    let adShown = false;
 
     document.getElementById("spinBtn").addEventListener("click", function () {
       if (spun) {
         alert("आप पहले ही स्पिन कर चुके हैं!");
+        return;
+      }
+      if (!adShown) {
+        document.getElementById("adPopup").style.display = "flex";
         return;
       }
 
@@ -191,6 +236,11 @@
           document.getElementById("formLink").style.display = "block";
         }
       }, 5200);
+    });
+
+    document.getElementById("closeAdBtn").addEventListener("click", function () {
+      adShown = true;
+      document.getElementById("adPopup").style.display = "none";
     });
   </script>
 </body>
