@@ -1,171 +1,110 @@
-<!DOCTYPE html>
-<html lang="hi">
+<!DOCTYPE html><html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RUP Token - Spin & Win</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rupesh Electronics Mobile Store - Spin & Win</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(#fff8dc, #f9e79f);
-      margin: 0;
+      background: linear-gradient(to right, #ffd700, #fff8dc);
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      color: #333;
+      padding: 20px;
     }
     h1 {
-      background: #000;
-      color: gold;
-      padding: 10px;
+      color: #b8860b;
     }
-    .wheel {
-      margin: 20px auto;
+    #wheel {
       width: 300px;
       height: 300px;
-      border: 10px solid gold;
+      margin: 20px auto;
       border-radius: 50%;
+      border: 10px solid #b8860b;
+      background-image: conic-gradient(
+        #f4e842 0deg 60deg,
+        #ffd700 60deg 120deg,
+        #ffdf00 120deg 180deg,
+        #fada5e 180deg 240deg,
+        #ffc107 240deg 300deg,
+        #e5c100 300deg 360deg
+      );
       position: relative;
-      overflow: hidden;
-      transform: rotate(0deg);
-      transition: transform 4s ease-out;
     }
-    .sector {
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      top: 50%;
-      left: 50%;
-      transform-origin: 0% 0%;
-    }
-    .arrow {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid black;
-      margin: 10px auto;
-    }
-    button {
-      background: gold;
-      color: black;
-      border: none;
-      padding: 15px 30px;
+    #spinBtn {
+      padding: 10px 25px;
       font-size: 18px;
-      margin-top: 20px;
+      background-color: #ffcc00;
+      color: #000;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 10px;
+    }
+    #spinBtn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
     }
     #result {
       margin-top: 20px;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: bold;
+      color: green;
     }
-    .social-icons img {
-      width: 30px;
-      margin: 5px;
-    }
-    .ads {
-      width: 90%;
-      max-width: 400px;
-      margin: 20px auto;
-      border: 2px dashed #ccc;
-      padding: 10px;
-      background: #fff;
+    .form-container {
+      display: none;
+      margin-top: 20px;
     }
     footer {
-      background: #000;
-      color: gold;
-      padding: 10px;
+      margin-top: 50px;
       font-size: 14px;
     }
-    details {
-      text-align: left;
-      margin: 10px auto;
-      max-width: 600px;
+    .social-icons img {
+      width: 32px;
+      margin: 5px;
     }
   </style>
 </head>
 <body>
-
-  <h1>RUP Token - Spin & Win</h1>
-
-  <div class="ads">
-    <p>Ad 1</p>
-    <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
-  </div>
-
-  <div class="ads">
-    <p>Ad 2</p>
-    <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
-  </div>
-
-  <div class="arrow"></div>
-  <div class="wheel" id="wheel"></div>
-  <button onclick="spin()">Spin it</button>
-  <div id="result"></div>
-
-  <audio id="winSound" src="https://www.soundjay.com/button/sounds/button-3.mp3"></audio>
-
-  <div class="social-icons">
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Twitter"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733614.png" alt="Instagram"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="YouTube"></a>
-  </div>
-
-  <details>
-    <summary><strong>Terms & Conditions (नियम व शर्तें)</strong></summary>
-    <p>यह गेम केवल मनोरंजन के उद्देश्य से है। स्पिन द्वारा मिलने वाले पुरस्कारों को नकद में नहीं बदला जा सकता। एक उपयोगकर्ता केवल एक बार स्पिन कर सकता है।</p>
-  </details>
-
-  <details>
-    <summary><strong>Privacy Policy (गोपनीयता नीति)</strong></summary>
-    <p>हम उपयोगकर्ताओं की जानकारी को सुरक्षित रखते हैं। कोई भी निजी जानकारी किसी तीसरे पक्ष को नहीं दी जाएगी।</p>
-  </details>
-
-  <details>
-    <summary><strong>Disclaimer (अस्वीकरण)</strong></summary>
-    <p>यह वेबसाइट केवल डेमो के लिए बनाई गई है। इसमें दिखाए गए विज्ञापन थर्ड पार्टी द्वारा प्रदान किए जाते हैं, जिनकी जिम्मेदारी हमारी नहीं है।</p>
-  </details>
-
-  <footer>
-    © 2025 RUP Token. All rights reserved.
-  </footer>
+  <h1>RUPESH ELECTRONICS MOBILE STORE</h1>  <!-- Adsterra Script 1 -->  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>  <!-- Adsterra Script 2 -->  <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>  <div id="wheel"></div>
+  <button id="spinBtn">Spin</button>
+  <div id="result"></div>  <div class="form-container" id="winnerForm">
+    <p>आप विजेता हैं! कृपया अपना विवरण भरें:</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>  <footer>
+    <p><strong>Terms & Conditions | Privacy Policy | Disclaimer</strong></p>
+    <p>यह साइट सिर्फ प्रचार उद्देश्यों के लिए है। आपकी जानकारी सुरक्षित रखी जाती है और किसी के साथ साझा नहीं की जाती। इनाम कंपनी की शर्तों के अनुसार दिया जाएगा।</p>
+    <div class="social-icons">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="YouTube"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+    </div>
+  </footer><audio id="winSound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3" preload="auto"></audio>
 
   <script>
-    const prizes = ["₹50", "₹20", "₹10", "No Win", "₹5", "₹100"];
-    const wheel = document.getElementById("wheel");
+    const spinBtn = document.getElementById("spinBtn");
     const result = document.getElementById("result");
     const winSound = document.getElementById("winSound");
+    const winnerForm = document.getElementById("winnerForm");
+    let hasSpun = false;
 
-    function drawWheel() {
-      const colors = ["red", "yellow", "orange", "lightgreen", "lightblue", "violet"];
-      for (let i = 0; i < prizes.length; i++) {
-        const sector = document.createElement("div");
-        sector.className = "sector";
-        sector.style.backgroundColor = colors[i];
-        sector.style.transform = rotate(${i * 60}deg) skewY(-30deg);
-        sector.innerHTML = <div style="transform: skewY(30deg) rotate(30deg); padding-top: 30px;">${prizes[i]}</div>;
-        wheel.appendChild(sector);
-      }
-    }
+    const prizes = [
+      "1000 Rs",
+      "500 Rs",
+      "200 Rs",
+      "Bluetooth Buds",
+      "Better Luck Next Time"
+    ];
 
-    let spinning = false;
-
-    function spin() {
-      if (spinning) return;
-      spinning = true;
-      const rand = Math.floor(Math.random() * prizes.length);
-      const angle = 360 * 3 + (rand * 60); // 60 deg per segment
-      wheel.style.transform = rotate(${angle}deg);
-      setTimeout(() => {
+    spinBtn.onclick = function() {
+      if (hasSpun) return;
+      hasSpun = true;
+      const index = Math.floor(Math.random() * prizes.length);
+      const prize = prizes[index];
+      result.textContent = आपका इनाम: ${prize};
+      if (prize !== "Better Luck Next Time") {
         winSound.play();
-        result.innerHTML = आपने जीता: <strong>${prizes[rand]}</strong>;
-        spinning = false;
-      }, 4000);
-    }
-
-    drawWheel();
-  </script>
-
-</body>
+        winnerForm.style.display = "block";
+      }
+      spinBtn.disabled = true;
+    };
+  </script></body>
 </html>
