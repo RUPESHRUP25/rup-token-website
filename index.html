@@ -71,10 +71,15 @@
     #spinBtn:hover {
       background: #ffd700;
     }
+    #spinBtn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
     .prize {
       font-size: 24px;
       margin: 20px 0;
       min-height: 40px;
+      font-weight: bold;
     }
     #winnerForm {
       display: none;
@@ -197,7 +202,9 @@
       }
       
       if (isSpinning) return;
+      
       isSpinning = true;
+      spinBtn.disabled = true;
       
       // Reset wheel position for smooth spinning
       wheel.style.transition = 'none';
@@ -218,9 +225,10 @@
       setTimeout(() => {
         isSpinning = false;
         hasSpun = true;
+        spinBtn.disabled = false;
         
-        // Calculate prize
-        const normalizedAngle = prizeAngle % 360;
+        // Calculate prize (adjusted calculation)
+        const normalizedAngle = (360 - (totalDegrees % 360)) % 360;
         const prizeIndex = Math.floor(normalizedAngle / 60);
         const prize = prizes[prizeIndex];
         
@@ -228,7 +236,7 @@
         
         try {
           winSound.currentTime = 0;
-          winSound.play();
+          winSound.play().catch(e => console.log("Audio play failed:", e));
         } catch(e) {
           console.log("Audio error:", e);
         }
