@@ -2,109 +2,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rupesh Electronics Mobile Store - Spin & Win</title>
+  <title>RUPESH ELECTRONICS MOBILE STORE - Spin & Win</title>
   <style>
     body {
-      background: linear-gradient(to right, #ffd700, #fff8dc);
+      margin: 0;
       font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ffe259, #f6d365);
       text-align: center;
-      padding: 20px;
+      color: #6a4d00;
     }
     h1 {
-      color: #b8860b;
+      margin-top: 20px;
+      font-size: 26px;
     }
     #wheel {
       width: 300px;
       height: 300px;
       margin: 20px auto;
       border-radius: 50%;
-      border: 10px solid #b8860b;
-      background-image: conic-gradient(
-        #f4e842 0deg 60deg,
-        #ffd700 60deg 120deg,
-        #ffdf00 120deg 180deg,
-        #fada5e 180deg 240deg,
-        #ffc107 240deg 300deg,
-        #e5c100 300deg 360deg
-      );
+      border: 10px solid gold;
       position: relative;
+      overflow: hidden;
+      transform: rotate(0deg);
+      transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    .segment {
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0% 0%;
+      background: gold;
+      color: #000;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #pointer {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid black;
+      margin: 10px auto;
     }
     #spinBtn {
       padding: 10px 25px;
-      font-size: 18px;
-      background-color: #ffcc00;
-      color: #000;
+      background-color: gold;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #spinBtn:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-    #result {
-      margin-top: 20px;
-      font-size: 24px;
+      border-radius: 10px;
+      font-size: 18px;
       font-weight: bold;
-      color: green;
+      color: #000;
+      cursor: pointer;
+      margin-bottom: 20px;
     }
-    .form-container {
+    #prizeImage {
+      margin-top: 15px;
+      display: none;
+    }
+    #winnerForm {
       display: none;
       margin-top: 20px;
     }
     footer {
-      margin-top: 50px;
+      margin-top: 30px;
       font-size: 14px;
+      padding: 10px;
     }
     .social-icons img {
       width: 32px;
-      margin: 5px;
+      margin: 0 10px;
     }
   </style>
 </head>
 <body>
-  <h1>RUPESH ELECTRONICS MOBILE STORE</h1>  <!-- Adsterra Script 1 -->  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>  <!-- Adsterra Script 2 -->  <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>  <div id="wheel"></div>
-  <button id="spinBtn">Spin</button>
-  <div id="result"></div>  <div class="form-container" id="winnerForm">
-    <p>आप विजेता हैं! कृपया अपना विवरण भरें:</p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-  </div>  <footer>
+  <h1>RUPESH ELECTRONICS MOBILE STORE</h1>  <div id="pointer"></div>
+  <div id="wheel"></div>
+  <button id="spinBtn">Spin</button>  <div id="prizeImage"></div>  <form id="winnerForm">
+    <h3>बधाई हो! कृपया अपना विवरण भरें:</h3>
+    <input type="text" placeholder="आपका नाम" required><br><br>
+    <input type="tel" placeholder="मोबाइल नंबर" required><br><br>
+    <button type="submit">सबमिट करें</button>
+  </form>  <footer>
     <p><strong>Terms & Conditions | Privacy Policy | Disclaimer</strong></p>
     <p>यह साइट सिर्फ प्रचार उद्देश्यों के लिए है। आपकी जानकारी सुरक्षित रखी जाती है और किसी के साथ साझा नहीं की जाती। इनाम कंपनी की शर्तों के अनुसार दिया जाएगा।</p>
     <div class="social-icons">
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="YouTube"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+      <a href="#"><img src="https://img.icons8.com/color/48/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="Instagram"></a>
+      <a href="#"><img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp"></a>
     </div>
-  </footer><audio id="winSound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3" preload="auto"></audio>
+  </footer>  <!-- Adsterra Ads -->  <script type="text/javascript" src="https://your-ad-script1.js"></script>  <script type="text/javascript" src="https://your-ad-script2.js"></script><audio id="winSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
 
   <script>
+    const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spinBtn");
-    const result = document.getElementById("result");
+    const prizeImage = document.getElementById("prizeImage");
     const winSound = document.getElementById("winSound");
     const winnerForm = document.getElementById("winnerForm");
-    let hasSpun = false;
 
-    const prizes = [
-      "1000 Rs",
-      "500 Rs",
-      "200 Rs",
-      "Bluetooth Buds",
-      "Better Luck Next Time"
-    ];
+    const prizes = ["₹5", "₹10", "₹20", "₹50", "₹100", "No Win"];
+    let spun = false;
 
-    spinBtn.onclick = function() {
-      if (hasSpun) return;
-      hasSpun = true;
-      const index = Math.floor(Math.random() * prizes.length);
-      const prize = prizes[index];
-      result.textContent = आपका इनाम: ${prize};
-      if (prize !== "Better Luck Next Time") {
+    function createWheel() {
+      prizes.forEach((prize, index) => {
+        const segment = document.createElement("div");
+        segment.classList.add("segment");
+        segment.style.transform = rotate(${index * 60}deg) skewY(-30deg);
+        segment.innerHTML = prize;
+        wheel.appendChild(segment);
+      });
+    }
+
+    createWheel();
+
+    spinBtn.onclick = () => {
+      if (spun) return alert("आप पहले ही एक बार स्पिन कर चुके हैं!");
+
+      let randomDegree = Math.floor(Math.random() * 360) + 1440;
+      wheel.style.transform = rotate(${randomDegree}deg);
+      spun = true;
+
+      const prizeIndex = Math.floor(((360 - (randomDegree % 360)) % 360) / 60);
+      const prize = prizes[prizeIndex];
+
+      setTimeout(() => {
         winSound.play();
-        winnerForm.style.display = "block";
-      }
-      spinBtn.disabled = true;
+        prizeImage.innerHTML = <h2>आपने जीता: ${prize}</h2><img src='https://img.icons8.com/fluency/96/trophy.png' alt='Prize'>;
+        prizeImage.style.display = "block";
+        if (prize !== "No Win") {
+          winnerForm.style.display = "block";
+        }
+      }, 5500);
     };
   </script></body>
 </html>
