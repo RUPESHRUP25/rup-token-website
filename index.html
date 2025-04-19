@@ -2,184 +2,149 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUP Token - Spin & Win</title>
-
-  <!-- Adsterra Ads -->
-  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
-  <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom, #fff8dc, #ffd700);
+      background: linear-gradient(to bottom, #fff4cc, #ffd700);
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       text-align: center;
     }
-
-    header {
-      background: #111;
-      color: gold;
+    h1 {
+      color: #d4af37;
+      background: #000;
       padding: 15px;
-      font-size: 24px;
+      margin: 0;
     }
-
-    #wheel {
+    .wheel {
       width: 300px;
       height: 300px;
-      margin: 20px auto;
       border-radius: 50%;
-      background: conic-gradient(gold 0deg 60deg, orange 60deg 120deg, lightgreen 120deg 180deg, skyblue 180deg 240deg, violet 240deg 300deg, red 300deg 360deg);
+      margin: 20px auto;
       border: 10px solid #d4af37;
+      background: conic-gradient(
+        red 0deg 60deg,
+        gold 60deg 120deg,
+        orange 120deg 180deg,
+        lightgreen 180deg 240deg,
+        skyblue 240deg 300deg,
+        violet 300deg 360deg
+      );
       transition: transform 5s ease-out;
     }
-
     #spinBtn {
-      padding: 12px 30px;
-      font-size: 20px;
+      padding: 10px 20px;
       background: #d4af37;
+      color: #000;
       border: none;
       border-radius: 10px;
+      font-size: 18px;
       cursor: pointer;
-      color: #000;
-      font-weight: bold;
     }
-
-    #result, #formLink, #prizeImage {
+    .prize {
       margin-top: 20px;
       font-size: 20px;
       font-weight: bold;
     }
-
-    #formLink a {
-      text-decoration: none;
-      background: green;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
+    #winnerForm {
+      display: none;
+      margin-top: 20px;
     }
-
-    .social {
-      margin-top: 30px;
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
     }
-
-    .social a {
-      font-size: 28px;
-      margin: 0 10px;
-      color: #000;
-    }
-
     footer {
-      background: #222;
-      color: white;
+      margin-top: 30px;
+      font-size: 14px;
+      background: #000;
+      color: #fff;
       padding: 20px;
-      margin-top: 40px;
     }
-
-    .legal {
-      background: #fff;
-      color: #000;
-      text-align: left;
-      padding: 20px;
-      margin: 30px auto;
-      max-width: 800px;
-      border-radius: 10px;
+    .social-icons {
+      margin: 10px;
     }
-
-    .legal h3 {
-      color: #d4af37;
+    .social-icons a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 20px;
     }
   </style>
 </head>
 <body>
 
-<header>RUP Token - Spin & Win</header>
+<h1>RUP Token - Spin & Win</h1>
 
-<div id="wheel"></div>
-<button id="spinBtn">स्पिन करें</button>
+<!-- Adsterra Ad 1 -->
+<script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
+<!-- Adsterra Ad 2 -->
+<script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
 
-<div id="result"></div>
-<div id="prizeImage"></div>
-<div id="formLink" style="display:none;">
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank">फॉर्म भरें (केवल विजेताओं के लिए)</a>
+<div class="wheel" id="wheel"></div>
+<button id="spinBtn">Spin it</button>
+
+<div class="prize" id="prizeResult"></div>
+<div id="winnerForm">
+  <h3>अपनी जानकारी भरें:</h3>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?embedded=true">Loading…</iframe>
 </div>
 
-<div class="social">
-  <a href="#"><i class="fab fa-facebook"></i></a>
-  <a href="#"><i class="fab fa-instagram"></i></a>
-  <a href="#"><i class="fab fa-whatsapp"></i></a>
-  <a href="#"><i class="fab fa-youtube"></i></a>
-</div>
+<footer>
+  <div class="social-icons">
+    <a href="#" title="Facebook">📘</a>
+    <a href="#" title="Twitter">🐦</a>
+    <a href="#" title="Instagram">📸</a>
+    <a href="#" title="YouTube">▶</a>
+  </div>
+  <p><strong>Terms & Conditions:</strong> यह सुविधा केवल एक बार के लिए है। जीतने पर आपको सही जानकारी भरनी होगी।</p>
+  <p><strong>Privacy Policy:</strong> आपकी जानकारी केवल इनाम भेजने के लिए उपयोग की जाएगी।</p>
+  <p><strong>Disclaimer:</strong> इनाम की उपलब्धता स्टॉक पर निर्भर करती है। कोई भी विवाद अंतिम होगा।</p>
+  <p>© 2025 RUP Token. All rights reserved.</p>
+</footer>
 
-<footer>&copy; 2025 RUP Token. सभी अधिकार सुरक्षित।</footer>
+<audio id="winSound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
 
-<div class="legal">
-  <h3>नियम और शर्तें</h3>
-  <ul>
-    <li>हर ग्राहक को एक ही बार स्पिन करने की अनुमति है।</li>
-    <li>स्पिन से प्राप्त पुरस्कार अंतिम माने जाएंगे।</li>
-    <li>कंपनी किसी भी समय नियम बदलने का अधिकार रखती है।</li>
-  </ul>
-
-  <h3>गोपनीयता नीति</h3>
-  <ul>
-    <li>हम आपकी जानकारी को सुरक्षित रखते हैं।</li>
-    <li>आपकी जानकारी किसी तीसरे पक्ष से साझा नहीं की जाएगी।</li>
-  </ul>
-
-  <h3>डिस्क्लेमर</h3>
-  <ul>
-    <li>यह एक प्रचारात्मक गतिविधि है, इसे जुए के रूप में न लें।</li>
-    <li>पुरस्कार सीमित स्टॉक के आधार पर दिए जाएंगे।</li>
-    <li>Adsterra विज्ञापन हमारी कमाई के लिए हैं।</li>
-  </ul>
-</div>
-
-<!-- FontAwesome for social icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-<!-- Spin Script -->
 <script>
-  const spinBtn = document.getElementById('spinBtn');
-  const wheel = document.getElementById('wheel');
-  const result = document.getElementById('result');
-  const formLink = document.getElementById('formLink');
-  const prizeImage = document.getElementById('prizeImage');
+  const wheel = document.getElementById("wheel");
+  const spinBtn = document.getElementById("spinBtn");
+  const prizeResult = document.getElementById("prizeResult");
+  const winnerForm = document.getElementById("winnerForm");
+  const winSound = document.getElementById("winSound");
 
   const prizes = [
-    { name: "1000 ₹", img: "https://via.placeholder.com/150?text=1000+Rs" },
-    { name: "500 ₹", img: "https://via.placeholder.com/150?text=500+Rs" },
-    { name: "200 ₹", img: "https://via.placeholder.com/150?text=200+Rs" },
-    { name: "Bluetooth Buds", img: "https://via.placeholder.com/150?text=Bluetooth+Buds" },
-    { name: "Better Luck Next Time", img: "https://via.placeholder.com/150?text=Try+Again" },
-    { name: "1000 ₹", img: "https://via.placeholder.com/150?text=1000+Rs" }
+    { label: "1000₹", img: "💰" },
+    { label: "500₹", img: "🪙" },
+    { label: "200₹", img: "💵" },
+    { label: "Bluetooth Buds", img: "🎧" },
+    { label: "Better Luck Next Time", img: "❌" },
+    { label: "1000₹", img: "💰" }
   ];
 
-  let spinning = false;
+  let hasSpun = false;
 
-  spinBtn.addEventListener('click', () => {
-    if (spinning) return;
-    spinning = true;
+  spinBtn.addEventListener("click", () => {
+    if (hasSpun) {
+      alert("आप पहले ही स्पिन कर चुके हैं!");
+      return;
+    }
 
-    const randIndex = Math.floor(Math.random() * prizes.length);
-    const prize = prizes[randIndex];
-    const rotateDeg = 360 * 5 + randIndex * 60;
+    hasSpun = true;
+    const deg = Math.floor(3600 + Math.random() * 360);
+    wheel.style.transform = rotate(${deg}deg);
 
-    wheel.style.transform = rotate(${rotateDeg}deg);
+    const prizeIndex = Math.floor((deg % 360) / 60);
+    const selectedPrize = prizes[prizeIndex];
 
     setTimeout(() => {
-      result.textContent = आपने जीता: ${prize.name};
-      prizeImage.innerHTML = <img src="${prize.img}" alt="${prize.name}" style="width:150px;border-radius:10px;">;
-
-      if (prize.name !== "Better Luck Next Time") {
-        formLink.style.display = "block";
+      prizeResult.innerHTML = आपने जीता: ${selectedPrize.img} <strong>${selectedPrize.label}</strong>;
+      winSound.play();
+      if (selectedPrize.label !== "Better Luck Next Time") {
+        winnerForm.style.display = "block";
       }
-
-      const audio = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
-      audio.play();
-
-    }, 5200);
+    }, 5500);
   });
 </script>
 
