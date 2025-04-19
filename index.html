@@ -4,53 +4,60 @@
   <meta charset="UTF-8">
   <title>RUP Token - Spin & Win</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- Adsterra Script 1 -->
   <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
 
-  <!-- Fonts & Icons -->
+  <!-- FontAwesome for social icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffcc00, #fff8dc);
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #ffd700, #fff8dc);
-      color: #333;
       text-align: center;
     }
     header {
-      background: #000;
-      color: #ffd700;
+      background-color: #000;
+      color: gold;
       padding: 20px;
       font-size: 24px;
-    }
-    #wheel {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      margin: 30px auto;
-      border: 10px solid #444;
-      background: conic-gradient(#f1c40f 0deg 60deg, #e67e22 60deg 120deg, #2ecc71 120deg 180deg, #3498db 180deg 240deg, #9b59b6 240deg 300deg, #e74c3c 300deg 360deg);
-      transition: transform 5s ease-out;
     }
     #pointer {
       width: 0;
       height: 0;
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
-      border-bottom: 40px solid #000;
-      margin: 0 auto;
+      border-bottom: 40px solid red;
+      margin: 20px auto;
+    }
+    #wheel {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 10px solid #333;
+      background: conic-gradient(
+        gold 0deg 60deg,
+        orange 60deg 120deg,
+        lightgreen 120deg 180deg,
+        skyblue 180deg 240deg,
+        violet 240deg 300deg,
+        red 300deg 360deg
+      );
+      margin: 20px auto;
+      transition: transform 5s ease-out;
     }
     #spin {
       padding: 12px 30px;
-      font-size: 18px;
-      background: #d4af37;
-      color: #000;
+      font-size: 20px;
+      background-color: #d4af37;
+      color: black;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      margin-top: 10px;
     }
     #result {
       margin-top: 20px;
@@ -58,8 +65,8 @@
       font-weight: bold;
     }
     #formLink {
-      margin-top: 15px;
       display: none;
+      margin-top: 20px;
     }
     #formLink a {
       background: green;
@@ -70,7 +77,7 @@
       font-weight: bold;
     }
     .social-icons {
-      margin-top: 20px;
+      margin-top: 30px;
     }
     .social-icons a {
       margin: 0 10px;
@@ -78,10 +85,10 @@
       color: #000;
     }
     footer {
-      background: #222;
-      color: #fff;
-      padding: 30px 10px;
-      margin-top: 40px;
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      margin-top: 30px;
     }
     .legal {
       background: #fff;
@@ -108,19 +115,19 @@
 <div id="result"></div>
 <div id="formLink">
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank">
-    विजेता फ़ॉर्म भरें
+    फॉर्म भरें (केवल विजेताओं के लिए)
   </a>
 </div>
 
 <div class="social-icons">
   <a href="#"><i class="fab fa-facebook-square"></i></a>
   <a href="#"><i class="fab fa-instagram-square"></i></a>
-  <a href="#"><i class="fab fa-youtube"></i></a>
   <a href="#"><i class="fab fa-whatsapp-square"></i></a>
+  <a href="#"><i class="fab fa-youtube"></i></a>
 </div>
 
 <footer>
-  <p>&copy; 2025 RUP Token. सभी अधिकार सुरक्षित।</p>
+  &copy; 2025 RUP Token | सभी अधिकार सुरक्षित
 </footer>
 
 <div class="legal">
@@ -134,12 +141,12 @@
   <h2>गोपनीयता नीति</h2>
   <ul>
     <li>हम केवल सीमित व्यक्तिगत जानकारी एकत्र करते हैं।</li>
-    <li>आपकी जानकारी किसी भी तीसरे पक्ष के साथ साझा नहीं की जाएगी।</li>
+    <li>आपकी जानकारी किसी तीसरे पक्ष के साथ साझा नहीं की जाएगी।</li>
   </ul>
 
   <h2>अस्वीकरण</h2>
   <ul>
-    <li>यह एक प्रचारात्मक कार्यक्रम है। इसे जुए के रूप में न लें।</li>
+    <li>यह एक प्रचारात्मक गतिविधि है। इसे जुए के रूप में न लें।</li>
     <li>पुरस्कार सीमित स्टॉक पर निर्भर हैं।</li>
   </ul>
 </div>
@@ -161,14 +168,16 @@
       alert("आप पहले ही स्पिन कर चुके हैं।");
       return;
     }
+
     hasSpun = true;
-    const deg = Math.floor(5000 + Math.random() * 2000);
+    const deg = 360 * 10 + Math.floor(Math.random() * 360);
     wheel.style.transform = rotate(${deg}deg);
 
     setTimeout(() => {
       const finalDeg = deg % 360;
       const section = Math.floor(finalDeg / 60);
       const prize = prizes[section];
+
       result.innerText = आपने जीता: ${prize};
       if (prize !== "Better Luck Next Time") {
         formLink.style.display = "block";
