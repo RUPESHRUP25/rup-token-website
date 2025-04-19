@@ -1,30 +1,51 @@
-<!DOCTYPE html><html lang="hi">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUPESH ELECTRONICS MOBILE STORE - Spin & Win</title>
   <style>
+    /* CSS Styles */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
       background: linear-gradient(to right, #ffe259, #f6d365);
       text-align: center;
       color: #6a4d00;
+      padding-bottom: 150px; /* Footer के लिए जगह */
     }
     h1 {
       margin-top: 20px;
       font-size: 26px;
+      color: #333;
+    }
+    #pointer {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid black; /* तीर का रंग */
+      margin: 5px auto -5px auto; /* व्हील के थोड़ा ऊपर */
+      position: relative;
+      z-index: 10; /* व्हील के ऊपर दिखे */
+    }
+    #wheelContainer {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 20px auto;
     }
     #wheel {
-      width: 300px;
-      height: 300px;
-      margin: 20px auto;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      border: 10px solid gold;
+      border: 8px solid #b8860b; /* DarkGoldenRod जैसा */
       position: relative;
       overflow: hidden;
       transform: rotate(0deg);
-      transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);
+      transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1); /* स्पिन एनीमेशन */
+      background-color: #fff8dc; /* हल्का पीला बैकग्राउंड */
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
     .segment {
       width: 50%;
@@ -33,109 +54,332 @@
       top: 50%;
       left: 50%;
       transform-origin: 0% 0%;
-      background: gold;
-      color: #000;
-      font-weight: bold;
+      /* बारी-बारी से रंग */
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    #pointer {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid black;
-      margin: 10px auto;
-    }
-    #spinBtn {
-      padding: 10px 25px;
-      background-color: gold;
-      border: none;
-      border-radius: 10px;
-      font-size: 18px;
       font-weight: bold;
-      color: #000;
+      font-size: 14px;
+      color: #4a3400; /* गहरा टेक्स्ट रंग */
+      padding-left: 15px; /* टेक्स्ट को सेंटर से थोड़ा बाहर */
+      box-sizing: border-box;
+      border-left: 1px solid #d4af37; /* सेगमेंट के बीच हल्की लाइन */
+    }
+    .segment span {
+        display: block;
+        transform: rotate(90deg - 60deg/2); /* टेक्स्ट को सीधा करें */
+        padding-left: 10px;
+    }
+
+    /* सेगमेंट के रंग (उदाहरण) */
+    .segment:nth-child(odd) { background-color: #fffacd; } /* LemonChiffon */
+    .segment:nth-child(even) { background-color: #eee8aa; } /* PaleGoldenrod */
+
+    #spinBtn {
+      padding: 12px 30px;
+      background-color: #ff4500; /* ऑरेंज रेड */
+      border: none;
+      border-radius: 25px; /* गोल बटन */
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
       cursor: pointer;
       margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    #prizeImage {
+    #spinBtn:hover {
+      background-color: #e03e00; /* गहरा ऑरेंज */
+    }
+    #spinBtn:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+
+    #prizeResult { /* पहले prizeImage था, नाम बदला */
       margin-top: 15px;
       display: none;
+      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: inline-block; /* कंटेंट के हिसाब से चौड़ाई */
     }
+     #prizeResult h2 {
+        margin: 0 0 10px 0;
+        color: #006400; /* गहरा हरा */
+     }
+     #prizeResult img {
+        vertical-align: middle;
+     }
+
     #winnerForm {
       display: none;
       margin-top: 20px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
     }
+    #winnerForm h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    #winnerForm input[type="text"],
+    #winnerForm input[type="tel"] {
+      width: calc(100% - 22px); /* पैडिंग berücksichtigen */
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #winnerForm button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #28a745; /* हरा */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #winnerForm button[type="submit"]:hover {
+        background-color: #218838; /* गहरा हरा */
+    }
+
     footer {
       margin-top: 30px;
-      font-size: 14px;
-      padding: 10px;
+      font-size: 12px; /* थोड़ा छोटा */
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.05); /* हल्का बैकग्राउंड */
+      position: fixed; /* पेज के नीचे फिक्स */
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box; /* पैडिंग शामिल करें */
+      color: #333; /* गहरा टेक्स्ट */
+    }
+    footer p {
+        margin: 5px 0;
     }
     .social-icons img {
-      width: 32px;
-      margin: 0 10px;
+      width: 28px; /* थोड़ा छोटा */
+      margin: 0 8px;
+      vertical-align: middle;
+    }
+    .ad-placeholder { /* विज्ञापन की जगह के लिए स्टाइल */
+        min-height: 50px; /* कम से कम ऊँचाई */
+        background-color: #f0f0f0;
+        border: 1px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px auto;
+        font-size: 14px;
+        color: #888;
+        max-width: 728px; /* उदाहरण बैनर आकार */
     }
   </style>
 </head>
 <body>
-  <h1>RUPESH ELECTRONICS MOBILE STORE</h1>  <div id="pointer"></div>
-  <div id="wheel"></div>
-  <button id="spinBtn">Spin</button>  <div id="prizeImage"></div>  <form id="winnerForm">
-    <h3>बधाई हो! कृपया अपना विवरण भरें:</h3>
-    <input type="text" placeholder="आपका नाम" required><br><br>
-    <input type="tel" placeholder="मोबाइल नंबर" required><br><br>
-    <button type="submit">सबमिट करें</button>
-  </form>  <footer>
+
+  <h1>RUPESH ELECTRONICS MOBILE STORE</h1>
+
+  <div id="wheelContainer">
+      <div id="pointer"></div>
+      <div id="wheel"></div>
+  </div>
+
+  <button id="spinBtn">स्पिन करें!</button>
+
+  <div id="prizeResult">
+      <!-- परिणाम यहाँ दिखाया जाएगा -->
+  </div>
+
+  <form id="winnerForm" onsubmit="handleFormSubmit(event)">
+    <h3>बधाई हो! इनाम पाने के लिए अपना विवरण भरें:</h3>
+    <input type="text" id="winnerName" placeholder="आपका नाम" required><br>
+    <input type="tel" id="winnerMobile" placeholder="मोबाइल नंबर (10 अंक)" required pattern="[0-9]{10}"><br><br>
+    <button type="submit">जानकारी सबमिट करें</button>
+  </form>
+
+  <!-- === Adsterra Ads Placeholder 1 === -->
+  <div class="ad-placeholder">
+      <!-- *** यहाँ अपना Adsterra ऐड कोड पेस्ट करें (जैसे बैनर ऐड) *** -->
+      विज्ञापन स्थान 1
+      <script type="text/javascript">
+	// atOptions = {
+	// 	'key' : 'YOUR_ADSTERRA_KEY_1', // <<< अपना असली KEY यहाँ डालें
+	// 	'format' : 'iframe',
+	// 	'height' : 90,
+	// 	'width' : 728,
+	// 	'params' : {}
+	// };
+	// यहाँ Adsterra से मिला स्क्रिप्ट टैग डालें
+    // उदाहरण: document.write('<scr' + 'ipt type="text/javascript" src="//..."></scr' + 'ipt>');
+    // ** महत्वपूर्ण: ऊपर दिए गए atOptions और इस कमेंट को हटा दें और असली कोड डालें **
+      </script>
+  </div>
+  <!-- === End Adsterra Ads Placeholder 1 === -->
+
+
+  <footer>
     <p><strong>Terms & Conditions | Privacy Policy | Disclaimer</strong></p>
-    <p>यह साइट सिर्फ प्रचार उद्देश्यों के लिए है। आपकी जानकारी सुरक्षित रखी जाती है और किसी के साथ साझा नहीं की जाती। इनाम कंपनी की शर्तों के अनुसार दिया जाएगा।</p>
+    <p>यह साइट सिर्फ प्रचार उद्देश्यों के लिए है। आपकी जानकारी सुरक्षित रखी जाती है। इनाम स्टोर की शर्तों के अनुसार दिया जाएगा।</p>
     <div class="social-icons">
-      <a href="#"><img src="https://img.icons8.com/color/48/facebook.png" alt="Facebook"></a>
-      <a href="#"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="Instagram"></a>
-      <a href="#"><img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp"></a>
+      <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook"></a>
+      <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="Instagram"></a>
+      <a href="#" aria-label="WhatsApp"><img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp"></a>
     </div>
-  </footer>  <!-- Adsterra Ads -->  <script type="text/javascript" src="https://your-ad-script1.js"></script>  <script type="text/javascript" src="https://your-ad-script2.js"></script><audio id="winSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+  </footer>
+
+  <!-- === Adsterra Ads Placeholder 2 (जैसे Popunder/Social Bar) === -->
+  <!-- *** यहाँ अपना दूसरा Adsterra ऐड कोड पेस्ट करें (यदि कोई हो) *** -->
+  <script type='text/javascript'>
+  // यहाँ Adsterra से मिला दूसरा स्क्रिप्ट टैग डालें (जैसे Popunder)
+  // उदाहरण: var adsterra_id = 'YOUR_ADSTERRA_KEY_2'; // <<< अपना असली KEY यहाँ डालें
+  // ** महत्वपूर्ण: इस कमेंट को हटा दें और असली कोड डालें **
+  </script>
+  <!-- === End Adsterra Ads Placeholder 2 === -->
+
+
+  <!-- जीतने की आवाज़ के लिए (वैकल्पिक) -->
+  <audio id="winSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_12b0c096e9.mp3?filename=short-success-sound-glockenspiel-treasure-video-game-6346.mp3" preload="auto"></audio>
+  <!-- हारने की आवाज़ के लिए (वैकल्पिक) -->
+   <audio id="loseSound" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c9c71a75a2.mp3?filename=wah-wah-sad-trumpet-6347.mp3" preload="auto"></audio>
+
 
   <script>
+    // JavaScript Code
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spinBtn");
-    const prizeImage = document.getElementById("prizeImage");
+    const prizeResult = document.getElementById("prizeResult"); // आईडी बदली गई
     const winSound = document.getElementById("winSound");
+    const loseSound = document.getElementById("loseSound"); // हारने की आवाज़
     const winnerForm = document.getElementById("winnerForm");
 
-    const prizes = ["₹5", "₹10", "₹20", "₹50", "₹100", "No Win"];
-    let spun = false;
+    // इनामों की लिस्ट और उनके चित्र (उदाहरण)
+    const prizes = [
+      { text: "₹5 Cashback", value: 5, img: "https://img.icons8.com/plasticine/100/rupee.png" },
+      { text: "Better Luck Next Time", value: 0, img: "https://img.icons8.com/officel/80/delete-sign.png" },
+      { text: "₹10 Cashback", value: 10, img: "https://img.icons8.com/plasticine/100/rupee.png" },
+      { text: "Free Screen Guard", value: "Guard", img: "https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/64/external-screen-protector-electronics-icongeek26-outline-gradient-icongeek26.png" },
+      { text: "₹20 Cashback", value: 20, img: "https://img.icons8.com/plasticine/100/rupee.png" },
+      { text: "10% Off Accessories", value: "10% Off", img: "https://img.icons8.com/fluency/96/discount.png" }
+    ];
+    const numSegments = prizes.length;
+    const segmentAngle = 360 / numSegments;
+    let currentRotation = 0; // व्हील की वर्तमान रोटेशन
+    let isSpinning = false; // क्या व्हील घूम रहा है?
 
+    // व्हील के सेग्मेंट्स बनाना
     function createWheel() {
+      wheel.innerHTML = ''; // पहले के सेगमेंट हटा दें (यदि हों)
       prizes.forEach((prize, index) => {
         const segment = document.createElement("div");
         segment.classList.add("segment");
-        segment.style.transform = rotate(${index * 60}deg) skewY(-30deg);
-        segment.innerHTML = prize;
+        // कोण को डिग्री में बदलें
+        const rotation = segmentAngle * index;
+        // skewY का कोण (90 - सेगमेंट का कोण)
+        const skewY = 90 - segmentAngle;
+        segment.style.transform = rotate(${rotation}deg) skewY(-${skewY}deg);
+
+        // टेक्स्ट को सीधा करने के लिए इनर स्पैन
+        const textSpan = document.createElement("span");
+        textSpan.textContent = prize.text;
+        // टेक्स्ट के लिए रोटेशन (सेगमेंट कोण का आधा)
+        textSpan.style.transform = skewY(${skewY}deg) rotate(${segmentAngle / 2}deg);
+        textSpan.style.marginLeft = ${15 + segmentAngle / 4}px; // मार्जिन को कोण के अनुसार थोड़ा एडजस्ट करें
+        segment.appendChild(textSpan);
+
         wheel.appendChild(segment);
       });
     }
 
-    createWheel();
+    createWheel(); // व्हील बनाएं
 
+    // स्पिन बटन का क्लिक हैंडलर
     spinBtn.onclick = () => {
-      if (spun) return alert("आप पहले ही एक बार स्पिन कर चुके हैं!");
+      if (isSpinning) return; // अगर पहले से घूम रहा है तो कुछ न करें
 
-      let randomDegree = Math.floor(Math.random() * 360) + 1440;
-      wheel.style.transform = rotate(${randomDegree}deg);
-      spun = true;
+      // जांचें कि क्या यूजर पहले ही स्पिन कर चुका है (localStorage का उपयोग करके)
+      if (localStorage.getItem('hasSpun') === 'true') {
+          alert("आप इस डिवाइस पर पहले ही स्पिन कर चुके हैं!");
+          spinBtn.disabled = true; // बटन को डिसेबल करें
+          return;
+      }
 
-      const prizeIndex = Math.floor(((360 - (randomDegree % 360)) % 360) / 60);
-      const prize = prizes[prizeIndex];
+      isSpinning = true;
+      spinBtn.disabled = true; // स्पिन करते समय बटन डिसेबल करें
+      prizeResult.style.display = "none"; // पिछला परिणाम छिपाएं
+      winnerForm.style.display = "none"; // फॉर्म छिपाएं
 
+      // 1. यादृच्छिक स्टॉप एंगल चुनें (कम से कम 4-5 बार पूरा घूमे)
+      const randomExtraRotation = Math.floor(Math.random() * 360); // 0 से 359 डिग्री
+      const totalRotation = (5 * 360) + randomExtraRotation; // 5 पूरे चक्कर + रैंडम
+
+      // 2. व्हील घुमाएं
+      currentRotation += totalRotation;
+      wheel.style.transform = rotate(${currentRotation}deg);
+
+      // 3. परिणाम की गणना करें (transition खत्म होने के बाद)
       setTimeout(() => {
-        winSound.play();
-        prizeImage.innerHTML = <h2>आपने जीता: ${prize}</h2><img src='https://img.icons8.com/fluency/96/trophy.png' alt='Prize'>;
-        prizeImage.style.display = "block";
-        if (prize !== "No Win") {
-          winnerForm.style.display = "block";
+        const actualRotation = currentRotation % 360; // अंतिम स्थिति (0-359)
+        // पॉइंटर 0 डिग्री (ऊपर) पर है, इसलिए गणना थोड़ी अलग है
+        // 360 - actualRotation से हमें पता चलता है कि व्हील कितना घूमा है 0 डिग्री से विपरीत दिशा में
+        // फिर इसे सेगमेंट एंगल से विभाजित करें
+        const winningSegmentIndex = Math.floor((360 - actualRotation + segmentAngle / 2) % 360 / segmentAngle);
+        const winningPrize = prizes[winningSegmentIndex];
+
+        // परिणाम दिखाएं
+        prizeResult.innerHTML = `
+          <h2>${winningPrize.text}!</h2>
+          <img src='${winningPrize.img}' alt='${winningPrize.text}' width="60">
+        `;
+        prizeResult.style.display = "inline-block";
+
+        // आवाज़ चलाएं
+        if (winningPrize.value !== 0) { // 'Better Luck' के अलावा कुछ जीता हो
+          if(winSound) winSound.play().catch(e => console.error("Audio play failed:", e));
+          winnerForm.style.display = "block"; // जीतने पर फॉर्म दिखाएं
+        } else {
+          if(loseSound) loseSound.play().catch(e => console.error("Audio play failed:", e));
         }
-      }, 5500);
+
+        isSpinning = false; // स्पिनिंग समाप्त
+        // localStorage में सेट करें कि यूजर स्पिन कर चुका है
+        localStorage.setItem('hasSpun', 'true');
+
+        // चाहें तो कुछ समय बाद बटन फिर से इनेबल कर सकते हैं, या पेज रीलोड पर ही इनेबल रखें
+        // spinBtn.disabled = false;
+
+      }, 5100); // CSS ट्रांज़िशन (5s) + थोड़ा अतिरिक्त समय (100ms)
     };
-  </script></body>
+
+    // पेज लोड पर जांचें कि क्या यूजर पहले स्पिन कर चुका है
+    window.onload = () => {
+        if (localStorage.getItem('hasSpun') === 'true') {
+            spinBtn.disabled = true;
+            spinBtn.textContent = "Already Spun"; // बटन टेक्स्ट बदलें
+        }
+    };
+
+    // फॉर्म सबमिट हैंडलर (उदाहरण - सिर्फ कंसोल में लॉग करेगा)
+    function handleFormSubmit(event) {
+        event.preventDefault(); // पेज को रीलोड होने से रोकें
+        const name = document.getElementById('winnerName').value;
+        const mobile = document.getElementById('winnerMobile').value;
+        console.log("Winner Details Submitted:");
+        console.log("Name:", name);
+        console.log("Mobile:", mobile);
+        alert(धन्यवाद, ${name}! आपकी जानकारी मिल गई है। स्टोर पर संपर्क करें।);
+        // यहाँ आप डेटा को सर्वर पर भेजने के लिए AJAX कॉल आदि कर सकते हैं
+        winnerForm.style.display = 'none'; // सबमिट के बाद फॉर्म छिपा दें
+    }
+
+  </script>
+
+</body>
 </html>
