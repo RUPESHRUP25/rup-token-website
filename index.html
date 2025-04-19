@@ -27,10 +27,15 @@
       border-bottom: 40px solid #000;
       margin: 0 auto;
     }
-    #wheel {
+    #wheelContainer {
+      position: relative;
       width: 300px;
       height: 300px;
       margin: 30px auto;
+    }
+    #wheel {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       border: 8px solid #000;
       background: conic-gradient(
@@ -144,7 +149,9 @@
   <div class="ad">Ad Slot 1 - Google AdSense</div>
 
   <div id="pointer"></div>
-  <div id="wheel"></div>
+  <div id="wheelContainer">
+    <div id="wheel"></div>
+  </div>
   <button id="spinBtn">Spin</button>
   <div id="result"></div>
 
@@ -193,18 +200,26 @@
     let spun = false;
     let adClosed = false;
 
+    closeAd.addEventListener("click", () => {
+      adPopup.style.display = "none";
+      adClosed = true;
+    });
+
     spinBtn.addEventListener("click", () => {
       if (spun) {
         alert("आप पहले ही स्पिन कर चुके हैं!");
         return;
       }
+
       if (!adClosed) {
         adPopup.style.display = "flex";
         return;
       }
 
       const deg = Math.floor(5000 + Math.random() * 2000);
+      wheel.style.transition = "transform 5s ease-out";
       wheel.style.transform = rotate(${deg}deg);
+
       spun = true;
 
       setTimeout(() => {
@@ -215,11 +230,6 @@
           formLink.style.display = "block";
         }
       }, 5200);
-    });
-
-    closeAd.addEventListener("click", () => {
-      adPopup.style.display = "none";
-      adClosed = true;
     });
   </script>
 
