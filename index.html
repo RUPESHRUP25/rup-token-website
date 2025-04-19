@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Spin & Win | RUP Token</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -76,14 +77,11 @@
       padding: 20px;
       margin-top: 40px;
     }
-    .social-icons {
-      margin: 10px;
-    }
     .social-icons a {
       margin: 0 10px;
       color: white;
+      font-size: 24px;
       text-decoration: none;
-      font-weight: bold;
     }
     .section {
       text-align: left;
@@ -114,7 +112,6 @@
 
   <!-- Ad 1 -->
   <div class="ad">
-    <!-- Replace with your AdSense ad code -->
     <p>Ad Slot 1 - Google AdSense</p>
   </div>
 
@@ -124,41 +121,44 @@
   <div id="result"></div>
 
   <div id="formLink">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank" class="form-button">Submit Your Details</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank" class="form-button">अपना विवरण दर्ज करें</a>
   </div>
 
   <!-- Ad 2 -->
   <div class="ad">
-    <!-- Replace with your AdSense ad code -->
     <p>Ad Slot 2 - Google AdSense</p>
   </div>
 
   <footer>
     <div class="social-icons">
-      <a href="https://facebook.com/" target="_blank">Facebook</a>
-      <a href="https://instagram.com/" target="_blank">Instagram</a>
-      <a href="https://youtube.com/" target="_blank">YouTube</a>
-      <a href="https://wa.me/1234567890" target="_blank">WhatsApp</a>
+      <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
-    <p>&copy; 2025 RUP Token | All rights reserved.</p>
+    <p>&copy; 2025 RUP Token | सर्वाधिकार सुरक्षित</p>
   </footer>
 
   <div class="section">
-    <h2>Terms & Conditions</h2>
+    <h2>नियम और शर्तें (Terms & Conditions)</h2>
     <ul>
-      <li>One spin per user per day.</li>
-      <li>Prizes are subject to availability.</li>
-      <li>Correct details required for claiming prize.</li>
+      <li>प्रत्येक उपयोगकर्ता को प्रतिदिन केवल एक बार स्पिन करने की अनुमति है।</li>
+      <li>इनाम की उपलब्धता कंपनी की नीति पर निर्भर है।</li>
+      <li>इनाम प्राप्त करने के लिए सही विवरण भरना आवश्यक है।</li>
     </ul>
-    <h2>Privacy Policy</h2>
+
+    <h2>गोपनीयता नीति (Privacy Policy)</h2>
     <ul>
-      <li>Your data is collected only to deliver prizes.</li>
-      <li>No third-party sharing of your data.</li>
+      <li>हम उपयोगकर्ताओं की जानकारी केवल इनाम भेजने के उद्देश्य से संग्रह करते हैं।</li>
+      <li>आपकी जानकारी किसी भी तृतीय पक्ष के साथ साझा नहीं की जाएगी।</li>
+      <li>सभी डेटा सुरक्षित सर्वर पर संग्रहित किया जाता है।</li>
     </ul>
-    <h2>Disclaimer</h2>
+
+    <h2>अस्वीकरण (Disclaimer)</h2>
     <ul>
-      <li>This is a promotional activity, not a lottery.</li>
-      <li>We are not liable for technical issues or delays.</li>
+      <li>यह एक प्रचारात्मक गतिविधि है, इसे लॉटरी या जुए की श्रेणी में न समझा जाए।</li>
+      <li>कंपनी किसी भी तकनीकी खराबी या देरी के लिए उत्तरदायी नहीं होगी।</li>
+      <li>कंपनी इनाम में बदलाव करने या बंद करने का अधिकार सुरक्षित रखती है।</li>
     </ul>
   </div>
 
@@ -175,18 +175,18 @@
 
     document.getElementById("spinBtn").addEventListener("click", function () {
       if (spun) {
-        alert("You have already spun the wheel!");
+        alert("आप पहले ही स्पिन कर चुके हैं!");
         return;
       }
 
       const degree = Math.floor(5000 + Math.random() * 2000);
-      document.getElementById("wheel").style.transform = `rotate(${degree}deg)`;
+      document.getElementById("wheel").style.transform = rotate(${degree}deg);
       spun = true;
 
       setTimeout(() => {
         const segment = Math.floor((degree % 360) / 60);
         const prize = prizes[segment];
-        document.getElementById("result").innerText = "You won: " + prize;
+        document.getElementById("result").innerText = "आपने जीता: " + prize;
         if (prize !== "Better luck next time") {
           document.getElementById("formLink").style.display = "block";
         }
