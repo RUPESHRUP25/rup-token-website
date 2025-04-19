@@ -6,15 +6,16 @@
   <title>Spin & Win | RUP Token</title>
   <style>
     body {
-      font-family: sans-serif;
-      margin: 0;
+      font-family: Arial, sans-serif;
       background: #fff8d3;
       color: #333;
+      margin: 0;
+      padding: 0;
       text-align: center;
     }
     header {
       background: #222;
-      color: #fff;
+      color: white;
       padding: 20px;
       font-size: 24px;
     }
@@ -22,11 +23,11 @@
       width: 300px;
       height: 300px;
       border-radius: 50%;
-      border: 8px solid #333;
+      border: 8px solid #000;
       margin: 30px auto;
       background: conic-gradient(
         gold 0deg 60deg,
-        #4cd137 60deg 120deg,
+        #2ecc71 60deg 120deg,
         #f39c12 120deg 180deg,
         #9b59b6 180deg 240deg,
         #e74c3c 240deg 300deg,
@@ -39,17 +40,18 @@
       height: 0;
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
-      border-bottom: 40px solid black;
+      border-bottom: 40px solid #000;
       margin: 0 auto;
     }
     #spinBtn {
-      padding: 12px 25px;
+      margin-top: 20px;
+      padding: 10px 20px;
       font-size: 18px;
-      background-color: #f39c12;
-      border: none;
+      background: orange;
       color: white;
-      cursor: pointer;
+      border: none;
       border-radius: 8px;
+      cursor: pointer;
     }
     #result {
       margin-top: 20px;
@@ -61,42 +63,34 @@
       margin-top: 20px;
     }
     .form-button {
-      padding: 10px 20px;
       background: green;
       color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      padding: 10px 20px;
       text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
     }
     footer {
       background: #111;
-      color: white;
+      color: #fff;
       padding: 20px;
       margin-top: 40px;
     }
     .section {
+      text-align: left;
       max-width: 900px;
       margin: 40px auto;
-      text-align: left;
       padding: 20px;
-      background: #fff8e0;
-      border-radius: 8px;
+      background: #fff;
+      border-radius: 10px;
     }
     .section h2 {
-      color: #c49b08;
-    }
-    .social-icons a {
-      margin: 0 10px;
-      color: white;
-      text-decoration: none;
+      color: #d4af37;
     }
   </style>
 </head>
 <body>
-  <header>
-    RUP Token | Spin & Win
-  </header>
+  <header>RUP Token | Spin & Win</header>
 
   <div id="pointer"></div>
   <div id="wheel"></div>
@@ -104,67 +98,65 @@
   <div id="result"></div>
 
   <div id="formLink">
-    <a class="form-button" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform">Submit Your Details</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank" class="form-button">Submit Your Details</a>
   </div>
 
   <footer>
-    <div class="social-icons">
-      <a href="#">Facebook</a>
-      <a href="#">Instagram</a>
-      <a href="#">YouTube</a>
-      <a href="#">WhatsApp</a>
+    Follow Us:
+    <div>
+      <a href="#" style="color:white;">Facebook</a> |
+      <a href="#" style="color:white;">Instagram</a> |
+      <a href="#" style="color:white;">YouTube</a> |
+      <a href="#" style="color:white;">WhatsApp</a>
     </div>
-    <p>Read Legal Info Below</p>
   </footer>
 
   <div class="section">
     <h2>Terms & Conditions</h2>
     <ul>
-      <li>One spin per device per day.</li>
-      <li>Prizes subject to availability.</li>
-      <li>Details must be correct for claiming prize.</li>
-      <li>Misuse will lead to disqualification.</li>
+      <li>One spin per user per day.</li>
+      <li>Prizes are subject to availability.</li>
+      <li>Correct details required for claiming prize.</li>
     </ul>
-  </div>
-
-  <div class="section">
     <h2>Privacy Policy</h2>
     <ul>
-      <li>We collect name and number only for prize delivery.</li>
-      <li>Data is not shared with anyone.</li>
-      <li>Stored securely via Google Forms.</li>
+      <li>Your data is collected only to deliver prizes.</li>
+      <li>No third-party sharing of your data.</li>
     </ul>
-  </div>
-
-  <div class="section">
     <h2>Disclaimer</h2>
     <ul>
-      <li>This is a promotional activity only.</li>
-      <li>Not a lottery or gambling system.</li>
-      <li>Prizes may be changed as needed.</li>
+      <li>This is a promotional activity, not a lottery.</li>
+      <li>We are not liable for technical issues or delays.</li>
     </ul>
   </div>
 
   <script>
-    const prizes = [\"Rs. 1000\", \"Rs. 500\", \"Rs. 200\", \"Bluetooth Buds\", \"Better luck next time\", \"Rs. 200\"];
+    const prizes = [
+      "Rs. 1000",
+      "Rs. 500",
+      "Rs. 200",
+      "Bluetooth Buds",
+      "Better luck next time",
+      "Rs. 200"
+    ];
     let spun = false;
 
-    document.getElementById(\"spinBtn\").addEventListener(\"click\", function () {
+    document.getElementById("spinBtn").addEventListener("click", function () {
       if (spun) {
-        alert(\"You already spun the wheel!\");
+        alert("You have already spun the wheel!");
         return;
       }
-      const wheel = document.getElementById(\"wheel\");
-      const degree = Math.floor(5000 + Math.random() * 1000);
-      wheel.style.transform = rotate(${degree}deg);
+
+      const degree = Math.floor(5000 + Math.random() * 2000);
+      document.getElementById("wheel").style.transform = `rotate(${degree}deg)`;
       spun = true;
 
       setTimeout(() => {
         const segment = Math.floor((degree % 360) / 60);
         const prize = prizes[segment];
-        document.getElementById(\"result\").textContent = \"You won: \" + prize;
-        if (prize !== \"Better luck next time\") {
-          document.getElementById(\"formLink\").style.display = \"block\";
+        document.getElementById("result").innerText = "You won: " + prize;
+        if (prize !== "Better luck next time") {
+          document.getElementById("formLink").style.display = "block";
         }
       }, 5200);
     });
