@@ -1,207 +1,194 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <title>RUP Token - Spin & Win</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin & Win - RUP Token</title>
 
-  <!-- Adsterra Script 1 -->
-  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
+    <!-- Adsterra Script 1 -->
+    <script type="text/javascript" src="//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js"></script>
+    <script type="text/javascript" src="//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js"></script>
 
-  <!-- FontAwesome for social icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #ffcc00, #fff8dc);
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background-color: #000;
-      color: gold;
-      padding: 20px;
-      font-size: 24px;
-    }
-    #pointer {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 40px solid red;
-      margin: 20px auto;
-    }
-    #wheel {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      border: 10px solid #333;
-      background: conic-gradient(
-        gold 0deg 60deg,
-        orange 60deg 120deg,
-        lightgreen 120deg 180deg,
-        skyblue 180deg 240deg,
-        violet 240deg 300deg,
-        red 300deg 360deg
-      );
-      margin: 20px auto;
-      transition: transform 5s ease-out;
-    }
-    #spin {
-      padding: 12px 30px;
-      font-size: 20px;
-      background-color: #d4af37;
-      color: black;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    #result {
-      margin-top: 20px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-    #prizeImage {
-      margin-top: 20px;
-    }
-    #formLink {
-      display: none;
-      margin-top: 20px;
-    }
-    #formLink a {
-      background: green;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .social-icons {
-      margin-top: 30px;
-    }
-    .social-icons a {
-      margin: 0 10px;
-      font-size: 28px;
-      color: #000;
-    }
-    footer {
-      background-color: #111;
-      color: white;
-      padding: 20px;
-      margin-top: 30px;
-    }
-    .legal {
-      background: #fff;
-      color: #000;
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: left;
-    }
-    .legal h2 {
-      color: #d4af37;
-    }
-  </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #111;
+            color: gold;
+            padding: 20px;
+            font-size: 24px;
+        }
+        #wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: conic-gradient(
+                gold 0deg 60deg,
+                orange 60deg 120deg,
+                lightgreen 120deg 180deg,
+                skyblue 180deg 240deg,
+                violet 240deg 300deg,
+                red 300deg 360deg
+            );
+            margin: 20px auto;
+            transition: transform 5s ease-out;
+        }
+        #spin {
+            padding: 12px 30px;
+            font-size: 20px;
+            background-color: #d4af37;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        #prizeImage {
+            margin-top: 20px;
+        }
+        #formLink {
+            display: none;
+            margin-top: 20px;
+        }
+        #formLink a {
+            background: green;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .social-icons {
+            margin-top: 30px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 28px;
+            color: #000;
+        }
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .legal {
+            background: #fff;
+            color: #000;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .legal h2 {
+            color: #d4af37;
+        }
+    </style>
 </head>
 <body>
 
 <header>RUP Token - Spin & Win</header>
 
-<div id="pointer"></div>
 <div id="wheel"></div>
 <button id="spin">स्पिन करें</button>
 
 <div id="result"></div>
 <div id="prizeImage"></div>
 <div id="formLink">
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank">
-    फॉर्म भरें (केवल विजेताओं के लिए)
-  </a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank">
+        फॉर्म भरें (केवल विजेताओं के लिए)
+    </a>
 </div>
 
 <div class="social-icons">
-  <a href="#"><i class="fab fa-facebook-square"></i></a>
-  <a href="#"><i class="fab fa-instagram-square"></i></a>
-  <a href="#"><i class="fab fa-whatsapp-square"></i></a>
-  <a href="#"><i class="fab fa-youtube"></i></a>
+    <a href="#"><i class="fab fa-facebook-square"></i></a>
+    <a href="#"><i class="fab fa-instagram-square"></i></a>
+    <a href="#"><i class="fab fa-whatsapp-square"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
 </div>
 
 <footer>
-  &copy; 2025 RUP Token | सभी अधिकार सुरक्षित
+    &copy; 2025 RUP Token | सभी अधिकार सुरक्षित
 </footer>
 
 <div class="legal">
-  <h2>नियम और शर्तें</h2>
-  <ul>
-    <li>प्रत्येक उपयोगकर्ता केवल एक बार स्पिन कर सकता है।</li>
-    <li>स्पिन से प्राप्त पुरस्कार अंतिम माने जाएंगे।</li>
-    <li>कंपनी अपनी इच्छा अनुसार नियमों में बदलाव कर सकती है।</li>
-  </ul>
+    <h2>नियम और शर्तें</h2>
+    <ul>
+        <li>प्रत्येक उपयोगकर्ता केवल एक बार स्पिन कर सकता है।</li>
+        <li>स्पिन से प्राप्त पुरस्कार अंतिम माने जाएंगे।</li>
+        <li>कंपनी अपनी इच्छा अनुसार नियमों में बदलाव कर सकती है।</li>
+    </ul>
 
-  <h2>गोपनीयता नीति</h2>
-  <ul>
-    <li>हम केवल सीमित व्यक्तिगत जानकारी एकत्र करते हैं।</li>
-    <li>आपकी जानकारी किसी तीसरे पक्ष के साथ साझा नहीं की जाएगी।</li>
-  </ul>
+    <h2>गोपनीयता नीति</h2>
+    <ul>
+        <li>हम केवल सीमित व्यक्तिगत जानकारी एकत्र करते हैं।</li>
+        <li>आपकी जानकारी किसी तीसरे पक्ष के साथ साझा नहीं की जाएगी।</li>
+    </ul>
 
-  <h2>अस्वीकरण</h2>
-  <ul>
-    <li>यह एक प्रचारात्मक गतिविधि है। इसे जुए के रूप में न लें।</li>
-    <li>पुरस्कार सीमित स्टॉक पर निर्भर हैं।</li>
-  </ul>
+    <h2>अस्वीकरण</h2>
+    <ul>
+        <li>यह एक प्रचारात्मक गतिविधि है। इसे जुए के रूप में न लें।</li>
+        <li>पुरस्कार सीमित स्टॉक पर निर्भर हैं।</li>
+    </ul>
 </div>
 
-<!-- Adsterra Script 2 -->
-<script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
-
 <script>
-  const wheel = document.getElementById("wheel");
-  const spinBtn = document.getElementById("spin");
-  const result = document.getElementById("result");
-  const prizeImage = document.getElementById("prizeImage");
-  const formLink = document.getElementById("formLink");
+    const wheel = document.getElementById("wheel");
+    const spinBtn = document.getElementById("spin");
+    const result = document.getElementById("result");
+    const prizeImage = document.getElementById("prizeImage");
+    const formLink = document.getElementById("formLink");
 
-  const prizes = [
-    { name: "1000 रु", image: "https://example.com/prize1000.jpg" },
-    { name: "500 रु", image: "https://example.com/prize500.jpg" },
-    { name: "200 रु", image: "https://example.com/prize200.jpg" },
-    { name: "Bluetooth Buds", image: "https://example.com/bluetoothbuds.jpg" },
-    { name: "Better Luck Next Time", image: "https://example.com/betterluck.jpg" }
-  ];
+    const prizes = [
+        { name: "1000 रु", image: "https://example.com/prize1000.jpg" },
+        { name: "500 रु", image: "https://example.com/prize500.jpg" },
+        { name: "200 रु", image: "https://example.com/prize200.jpg" },
+        { name: "Bluetooth Buds", image: "https://example.com/bluetoothbuds.jpg" },
+        { name: "Better Luck Next Time", image: "https://example.com/betterluck.jpg" }
+    ];
 
-  let hasSpun = false;
+    let hasSpun = false;
 
-  spinBtn.addEventListener("click", () => {
-    if (hasSpun) {
-      alert("आप पहले ही स्पिन कर चुके हैं।");
-      return;
-    }
+    spinBtn.addEventListener("click", () => {
+        if (hasSpun) {
+            alert("आप पहले ही स्पिन कर चुके हैं।");
+            return;
+        }
 
-    hasSpun = true;
-    const deg = 360 * 10 + Math.floor(Math.random() * 360);
-    wheel.style.transform = rotate(${deg}deg);
+        hasSpun = true;
+        const deg = 360 * 10 + Math.floor(Math.random() * 360);
+        wheel.style.transform = rotate(${deg}deg);
 
-    setTimeout(() => {
-      const finalDeg = deg % 360;
-      const section = Math.floor(finalDeg / 60);
-      const prize = prizes[section];
+        setTimeout(() => {
+            const finalDeg = deg % 360;
+            const section = Math.floor(finalDeg / 60);
+            const prize = prizes[section];
 
-      result.innerText = आपने जीता: ${prize.name};
-      prizeImage.innerHTML = <img src="${prize.image}" alt="${prize.name}" style="width: 200px; height: auto; border-radius: 10px;">;
-      
-      if (prize.name !== "Better Luck Next Time") {
-        formLink.style.display = "block";
-      }
+            result.innerText = आपने जीता: ${prize.name};
+            prizeImage.innerHTML = <img src="${prize.image}" alt="${prize.name}" style="width: 200px; height: auto; border-radius: 10px;">;
+            
+            if (prize.name !== "Better Luck Next Time") {
+                formLink.style.display = "block";
+            }
 
-      // Play sound when prize is won
-      const audio = new Audio('https://example.com/success-sound.mp3'); // Replace with your own sound URL
-      audio.play();
-    }, 5200);
-  });
+            // Play sound when prize is won
+            const audio = new Audio('https://example.com/success-sound.mp3'); // Replace with your own sound URL
+            audio.play();
+        }, 5200);
+    });
 </script>
 
 </body>
