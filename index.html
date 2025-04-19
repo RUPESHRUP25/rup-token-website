@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RUP Token - Spin & Win</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #ffd700, #fff8dc);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffd700, #fff);
       margin: 0;
       padding: 0;
       text-align: center;
@@ -18,6 +18,9 @@
       color: #ffd700;
       padding: 15px;
       font-size: 24px;
+    }
+    #gameContainer {
+      display: none;
     }
     #wheel {
       width: 300px;
@@ -127,25 +130,26 @@
   <div id="adPopup">
     <div id="adBox">
       <div class="ad">
-        <!-- Adsterra Ad (Popup) -->
+        <!-- Adsterra Ad -->
         <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
       </div>
       <button id="closeAd">विज्ञापन बंद करें</button>
     </div>
   </div>
 
-  <!-- Pointer and wheel -->
-  <div id="pointer"></div>
-  <div id="wheel"></div>
-  <button id="spin">Spin</button>
-
-  <div id="result"></div>
-  <div id="formLink" style="display:none;">
-    <a class="form-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank">विजेता फ़ॉर्म भरें</a>
+  <!-- Game Area -->
+  <div id="gameContainer">
+    <div id="pointer"></div>
+    <div id="wheel"></div>
+    <button id="spin">Spin</button>
+    <div id="result"></div>
+    <div id="formLink" style="display:none;">
+      <a class="form-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank">विजेता फ़ॉर्म भरें</a>
+    </div>
   </div>
 
-  <!-- Middle Adsterra Ad -->
   <div class="ad">
+    <!-- Middle Ad -->
     <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
   </div>
 
@@ -191,30 +195,24 @@
     const formLink = document.getElementById("formLink");
     const adPopup = document.getElementById("adPopup");
     const closeAd = document.getElementById("closeAd");
+    const gameContainer = document.getElementById("gameContainer");
 
     const prizes = ["1000 रु", "500 रु", "200 रु", "Bluetooth Buds", "Better Luck Next Time", "200 रु"];
     let isSpun = false;
-    let adClosed = false;
 
     closeAd.addEventListener("click", () => {
       adPopup.style.display = "none";
-      adClosed = true;
+      gameContainer.style.display = "block";
     });
 
     spinBtn.addEventListener("click", () => {
-      if (!adClosed) {
-        alert("कृपया पहले विज्ञापन बंद करें।");
-        return;
-      }
       if (isSpun) {
         alert("आप पहले ही स्पिन कर चुके हैं!");
         return;
       }
       isSpun = true;
-
       let deg = Math.floor(5000 + Math.random() * 2000);
       wheel.style.transform = rotate(${deg}deg);
-
       setTimeout(() => {
         let actualDeg = deg % 360;
         let section = Math.floor(actualDeg / 60);
