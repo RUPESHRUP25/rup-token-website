@@ -22,6 +22,18 @@
     .container {
       padding: 20px;
     }
+    .ad-container {
+      margin: 15px auto;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+      max-width: 728px;
+      min-height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #d4af37;
+    }
     .wheel-container {
       position: relative;
       width: 320px;
@@ -132,11 +144,10 @@
   <h1>RUP Token - Spin & Win</h1>
 
   <div class="container">
-    <!-- Adsterra Ads (uncomment when ready) -->
-    <!--
-    <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
-    <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
-    -->
+    <!-- Top Ad Container -->
+    <div class="ad-container" id="topAd">
+      <p>Advertisement loading...</p>
+    </div>
 
     <div class="wheel-container">
       <div class="pointer"></div>
@@ -155,9 +166,19 @@
 
     <div class="prize" id="prizeResult"></div>
 
+    <!-- Middle Ad Container -->
+    <div class="ad-container" id="middleAd">
+      <p>Advertisement loading...</p>
+    </div>
+
     <div id="winnerForm">
       <h3>अपनी जानकारी भरें:</h3>
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?embedded=true">लोड हो रहा है...</iframe>
+    </div>
+
+    <!-- Bottom Ad Container -->
+    <div class="ad-container" id="bottomAd">
+      <p>Advertisement loading...</p>
     </div>
   </div>
 
@@ -177,6 +198,41 @@
   <audio id="winSound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
 
   <script>
+    // Adsterra Ads Loading Function
+    function loadAds() {
+      try {
+        // Top Banner Ad
+        const topAdScript = document.createElement('script');
+        topAdScript.src = '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js';
+        topAdScript.async = true;
+        document.getElementById('topAd').appendChild(topAdScript);
+        
+        // Middle Banner Ad
+        const middleAdScript = document.createElement('script');
+        middleAdScript.src = '//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js';
+        middleAdScript.async = true;
+        document.getElementById('middleAd').appendChild(middleAdScript);
+        
+        // Fallback if ads don't load
+        setTimeout(() => {
+          if(document.getElementById('topAd').innerHTML.includes('loading')) {
+            document.getElementById('topAd').innerHTML = '<a href="https://www.adsterra.com" target="_blank">Advertisement</a>';
+          }
+          if(document.getElementById('middleAd').innerHTML.includes('loading')) {
+            document.getElementById('middleAd').innerHTML = '<a href="https://www.adsterra.com" target="_blank">Advertisement</a>';
+          }
+        }, 3000);
+      } catch (e) {
+        console.error("Ad loading error:", e);
+      }
+    }
+
+    // Wait for DOM to load before loading ads
+    document.addEventListener('DOMContentLoaded', function() {
+      loadAds();
+    });
+
+    // Wheel Functionality
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spinBtn");
     const prizeResult = document.getElementById("prizeResult");
