@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>RUP Token - Spin & Win</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     body {
       background: linear-gradient(to bottom, #fff4cc, #ffd700);
@@ -26,42 +25,41 @@
       padding: 20px;
       flex: 1;
     }
+    .ad-container {
+      margin: 15px auto;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+      max-width: 728px;
+      min-height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #d4af37;
+      overflow: hidden;
+    }
     .wheel-container {
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 320px;
+      height: 320px;
       margin: 20px auto;
     }
     .wheel {
-      width: 380px;
-      height: 380px;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
       border: 10px solid #d4af37;
       position: relative;
       margin: 0 auto;
       background: conic-gradient(
-        #FF0000 0deg 18deg,
-        #FF4500 18deg 36deg,
-        #FFA500 36deg 54deg,
-        #FFD700 54deg 72deg,
-        #FFFF00 72deg 90deg,
-        #9ACD32 90deg 108deg,
-        #32CD32 108deg 126deg,
-        #00FA9A 126deg 144deg,
-        #20B2AA 144deg 162deg,
-        #4682B4 162deg 180deg,
-        #1E90FF 180deg 198deg,
-        #4169E1 198deg 216deg,
-        #8A2BE2 216deg 234deg,
-        #9932CC 234deg 252deg,
-        #DA70D6 252deg 270deg,
-        #FF69B4 270deg 288deg,
-        #FF1493 288deg 306deg,
-        #C71585 306deg 324deg,
-        #800000 324deg 342deg,
-        #8B4513 342deg 360deg
+        red 0deg 60deg,
+        gold 60deg 120deg,
+        orange 120deg 180deg,
+        lightgreen 180deg 240deg,
+        skyblue 240deg 300deg,
+        violet 300deg 360deg
       );
-      transition: transform 8s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
       transform: rotate(0deg);
     }
     .pointer {
@@ -107,18 +105,81 @@
       border-radius: 8px;
       display: inline-block;
     }
-    .wheel-label {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      font-weight: bold;
-      color: white;
-      text-shadow: 1px 1px 2px #000;
-      transform-origin: center;
-    }
-    .g-recaptcha {
+    #winnerForm {
+      display: none;
+      max-width: 800px;
       margin: 20px auto;
-      display: inline-block;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      font-size: 14px;
+    }
+    .social-icons {
+      margin: 10px;
+    }
+    .social-icons a {
+      font-size: 24px;
+      margin: 0 10px;
+      text-decoration: none;
+      color: #ffd700;
+      transition: all 0.3s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+    .wheel-section {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      transform-origin: bottom right;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wheel-label {
+      transform: rotate(30deg);
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+      font-size: 16px;
+    }
+    .ad-label {
+      font-size: 12px;
+      color: #888;
+      margin-top: 5px;
+    }
+    .sound-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 100;
+    }
+    #resetBtn {
+      padding: 8px 20px;
+      background: #ff5555;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 10px;
+      display: none;
     }
   </style>
 </head>
@@ -126,50 +187,180 @@
   <h1>RUP Token - Spin & Win</h1>
 
   <div class="container">
+    <!-- Top Ad Container -->
+    <div class="ad-container" id="topAd">
+      <div>
+        <p>Advertisement</p>
+        <p class="ad-label">Loading ads...</p>
+      </div>
+    </div>
+
     <div class="wheel-container">
       <div class="pointer"></div>
       <div class="wheel" id="wheel">
-        <!-- Wheel labels will be added via JavaScript -->
+        <!-- Wheel labels -->
+        <div class="wheel-section" style="transform: rotate(0deg);"><span class="wheel-label">1000₹</span></div>
+        <div class="wheel-section" style="transform: rotate(60deg);"><span class="wheel-label">500₹</span></div>
+        <div class="wheel-section" style="transform: rotate(120deg);"><span class="wheel-label">200₹</span></div>
+        <div class="wheel-section" style="transform: rotate(180deg);"><span class="wheel-label">Buds</span></div>
+        <div class="wheel-section" style="transform: rotate(240deg);"><span class="wheel-label">No Win</span></div>
+        <div class="wheel-section" style="transform: rotate(300deg);"><span class="wheel-label">1000₹</span></div>
       </div>
     </div>
     
-    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-    
     <div>
       <button id="spinBtn">स्पिन करें</button>
+      <button id="resetBtn">रीसेट करें</button>
     </div>
 
     <div class="prize" id="prizeResult"></div>
+
+    <!-- Middle Ad Container -->
+    <div class="ad-container" id="middleAd">
+      <div>
+        <p>Advertisement</p>
+        <p class="ad-label">Loading ads...</p>
+      </div>
+    </div>
+
+    <div id="winnerForm">
+      <h3>अपनी जानकारी भरें:</h3>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?embedded=true">लोड हो रहा है...</iframe>
+    </div>
+
+    <!-- Bottom Ad Container -->
+    <div class="ad-container" id="bottomAd">
+      <div>
+        <p>Advertisement</p>
+        <p class="ad-label">Loading ads...</p>
+      </div>
+    </div>
   </div>
 
+  <footer>
+    <div class="social-icons">
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Twitter">🐦</a>
+      <a href="#" title="Instagram">📸</a>
+      <a href="#" title="YouTube">▶️</a>
+    </div>
+    <p><strong>नियम और शर्तें:</strong> यह सुविधा प्रत्येक ग्राहक को केवल एक बार उपलब्ध है। स्पिन के बाद जो भी इनाम मिलेगा वही वैध माना जाएगा।</p>
+    <p><strong>गोपनीयता नीति:</strong> उपयोगकर्ता की जानकारी को केवल इनाम वितरण के लिए एकत्र किया जाएगा।</p>
+    <p><strong>डिस्क्लेमर:</strong> इनाम की उपलब्धता स्टॉक पर निर्भर करती है। विवाद की स्थिति में अंतिम निर्णय कंपनी का होगा।</p>
+    <p>© 2025 RUP Token. सभी अधिकार सुरक्षित हैं।</p>
+  </footer>
+
+  <!-- Sound elements -->
+  <audio id="winSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" preload="auto"></audio>
+  <audio id="spinSound" src="https://www.soundjay.com/misc/sounds/spinner-1.mp3" preload="auto" loop></audio>
+  
+  <div class="sound-control" id="soundControl" title="Sound On/Off">🔊</div>
+
   <script>
-    // Initialize wheel with 20 segments
-    const wheel = document.getElementById("wheel");
-    const prizes = [
-     
-    ];
-    
-    // Add labels to wheel
-    for (let i = 0; i < 20; i++) {
-      const label = document.createElement("div");
-      label.className = "wheel-label";
-      label.style.transform = `rotate(${i * 18 + 9}deg) translateY(-150px)`;
-      label.textContent = prizes[i];
-      wheel.appendChild(label);
+    // Adsterra Ads Loading Function
+    function loadAds() {
+      try {
+        // Replace these with your actual Adsterra ad codes
+        const adCodes = {
+          top: '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js',
+          middle: '//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js',
+          bottom: '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'
+        };
+
+        // Load top ad
+        const topAdScript = document.createElement('script');
+        topAdScript.src = adCodes.top;
+        topAdScript.async = true;
+        document.getElementById('topAd').innerHTML = '';
+        document.getElementById('topAd').appendChild(topAdScript);
+        
+        // Load middle ad after delay
+        setTimeout(() => {
+          const middleAdScript = document.createElement('script');
+          middleAdScript.src = adCodes.middle;
+          middleAdScript.async = true;
+          document.getElementById('middleAd').innerHTML = '';
+          document.getElementById('middleAd').appendChild(middleAdScript);
+        }, 1000);
+        
+        // Load bottom ad after delay
+        setTimeout(() => {
+          const bottomAdScript = document.createElement('script');
+          bottomAdScript.src = adCodes.bottom;
+          bottomAdScript.async = true;
+          document.getElementById('bottomAd').innerHTML = '';
+          document.getElementById('bottomAd').appendChild(bottomAdScript);
+        }, 2000);
+
+        // Fallback if ads don't load
+        setTimeout(() => {
+          const fallbackHTML = '<a href="https://www.adsterra.com" target="_blank" style="color:#d4af37;text-decoration:none">Advertisement by Adsterra</a>';
+          
+          if(document.getElementById('topAd').childNodes.length === 0) {
+            document.getElementById('topAd').innerHTML = fallbackHTML;
+          }
+          if(document.getElementById('middleAd').childNodes.length === 0) {
+            document.getElementById('middleAd').innerHTML = fallbackHTML;
+          }
+          if(document.getElementById('bottomAd').childNodes.length === 0) {
+            document.getElementById('bottomAd').innerHTML = fallbackHTML;
+          }
+        }, 5000);
+      } catch (e) {
+        console.error("Ad loading error:", e);
+      }
     }
 
+    // Sound Control
+    let soundEnabled = true;
+    const soundControl = document.getElementById('soundControl');
+    const winSound = document.getElementById('winSound');
+    const spinSound = document.getElementById('spinSound');
+    
+    soundControl.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      soundControl.textContent = soundEnabled ? '🔊' : '🔇';
+      
+      if (!soundEnabled) {
+        winSound.pause();
+        spinSound.pause();
+      }
+    });
+
+    // Wheel Functionality
+    const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spinBtn");
+    const resetBtn = document.getElementById("resetBtn");
     const prizeResult = document.getElementById("prizeResult");
+    const winnerForm = document.getElementById("winnerForm");
+
+    const prizes = [
+      { label: "1000₹", emoji: "💰", showForm: true },
+      { label: "500₹", emoji: "🪙", showForm: true },
+      { label: "200₹", emoji: "💵", showForm: true },
+      { label: "Bluetooth Buds", emoji: "🎧", showForm: true },
+      { label: "Better Luck Next Time", emoji: "❌", showForm: false },
+      { label: "1000₹", emoji: "💰", showForm: true }
+    ];
 
     let hasSpun = false;
     let isSpinning = false;
+    let spinTimeout;
+
+    // Reset function
+    function resetGame() {
+      clearTimeout(spinTimeout);
+      spinSound.pause();
+      wheel.style.transition = 'none';
+      wheel.style.transform = 'rotate(0deg)';
+      isSpinning = false;
+      spinBtn.disabled = false;
+      resetBtn.style.display = 'none';
+    }
+
+    resetBtn.addEventListener('click', resetGame);
 
     spinBtn.addEventListener("click", () => {
-      if (!grecaptcha.getResponse()) {
-        alert("कृपया reCAPTCHA को वेरिफाई करें!");
-        return;
-      }
-      
       if (hasSpun) {
         alert("आप पहले ही स्पिन कर चुके हैं!");
         return;
@@ -179,8 +370,15 @@
       
       isSpinning = true;
       spinBtn.disabled = true;
+      resetBtn.style.display = 'inline-block';
       
-      // Reset wheel position
+      // Play spinning sound
+      if (soundEnabled) {
+        spinSound.currentTime = 0;
+        spinSound.play().catch(e => console.log("Spin sound error:", e));
+      }
+      
+      // Reset wheel position for smooth spinning
       wheel.style.transition = 'none';
       wheel.style.transform = 'rotate(0deg)';
       
@@ -188,35 +386,68 @@
       void wheel.offsetWidth;
       
       // Start spinning with transition
-      wheel.style.transition = 'transform 8s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+      wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
       
-      const spinDegrees = 9000; // 25 full rotations (25 × 360 = 9000)
+      const spinDegrees = 3600; // 10 full rotations
       const prizeAngle = Math.floor(Math.random() * 360);
       const totalDegrees = spinDegrees + prizeAngle;
       
       wheel.style.transform = `rotate(${totalDegrees}deg)`;
 
-      setTimeout(() => {
+      spinTimeout = setTimeout(() => {
         finishSpin(totalDegrees);
-      }, 8500);
+      }, 5500);
     });
 
+    // Handle page refresh or close during spin
+    window.addEventListener('beforeunload', (e) => {
+      if (isSpinning) {
+        e.preventDefault();
+        e.returnValue = 'आपका स्पिन अभी चल रहा है। क्या आप वाकई पेज छोड़ना चाहते हैं?';
+      }
+    });
+
+    // Complete the spin
     function finishSpin(totalDegrees) {
       isSpinning = false;
       hasSpun = true;
       spinBtn.disabled = false;
+      resetBtn.style.display = 'none';
       
-      // Calculate prize
+      // Stop spinning sound
+      spinSound.pause();
+      
+      // Calculate prize (adjusted calculation)
       const normalizedAngle = (360 - (totalDegrees % 360)) % 360;
-      const prizeIndex = Math.floor(normalizedAngle / 18); // 360/20 = 18 degrees per segment
+      const prizeIndex = Math.floor(normalizedAngle / 60);
       const prize = prizes[prizeIndex];
       
-      if (prize === "No Win") {
-        prizeResult.innerHTML = `कोई इनाम नहीं: <strong>${prize}</strong>`;
-      } else {
-        prizeResult.innerHTML = `आपने जीता: <strong>${prize}</strong>`;
+      prizeResult.innerHTML = `आपने जीता: ${prize.emoji} <strong>${prize.label}</strong>`;
+      
+      // Play win sound if not "Better Luck Next Time"
+      if (prize.label !== "Better Luck Next Time" && soundEnabled) {
+        winSound.currentTime = 0;
+        winSound.play().catch(e => console.log("Win sound error:", e));
+      }
+      
+      if (prize.showForm) {
+        winnerForm.style.display = "block";
+        window.scrollTo({
+          top: winnerForm.offsetTop,
+          behavior: 'smooth'
+        });
       }
     }
+
+    // Wait for DOM to load before loading ads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Preload sounds
+      winSound.load();
+      spinSound.load();
+      
+      // Start loading ads after slight delay
+      setTimeout(loadAds, 500);
+    });
   </script>
 </body>
 </html>
