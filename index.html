@@ -118,7 +118,7 @@
 <script>
   const canvas = document.getElementById("wheelCanvas");
   const ctx = canvas.getContext("2d");
-  const segments = ['₹100', '₹200', '₹500', '₹1000', '₹2000', 'Better Luck'];
+  const segments = ['₹10', '₹20', '₹50', '₹100', '₹200', 'Better Luck'];
   const colors = ['#e57373', '#f06292', '#64b5f6', '#81c784', '#ffd54f', '#eeeeee'];
   let startAngle = 0;
   let arc = Math.PI / (segments.length / 2);
@@ -180,49 +180,7 @@
     let tc = ts * t;
     return b + c * (tc + -3 * ts + 3 * t);
   }
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RUPTOKEN.IN - मोबाइल ऑफर</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body style="font-family: Arial; background: #f0f8ff; padding: 20px;">
 
-  <h1 style="text-align: center; color: #2c3e50;">RUPTOKEN.IN</h1>
-  <h2 style="text-align: center; color: #16a085;">बेस्ट मोबाइल ऑफर</h2>
-
-  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    
-    <!-- Redmi Note 13 -->
-    <div style="border: 1px solid #ccc; padding: 10px; width: 250px; background: #fff;">
-      <img src="images/redmi-note-13.jpg" alt="Redmi Note 13" style="width: 100%;">
-      <h3>Redmi Note 13</h3>
-      <p>Price: ₹13,499</p>
-      <a href="mobiles/redmi-note-13.html" style="color: white; background: #3498db; padding: 8px 12px; text-decoration: none; border-radius: 5px;">देखें</a>
-    </div>
-
-    <!-- Realme Narzo 70 -->
-    <div style="border: 1px solid #ccc; padding: 10px; width: 250px; background: #fff;">
-      <img src="images/realme-narzo-70.jpg" alt="Realme Narzo 70" style="width: 100%;">
-      <h3>Realme Narzo 70</h3>
-      <p>Price: ₹12,999</p>
-      <a href="mobiles/realme-narzo-70.html" style="color: white; background: #3498db; padding: 8px 12px; text-decoration: none; border-radius: 5px;">देखें</a>
-    </div>
-
-    <!-- Samsung M14 -->
-    <div style="border: 1px solid #ccc; padding: 10px; width: 250px; background: #fff;">
-      <img src="images/samsung-m14.jpg" alt="Samsung M14" style="width: 100%;">
-      <h3>Samsung M14</h3>
-      <p>Price: ₹14,499</p>
-      <a href="mobiles/samsung-m14.html" style="color: white; background: #3498db; padding: 8px 12px; text-decoration: none; border-radius: 5px;">देखें</a>
-    </div>
-
-  </div>
-
-</body>
-</html>
   document.getElementById("spinBtn").addEventListener("click", () => {
     document.getElementById("result").innerText = "";
     rotateWheel();
