@@ -1,622 +1,164 @@
-<!DOCTYPE html>
-<html lang="hi">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AdSense Money Making Tools</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-         body {
-<a href+"shop.html"class="nav-link">            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .tool-card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .tool-title {
-            color: #6e8efb;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-        
-        .tool-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .calculator {
-            flex: 1;
-            min-width: 300px;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        
-        .calculator h3 {
-            margin-bottom: 15px;
-            color: #555;
-        }
-        
-        input, select, button {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        button {
-            background: #6e8efb;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        button:hover {
-            background: #5a7df4;
-        }
-        
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #e8f4ff;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        
-        .directory-list {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .business-card {
-            background: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .business-icon {
-            font-size: 2rem;
-            color: #6e8efb;
-        }
-        
-        .business-info h4 {
-            margin-bottom: 5px;
-        }
-        
-        .business-info p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .job-listing {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #ddd;
-        }
-        
-        .job-listing h4 {
-            color: #6e8efb;
-            margin-bottom: 5px;
-        }
-        
-        .job-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .apply-btn {
-            display: inline-block;
-            padding: 8px 15px;
-            background: #6e8efb;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .forum-post {
-            background: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
-        
-        .forum-post h4 {
-            margin-bottom: 10px;
-            color: #6e8efb;
-        }
-        
-        .post-meta {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        
-        .reply-btn {
-            display: inline-block;
-            padding: 5px 10px;
-            background: #e8f4ff;
-            color: #6e8efb;
-            text-decoration: none;
-            border-radius: 3px;
-            font-size: 0.8rem;
-        }
-        
-        .ad-container {
-            background: #f0f0f0;
-            padding: 20px;
-            text-align: center;
-            margin: 30px 0;
-            border-radius: 5px;
-            border: 1px dashed #999;
-        }
-        
-        .ad-label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .tool-content {
-                flex-direction: column;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin & Win - RUP Token</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffd700, #fff3b0);
+      color: #333;
+      text-align: center;
+    }header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  font-size: 24px;
+}
+
+.ad-banner, .footer-ad {
+  margin: 20px auto;
+  background: #fff;
+  border: 2px dashed #999;
+  padding: 15px;
+  width: 90%;
+  max-width: 728px;
+}
+
+#wheel {
+  width: 300px;
+  height: 300px;
+  border: 10px solid #333;
+  border-radius: 50%;
+  margin: 30px auto;
+  background: conic-gradient(
+    #f8d800 0deg 60deg,
+    #00c2cb 60deg 120deg,
+    #e94e77 120deg 180deg,
+    #6c5ce7 180deg 240deg,
+    #55efc4 240deg 300deg,
+    #d63031 300deg 360deg
+  );
+  transition: transform 5s ease-out;
+}
+
+#pointer {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 40px solid black;
+  margin: 0 auto;
+}
+
+#spinBtn {
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: #ff9900;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+#result, #formDiv {
+  display: none;
+  margin-top: 20px;
+}
+
+form input {
+  padding: 10px;
+  margin: 8px;
+  width: 80%;
+  max-width: 300px;
+}
+
+form button {
+  padding: 10px 20px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 40px;
+  background: #222;
+  color: white;
+  padding: 20px;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>AdSense Revenue Booster</h1>
-            <p class="subtitle">अपनी वेबसाइट से अधिक कमाई के टूल्स</p>
-        </header>
-        
-        <!-- High CPC Niche Tool -->
-        <div class="tool-card">
-            <h2 class="tool-title">1. High CPC Niche Content Generator</h2>
-            <div class="tool-content">
-                <div class="calculator">
-                    <h3>निच सुझाव टूल</h3>
-                    <select id="nicheCategory">
-                        <option value="">-- एक श्रेणी चुनें --</option>
-                        <option value="finance">फाइनेंस (हाई CPC)</option>
-                        <option value="health">हेल्थ & फिटनेस</option>
-                        <option value="tech">टेक्नोलॉजी</option>
-                        <option value="realestate">रियल एस्टेट</option>
-                        <option value="legal">लीगल एडवाइस</option>
-                    </select>
-                    <button onclick="generateNicheIdeas()">आइडियाज जनरेट करें</button>
-                    <div class="result" id="nicheResults">
-                        यहां आपको हाई CPC वाले टॉपिक मिलेंगे...
-                    </div>
-                </div>
-                <div class="calculator">
-                    <h3>हाइब्रिड (English+Hindi) कीवर्ड जनरेटर</h3>
-                    <input type="text" id="keywordInput" placeholder="मुख्य कीवर्ड डालें (हिंदी में)">
-                    <button onclick="generateHybridKeywords()">कीवर्ड बनाएं</button>
-                    <div class="result" id="keywordResults">
-                        यहां आपके हाइब्रिड कीवर्ड्स दिखेंगे...
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Local Business Directory -->
-        <div class="tool-card">
-            <h2 class="tool-title">2. Local Business Directory Generator</h2>
-            <div class="tool-content">
-                <div class="calculator">
-                    <h3>डायरेक्टरी जनरेटर</h3>
-                    <input type="text" id="cityInput" placeholder="आपका शहर/क्षेत्र">
-                    <input type="text" id="businessType" placeholder="बिजनेस टाइप (जैसे: AC रिपेयर)">
-                    <button onclick="generateDirectory()">डायरेक्टरी बनाएं</button>
-                </div>
-                <div class="directory-list">
-                    <h3>Sample Business Listings (AdSense Friendly)</h3>
-                    <div class="business-card">
-                        <div class="business-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <div class="business-info">
-                            <h4>शर्मा AC सर्विस सेंटर</h4>
-                            <p>15 साल का अनुभव | 24x7 इमरजेंसी सर्विस</p>
-                            <p>☎️ 98XXXXXX21 | 📍 रोहिणी, दिल्ली</p>
-                        </div>
-                    </div>
-                    <div class="business-card">
-                        <div class="business-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="business-info">
-                            <h4>गुप्ता इलेक्ट्रीशियन</h4>
-                            <p>सभी प्रकार की विद्युत मरम्मत</p>
-                            <p>☎️ 99XXXXXX45 | 📍 नोएडा सेक्टर 18</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Calculator Tools -->
-        <div class="tool-card">
-            <h2 class="tool-title">3. High CPC Calculators</h2>
-            <div class="tool-content">
-                <div class="calculator">
-                    <h3>EMI कैलकुलेटर</h3>
-                    <input type="number" id="loanAmount" placeholder="लोन राशि (₹)">
-                    <input type="number" id="interestRate" placeholder="ब्याज दर (% वार्षिक)">
-                    <input type="number" id="loanTerm" placeholder="अवधि (वर्षों में)">
-                    <button onclick="calculateEMI()">EMI कैलकुलेट करें</button>
-                    <div class="result" id="emiResult">
-                        आपकी मासिक EMI: ₹0
-                    </div>
-                </div>
-                <div class="calculator">
-                    <h3>BMI कैलकुलेटर</h3>
-                    <input type="number" id="weight" placeholder="वजन (kg)">
-                    <input type="number" id="height" placeholder="ऊंचाई (cm)">
-                    <button onclick="calculateBMI()">BMI चेक करें</button>
-                    <div class="result" id="bmiResult">
-                        आपका BMI: 0 (सामान्य)
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Job Portal Section -->
-        <div class="tool-card">
-            <h2 class="tool-title">4. Job/Exam Preparation Content</h2>
-            <div class="tool-content">
-                <div class="directory-list">
-                    <h3>Latest Government Jobs</h3>
-                    <div class="job-listing">
-                        <h4>SSC CGL 2024 Notification</h4>
-                        <div class="job-meta">
-                            <span><i class="far fa-calendar-alt"></i> Last Date: 15 Aug 2024</span>
-                            <span><i class="fas fa-rupee-sign"></i> Salary: ₹35,000-1,50,000</span>
-                        </div>
-                        <p>Combined Graduate Level Examination for various government posts</p>
-                        <a href="#" class="apply-btn">View Details</a>
-                    </div>
-                    <div class="job-listing">
-                        <h4>UP Police Constable Recruitment 2024</h4>
-                        <div class="job-meta">
-                            <span><i class="far fa-calendar-alt"></i> Last Date: 30 Sep 2024</span>
-                            <span><i class="fas fa-rupee-sign"></i> Salary: ₹25,000-35,000</span>
-                        </div>
-                        <p>10,000 vacancies for Police Constable in Uttar Pradesh</p>
-                        <a href="#" class="apply-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="directory-list">
-                    <h3>Exam Preparation</h3>
-                    <div class="job-listing">
-                        <h4>IBPS PO Syllabus 2024</h4>
-                        <p>Complete syllabus for IBPS Probationary Officer exam</p>
-                        <a href="#" class="apply-btn">Download PDF</a>
-                    </div>
-                    <div class="job-listing">
-                        <h4>UPSC Previous Year Papers</h4>
-                        <p>Last 10 years question papers with solutions</p>
-                        <a href="#" class="apply-btn">Download Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Forum Section -->
-        <div class="tool-card">
-            <h2 class="tool-title">5. User Generated Content Forum</h2>
-            <div class="tool-content">
-                <div class="directory-list">
-                    <h3>Latest Discussions</h3>
-                    <div class="forum-post">
-                        <h4>How to repair LG AC error code CH05?</h4>
-                        <div class="post-meta">
-                            Posted by: Rajesh | 2 hours ago | 5 replies
-                        </div>
-                        <p>My LG AC is showing CH05 error and not cooling properly. Any expert advice?</p>
-                        <a href="#" class="reply-btn">Reply</a>
-                    </div>
-                    <div class="forum-post">
-                        <h4>Best mutual fund for SIP with ₹5000/month?</h4>
-                        <div class="post-meta">
-                            Posted by: Priya | 1 day ago | 12 replies
-                        </div>
-                        <p>I want to start SIP with ₹5000 per month for 5 years. Which funds are best?</p>
-                        <a href="#" class="reply-btn">Reply</a>
-                    </div>
-                </div>
-                <div class="calculator">
-                    <h3>Start New Discussion</h3>
-                    <input type="text" placeholder="Discussion Title">
-                    <textarea rows="5" placeholder="Your question or topic..."></textarea>
-                    <button>Post Discussion</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Ad Placement Guide -->
-        <div class="tool-card">
-            <h2 class="tool-title">Ad Placement Optimization Guide</h2>
-            <div class="tool-content">
-                <div style="flex: 1;">
-                    <h3>Best Ad Positions</h3>
-                    <ol style="margin-left: 20px; margin-bottom: 20px;">
-                        <li>Header (साइट के ऊपर)</li>
-                        <li>Content के बीच में (पैराग्राफ के बाद)</li>
-                        <li>Sidebar (दाईं ओर)</li>
-                        <li>Footer से पहले</li>
-                    </ol>
-                    
-                    <h3>AdSense Auto Ads</h3>
-                    <p>Auto ads को हमेशा ON रखें। Google अपने AI से बेस्ट प्लेसमेंट ढूंढेगा।</p>
-                </div>
-                
-                <div style="flex: 1;">
-                    <div class="ad-container">
-                        <span class="ad-label">Advertisement</span>
-                        <div style="height: 250px; display: flex; align-items: center; justify-content: center; background: #eee; color: #666;">
-                            Your AdSense Ad Here<br>(Header Position)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- AdSense Alternatives -->
-        <div class="tool-card">
-            <h2 class="tool-title">AdSense Alternatives</h2>
-            <div class="tool-content">
-                <div style="flex: 1;">
-                    <h3>Other Ad Networks</h3>
-                    <ul style="margin-left: 20px;">
-                        <li><strong>Media.net</strong> - Yahoo/Bing ads (good for finance/tech)</li>
-                        <li><strong>Propeller Ads</strong> - Push notifications & popunders</li>
-                        <li><strong>Ezoic</strong> - AdSense से ज्यादा revenue (AI optimization)</li>
-                        <li><strong>Adsterra</strong> - High CPM for some niches</li>
-                    </ul>
-                </div>
-                
-                <div style="flex: 1;">
-                    <h3>Affiliate Programs</h3>
-                    <ul style="margin-left: 20px;">
-                        <li><strong>Amazon Associates</strong> - 1-10% commission</li>
-                        <li><strong>Flipkart Affiliate</strong> - Indian products</li>
-                        <li><strong>Hosting Affiliates</strong> - ₹1000-5000 per sale</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="ad-container">
-            <span class="ad-label">Advertisement</span>
-            <div style="height: 90px; display: flex; align-items: center; justify-content: center; background: #eee; color: #666;">
-                Your AdSense Ad Here (Footer Position)
-            </div>
-        </div>
-        
-        <footer>
-            <p>© 2024 AdSense Revenue Booster | All Rights Reserved</p>
-            <p>Note: Replace all placeholder ads with your actual AdSense code</p>
-        </footer>
+  <header>
+    Spin & Win | RUP Token
+  </header>  <div class="ad-banner">Ad Slot (Top)</div>  <div id="pointer"></div>
+  <div id="wheel"></div>
+  <button id="spinBtn">Spin</button>
+  <div id="result"></div>  <div id="formDiv">
+    <h3>Enter Your Details</h3>
+    <form id="winnerForm">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="text" name="phone" placeholder="Phone Number" required><br>
+      <input type="hidden" name="prize" id="prizeValue">
+      <button type="submit">Submit</button>
+    </form>
+  </div>  <div class="ad-banner">Ad Slot (Right/Sidebar)</div>
+  <div class="footer-ad">Ad Slot (Bottom)</div>  <footer>
+    <div class="social-icons">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">WhatsApp</a>
     </div>
+    <br>
+    <a href="terms.html" style="color:#ccc;">Terms & Conditions</a> |
+    <a href="privacy.html" style="color:#ccc;">Privacy Policy</a> |
+    <a href="disclaimer.html" style="color:#ccc;">Disclaimer</a>
+  </footer>  <script>
+    const prizes = ["Rs. 1000", "Rs. 500", "Rs. 200", "Bluetooth Buds", "Better luck next time", "Rs. 200"];
+    let hasSpun = false;
 
-    <script>
-        // Niche Ideas Generator
-        function generateNicheIdeas() {
-            const category = document.getElementById('nicheCategory').value;
-            let ideas = [];
-            
-            if(category === 'finance') {
-                ideas = [
-                    "Best Personal Loan Options in India 2024",
-                    "How to Get ₹5 Lakh Loan Without Documents",
-                    "Top 10 High Interest FD Schemes",
-                    "Credit Card से Loan कैसे लें?",
-                    "Home Loan Interest Rates Comparison"
-                ];
-            } else if(category === 'health') {
-                ideas = [
-                    "Weight Loss Diet Plan in Hindi",
-                    "Diabetes Control करने के 10 आयुर्वेदिक उपाय",
-                    "Best Protein Powder for Gym in India",
-                    "पथरी की समस्या का घरेलू इलाज",
-                    "Yoga for High Blood Pressure"
-                ];
-            } else if(category === 'tech') {
-                ideas = [
-                    "Best Phone Under 15000 in India 2024",
-                    "How to Increase Jio Net Speed",
-                    "Top 10 Gaming Laptops Under ₹60,000",
-                    "5G Mobile Price List in India",
-                    "WiFi Router Buying Guide"
-                ];
-            } else if(category === 'realestate') {
-                ideas = [
-                    "Home Loan के लिए Best Banks in India",
-                    "Property Registration Charges Calculator",
-                    "Noida vs Greater Noida - Where to Invest?",
-                    "Home Interior Cost for 2BHK Flat",
-                    "RERA Registered Projects in Mumbai"
-                ];
-            } else if(category === 'legal') {
-                ideas = [
-                    "How to File Divorce Case Online in India",
-                    "Will Registration Process and Cost",
-                    "Traffic Challan Online Check & Payment",
-                    "Property Dispute Solution Without Lawyer",
-                    "Court Marriage Process in Delhi"
-                ];
-            } else {
-                ideas = ["कृपया एक श्रेणी चुनें"];
-            }
-            
-            document.getElementById('nicheResults').innerHTML = ideas.map(idea => 
-                `<div style="padding: 8px 0; border-bottom: 1px dashed #ddd;">${idea}</div>`
-            ).join('');
+    document.getElementById("spinBtn").addEventListener("click", function () {
+      if (hasSpun) {
+        alert("You have already spun the wheel!");
+        return;
+      }
+
+      const wheel = document.getElementById("wheel");
+      const degree = Math.floor(5000 + Math.random() * 2000);
+      wheel.style.transform = rotate(${degree}deg);
+
+      hasSpun = true;
+
+      setTimeout(() => {
+        const actualDegree = degree % 360;
+        const segment = Math.floor(actualDegree / 60);
+        const prize = prizes[segment];
+
+        document.getElementById("result").style.display = "block";
+        document.getElementById("result").innerText = You won: ${prize};
+        document.getElementById("prizeValue").value = prize;
+
+        if (prize !== "Better luck next time") {
+          document.getElementById("formDiv").style.display = "block";
         }
-        
-        // Hybrid Keywords Generator
-        function generateHybridKeywords() {
-            const keyword = document.getElementById('keywordInput').value.trim();
-            if(!keyword) {
-                document.getElementById('keywordResults').innerText = "कृपया एक कीवर्ड डालें";
-                return;
-            }
-            
-            const englishKeywords = [
-                "best", "top", "how to", "review", "buying guide",
-                "price", "features", "benefits", "pros and cons", "comparison"
-            ];
-            
-            const hindiKeywords = [
-                "सबसे अच्छा", "कैसे चुनें", "फायदे", "नुकसान", "कीमत",
-                "विशेषताएं", "तुलना", "खरीदने से पहले जानें", "रीव्यू", "क्या है"
-            ];
-            
-            const results = [];
-            
-            // English + Hindi combinations
-            englishKeywords.forEach(eng => {
-                results.push(`${eng} ${keyword} in hindi`);
-            });
-            
-            // Hindi + English combinations
-            hindiKeywords.forEach(hindi => {
-                results.push(`${keyword} ${hindi} in english`);
-            });
-            
-            // Mixed combinations
-            results.push(`best ${keyword} की विशेषताएं`);
-            results.push(`${keyword} buying guide हिंदी में`);
-            results.push(`how to choose ${keyword} in hindi`);
-            
-            document.getElementById('keywordResults').innerHTML = results.map(k => 
-                `<div style="padding: 8px 0; border-bottom: 1px dashed #ddd;">${k}</div>`
-            ).join('');
-        }
-        
-        // EMI Calculator
-        function calculateEMI() {
-            const P = parseFloat(document.getElementById('loanAmount').value);
-            const r = parseFloat(document.getElementById('interestRate').value) / 12 / 100;
-            const n = parseFloat(document.getElementById('loanTerm').value) * 12;
-            
-            if(P && r && n) {
-                const EMI = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1;
-                document.getElementById('emiResult').innerHTML = 
-                    `आपकी मासिक EMI: ₹${EMI.toFixed(2)}<br>
-                    कुल भुगतान: ₹${(EMI * n).toFixed(2)}<br>
-                    कुल ब्याज: ₹${((EMI * n) - P).toFixed(2)}`;
-            } else {
-                document.getElementById('emiResult').innerText = "कृपया सभी फील्ड भरें";
-            }
-        }
-        
-        // BMI Calculator
-        function calculateBMI() {
-            const weight = parseFloat(document.getElementById('weight').value);
-            const height = parseFloat(document.getElementById('height').value) / 100; // convert to meters
-            
-            if(weight && height) {
-                const bmi = weight / (height * height);
-                let category;
-                
-                if(bmi < 18.5) category = "कम वजन";
-                else if(bmi < 25) category = "सामान्य";
-                else if(bmi < 30) category = "अधिक वजन";
-                else category = "मोटापा";
-                
-                document.getElementById('bmiResult').innerHTML = 
-                    `आपका BMI: ${bmi.toFixed(1)} (${category})<br>
-                    स्वस्थ BMI रेंज: 18.5 - 24.9`;
-            } else {
-                document.getElementById('bmiResult').innerText = "कृपया सभी फील्ड भरें";
-            }
-        }
-        
-        // Directory Generator
-        function generateDirectory() {
-            const city = document.getElementById('cityInput').value.trim();
-            const business = document.getElementById('businessType').value.trim();
-            
-            if(city && business) {
-                alert(`"${business} in ${city}" डायरेक्टरी पेज बनाने के लिए तैयार!\n\nअब आप इस टेम्पलेट का उपयोग करके अपनी साइट पर एक नया पेज बना सकते हैं।`);
-            } else {
-                alert("कृपया शहर और बिजनेस टाइप दोनों डालें");
-            }
-        }
-    </script>
-</body>
+      }, 5200);
+    });
+
+    document.getElementById("winnerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Details submitted successfully! (Link to Google Sheet integration here)");
+    });
+  </script></body>
 </html>
