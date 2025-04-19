@@ -2,446 +2,170 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RUP Token - Spin & Win</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background: linear-gradient(to bottom, #fff4cc, #ffd700);
       font-family: Arial, sans-serif;
-      text-align: center;
+      background: linear-gradient(#fff8dc, #f9e79f);
       margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      text-align: center;
+      color: #333;
     }
     h1 {
       background: #000;
-      color: #ffd700;
-      padding: 15px;
-      margin: 0;
-    }
-    .container {
-      padding: 20px;
-      flex: 1;
-    }
-    .ad-container {
-      margin: 15px auto;
+      color: gold;
       padding: 10px;
-      background: white;
-      border-radius: 5px;
-      max-width: 728px;
-      min-height: 90px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #d4af37;
-      overflow: hidden;
-    }
-    .wheel-container {
-      position: relative;
-      width: 320px;
-      height: 320px;
-      margin: 20px auto;
     }
     .wheel {
+      margin: 20px auto;
       width: 300px;
       height: 300px;
+      border: 10px solid gold;
       border-radius: 50%;
-      border: 10px solid #d4af37;
       position: relative;
-      margin: 0 auto;
-      background: conic-gradient(
-        red 0deg 60deg,
-        gold 60deg 120deg,
-        orange 120deg 180deg,
-        lightgreen 180deg 240deg,
-        skyblue 240deg 300deg,
-        violet 300deg 360deg
-      );
-      transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      overflow: hidden;
       transform: rotate(0deg);
+      transition: transform 4s ease-out;
     }
-    .pointer {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 30px;
-      background: #000;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      z-index: 10;
-    }
-    #spinBtn {
-      padding: 12px 35px;
-      background: #d4af37;
-      color: #000;
-      border: none;
-      border-radius: 10px;
-      font-size: 18px;
-      cursor: pointer;
-      margin: 10px 0;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    #spinBtn:hover {
-      background: #ffd700;
-      transform: scale(1.05);
-    }
-    #spinBtn:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-      transform: none;
-    }
-    .prize {
-      font-size: 24px;
-      margin: 20px 0;
-      min-height: 40px;
-      font-weight: bold;
-      color: #000;
-      padding: 10px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 8px;
-      display: inline-block;
-    }
-    #winnerForm {
-      display: none;
-      max-width: 800px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
-    footer {
-      background: #000;
-      color: #fff;
-      padding: 20px;
-      font-size: 14px;
-    }
-    .social-icons {
-      margin: 10px;
-    }
-    .social-icons a {
-      font-size: 24px;
-      margin: 0 10px;
-      text-decoration: none;
-      color: #ffd700;
-      transition: all 0.3s;
-    }
-    .social-icons a:hover {
-      transform: scale(1.2);
-    }
-    .wheel-section {
+    .sector {
       position: absolute;
       width: 50%;
       height: 50%;
-      transform-origin: bottom right;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0% 0%;
     }
-    .wheel-label {
-      transform: rotate(30deg);
-      color: white;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px #000;
-      font-size: 16px;
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid black;
+      margin: 10px auto;
     }
-    .ad-label {
-      font-size: 12px;
-      color: #888;
-      margin-top: 5px;
-    }
-    .sound-control {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 100;
-    }
-    #resetBtn {
-      padding: 8px 20px;
-      background: #ff5555;
-      color: white;
+    button {
+      background: gold;
+      color: black;
       border: none;
-      border-radius: 5px;
-      font-size: 14px;
+      padding: 15px 30px;
+      font-size: 18px;
+      margin-top: 20px;
       cursor: pointer;
-      margin-left: 10px;
-      display: none;
+      border-radius: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .social-icons img {
+      width: 30px;
+      margin: 5px;
+    }
+    .ads {
+      width: 90%;
+      max-width: 400px;
+      margin: 20px auto;
+      border: 2px dashed #ccc;
+      padding: 10px;
+      background: #fff;
+    }
+    footer {
+      background: #000;
+      color: gold;
+      padding: 10px;
+      font-size: 14px;
+    }
+    details {
+      text-align: left;
+      margin: 10px auto;
+      max-width: 600px;
     }
   </style>
 </head>
 <body>
+
   <h1>RUP Token - Spin & Win</h1>
 
-  <div class="container">
-    <!-- Top Ad Container -->
-    <div class="ad-container" id="topAd">
-      <div>
-        <p>Advertisement</p>
-        <p class="ad-label">Loading ads...</p>
-      </div>
-    </div>
-
-    <div class="wheel-container">
-      <div class="pointer"></div>
-      <div class="wheel" id="wheel">
-        <!-- Wheel labels -->
-        <div class="wheel-section" style="transform: rotate(0deg);"><span class="wheel-label">100₹</span></div>
-        <div class="wheel-section" style="transform: rotate(60deg);"><span class="wheel-label">50₹</span></div>
-        <div class="wheel-section" style="transform: rotate(120deg);"><span class="wheel-label">20₹</span></div>
-        <div class="wheel-section" style="transform: rotate(180deg);"><span class="wheel-label">10₹</span></div>
-        <div class="wheel-section" style="transform: rotate(240deg);"><span class="wheel-label">No Win</span></div>
-        <div class="wheel-section" style="transform: rotate(300deg);"><span class="wheel-label">5₹</span></div>
-      </div>
-    </div>
-    
-    <div>
-      <button id="spinBtn">स्पिन करें</button>
-      <button id="resetBtn">रीसेट करें</button>
-    </div>
-
-    <div class="prize" id="prizeResult"></div>
-
-    <!-- Middle Ad Container -->
-    <div class="ad-container" id="middleAd">
-      <div>
-        <p>Advertisement</p>
-        <p class="ad-label">Loading ads...</p>
-      </div>
-    </div>
-
-    <div id="winnerForm">
-      <h3>अपनी जानकारी भरें:</h3>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?embedded=true">लोड हो रहा है...</iframe>
-    </div>
-
-    <!-- Bottom Ad Container -->
-    <div class="ad-container" id="bottomAd">
-      <div>
-        <p>Advertisement</p>
-        <p class="ad-label">Loading ads...</p>
-      </div>
-    </div>
+  <div class="ads">
+    <p>Ad 1</p>
+    <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
   </div>
 
+  <div class="ads">
+    <p>Ad 2</p>
+    <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
+  </div>
+
+  <div class="arrow"></div>
+  <div class="wheel" id="wheel"></div>
+  <button onclick="spin()">Spin it</button>
+  <div id="result"></div>
+
+  <audio id="winSound" src="https://www.soundjay.com/button/sounds/button-3.mp3"></audio>
+
+  <div class="social-icons">
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Twitter"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733614.png" alt="Instagram"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="YouTube"></a>
+  </div>
+
+  <details>
+    <summary><strong>Terms & Conditions (नियम व शर्तें)</strong></summary>
+    <p>यह गेम केवल मनोरंजन के उद्देश्य से है। स्पिन द्वारा मिलने वाले पुरस्कारों को नकद में नहीं बदला जा सकता। एक उपयोगकर्ता केवल एक बार स्पिन कर सकता है।</p>
+  </details>
+
+  <details>
+    <summary><strong>Privacy Policy (गोपनीयता नीति)</strong></summary>
+    <p>हम उपयोगकर्ताओं की जानकारी को सुरक्षित रखते हैं। कोई भी निजी जानकारी किसी तीसरे पक्ष को नहीं दी जाएगी।</p>
+  </details>
+
+  <details>
+    <summary><strong>Disclaimer (अस्वीकरण)</strong></summary>
+    <p>यह वेबसाइट केवल डेमो के लिए बनाई गई है। इसमें दिखाए गए विज्ञापन थर्ड पार्टी द्वारा प्रदान किए जाते हैं, जिनकी जिम्मेदारी हमारी नहीं है।</p>
+  </details>
+
   <footer>
-    <div class="social-icons">
-      <a href="#" title="Facebook">📘</a>
-      <a href="#" title="Twitter">🐦</a>
-      <a href="#" title="Instagram">📸</a>
-      <a href="#" title="YouTube">▶️</a>
-    </div>
-    <p><strong>नियम और शर्तें:</strong> यह सुविधा प्रत्येक ग्राहक को केवल एक बार उपलब्ध है। स्पिन के बाद जो भी इनाम मिलेगा वही वैध माना जाएगा।</p>
-    <p><strong>गोपनीयता नीति:</strong> उपयोगकर्ता की जानकारी को केवल इनाम वितरण के लिए एकत्र किया जाएगा।</p>
-    <p><strong>डिस्क्लेमर:</strong> इनाम की उपलब्धता स्टॉक पर निर्भर करती है। विवाद की स्थिति में अंतिम निर्णय कंपनी का होगा।</p>
-    <p>© 2025 RUP Token. सभी अधिकार सुरक्षित हैं।</p>
+    © 2025 RUP Token. All rights reserved.
   </footer>
 
-  <!-- Sound elements -->
-  <audio id="winSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" preload="auto"></audio>
-  <audio id="spinSound" src="https://www.soundjay.com/misc/sounds/spinner-1.mp3" preload="auto" loop></audio>
-  
-  <div class="sound-control" id="soundControl" title="Sound On/Off">🔊</div>
-
   <script>
-    // Adsterra Ads Loading Function
-    function loadAds() {
-      try {
-        // Replace these with your actual Adsterra ad codes
-        const adCodes = {
-          top: '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js',
-          middle: '//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js',
-          bottom: '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'
-        };
-
-        // Load top ad
-        const topAdScript = document.createElement('script');
-        topAdScript.src = adCodes.top;
-        topAdScript.async = true;
-        document.getElementById('topAd').innerHTML = '';
-        document.getElementById('topAd').appendChild(topAdScript);
-        
-        // Load middle ad after delay
-        setTimeout(() => {
-          const middleAdScript = document.createElement('script');
-          middleAdScript.src = adCodes.middle;
-          middleAdScript.async = true;
-          document.getElementById('middleAd').innerHTML = '';
-          document.getElementById('middleAd').appendChild(middleAdScript);
-        }, 1000);
-        
-        // Load bottom ad after delay
-        setTimeout(() => {
-          const bottomAdScript = document.createElement('script');
-          bottomAdScript.src = adCodes.bottom;
-          bottomAdScript.async = true;
-          document.getElementById('bottomAd').innerHTML = '';
-          document.getElementById('bottomAd').appendChild(bottomAdScript);
-        }, 2000);
-
-        // Fallback if ads don't load
-        setTimeout(() => {
-          const fallbackHTML = '<a href="https://www.adsterra.com" target="_blank" style="color:#d4af37;text-decoration:none">Advertisement by Adsterra</a>';
-          
-          if(document.getElementById('topAd').childNodes.length === 0) {
-            document.getElementById('topAd').innerHTML = fallbackHTML;
-          }
-          if(document.getElementById('middleAd').childNodes.length === 0) {
-            document.getElementById('middleAd').innerHTML = fallbackHTML;
-          }
-          if(document.getElementById('bottomAd').childNodes.length === 0) {
-            document.getElementById('bottomAd').innerHTML = fallbackHTML;
-          }
-        }, 5000);
-      } catch (e) {
-        console.error("Ad loading error:", e);
-      }
-    }
-
-    // Sound Control
-    let soundEnabled = true;
-    const soundControl = document.getElementById('soundControl');
-    const winSound = document.getElementById('winSound');
-    const spinSound = document.getElementById('spinSound');
-    
-    soundControl.addEventListener('click', () => {
-      soundEnabled = !soundEnabled;
-      soundControl.textContent = soundEnabled ? '🔊' : '🔇';
-      
-      if (!soundEnabled) {
-        winSound.pause();
-        spinSound.pause();
-      }
-    });
-
-    // Wheel Functionality
+    const prizes = ["₹50", "₹20", "₹10", "No Win", "₹5", "₹100"];
     const wheel = document.getElementById("wheel");
-    const spinBtn = document.getElementById("spinBtn");
-    const resetBtn = document.getElementById("resetBtn");
-    const prizeResult = document.getElementById("prizeResult");
-    const winnerForm = document.getElementById("winnerForm");
+    const result = document.getElementById("result");
+    const winSound = document.getElementById("winSound");
 
-    }
-    ];
-
-    let hasSpun = false;
-    let isSpinning = false;
-    let spinTimeout;
-
-    // Reset function
-    function resetGame() {
-      clearTimeout(spinTimeout);
-      spinSound.pause();
-      wheel.style.transition = 'none';
-      wheel.style.transform = 'rotate(0deg)';
-      isSpinning = false;
-      spinBtn.disabled = false;
-      resetBtn.style.display = 'none';
-    }
-
-    resetBtn.addEventListener('click', resetGame);
-
-    spinBtn.addEventListener("click", () => {
-      if (hasSpun) {
-        alert("आप पहले ही स्पिन कर चुके हैं!");
-        return;
-      }
-      
-      if (isSpinning) return;
-      
-      isSpinning = true;
-      spinBtn.disabled = true;
-      resetBtn.style.display = 'inline-block';
-      
-      // Play spinning sound
-      if (soundEnabled) {
-        spinSound.currentTime = 0;
-        spinSound.play().catch(e => console.log("Spin sound error:", e));
-      }
-      
-      // Reset wheel position for smooth spinning
-      wheel.style.transition = 'none';
-      wheel.style.transform = 'rotate(0deg)';
-      
-      // Force reflow
-      void wheel.offsetWidth;
-      
-      // Start spinning with transition
-      wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
-      
-      const spinDegrees = 3600; // 10 full rotations
-      const prizeAngle = Math.floor(Math.random() * 360);
-      const totalDegrees = spinDegrees + prizeAngle;
-      
-      wheel.style.transform = `rotate(${totalDegrees}deg)`;
-
-      spinTimeout = setTimeout(() => {
-        finishSpin(totalDegrees);
-      }, 5500);
-    });
-
-    // Handle page refresh or close during spin
-    window.addEventListener('beforeunload', (e) => {
-      if (isSpinning) {
-        e.preventDefault();
-        e.returnValue = 'आपका स्पिन अभी चल रहा है। क्या आप वाकई पेज छोड़ना चाहते हैं?';
-      }
-    });
-
-    // Complete the spin
-    function finishSpin(totalDegrees) {
-      isSpinning = false;
-      hasSpun = true;
-      spinBtn.disabled = false;
-      resetBtn.style.display = 'none';
-      
-      // Stop spinning sound
-      spinSound.pause();
-      
-      // Calculate prize (adjusted calculation)
-      const normalizedAngle = (360 - (totalDegrees % 360)) % 360;
-      const prizeIndex = Math.floor(normalizedAngle / 60);
-      const prize = prizes[prizeIndex];
-      
-      prizeResult.innerHTML = `आपने जीता: ${prize.emoji} <strong>${prize.label}</strong>`;
-      
-      // Play win sound if not "Better Luck Next Time"
-      if (prize.label !== "Better Luck Next Time" && soundEnabled) {
-        winSound.currentTime = 0;
-        winSound.play().catch(e => console.log("Win sound error:", e));
-      }
-      
-      if (prize.showForm) {
-        winnerForm.style.display = "block";
-        window.scrollTo({
-          top: winnerForm.offsetTop,
-          behavior: 'smooth'
-        });
+    function drawWheel() {
+      const colors = ["red", "yellow", "orange", "lightgreen", "lightblue", "violet"];
+      for (let i = 0; i < prizes.length; i++) {
+        const sector = document.createElement("div");
+        sector.className = "sector";
+        sector.style.backgroundColor = colors[i];
+        sector.style.transform = rotate(${i * 60}deg) skewY(-30deg);
+        sector.innerHTML = <div style="transform: skewY(30deg) rotate(30deg); padding-top: 30px;">${prizes[i]}</div>;
+        wheel.appendChild(sector);
       }
     }
 
-    // Wait for DOM to load before loading ads
-    document.addEventListener('DOMContentLoaded', function() {
-      // Preload sounds
-      winSound.load();
-      spinSound.load();
-      
-      // Start loading ads after slight delay
-      setTimeout(loadAds, 500);
-    });
+    let spinning = false;
+
+    function spin() {
+      if (spinning) return;
+      spinning = true;
+      const rand = Math.floor(Math.random() * prizes.length);
+      const angle = 360 * 3 + (rand * 60); // 60 deg per segment
+      wheel.style.transform = rotate(${angle}deg);
+      setTimeout(() => {
+        winSound.play();
+        result.innerHTML = आपने जीता: <strong>${prizes[rand]}</strong>;
+        spinning = false;
+      }, 4000);
+    }
+
+    drawWheel();
   </script>
+
 </body>
 </html>
