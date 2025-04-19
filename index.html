@@ -2,7 +2,7 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>RUPESH ELECTRONICS Spin & Win</title>
+  <title>RUP Token - Spin & Win</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -12,6 +12,8 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     h1 {
       background: #000;
@@ -21,6 +23,7 @@
     }
     .container {
       padding: 20px;
+      flex: 1;
     }
     .ad-container {
       margin: 15px auto;
@@ -33,6 +36,7 @@
       justify-content: center;
       align-items: center;
       border: 1px solid #d4af37;
+      overflow: hidden;
     }
     .wheel-container {
       position: relative;
@@ -79,19 +83,27 @@
       cursor: pointer;
       margin: 10px 0;
       font-weight: bold;
+      transition: all 0.3s;
     }
     #spinBtn:hover {
       background: #ffd700;
+      transform: scale(1.05);
     }
     #spinBtn:disabled {
       background: #cccccc;
       cursor: not-allowed;
+      transform: none;
     }
     .prize {
       font-size: 24px;
       margin: 20px 0;
       min-height: 40px;
       font-weight: bold;
+      color: #000;
+      padding: 10px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 8px;
+      display: inline-block;
     }
     #winnerForm {
       display: none;
@@ -112,7 +124,6 @@
       color: #fff;
       padding: 20px;
       font-size: 14px;
-      margin-top: auto;
     }
     .social-icons {
       margin: 10px;
@@ -122,6 +133,10 @@
       margin: 0 10px;
       text-decoration: none;
       color: #ffd700;
+      transition: all 0.3s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.2);
     }
     .wheel-section {
       position: absolute;
@@ -137,6 +152,12 @@
       color: white;
       font-weight: bold;
       text-shadow: 1px 1px 2px #000;
+      font-size: 16px;
+    }
+    .ad-label {
+      font-size: 12px;
+      color: #888;
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -146,7 +167,10 @@
   <div class="container">
     <!-- Top Ad Container -->
     <div class="ad-container" id="topAd">
-      <p>Advertisement loading...</p>
+      <div>
+        <p>Advertisement</p>
+        <p class="ad-label">Loading ads...</p>
+      </div>
     </div>
 
     <div class="wheel-container">
@@ -168,7 +192,10 @@
 
     <!-- Middle Ad Container -->
     <div class="ad-container" id="middleAd">
-      <p>Advertisement loading...</p>
+      <div>
+        <p>Advertisement</p>
+        <p class="ad-label">Loading ads...</p>
+      </div>
     </div>
 
     <div id="winnerForm">
@@ -178,7 +205,10 @@
 
     <!-- Bottom Ad Container -->
     <div class="ad-container" id="bottomAd">
-      <p>Advertisement loading...</p>
+      <div>
+        <p>Advertisement</p>
+        <p class="ad-label">Loading ads...</p>
+      </div>
     </div>
   </div>
 
@@ -201,27 +231,52 @@
     // Adsterra Ads Loading Function
     function loadAds() {
       try {
-        // Top Banner Ad
+        // Replace these with your actual Adsterra ad codes
+        const adCodes = {
+          top: '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js',
+          middle: '//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js',
+          bottom: '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'
+        };
+
+        // Load top ad
         const topAdScript = document.createElement('script');
-        topAdScript.src = '//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js';
+        topAdScript.src = adCodes.top;
         topAdScript.async = true;
+        document.getElementById('topAd').innerHTML = '';
         document.getElementById('topAd').appendChild(topAdScript);
         
-        // Middle Banner Ad
-        const middleAdScript = document.createElement('script');
-        middleAdScript.src = '//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js';
-        middleAdScript.async = true;
-        document.getElementById('middleAd').appendChild(middleAdScript);
+        // Load middle ad after delay
+        setTimeout(() => {
+          const middleAdScript = document.createElement('script');
+          middleAdScript.src = adCodes.middle;
+          middleAdScript.async = true;
+          document.getElementById('middleAd').innerHTML = '';
+          document.getElementById('middleAd').appendChild(middleAdScript);
+        }, 1000);
         
+        // Load bottom ad after delay
+        setTimeout(() => {
+          const bottomAdScript = document.createElement('script');
+          bottomAdScript.src = adCodes.bottom;
+          bottomAdScript.async = true;
+          document.getElementById('bottomAd').innerHTML = '';
+          document.getElementById('bottomAd').appendChild(bottomAdScript);
+        }, 2000);
+
         // Fallback if ads don't load
         setTimeout(() => {
-          if(document.getElementById('topAd').innerHTML.includes('loading')) {
-            document.getElementById('topAd').innerHTML = '<a href="https://www.adsterra.com" target="_blank">Advertisement</a>';
+          const fallbackHTML = '<a href="https://www.adsterra.com" target="_blank" style="color:#d4af37;text-decoration:none">Advertisement by Adsterra</a>';
+          
+          if(document.getElementById('topAd').childNodes.length === 0) {
+            document.getElementById('topAd').innerHTML = fallbackHTML;
           }
-          if(document.getElementById('middleAd').innerHTML.includes('loading')) {
-            document.getElementById('middleAd').innerHTML = '<a href="https://www.adsterra.com" target="_blank">Advertisement</a>';
+          if(document.getElementById('middleAd').childNodes.length === 0) {
+            document.getElementById('middleAd').innerHTML = fallbackHTML;
           }
-        }, 3000);
+          if(document.getElementById('bottomAd').childNodes.length === 0) {
+            document.getElementById('bottomAd').innerHTML = fallbackHTML;
+          }
+        }, 5000);
       } catch (e) {
         console.error("Ad loading error:", e);
       }
@@ -229,7 +284,8 @@
 
     // Wait for DOM to load before loading ads
     document.addEventListener('DOMContentLoaded', function() {
-      loadAds();
+      // Start loading ads after slight delay
+      setTimeout(loadAds, 500);
     });
 
     // Wheel Functionality
