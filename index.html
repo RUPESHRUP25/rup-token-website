@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #fff9c4, #ffe082);
+      background: linear-gradient(to right, #fffde7, #fff9c4);
       text-align: center;
       margin: 0;
       padding: 0;
@@ -14,29 +14,30 @@
     h1 {
       background-color: #ffeb3b;
       padding: 20px;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: bold;
       color: #d84315;
       box-shadow: 0 2px 5px #999;
     }
     #wheelCanvas {
       margin: 20px auto;
-      border: 8px solid #ff9800;
+      border: 10px solid #ff9800;
       border-radius: 50%;
-      box-shadow: 0 0 15px #999;
+      box-shadow: 0 0 20px #999;
     }
     #spinBtn {
-      padding: 12px 30px;
+      padding: 14px 35px;
       font-size: 18px;
       background-color: #fdd835;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       margin-top: 20px;
+      font-weight: bold;
     }
     #result {
       margin-top: 20px;
-      font-size: 20px;
+      font-size: 22px;
       color: green;
       font-weight: bold;
     }
@@ -62,6 +63,9 @@
       font-weight: bold;
       display: inline-block;
     }
+    .ads-section {
+      margin: 30px 0;
+    }
   </style>
 </head>
 <body>
@@ -74,14 +78,42 @@
 
 <a class="google-form-btn" href="https://forms.gle/YOUR_FORM_LINK_HERE" target="_blank">Claim Your Reward</a>
 
+<!-- Adsterra & ProfitRate Ads -->
+<div class="ads-section">
+  <script type="text/javascript">
+    atOptions = {
+      'key': '178c7ef4252d26312a8dc8f179174a57',
+      'format': 'iframe',
+      'height': 300,
+      'width': 160,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/178c7ef4252d26312a8dc8f179174a57/invoke.js"></script>
+
+  <script type="text/javascript">
+    atOptions = {
+      'key': '8260a384f2873808c815a85bc3ce32c9',
+      'format': 'iframe',
+      'height': 60,
+      'width': 468,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/8260a384f2873808c815a85bc3ce32c9/invoke.js"></script>
+
+  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
+  <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
+  <script async="async" data-cfasync="false" src="//pl26423656.profitableratecpm.com/94cca711e5b1506682116f313cd83036/invoke.js"></script>
+  <div id="container-94cca711e5b1506682116f313cd83036"></div>
+</div>
+
 <!-- Social Links -->
 <div class="social-icons">
   <a href="https://facebook.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145802.png"></a>
   <a href="https://instagram.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
   <a href="https://wa.me/919999999999" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
 </div>
-
-<!-- Ad Code (Paste your ad scripts here) -->
 
 <script>
   const canvas = document.getElementById("wheelCanvas");
@@ -96,6 +128,7 @@
   let spinTimeTotal = 0;
 
   function drawWheel() {
+    ctx.clearRect(0, 0, 300, 300);
     for (let i = 0; i < segments.length; i++) {
       let angle = startAngle + i * arc;
       ctx.fillStyle = colors[i];
@@ -105,9 +138,9 @@
       ctx.lineTo(150, 150);
       ctx.fill();
 
-      ctx.fillStyle = "#000";
-      ctx.font = 'bold 14px sans-serif';
       ctx.save();
+      ctx.fillStyle = "#000";
+      ctx.font = "bold 14px sans-serif";
       ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
       ctx.fillText(segments[i], -ctx.measureText(segments[i]).width / 2, 0);
@@ -116,14 +149,14 @@
   }
 
   function rotateWheel() {
-    spinAngleStart = Math.random() * 10 + 10;
+    spinAngleStart = Math.random() * 30 + 30; // Increased initial speed
     spinTime = 0;
-    spinTimeTotal = Math.random() * 3000 + 4000;
+    spinTimeTotal = Math.random() * 2000 + 2000; // Shorter duration
     rotate();
   }
 
   function rotate() {
-    spinTime += 30;
+    spinTime += 20;
     if (spinTime >= spinTimeTotal) {
       stopRotateWheel();
       return;
@@ -131,7 +164,7 @@
     let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
     startAngle += (spinAngle * Math.PI / 180);
     drawWheel();
-    spinTimeout = setTimeout(rotate, 30);
+    spinTimeout = setTimeout(rotate, 20); // Faster animation
   }
 
   function stopRotateWheel() {
