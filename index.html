@@ -199,12 +199,12 @@
       <div class="pointer"></div>
       <div class="wheel" id="wheel">
         <!-- Wheel labels -->
-        <div class="wheel-section" style="transform: rotate(0deg);"><span class="wheel-label">1000₹</span></div>
-        <div class="wheel-section" style="transform: rotate(60deg);"><span class="wheel-label">500₹</span></div>
-        <div class="wheel-section" style="transform: rotate(120deg);"><span class="wheel-label">200₹</span></div>
-        <div class="wheel-section" style="transform: rotate(180deg);"><span class="wheel-label">Buds</span></div>
+        <div class="wheel-section" style="transform: rotate(0deg);"><span class="wheel-label">100₹</span></div>
+        <div class="wheel-section" style="transform: rotate(60deg);"><span class="wheel-label">50₹</span></div>
+        <div class="wheel-section" style="transform: rotate(120deg);"><span class="wheel-label">20₹</span></div>
+        <div class="wheel-section" style="transform: rotate(180deg);"><span class="wheel-label">10₹</span></div>
         <div class="wheel-section" style="transform: rotate(240deg);"><span class="wheel-label">No Win</span></div>
-        <div class="wheel-section" style="transform: rotate(300deg);"><span class="wheel-label">1000₹</span></div>
+        <div class="wheel-section" style="transform: rotate(300deg);"><span class="wheel-label">5₹</span></div>
       </div>
     </div>
     
@@ -335,12 +335,12 @@
     const winnerForm = document.getElementById("winnerForm");
 
     const prizes = [
-      { label: "1₹", emoji: "💰", showForm: true },
-      { label: "2₹", emoji: "🪙", showForm: true },
-      { label: "Buds₹", emoji: "💵", showForm: true },
-      { label: "Better Luck Next Time", emoji: "4", showForm: true },
-      { label: "1000", emoji: "❌", showForm: false },
-      { label: "6", emoji: "💰", showForm: true }
+      { label: "100₹", emoji: "💰", showForm: true },
+      { label: "50₹", emoji: "💰", showForm: true },
+      { label: "20₹", emoji: "💰", showForm: true },
+      { label: "10", emoji: "💰", showForm: true },
+      { label: "5", emoji: "💰", showForm: false },
+      { label: "NO WIN", emoji: "❌", showForm: true }
     ];
 
     let hasSpun = false;
