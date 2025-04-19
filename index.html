@@ -64,6 +64,9 @@
       font-size: 22px;
       font-weight: bold;
     }
+    #prizeImage {
+      margin-top: 20px;
+    }
     #formLink {
       display: none;
       margin-top: 20px;
@@ -113,6 +116,7 @@
 <button id="spin">स्पिन करें</button>
 
 <div id="result"></div>
+<div id="prizeImage"></div>
 <div id="formLink">
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank">
     फॉर्म भरें (केवल विजेताओं के लिए)
@@ -158,9 +162,17 @@
   const wheel = document.getElementById("wheel");
   const spinBtn = document.getElementById("spin");
   const result = document.getElementById("result");
+  const prizeImage = document.getElementById("prizeImage");
   const formLink = document.getElementById("formLink");
 
-  const prizes = ["1000 रु", "500 रु", "200 रु", "Bluetooth Buds", "Better Luck Next Time", "200 रु"];
+  const prizes = [
+    { name: "1000 रु", image: "https://example.com/prize1000.jpg" },
+    { name: "500 रु", image: "https://example.com/prize500.jpg" },
+    { name: "200 रु", image: "https://example.com/prize200.jpg" },
+    { name: "Bluetooth Buds", image: "https://example.com/bluetoothbuds.jpg" },
+    { name: "Better Luck Next Time", image: "https://example.com/betterluck.jpg" }
+  ];
+
   let hasSpun = false;
 
   spinBtn.addEventListener("click", () => {
@@ -178,10 +190,16 @@
       const section = Math.floor(finalDeg / 60);
       const prize = prizes[section];
 
-      result.innerText = आपने जीता: ${prize};
-      if (prize !== "Better Luck Next Time") {
+      result.innerText = आपने जीता: ${prize.name};
+      prizeImage.innerHTML = <img src="${prize.image}" alt="${prize.name}" style="width: 200px; height: auto; border-radius: 10px;">;
+      
+      if (prize.name !== "Better Luck Next Time") {
         formLink.style.display = "block";
       }
+
+      // Play sound when prize is won
+      const audio = new Audio('https://example.com/success-sound.mp3'); // Replace with your own sound URL
+      audio.play();
     }, 5200);
   });
 </script>
