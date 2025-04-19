@@ -62,25 +62,19 @@
   border-radius: 8px;
 }
 
-#result, #formDiv {
+#result, #formLink {
   display: none;
   margin-top: 20px;
 }
 
-form input {
-  padding: 10px;
-  margin: 8px;
-  width: 80%;
-  max-width: 300px;
-}
-
-form button {
+.form-button {
   padding: 10px 20px;
   background: green;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 footer {
@@ -105,14 +99,8 @@ footer {
   </header>  <div class="ad-banner">Ad Slot (Top)</div>  <div id="pointer"></div>
   <div id="wheel"></div>
   <button id="spinBtn">Spin</button>
-  <div id="result"></div>  <div id="formDiv">
-    <h3>Enter Your Details</h3>
-    <form id="winnerForm">
-      <input type="text" name="name" placeholder="Your Name" required><br>
-      <input type="text" name="phone" placeholder="Phone Number" required><br>
-      <input type="hidden" name="prize" id="prizeValue">
-      <button type="submit">Submit</button>
-    </form>
+  <div id="result"></div>  <div id="formLink">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank" class="form-button">Submit Your Details</a>
   </div>  <div class="ad-banner">Ad Slot (Right/Sidebar)</div>
   <div class="footer-ad">Ad Slot (Bottom)</div>  <footer>
     <div class="social-icons">
@@ -148,17 +136,11 @@ footer {
 
         document.getElementById("result").style.display = "block";
         document.getElementById("result").innerText = You won: ${prize};
-        document.getElementById("prizeValue").value = prize;
 
         if (prize !== "Better luck next time") {
-          document.getElementById("formDiv").style.display = "block";
+          document.getElementById("formLink").style.display = "block";
         }
       }, 5200);
-    });
-
-    document.getElementById("winnerForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Details submitted successfully! (Link to Google Sheet integration here)");
     });
   </script></body>
 </html>
