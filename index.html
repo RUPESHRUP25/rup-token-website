@@ -9,7 +9,6 @@
     body {
       font-family: Arial, sans-serif;
       background: #fff8d3;
-      color: #333;
       margin: 0;
       padding: 0;
       text-align: center;
@@ -20,12 +19,20 @@
       padding: 20px;
       font-size: 24px;
     }
+    #pointer {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 40px solid #000;
+      margin: 0 auto;
+    }
     #wheel {
       width: 300px;
       height: 300px;
+      margin: 30px auto;
       border-radius: 50%;
       border: 8px solid #000;
-      margin: 30px auto;
       background: conic-gradient(
         gold 0deg 60deg,
         #2ecc71 60deg 120deg,
@@ -36,17 +43,9 @@
       );
       transition: transform 5s ease-out;
     }
-    #pointer {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 40px solid #000;
-      margin: 0 auto;
-    }
     #spinBtn {
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       font-size: 18px;
       background: orange;
       color: white;
@@ -103,57 +102,46 @@
       border: 1px dashed #ccc;
       text-align: center;
     }
-
-    /* Fake Interstitial Ad popup */
     #adPopup {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.8);
-      color: #fff;
-      z-index: 999;
+      z-index: 9999;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
     }
-    #adPopupContent {
-      background: white;
-      color: black;
-      padding: 20px;
+    #adContent {
+      background: #fff;
+      padding: 30px;
       border-radius: 10px;
-      max-width: 90%;
       text-align: center;
     }
-    #closeAdBtn {
+    #closeAd {
       margin-top: 20px;
       padding: 10px 20px;
       background: red;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
+
   <header>RUP Token | Spin & Win</header>
 
-  <!-- Fake Ad Popup -->
   <div id="adPopup">
-    <div id="adPopupContent">
-      <h3>Sponsored Ad</h3>
-      <p>यह एक डेमो विज्ञापन है। इसे बंद करने के बाद आप स्पिन कर सकेंगे।</p>
-      <button id="closeAdBtn">विज्ञापन बंद करें</button>
+    <div id="adContent">
+      <h3>यह एक डेमो विज्ञापन है</h3>
+      <p>स्पिन शुरू करने से पहले इसे बंद करें</p>
+      <button id="closeAd">विज्ञापन बंद करें</button>
     </div>
   </div>
 
-  <!-- Ad 1 -->
-  <div class="ad">
-    <p>Ad Slot 1 - Google AdSense</p>
-  </div>
+  <div class="ad">Ad Slot 1 - Google AdSense</div>
 
   <div id="pointer"></div>
   <div id="wheel"></div>
@@ -161,13 +149,10 @@
   <div id="result"></div>
 
   <div id="formLink">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank" class="form-button">अपना विवरण दर्ज करें</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform" target="_blank" class="form-button">अपना विवरण भरें</a>
   </div>
 
-  <!-- Ad 2 -->
-  <div class="ad">
-    <p>Ad Slot 2 - Google AdSense</p>
-  </div>
+  <div class="ad">Ad Slot 2 - Google AdSense</div>
 
   <footer>
     <div class="social-icons">
@@ -176,72 +161,67 @@
       <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
       <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
-    <p>&copy; 2025 RUP Token | सर्वाधिकार सुरक्षित</p>
+    <p>&copy; 2025 RUP Token | सभी अधिकार सुरक्षित</p>
   </footer>
 
   <div class="section">
-    <h2>नियम और शर्तें (Terms & Conditions)</h2>
+    <h2>नियम और शर्तें</h2>
     <ul>
-      <li>प्रत्येक उपयोगकर्ता को प्रतिदिन केवल एक बार स्पिन करने की अनुमति है।</li>
-      <li>इनाम की उपलब्धता कंपनी की नीति पर निर्भर है।</li>
-      <li>इनाम प्राप्त करने के लिए सही विवरण भरना आवश्यक है।</li>
+      <li>हर ग्राहक को केवल एक बार स्पिन करने की अनुमति है।</li>
+      <li>इनाम बदलने का अधिकार कंपनी के पास सुरक्षित है।</li>
     </ul>
-
-    <h2>गोपनीयता नीति (Privacy Policy)</h2>
+    <h2>गोपनीयता नीति</h2>
     <ul>
-      <li>हम उपयोगकर्ताओं की जानकारी केवल इनाम भेजने के उद्देश्य से संग्रह करते हैं।</li>
-      <li>आपकी जानकारी किसी भी तृतीय पक्ष के साथ साझा नहीं की जाएगी।</li>
-      <li>सभी डेटा सुरक्षित सर्वर पर संग्रहित किया जाता है।</li>
+      <li>आपके द्वारा दी गई जानकारी केवल इनाम के लिए प्रयोग होगी।</li>
+      <li>हम आपकी जानकारी को सुरक्षित रखते हैं।</li>
     </ul>
-
-    <h2>अस्वीकरण (Disclaimer)</h2>
+    <h2>अस्वीकरण</h2>
     <ul>
-      <li>यह एक प्रचारात्मक गतिविधि है, इसे लॉटरी या जुए की श्रेणी में न समझा जाए।</li>
-      <li>कंपनी किसी भी तकनीकी खराबी या देरी के लिए उत्तरदायी नहीं होगी।</li>
-      <li>कंपनी इनाम में बदलाव करने या बंद करने का अधिकार सुरक्षित रखती है।</li>
+      <li>यह एक प्रमोशनल ऑफर है, इसे लॉटरी न समझा जाए।</li>
     </ul>
   </div>
 
   <script>
-    const prizes = [
-      "Rs. 1000",
-      "Rs. 500",
-      "Rs. 200",
-      "Bluetooth Buds",
-      "Better luck next time",
-      "Rs. 200"
-    ];
-    let spun = false;
-    let adShown = false;
+    const spinBtn = document.getElementById("spinBtn");
+    const wheel = document.getElementById("wheel");
+    const result = document.getElementById("result");
+    const formLink = document.getElementById("formLink");
+    const adPopup = document.getElementById("adPopup");
+    const closeAd = document.getElementById("closeAd");
 
-    document.getElementById("spinBtn").addEventListener("click", function () {
+    const prizes = ["1000 रु", "500 रु", "200 रु", "Bluetooth Buds", "Better Luck Next Time", "200 रु"];
+    let spun = false;
+    let adClosed = false;
+
+    spinBtn.addEventListener("click", () => {
       if (spun) {
         alert("आप पहले ही स्पिन कर चुके हैं!");
         return;
       }
-      if (!adShown) {
-        document.getElementById("adPopup").style.display = "flex";
+      if (!adClosed) {
+        adPopup.style.display = "flex";
         return;
       }
 
-      const degree = Math.floor(5000 + Math.random() * 2000);
-      document.getElementById("wheel").style.transform = rotate(${degree}deg);
+      const deg = Math.floor(5000 + Math.random() * 2000);
+      wheel.style.transform = rotate(${deg}deg);
       spun = true;
 
       setTimeout(() => {
-        const segment = Math.floor((degree % 360) / 60);
-        const prize = prizes[segment];
-        document.getElementById("result").innerText = "आपने जीता: " + prize;
-        if (prize !== "Better luck next time") {
-          document.getElementById("formLink").style.display = "block";
+        const section = Math.floor((deg % 360) / 60);
+        const prize = prizes[section];
+        result.textContent = आपने जीता: ${prize};
+        if (prize !== "Better Luck Next Time") {
+          formLink.style.display = "block";
         }
       }, 5200);
     });
 
-    document.getElementById("closeAdBtn").addEventListener("click", function () {
-      adShown = true;
-      document.getElementById("adPopup").style.display = "none";
+    closeAd.addEventListener("click", () => {
+      adPopup.style.display = "none";
+      adClosed = true;
     });
   </script>
+
 </body>
 </html>
