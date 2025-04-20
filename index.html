@@ -1,62 +1,68 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RUPESH ELECTRONICS - Spin & Win 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RUPESH ELECTRONICS SPIN & WIN</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8956191401262476" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
       color: #333;
     }
     header {
       background: #ff5e57;
       color: white;
       text-align: center;
-      padding: 1.5rem;
-      font-size: 2rem;
+      padding: 1rem;
+      font-size: 1.8rem;
       font-weight: bold;
     }
     .wheel-container {
       text-align: center;
       margin: 30px auto;
     }
-    #wheel {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      border: 10px solid #333;
-      background: conic-gradient(#ff6384 0deg 60deg,#36a2eb 60deg 120deg,#cc65fe 120deg 180deg,#ffce56 180deg 240deg,#2ecc71 240deg 300deg,#e74c3c 300deg 360deg);
-      transition: transform 4s ease-out;
-    }
     #pointer {
-      width: 0;
-      height: 0;
+      width: 0; 
+      height: 0; 
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
       border-bottom: 30px solid black;
       margin: auto;
     }
-    .spin-btn {
+    #wheel {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 10px solid #333;
+      background: conic-gradient(
+        #ff6384 0deg 60deg,
+        #36a2eb 60deg 120deg,
+        #cc65fe 120deg 180deg,
+        #ffce56 180deg 240deg,
+        #2ecc71 240deg 300deg,
+        #e74c3c 300deg 360deg
+      );
+      position: relative;
+      margin: 20px auto;
+      transition: transform 3s ease-out;
+    }
+    #spinBtn {
       background: #27ae60;
       color: white;
-      padding: 12px 25px;
+      padding: 10px 25px;
       font-size: 18px;
       margin-top: 20px;
       border: none;
       cursor: pointer;
       border-radius: 8px;
     }
-    .sections, .tools {
+    .sections {
       background: white;
       padding: 20px;
       margin: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .footer {
       background: #2c3e50;
@@ -67,104 +73,81 @@
     .socials a {
       margin: 0 10px;
       color: white;
-      text-decoration: none;
       font-size: 24px;
     }
-    .mobile-list img {
+    .mobiles img {
       width: 100px;
       height: auto;
-      display: block;
-      margin-bottom: 5px;
+      border-radius: 10px;
+      margin-right: 10px;
     }
-    .mobile-item {
+    .ad-placeholder {
+      width: 100%;
+      height: 100px;
+      background: #ccc;
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
-    }
-    .mobile-info {
-      margin-left: 15px;
-    }
-    .tools a {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      background: #3498db;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    .adsense-box {
+      justify-content: center;
       margin: 20px auto;
-      text-align: center;
+      border-radius: 10px;
+      font-weight: bold;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body><header>RUPESH ELECTRONICS - SPIN & WIN OFFER 2025</header><div class="wheel-container">
+<body><header>RUPESH ELECTRONICS - SPECIAL SPIN & WIN OFFER 2025</header><div class="wheel-container">
   <div id="pointer"></div>
   <div id="wheel"></div>
-  <button class="spin-btn" onclick="spinWheel()">SPIN NOW</button>
+  <button id="spinBtn" onclick="spin()">SPIN NOW</button>
   <p id="result"></p>
-</div><div class="adsense-box">
-  <!-- AdSense Slot -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-8956191401262476"
-       data-ad-slot="1234567890"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div><div class="sections">
+</div><div class="ad-placeholder">Ad Placeholder Slot</div><div class="sections mobiles">
   <h2>Top 2025 Mid-Range 5G Mobiles</h2>
-  <div class="mobile-list">
-    <div class="mobile-item">
-      <img src="https://via.placeholder.com/100x150" alt="Vivo Y29">
-      <div class="mobile-info"><strong>Vivo Y29 5G</strong><br>₹14,999</div>
-    </div>
-    <div class="mobile-item">
-      <img src="https://via.placeholder.com/100x150" alt="Vivo V50">
-      <div class="mobile-info"><strong>Vivo V50 5G</strong><br>₹22,999</div>
-    </div>
-    <!-- Add 48 more as needed -->
-  </div>
-</div><div class="tools">
-  <h2>Useful Tools</h2>
-  <a href="#">EMI Calculator</a>
-  <a href="#">File Converter</a>
-  <a href="#">Image to PDF</a>
-  <a href="#">QR Code Coupon</a>
+  <ul>
+    <li><img src="https://via.placeholder.com/100" alt="Vivo Y29"> Vivo Y29 5G - ₹14,999</li>
+    <li><img src="https://via.placeholder.com/100" alt="Vivo Y39"> Vivo Y39 5G - ₹16,499</li>
+    <li><img src="https://via.placeholder.com/100" alt="Vivo V50"> Vivo V50 5G - ₹22,999</li>
+    <li><img src="https://via.placeholder.com/100" alt="Narzo 70"> Realme Narzo 70 5G - ₹13,999</li>
+    <li><img src="https://via.placeholder.com/100" alt="Redmi Note 13"> Redmi Note 13 5G - ₹15,499</li>
+  </ul>
 </div><div class="sections">
   <h2>Terms & Conditions</h2>
-  <p>Offer valid once per user. Coins and cash rewards are non-transferable. Spin results are final.</p>
+  <p>Offer valid once per user. Coins and cash rewards are non-transferable. Spin results are final and cannot be disputed.</p>
 </div><div class="sections">
   <h2>Privacy Policy</h2>
-  <p>We respect your privacy. No personal data is shared. Cookies may be used for better UX.</p>
+  <p>We respect your privacy. We do not collect or share personal data without your consent. Cookies may be used for better experience.</p>
 </div><div class="sections">
   <h2>Disclaimer</h2>
-  <p>This site is under development for promotional use only by RUPESH ELECTRONICS.</p>
+  <p>This site is under development. RUPESH ELECTRONICS. This is for promotional use only.</p>
 </div><div class="sections">
   <h2>Contact Us</h2>
   <p>Email: support@rupeshelectronics2003@gmail.com.in<br>Phone: +91-9334113322</p>
 </div><div class="footer">
   <p>Follow us on</p>
   <div class="socials">
-    <a href="https://facebook.com/share/1QN2tDUeQD/" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://instagram.com/rupeshelectronics" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://x.com/RupeshK30183542" target="_blank"><i class="fab fa-twitter"></i></a>
-    <a href="https://youtube.com/@mrrupeshkumar000" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/RupeshK30183542?t=1AcOoz4qD5H0DXjcbIXGZg&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://youtube.com/@mrrupeshkumar000?si=6paV-4VGxlMiqkrn" target="_blank"><i class="fab fa-youtube"></i></a>
   </div>
   <p>&copy; 2025 RUPESH ELECTRONICS. All Rights Reserved.</p>
 </div><script>
-  function spinWheel() {
-    const wheel = document.getElementById('wheel');
-    const result = document.getElementById('result');
+  let spinning = false;
+  function spin() {
+    if (spinning) return;
+    spinning = true;
+    const wheel = document.getElementById("wheel");
+    const result = document.getElementById("result");
     const outcomes = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
-    const randomIndex = Math.floor(Math.random() * outcomes.length);
-    const angle = 3600 + (randomIndex * 60);
+    const degrees = Math.floor(3600 + Math.random() * 360);
+    const index = Math.floor((degrees % 360) / 60);
 
-    wheel.style.transform = rotate(${angle}deg);
+    wheel.style.transition = "transform 3s ease-out";
+    wheel.style.transform = "rotate(" + degrees + "deg)";
+
     setTimeout(() => {
-      result.innerHTML = You won: <strong>${outcomes[randomIndex]}</strong>;
-    }, 4000);
+      result.innerHTML = "You won: " + outcomes[index];
+      spinning = false;
+    }, 3100);
   }
 </script></body>
 </html>
