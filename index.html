@@ -5,41 +5,45 @@
     crossorigin="anonymous"></script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
     body {
-        font-family: 'Comic Sans MS', cursive, sans-serif;
-        background: linear-gradient(to right, #ffecd2, #fcb69f);
+        font-family: 'Baloo 2', cursive;
+        background: radial-gradient(circle, #f9fbe7, #f0f4c3);
         text-align: center;
         margin: 0;
         padding: 0;
     }
 
     h1 {
-        background-color: #ff4081;
+        background-color: #ff6f00;
         color: white;
         padding: 20px;
-        font-size: 32px;
-        border-radius: 0 0 20px 20px;
+        font-size: 36px;
+        border-radius: 0 0 25px 25px;
+        text-shadow: 2px 2px #000;
     }
 
     #wheel {
         width: 300px;
         height: 300px;
         border-radius: 50%;
-        border: 10px solid #fff;
+        border: 10px solid #ff9800;
         margin: 30px auto;
-        background: conic-gradient(#ffeb3b 0% 20%, #8bc34a 20% 40%, #00bcd4 40% 60%, #ff5722 60% 80%, #9c27b0 80% 100%);
+        background: conic-gradient(#ffd54f 0% 16.6%, #4caf50 16.6% 33.3%, #03a9f4 33.3% 50%, #e91e63 50% 66.6%, #9c27b0 66.6% 83.3%, #cddc39 83.3% 100%);
         position: relative;
-        transition: transform 4s ease-out;
+        transition: transform 5s ease-out;
     }
 
     #spinBtn {
         padding: 15px 40px;
         font-size: 20px;
-        background-color: #4caf50;
+        background-color: #009688;
         color: white;
         border: none;
         border-radius: 10px;
         cursor: pointer;
+        box-shadow: 2px 2px 8px #555;
     }
 
     .social {
@@ -50,21 +54,31 @@
         margin: 0 10px;
         font-size: 24px;
         text-decoration: none;
-        color: #fff;
-        padding: 10px;
-        border-radius: 10px;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 12px;
+        display: inline-block;
     }
 
-    .facebook { background: #3b5998; }
-    .whatsapp { background: #25d366; }
-    .youtube { background: #ff0000; }
+    .facebook {
+        background: #3b5998;
+    }
+
+    .whatsapp {
+        background: #25d366;
+    }
+
+    .youtube {
+        background: #ff0000;
+    }
 
     footer {
-        background-color: #333;
+        background-color: #263238;
         color: white;
         padding: 20px;
         margin-top: 40px;
-        font-size: 14px;
+        font-size: 16px;
+        line-height: 1.5;
     }
 </style>
 
@@ -87,9 +101,9 @@
 
 <!-- Legal Sections -->
 <footer>
-    <p><strong>Terms & Conditions:</strong> Offer valid only on minimum purchase. No cheating allowed. Spin results are final.</p>
-    <p><strong>Privacy Policy:</strong> We do not collect personal data. Ads shown by third parties may use cookies.</p>
-    <p><strong>Disclaimer:</strong> RUPESH COIN is not listed on any exchange. This is for customer engagement only.</p>
+    <p><strong>Terms & Conditions:</strong> ऑफर केवल न्यूनतम खरीद पर मान्य है। धोखाधड़ी की अनुमति नहीं है। स्पिन का निर्णय अंतिम होगा।</p>
+    <p><strong>Privacy Policy:</strong> हम व्यक्तिगत डेटा इकट्ठा नहीं करते हैं। थर्ड पार्टी विज्ञापन कूकीज़ का उपयोग कर सकते हैं।</p>
+    <p><strong>Disclaimer:</strong> RUPESH COIN अभी किसी भी एक्सचेंज पर सूचीबद्ध नहीं है। यह केवल कस्टमर एंगेजमेंट के लिए है।</p>
 </footer>
 
 <!-- Script to Spin Wheel -->
@@ -99,7 +113,8 @@
     let deg = 0;
 
     btn.addEventListener("click", () => {
-        deg = Math.floor(5000 + Math.random() * 5000);
+        deg = Math.floor(2000 + Math.random() * 3000);
+        wheel.style.transition = "transform 5s ease-out";
         wheel.style.transform = rotate(${deg}deg);
     });
 </script>
