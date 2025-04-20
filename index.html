@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="hi">
+<!DOCTYPE html><html lang="hi">
 <head>
   <meta charset="UTF-8">
   <title>RUPESH ELECTRONICS SPECIAL OFFER - Spin & Win</title>
@@ -66,20 +65,40 @@
     .ads-section {
       margin: 30px 0;
     }
-  </style>
-</head>
-<body>
-
-<h1>RUPESH ELECTRONICS SPECIAL OFFER</h1>
+    input {
+      padding: 10px;
+      width: 250px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>  <!-- Firebase SDKs -->  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCe7mySfFf2zxwJIEU3iWF7AJptYw1A9Xk",
+      authDomain: "sample-firebase-ai-app-bc608.firebaseapp.com",
+      projectId: "sample-firebase-ai-app-bc608",
+      storageBucket: "sample-firebase-ai-app-bc608.appspot.com",
+      messagingSenderId: "291650523519",
+      appId: "1:291650523519:web:00aa2397531e5b8a0a4a4a",
+      measurementId: "G-TCRPBENHR8"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script></head>
+<body><h1>RUPESH ELECTRONICS SPECIAL OFFER</h1>
 <div class="arrow"></div>
 <canvas id="wheelCanvas" width="300" height="300"></canvas><br>
 <button id="spinBtn">Spin</button>
-<div id="result"></div>
-
-<a class="google-form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?usp=header" target="_blank">Claim Your Reward</a>
-
-<!-- Adsterra & ProfitRate Ads -->
-<div class="ads-section">
+<div id="result"></div><!-- Claim Form --><div style="margin-top: 20px;">
+  <h3>पुरस्कार क्लेम करें</h3>
+  <form id="claimForm">
+    <input type="text" placeholder="नाम" id="name" required><br>
+    <input type="text" placeholder="फोन नंबर" id="phone" required><br>
+    <input type="text" placeholder="UPI ID" id="upi" required><br>
+    <button type="submit" class="google-form-btn">Claim Now</button>
+  </form>
+  <div id="formStatus" style="margin-top: 10px; font-weight: bold;"></div>
+</div><!-- Adsterra & ProfitRate Ads --><div class="ads-section">
   <script type="text/javascript">
     atOptions = {
       'key': '178c7ef4252d26312a8dc8f179174a57',
@@ -90,32 +109,11 @@
     };
   </script>
   <script type="text/javascript" src="//www.highperformanceformat.com/178c7ef4252d26312a8dc8f179174a57/invoke.js"></script>
-
-  <script type="text/javascript">
-    atOptions = {
-      'key': '8260a384f2873808c815a85bc3ce32c9',
-      'format': 'iframe',
-      'height': 60,
-      'width': 468,
-      'params': {}
-    };
-  </script>
-  <script type="text/javascript" src="//www.highperformanceformat.com/8260a384f2873808c815a85bc3ce32c9/invoke.js"></script>
-
-  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
-  <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
-  <script async="async" data-cfasync="false" src="//pl26423656.profitableratecpm.com/94cca711e5b1506682116f313cd83036/invoke.js"></script>
-  <div id="container-94cca711e5b1506682116f313cd83036"></div>
-</div>
-
-<!-- Social Links -->
-<div class="social-icons">
+</div><!-- Social Links --><div class="social-icons">
   <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145802.png"></a>
   <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
   <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
-</div>
-
-<script>
+</div><script>
   const canvas = document.getElementById("wheelCanvas");
   const ctx = canvas.getContext("2d");
   const segments = ['₹10', '₹20', '₹50', '₹100', '₹200', 'Better Luck'];
@@ -149,9 +147,9 @@
   }
 
   function rotateWheel() {
-    spinAngleStart = Math.random() * 30 + 30; // Increased initial speed
+    spinAngleStart = Math.random() * 30 + 30;
     spinTime = 0;
-    spinTimeTotal = Math.random() * 2000 + 2000; // Shorter duration
+    spinTimeTotal = Math.random() * 2000 + 2000;
     rotate();
   }
 
@@ -164,7 +162,7 @@
     let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
     startAngle += (spinAngle * Math.PI / 180);
     drawWheel();
-    spinTimeout = setTimeout(rotate, 20); // Faster animation
+    spinTimeout = setTimeout(rotate, 20);
   }
 
   function stopRotateWheel() {
@@ -187,17 +185,27 @@
   });
 
   drawWheel();
-</script>
-</body>
-  <div class="sections">
-  <h2>अपना इनाम प्राप्त करें</h2>
-  <form id="claimForm">
-    <input type="text" id="name" placeholder="नाम" required><br><br>
-    <input type="email" id="email" placeholder="ईमेल" required><br><br>
-    <input type="tel" id="phone" placeholder="मोबाइल नंबर" required><br><br>
-    <input type="text" id="upi" placeholder="UPI ID" required><br><br>
-    <button type="submit">Claim करें</button>
-  </form>
-  <p id="formStatus"></p>
-</div>
+
+  document.getElementById("claimForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const upi = document.getElementById("upi").value;
+
+    db.collection("claims").add({
+      name: name,
+      phone: phone,
+      upi: upi,
+      time: new Date().toLocaleString()
+    })
+    .then(() => {
+      document.getElementById("formStatus").innerText = "क्लेम सफल! जल्द ही पैसे भेजे जाएंगे।";
+      document.getElementById("claimForm").reset();
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+      document.getElementById("formStatus").innerText = "त्रुटि! कृपया फिर से प्रयास करें।";
+    });
+  });
+</script></body>
 </html>
