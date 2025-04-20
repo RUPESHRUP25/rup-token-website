@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RUPESH ELECTRONICS SPIN & WIN</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-89650191481262476" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8956191401262476" crossorigin="anonymous"></script>
   <style>
     body {
       margin: 0;
@@ -38,6 +38,7 @@
       );
       position: relative;
       margin: auto;
+      transition: transform 4s ease-out;
     }
     #pointer {
       width: 0; 
@@ -111,32 +112,40 @@
 
 <div class="sections">
   <h2>Disclaimer</h2>
-  <p>This site is under development. RUPESH ELECTRONICS. This is for promotional use only.</p>
+  <p>This site is under development. RUPESH COIN is not listed on any exchange. This is for promotional use only.</p>
 </div>
 
 <div class="sections">
   <h2>Contact Us</h2>
-  <p>Email: support@rupeshelectronics2003@gmail.com.in<br>Phone: +91-9334113322</p>
+  <p>Email: support@ruptoken.in<br>Phone: +91-9876543210</p>
 </div>
 
 <div class="footer">
   <p>Follow us on</p>
   <div class="socials">
-    <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank">Facebook</a>
-    <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4"_blank">Instagram</a>
-    <a href="https://x.com/RupeshK30183542?t=1AcOoz4qD5H0DXjcbIXGZg&s=09"_blank">Twitter</a>
-    <a href="https://youtube.com/@mrrupeshkumar000?si=6paV-4VGxlMiqkrn"_blank">YouTube</a>
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="https://twitter.com" target="_blank">Twitter</a>
+    <a href="https://youtube.com" target="_blank">YouTube</a>
   </div>
   <p>&copy; 2025 RUPESH ELECTRONICS. All Rights Reserved.</p>
 </div>
 
 <script>
+  let isSpinning = false;
   function spin() {
+    if (isSpinning) return;
+    isSpinning = true;
     const result = document.getElementById("result");
     const outcomes = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
     const random = Math.floor(Math.random() * outcomes.length);
-    result.innerHTML = "You won: " + outcomes[random];
-    document.getElementById("wheel").style.transform = "rotate(" + (3600 + random * 60) + "deg)";
+    const degree = 3600 + random * 60;
+    const wheel = document.getElementById("wheel");
+    wheel.style.transform = "rotate(" + degree + "deg)";
+    setTimeout(() => {
+      result.innerHTML = "You won: " + outcomes[random];
+      isSpinning = false;
+    }, 4000);
   }
 </script>
 
