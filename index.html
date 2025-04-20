@@ -92,16 +92,21 @@
     }
   </style>
 </head>
-<body><header>RUPESH ELECTRONICS - SPIN & WIN OFFER 2025</header><div class="wheel-container">
+<body><header>RUPESH ELECTRONICS SPIN & WIN OFFER 2025</header><div class="wheel-container">
   <div id="pointer"></div>
   <div id="wheel"></div>
   <button onclick="spin()">SPIN NOW</button>
   <p id="result"></p>
 </div><div class="sections">
-  <h2>2025 के टॉप 100 मिड-रेंज 5G मोबाइल लिस्ट</h2>
+  <h2>2025 के टॉप मिड-रेंज 5G मोबाइल लिस्ट</h2>
   <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-5g-1.jpg" alt="V50"> <span>Vivo V50 5G - ₹22,999</span></div>
   <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v23e-5g-1.jpg" alt="Y29"> <span>Vivo Y29 5G - ₹14,999</span></div>
   <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v25e-1.jpg" alt="Y39"> <span>Vivo Y39 5G - ₹16,499</span></div>
+ <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-5g-1.jpg" alt="V50"> <span>Vivo V50 5G - ₹22,999</span></div>
+ <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-5g-1.jpg" alt="V50"> <span>Vivo V50 5G - ₹22,999</span></div>
+ <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-5g-1.jpg" alt="V50"> <span>Vivo V50 5G - ₹22,999</span></div>
+ <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-5g-1.jpg" alt="V50"> <span>Vivo V50 5G - ₹22,999</span></div>
+  <div class="mobile-item"><img class="mobile-img" src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-5g-1.jpg" alt="V50"> <span>Vivo V50 5G - ₹22,999</span></div>
   <!-- और डिवाइस यहाँ जोड़ें -->
 </div><div class="sections">
   <h2>नियम और शर्तें</h2>
@@ -114,7 +119,7 @@
   <p>यह वेबसाइट केवल प्रचार उद्देश्यों के लिए है। सभी जानकारी अस्थायी है और किसी भी समय बदल सकती है।</p>
 </div><div class="sections">
   <h2>संपर्क करें</h2>
-  <p>ईमेल: support@rupeshelectronics2003@gmail.com.in<br>फोन: +91-9334113322</p>
+  <p>ईमेल:rupeshelectronics2003@gmail.com<br>फोन:+919334113322</p>
 </div><div class="footer">
   <p>हमें फॉलो करें</p>
   <div class="socials">
@@ -131,13 +136,13 @@
     spinning = true;
     const wheel = document.getElementById("wheel");
     const result = document.getElementById("result");
-    const outcomes = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
+    const outcomes = [ "Try Again", "Try Again", "Try Again", "Try Again","₹10", "Try Again", "₹20", "Try Again", "₹50", "Try Again", "₹100", "₹200", "Try Again"];
     const random = Math.floor(Math.random() * outcomes.length);
     const degrees = 3600 + (random * 60);
     wheel.style.transition = "transform 4s ease-out";
     wheel.style.transform = "rotate(" + degrees + "deg)";
     setTimeout(() => {
-      result.innerHTML = + outcomes[random];
+      result.innerHTML = "आपने जीता: " + outcomes[random];
       spinning = false;
     }, 4000);
   }
