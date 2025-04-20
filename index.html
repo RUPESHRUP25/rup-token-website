@@ -1,64 +1,71 @@
 <!DOCTYPE html><html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rupesh Electronics - Spin & Win</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RUPESH ELECTRONICS SPIN & WIN 2025</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8956191401262476" crossorigin="anonymous"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
       color: #333;
     }
     header {
-      background: #d32f2f;
+      background-color: #ff5e57;
       color: white;
       text-align: center;
       padding: 1rem;
-      font-size: 2rem;
+      font-size: 1.8rem;
+      font-weight: bold;
     }
     .wheel-container {
       text-align: center;
       margin: 30px auto;
     }
-    #wheel {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      border: 10px solid #444;
-      background: conic-gradient(#ff6384 0deg 60deg, #36a2eb 60deg 120deg, #cc65fe 120deg 180deg, #ffce56 180deg 240deg, #2ecc71 240deg 300deg, #e74c3c 300deg 360deg);
-      transition: transform 5s ease;
-      margin: auto;
-    }
     #pointer {
-      width: 0; 
-      height: 0; 
+      width: 0;
+      height: 0;
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
       border-bottom: 30px solid black;
       margin: auto;
     }
+    #wheel {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 10px solid #333;
+      background: conic-gradient(
+        #ff6384 0deg 60deg,
+        #36a2eb 60deg 120deg,
+        #cc65fe 120deg 180deg,
+        #ffce56 180deg 240deg,
+        #2ecc71 240deg 300deg,
+        #e74c3c 300deg 360deg
+      );
+      margin: auto;
+      transition: transform 4s ease-out;
+    }
     button {
-      background: #2ecc71;
+      background-color: #27ae60;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       font-size: 18px;
       margin-top: 20px;
       border: none;
-      cursor: pointer;
       border-radius: 8px;
+      cursor: pointer;
     }
     .sections {
       background: white;
-      padding: 20px;
       margin: 20px;
+      padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .footer {
-      background: #333;
+      background: #2c3e50;
       color: white;
       padding: 20px;
       text-align: center;
@@ -66,142 +73,81 @@
     .socials a {
       margin: 0 10px;
       color: white;
-      text-decoration: none;
       font-size: 24px;
+      text-decoration: none;
     }
-    .mobile-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-    }
-    .mobile-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 10px;
-      width: 160px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .mobile-card img {
-      width: 100%;
+    .claim-form {
+      margin: 20px;
+      padding: 20px;
+      background: #e0f7fa;
       border-radius: 10px;
     }
-    form input {
-      padding: 10px;
-      margin: 10px 0;
+    .claim-form input {
+      display: block;
       width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
+    .claim-form button {
+      background: #00796b;
+    }
   </style>
 </head>
-<body><header>Rupesh Electronics - Spin & Win 2025</header>
-<div class="wheel-container">
-  <div id="pointer"></div>
-  <div id="wheel"></div>
-  <button onclick="spinWheel()">Spin Now</button>
-  <p id="result"></p>
-</div><div class="sections">
-  <h2>Claim Your Prize</h2>
-  <form id="claimForm">
-    <input type="text" id="name" placeholder="नाम" required>
-    <input type="email" id="email" placeholder="ईमेल" required>
-    <input type="tel" id="phone" placeholder="फोन नंबर" required>
-    <button type="submit">क्लेम करें</button>
-  </form>
-</div><div class="sections">
-  <h2>2025 के टॉप मोबाइल्स</h2>
-  <div class="mobile-list" id="mobileList"></div>
-</div><div class="sections">
-  <h2>प्राइवेसी पॉलिसी</h2>
-  <p>हम आपके निजी डेटा की सुरक्षा करते हैं। आपकी जानकारी आपके सहमति के बिना शेयर नहीं की जाएगी।</p>
-</div>
-<div class="sections">
-  <h2>नियम और शर्तें</h2>
-  <p>यह ऑफर केवल एक बार प्रति उपयोगकर्ता के लिए मान्य है। इनाम न ट्रांसफरेबल है, न ही बदला जा सकता है।</p>
-</div>
-<div class="sections">
-  <h2>डिस्क्लेमर</h2>
-  <p>यह साइट केवल प्रमोशनल उद्देश्य के लिए है। असली ऑफर की पुष्टि स्टोर में करें।</p>
-</div>
-<div class="sections">
-  <h2>संपर्क करें</h2>
-  <p>Email: support@rupeshelectronics2003@gmail.com.in<br>फोन: +91-9334113322</p>
-</div><div class="footer">
-  <p>हमें फॉलो करें:</p>
-  <div class="socials">
-    <a href="https://facebook.com/share/1QN2tDUeQD/" target="_blank">Facebook</a>
-    <a href="https://instagram.com/rupeshelectronics" target="_blank">Instagram</a>
-    <a href="https://x.com/RupeshK30183542" target="_blank">X</a>
-    <a href="https://youtube.com/@mrrupeshkumar000" target="_blank">YouTube</a>
-  </div>
-  <p>&copy; 2025 Rupesh Electronics. सभी अधिकार सुरक्षित।</p>
-</div><script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyCe7mySfFf2zxwJIEU3iWF7AJptYw1A9Xk",
-    authDomain: "sample-firebase-ai-app-bc608.firebaseapp.com",
-    projectId: "sample-firebase-ai-app-bc608",
-    storageBucket: "sample-firebase-ai-app-bc608.appspot.com",
-    messagingSenderId: "291650523519",
-    appId: "1:291650523519:web:00aa2397531e5b8a0a4a4a",
-    measurementId: "G-TCRPBENHR8"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+<body>
+  <header>RUPESH ELECTRONICS - SPIN & WIN OFFER 2025</header>  <div class="wheel-container">
+    <div id="pointer"></div>
+    <div id="wheel"></div>
+    <button onclick="spinWheel()">SPIN NOW</button>
+    <p id="result"></p>
+  </div>  <div class="claim-form">
+    <h3>इनाम क्लेम करें</h3>
+    <form id="claimForm">
+      <input type="text" id="name" placeholder="नाम" required />
+      <input type="email" id="email" placeholder="ईमेल" required />
+      <input type="tel" id="phone" placeholder="फोन नंबर" required />
+      <button type="submit">सबमिट करें</button>
+    </form>
+  </div>  <div class="sections">
+    <h2>Privacy Policy (गोपनीयता नीति)</h2>
+    <p>हम आपकी गोपनीयता का सम्मान करते हैं। आपकी जानकारी को सुरक्षित और निजी रखा जाता है।</p>
+  </div>  <div class="sections">
+    <h2>Terms & Conditions (नियम और शर्तें)</h2>
+    <p>यह ऑफर सीमित समय के लिए है। एक यूज़र एक बार ही स्पिन कर सकता है। इनाम नकद या कॉइन के रूप में होगा।</p>
+  </div>  <div class="sections">
+    <h2>Disclaimer (अस्वीकरण)</h2>
+    <p>यह वेबसाइट केवल प्रचार के उद्देश्य से बनाई गई है। किसी भी प्रकार का कानूनी दावा अमान्य होगा।</p>
+  </div>  <div class="sections">
+    <h2>Contact Us</h2>
+    <p>Email: support@rupeshelectronics2003@gmail.com.in<br>Phone: +91-9334113322</p>
+  </div>  <div class="footer">
+    <p>Follow us on:</p>
+    <div class="socials">
+      <a href="https://facebook.com" target="_blank">🔵</a>
+      <a href="https://instagram.com" target="_blank">🟣</a>
+      <a href="https://x.com" target="_blank">⚫</a>
+      <a href="https://youtube.com" target="_blank">🔴</a>
+    </div>
+    <p>&copy; 2025 RUPESH ELECTRONICS. All rights reserved.</p>
+  </div>  <script>
+    let angle = 0;
+    function spinWheel() {
+      const wheel = document.getElementById("wheel");
+      const result = document.getElementById("result");
+      const options = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
+      const rand = Math.floor(Math.random() * options.length);
+      const spinAngle = 360 * 4 + rand * (360 / options.length);
+      angle += spinAngle;
+      wheel.style.transform = rotate(${angle}deg);
+      setTimeout(() => {
+        result.innerText = "आपका इनाम: " + options[rand];
+      }, 4000);
+    }
 
-  document.getElementById("claimForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-
-    db.collection("claims").add({ name, email, phone, timestamp: new Date() })
-      .then(() => alert("क्लेम सफलतापूर्वक दर्ज हो गया!"))
-      .catch((error) => alert("त्रुटि: " + error));
-  });
-
-  let spinning = false;
-  function spinWheel() {
-    if (spinning) return;
-    spinning = true;
-    const wheel = document.getElementById("wheel");
-    const result = document.getElementById("result");
-    const prizes = ["₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck"];
-    const randIndex = Math.floor(Math.random() * prizes.length);
-    const degrees = 3600 + randIndex * 60;
-    wheel.style.transform = rotate(${degrees}deg);
-    setTimeout(() => {
-      result.innerText = आपने जीता: ${prizes[randIndex]};
-      spinning = false;
-    }, 5500);
-  }
-
-  const phones = [
-    { name: "Vivo Y29 5G", price: "₹14,999", img: "https://via.placeholder.com/150" },
-    { name: "Vivo V50 5G", price: "₹22,999", img: "https://via.placeholder.com/150" },
-    { name: "Redmi Note 13 5G", price: "₹15,499", img: "https://via.placeholder.com/150" },
-    { name: "Realme Narzo 70", price: "₹13,999", img: "https://via.placeholder.com/150" },
-    { name: "iQOO Z9 5G", price: "₹16,999", img: "https://via.placeholder.com/150" },
-    { name: "Samsung M14", price: "₹12,999", img: "https://via.placeholder.com/150" }
-    // 100 तक ऐसे ही बढ़ाया जा सकता है
-  ];
-
-  const listDiv = document.getElementById("mobileList");
-  phones.forEach(phone => {
-    listDiv.innerHTML += `
-      <div class="mobile-card">
-        <img src="${phone.img}" alt="${phone.name}" />
-        <h4>${phone.name}</h4>
-        <p>${phone.price}</p>
-      </div>`;
-  });
-</script><!-- AdSense Placeholder --><ins class="adsbygoogle"
-style="display:block; text-align:center; margin: 20px auto;"
-data-ad-client="ca-pub-8956191401262476"
-data-ad-slot="1234567890"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></body>
+    document.getElementById("claimForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("आपका क्लेम सफलतापूर्वक सबमिट हो गया है!");
+    });
+  </script></body>
 </html>
