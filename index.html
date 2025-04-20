@@ -1,155 +1,175 @@
-<!DOCTYPE html><html lang="hi">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rupesh Electronics - Spin & Win</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUPESH ELECTRONICS SPIN & WIN 2025</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8956191401262476" crossorigin="anonymous"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";const firebaseConfig = {
+  apiKey: "AIzaSyCe7mySfFf2zxwJIEU3iWF7AJptYw1A9Xk",
+  authDomain: "sample-firebase-ai-app-bc608.firebaseapp.com",
+  projectId: "sample-firebase-ai-app-bc608",
+  storageBucket: "sample-firebase-ai-app-bc608.appspot.com",
+  messagingSenderId: "291650523519",
+  appId: "1:291650523519:web:00aa2397531e5b8a0a4a4a",
+  measurementId: "G-TCRPBENHR8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.claimPrize = async function(prize) {
+  const name = prompt("नाम दर्ज करें:");
+  const phone = prompt("मोबाइल नंबर:");
+  if(name && phone) {
+    await addDoc(collection(db, "winners"), {
+      name,
+      phone,
+      prize,
+      time: new Date()
+    });
+    alert("क्लेम सफल! हमारी टीम आपसे संपर्क करेगी।");
+  } else {
+    alert("कृपया पूरा विवरण भरें।");
+  }
+}
+
+  </script>
   <style>
     body {
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      text-align: center;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      color: #333;
     }
-    h1 {
-      color: #c0392b;
+    header {
+      background: #ff5e57;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .wheel-container {
+      text-align: center;
+      margin: 30px auto;
     }
     #wheel {
-      margin: 30px auto;
-      border: 10px solid #f39c12;
-      border-radius: 50%;
       width: 300px;
       height: 300px;
+      border-radius: 50%;
+      border: 10px solid #333;
       background: conic-gradient(
-        #f1c40f 0deg 72deg,
-        #2ecc71 72deg 144deg,
-        #e74c3c 144deg 216deg,
-        #9b59b6 216deg 288deg,
-        #3498db 288deg 360deg
+        #ff6384 0deg 60deg,
+        #36a2eb 60deg 120deg,
+        #cc65fe 120deg 180deg,
+        #ffce56 180deg 240deg,
+        #2ecc71 240deg 300deg,
+        #e74c3c 300deg 360deg
       );
+      position: relative;
+      margin: auto;
+      transition: transform 3s ease-out;
     }
-    #spinBtn {
+    #pointer {
+      width: 0; 
+      height: 0; 
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid black;
+      margin: auto;
+    }
+    button {
+      background: #27ae60;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
       margin-top: 20px;
-      padding: 15px 30px;
-      background-color: #e74c3c;
-      color: #fff;
       border: none;
-      font-size: 20px;
-      border-radius: 10px;
       cursor: pointer;
+      border-radius: 8px;
     }
-    #spinBtn:hover {
-      background-color: #c0392b;
-    }
-    #result {
-      margin-top: 20px;
-      font-size: 24px;
-      color: #27ae60;
-    }
-    .social-icons a {
-      margin: 0 10px;
-      text-decoration: none;
-      font-size: 24px;
-      color: #2c3e50;
-    }
-    .mobile-list {
-      margin: 20px auto;
-      max-width: 600px;
-      text-align: left;
-      background: #ffffffbb;
+    .sections, .footer {
+      background: #fff;
+      margin: 20px;
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 12px;
     }
-    .mobile-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
+    .footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
     }
-    .mobile-item img {
-      width: 50px;
+    .social-icons img {
+      width: 30px;
+      margin: 5px;
+    }
+    .mobile-list img {
+      width: 80px;
       margin-right: 10px;
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      background: #fff4e6;
-      padding: 10px;
-    }
-    .adsense {
-      margin: 20px auto;
-      max-width: 300px;
-      height: 250px;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
-  <h1>Rupesh Electronics Spin & Win</h1>
-  <div id="wheel"></div>
-  <button id="spinBtn">घुमाओ और जीतों</button>
-  <div id="result"></div>  <div class="adsense">AdSense Placeholder</div>  <div class="social-icons">
-    <a href="https://facebook.com" target="_blank">Facebook</a>
-    <a href="https://instagram.com" target="_blank">Instagram</a>
-    <a href="https://youtube.com" target="_blank">YouTube</a>
-  </div>  <div class="mobile-list">
-    <h2>Top 5 Mobile Phones 2025</h2>
-    <div class="mobile-item">
-      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-v29.jpg" alt="Vivo V29">
-      <span>Vivo V29 - ₹26,999</span>
+  <header>RUPESH ELECTRONICS - SPIN & WIN OFFER 2025</header>  <!-- AdSense Placeholder -->  <div style="text-align:center; margin:20px;">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-8956191401262476"
+      data-ad-slot="1234567890"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>  <div class="wheel-container">
+    <div id="pointer"></div>
+    <div id="wheel"></div>
+    <button onclick="spin()">SPIN NOW</button>
+    <p id="result"></p>
+  </div>  <div class="sections">
+    <h2>2025 के टॉप 100 मिड-रेंज 5G मोबाइल्स</h2>
+    <div class="mobile-list">
+      <p><img src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v50-5g-1.jpg">Vivo V50 5G - ₹22,999</p>
+      <p><img src="https://via.placeholder.com/80">Realme Narzo 70 5G - ₹13,999</p>
+      <p><img src="https://via.placeholder.com/80">Redmi Note 13 5G - ₹15,499</p>
+      <!-- और मॉडल्स को इसी तरह जोड़ा जा सकता है -->
     </div>
-    <div class="mobile-item">
-      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-y100.jpg" alt="Vivo Y100">
-      <span>Vivo Y100 - ₹17,999</span>
+  </div>  <div class="sections">
+    <h2>Terms & Conditions (नियम व शर्तें)</h2>
+    <p>यह ऑफर एक बार प्रति यूज़र के लिए मान्य है। रिवॉर्ड ट्रांसफ़रेबल नहीं हैं। स्पिन का परिणाम अंतिम होगा।</p>
+  </div>  <div class="sections">
+    <h2>Privacy Policy (गोपनीयता नीति)</h2>
+    <p>आपकी गोपनीयता हमारे लिए महत्वपूर्ण है। हम आपकी जानकारी बिना अनुमति के साझा नहीं करते हैं।</p>
+  </div>  <div class="sections">
+    <h2>Disclaimer (अस्वीकरण)</h2>
+    <p>यह साइट केवल प्रचार उद्देश्य से बनाई गई है। सभी जानकारी प्रमोशनल है।</p>
+  </div>  <div class="sections">
+    <h2>Contact Us</h2>
+    <p>Email: support@rupeshelectronics2003@gmail.com.in<br>Phone: +91-9334113322</p>
+  </div>  <div class="footer">
+    <p>हमें फॉलो करें:</p>
+    <div class="social-icons">
+      <a href="https://facebook.com/share/1QN2tDUeQD/"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
+      <a href="https://instagram.com/rupeshelectronics"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+      <a href="https://x.com/RupeshK30183542"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png"></a>
+      <a href="https://youtube.com/@mrrupeshkumar000"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"></a>
     </div>
-    <div class="mobile-item">
-      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-v30.jpg" alt="Vivo V30">
-      <span>Vivo V30 - ₹31,999</span>
-    </div>
-    <div class="mobile-item">
-      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-x100.jpg" alt="Vivo X100">
-      <span>Vivo X100 - ₹64,999</span>
-    </div>
-    <div class="mobile-item">
-      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-y29.jpg" alt="Vivo Y29">
-      <span>Vivo Y29 - ₹19,999</span>
-    </div>
-  </div>  <footer>
-    <p><strong>Privacy Policy (गोपनीयता नीति):</strong> आपका डेटा हमारे लिए सुरक्षित है। हम किसी भी ग्राहक की जानकारी को बिना अनुमति के साझा नहीं करते।</p>
-    <p><strong>Terms & Conditions (नियम और शर्तें):</strong> Spin & Win का परिणाम अंतिम होगा। हर ग्राहक एक बार ही स्पिन कर सकता है। जीत की राशि के लिए वैध बिल और पहचान आवश्यक है।</p>
-  </footer>  <script>
-    const wheel = document.getElementById('wheel');
-    const result = document.getElementById('result');
-    const prizes = ['₹10', '₹50', '₹100', '₹20', '₹200'];
-
-    document.getElementById('spinBtn').addEventListener('click', () => {
-      let deg = Math.floor(5000 + Math.random() * 5000);
-      wheel.style.transition = "transform 5s ease-out";
-      wheel.style.transform = rotate(${deg}deg);
-
+    <p>&copy; 2025 RUPESH ELECTRONICS. All rights reserved.</p>
+  </div>  <script>
+    let deg = 0;
+    function spin() {
+      const result = document.getElementById("result");
+      const outcomes = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
+      const random = Math.floor(Math.random() * outcomes.length);
+      const prize = outcomes[random];
+      deg += (360 * 5) + (random * 60);
+      document.getElementById("wheel").style.transform = rotate(${deg}deg);
       setTimeout(() => {
-        const index = Math.floor((deg % 360) / 72);
-        result.textContent = बधाई हो! आपने जीता: ${prizes[index]};
-      }, 5200);
-    });
-  </script>  <!-- Firebase SDK -->  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCe7mySfFf2zxwJIEU3iWF7AJptYw1A9Xk",
-      authDomain: "sample-firebase-ai-app-bc608.firebaseapp.com",
-      projectId: "sample-firebase-ai-app-bc608",
-      storageBucket: "sample-firebase-ai-app-bc608.appspot.com",
-      messagingSenderId: "291650523519",
-      appId: "1:291650523519:web:00aa2397531e5b8a0a4a4a",
-      measurementId: "G-TCRPBENHR8"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+        result.innerHTML = आपने जीता: ${prize};
+        if (prize !== "Try Again") {
+          claimPrize(prize);
+        }
+      }, 3200);
+    }
   </script></body>
 </html>
