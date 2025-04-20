@@ -2,206 +2,128 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>RUPESH ELECTRONICS SPECIAL OFFER</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <title>High Speed Spin & Win - RUPESH</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #f7f3e9, #fff2d0);
+      font-family: sans-serif;
+      background: linear-gradient(to right, #ffeaa7, #fab1a0);
       text-align: center;
       padding: 20px;
     }
-    #wheelCanvas {
-      border: 8px solid orange;
+    canvas {
+      border: 10px solid #d63031;
       border-radius: 50%;
-      margin-top: 20px;
+      margin: 20px auto;
+      display: block;
     }
-    .spin-btn {
-      margin: 20px;
-      padding: 10px 20px;
-      background: #ffd700;
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #00b894;
+      color: white;
       border: none;
-      font-size: 18px;
       border-radius: 10px;
       cursor: pointer;
     }
-    .claim-box input {
-      margin: 5px;
-      padding: 10px;
-      width: 80%;
-    }
-    .claim-btn {
-      padding: 10px 20px;
-      background-color: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    .section {
-      margin-top: 40px;
-      text-align: left;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .social-icons a {
-      margin: 10px;
-      font-size: 24px;
-      text-decoration: none;
+    h2 {
+      margin-top: 20px;
+      color: #2d3436;
     }
   </style>
 </head>
 <body>
 
-  <h1 style="background: yellow; padding: 10px;">RUPESH ELECTRONICS SPECIAL OFFER</h1>
-  <canvas id="wheelCanvas" width="300" height="300"></canvas>
-  <br>
-  <button class="spin-btn" onclick="spinWheel()">Spin</button>
-  <h2 id="resultText"></h2>
-
-  <div class="claim-box">
-    <h3>पुरस्कार क्लेम करें</h3>
-    <input type="text" id="name" placeholder="नाम दर्ज करें"><br>
-    <input type="text" id="phone" placeholder="फोन नंबर"><br>
-    <input type="text" id="upi" placeholder="UPI ID"><br>
-    <button class="claim-btn" onclick="claimPrize()">Claim Now</button>
-    <p id="claimStatus" style="color:red;"></p>
-  </div>
-
-  <div class="section">
-    <h3>100 मोबाइल फ़ोन की लिस्ट:</h3>
-    <ul>
-      <li>Vivo Y29 - ₹14,999</li>
-      <li>Vivo Y39 - ₹15,999</li>
-      <li>Vivo V50 - ₹22,999</li>
-      <!-- और आइटम यहाँ जोड़ें... -->
-    </ul>
-  </div>
-
-  <div class="section">
-    <h3>Terms & Conditions (नियम और शर्तें)</h3>
-    <p>यह ऑफर सीमित समय के लिए है। एक यूजर एक बार ही स्पिन कर सकता है। गलत जानकारी देने पर पुरस्कार रद्द हो सकता है।</p>
-  </div>
-
-  <div class="section">
-    <h3>Privacy Policy (गोपनीयता नीति)</h3>
-    <p>आपकी जानकारी सुरक्षित रखी जाएगी और किसी तीसरे पक्ष के साथ साझा नहीं की जाएगी।</p>
-  </div>
-
-  <div class="section">
-    <h3>Disclaimer (अस्वीकरण)</h3>
-    <p>यह वेबसाइट प्रमोशनल उद्देश्य से है। किसी प्रकार के वित्तीय निवेश या नुकसान की जिम्मेदारी नहीं होगी।</p>
-  </div>
-
-  <div class="social-icons">
-    <h3>हमसे जुड़ें:</h3>
-    <a href="#">Facebook</a> |
-    <a href="#">Instagram</a> |
-    <a href="#">YouTube</a>
-  </div>
-
-  <!-- AdSense Placeholder -->
-  <div style="margin-top: 30px;">
-    <h4>Google AdSense Placeholder</h4>
-    <div style="width: 300px; height: 250px; background: #ccc; margin: auto;">AdSense Ad</div>
-  </div>
-
-  <!-- Adsterra Ad Placeholder -->
-  <div style="margin-top: 20px;">
-    <h4>Adsterra Placeholder</h4>
-    <div style="width: 300px; height: 250px; background: #ddd; margin: auto;">Adsterra Ad</div>
-  </div>
+  <h1>RUPESH ELECTRONICS - SPIN & WIN</h1>
+  <canvas id="wheel" width="500" height="500"></canvas>
+  <button onclick="spin()">GHUMAO WHEEL</button>
+  <h2 id="result"></h2>
 
   <script>
-    // Replace this with your actual config from Firebase
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    const rewards = ["₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck"];
-    const colors = ["#f44336", "#e91e63", "#2196f3", "#4caf50", "#ff9800", "#9e9e9e"];
-    const canvas = document.getElementById("wheelCanvas");
+    const canvas = document.getElementById("wheel");
     const ctx = canvas.getContext("2d");
-    const slices = rewards.length;
-    let isSpinning = false;
-    let finalReward = "";
+    const segments = 20;
+    const rewards = Array.from({ length: segments }, (_, i) => Prize ${i + 1});
+    const colors = Array.from({ length: segments }, (_, i) => hsl(${i * (360 / segments)}, 100%, 70%));
+
+    let angle = 0;
+    let spinning = false;
+    let currentRotation = 0;
 
     function drawWheel() {
-      let angle = 0;
-      const arc = (2 * Math.PI) / slices;
-      for (let i = 0; i < slices; i++) {
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = 200;
+      const arc = 2 * Math.PI / segments;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < segments; i++) {
+        const startAngle = angle + i * arc;
+        const endAngle = startAngle + arc;
+
+        // Slice
         ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
         ctx.fillStyle = colors[i];
-        ctx.moveTo(150, 150);
-        ctx.arc(150, 150, 150, angle, angle + arc);
         ctx.fill();
-        ctx.fillStyle = "#fff";
-        ctx.font = "18px Arial";
-        ctx.translate(150, 150);
-        ctx.rotate(angle + arc / 2);
-        ctx.fillText(rewards[i], 80, 10);
-        ctx.rotate(-(angle + arc / 2));
-        ctx.translate(-150, -150);
-        angle += arc;
+
+        // Text
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(startAngle + arc / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#2d3436";
+        ctx.font = "14px Arial";
+        ctx.fillText(rewards[i], radius - 10, 5);
+        ctx.restore();
       }
+
+      // Arrow
+      ctx.beginPath();
+      ctx.moveTo(centerX - 10, centerY - radius - 10);
+      ctx.lineTo(centerX + 10, centerY - radius - 10);
+      ctx.lineTo(centerX, centerY - radius - 30);
+      ctx.closePath();
+      ctx.fillStyle = "red";
+      ctx.fill();
     }
 
     drawWheel();
 
-    function spinWheel() {
-      if (isSpinning) return;
-      isSpinning = true;
-      const spinAngle = Math.floor(Math.random() * 360) + 720;
-      const duration = 3000;
-      let start = null;
+    function spin() {
+      if (spinning) return;
+      spinning = true;
+      let spinTime = 0;
+      const spinTimeTotal = 5000; // 5 seconds
+      const spinAngleStart = Math.random() * 2000 + 3000; // High speed
+
       function rotate(timestamp) {
-        if (!start) start = timestamp;
-        const progress = timestamp - start;
-        const angle = (spinAngle * progress) / duration;
-        canvas.style.transform = rotate(${angle}deg);
-        if (progress < duration) {
+        if (!spinTime) spinTime = timestamp;
+        const elapsed = timestamp - spinTime;
+
+        const easing = 1 - Math.pow(1 - elapsed / spinTimeTotal, 3);
+        currentRotation = (spinAngleStart * easing) % 360;
+        angle = (currentRotation * Math.PI) / 180;
+
+        drawWheel();
+
+        if (elapsed < spinTimeTotal) {
           requestAnimationFrame(rotate);
         } else {
-          const degree = spinAngle % 360;
-          const index = Math.floor((360 - degree) / (360 / slices)) % slices;
-          finalReward = rewards[index];
-          document.getElementById("resultText").innerText = आपने जीता: ${finalReward};
-          isSpinning = false;
+          spinning = false;
+          showResult();
         }
       }
+
       requestAnimationFrame(rotate);
     }
 
-    function claimPrize() {
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const upi = document.getElementById("upi").value.trim();
-      const prize = finalReward;
-
-      if (!name || !phone || !upi || !prize || prize === "Better Luck") {
-        document.getElementById("claimStatus").innerText = "त्रुटि! कृपया सभी सही जानकारी भरें।";
-        return;
-      }
-
-      db.collection("spin_claims").add({
-        name, phone, upi, prize, time: new Date().toISOString()
-      }).then(() => {
-        document.getElementById("claimStatus").style.color = "green";
-        document.getElementById("claimStatus").innerText = "क्लेम सफलतापूर्वक सबमिट हो गया!";
-      }).catch(err => {
-        document.getElementById("claimStatus").innerText = "त्रुटि! कृपया पुनः प्रयास करें।";
-      });
+    function showResult() {
+      const degree = 360 - (currentRotation % 360);
+      const arcSize = 360 / segments;
+      const index = Math.floor(degree / arcSize) % segments;
+      document.getElementById("result").innerText = आपने जीता: ${rewards[index]};
     }
   </script>
 
