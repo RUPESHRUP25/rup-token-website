@@ -2,143 +2,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rupesh Electronics Spin & Win</title>
+  <title>Rupesh Electronics - Spin & Win</title>
   <style>
     body {
-      background: linear-gradient(135deg, #ffdee9, #b5fffc);
-      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-    }
-    header {
-      background: #ff0080;
-      color: white;
-      padding: 20px;
       text-align: center;
-      font-size: 28px;
-      font-weight: bold;
     }
-    .wheel-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin: 30px;
+    h1 {
+      color: #c0392b;
     }
     #wheel {
+      margin: 30px auto;
+      border: 10px solid #f39c12;
+      border-radius: 50%;
       width: 300px;
       height: 300px;
-      border-radius: 50%;
-      border: 10px solid #333;
-      position: relative;
       background: conic-gradient(
-        #f00 0deg 72deg,
-        #0f0 72deg 144deg,
-        #00f 144deg 216deg,
-        #ff0 216deg 288deg,
-        #f0f 288deg 360deg
+        #f1c40f 0deg 72deg,
+        #2ecc71 72deg 144deg,
+        #e74c3c 144deg 216deg,
+        #9b59b6 216deg 288deg,
+        #3498db 288deg 360deg
       );
     }
     #spinBtn {
       margin-top: 20px;
       padding: 15px 30px;
-      background: #28a745;
-      color: white;
-      font-size: 20px;
+      background-color: #e74c3c;
+      color: #fff;
       border: none;
+      font-size: 20px;
       border-radius: 10px;
       cursor: pointer;
     }
-    .result {
-      text-align: center;
-      font-size: 24px;
+    #spinBtn:hover {
+      background-color: #c0392b;
+    }
+    #result {
       margin-top: 20px;
+      font-size: 24px;
+      color: #27ae60;
     }
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
+    .social-icons a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 24px;
+      color: #2c3e50;
     }
-    .social-icons img {
-      width: 40px;
-      height: 40px;
-    }
-    .adsense-placeholder, .mobile-list {
-      text-align: center;
-      margin: 30px auto;
-    }
-    .mobile-list img {
-      width: 100px;
-      height: auto;
-    }
-    .mobile-card {
-      display: inline-block;
-      width: 140px;
-      margin: 10px;
-      padding: 10px;
-      background: white;
+    .mobile-list {
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: left;
+      background: #ffffffbb;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .mobile-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .mobile-item img {
+      width: 50px;
+      margin-right: 10px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      background: #fff4e6;
+      padding: 10px;
+    }
+    .adsense {
+      margin: 20px auto;
+      max-width: 300px;
+      height: 250px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <header>RUPESH ELECTRONICS SPIN & WIN OFFER</header>  <div class="wheel-container">
-    <div id="wheel"></div>
-    <button id="spinBtn">Spin</button>
-    <div class="result" id="result"></div>
-  </div>  <div class="social-icons">
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="YouTube"></a>
-  </div>  <div class="adsense-placeholder">
-    <!-- Google AdSense Placeholder -->
-    <p>[AdSense Slot Here]</p>
+  <h1>Rupesh Electronics Spin & Win</h1>
+  <div id="wheel"></div>
+  <button id="spinBtn">घुमाओ और जीतों</button>
+  <div id="result"></div>  <div class="adsense">AdSense Placeholder</div>  <div class="social-icons">
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="https://youtube.com" target="_blank">YouTube</a>
   </div>  <div class="mobile-list">
-    <h2>2025 के टॉप 100 मोबाइल</h2>
-    <div id="mobiles"></div>
-  </div>  <!-- Firebase SDKs -->  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js"></script>  <script>
+    <h2>Top 5 Mobile Phones 2025</h2>
+    <div class="mobile-item">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-v29.jpg" alt="Vivo V29">
+      <span>Vivo V29 - ₹26,999</span>
+    </div>
+    <div class="mobile-item">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-y100.jpg" alt="Vivo Y100">
+      <span>Vivo Y100 - ₹17,999</span>
+    </div>
+    <div class="mobile-item">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-v30.jpg" alt="Vivo V30">
+      <span>Vivo V30 - ₹31,999</span>
+    </div>
+    <div class="mobile-item">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-x100.jpg" alt="Vivo X100">
+      <span>Vivo X100 - ₹64,999</span>
+    </div>
+    <div class="mobile-item">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/vivo-y29.jpg" alt="Vivo Y29">
+      <span>Vivo Y29 - ₹19,999</span>
+    </div>
+  </div>  <footer>
+    <p><strong>Privacy Policy (गोपनीयता नीति):</strong> आपका डेटा हमारे लिए सुरक्षित है। हम किसी भी ग्राहक की जानकारी को बिना अनुमति के साझा नहीं करते।</p>
+    <p><strong>Terms & Conditions (नियम और शर्तें):</strong> Spin & Win का परिणाम अंतिम होगा। हर ग्राहक एक बार ही स्पिन कर सकता है। जीत की राशि के लिए वैध बिल और पहचान आवश्यक है।</p>
+  </footer>  <script>
+    const wheel = document.getElementById('wheel');
+    const result = document.getElementById('result');
+    const prizes = ['₹10', '₹50', '₹100', '₹20', '₹200'];
+
+    document.getElementById('spinBtn').addEventListener('click', () => {
+      let deg = Math.floor(5000 + Math.random() * 5000);
+      wheel.style.transition = "transform 5s ease-out";
+      wheel.style.transform = rotate(${deg}deg);
+
+      setTimeout(() => {
+        const index = Math.floor((deg % 360) / 72);
+        result.textContent = बधाई हो! आपने जीता: ${prizes[index]};
+      }, 5200);
+    });
+  </script>  <!-- Firebase SDK -->  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyCe7mySfFf2zxwJIEU3iWF7AJptYw1A9Xk",
       authDomain: "sample-firebase-ai-app-bc608.firebaseapp.com",
       projectId: "sample-firebase-ai-app-bc608",
-      storageBucket: "sample-firebase-ai-app-bc608.firebasestorage.app",
+      storageBucket: "sample-firebase-ai-app-bc608.appspot.com",
       messagingSenderId: "291650523519",
       appId: "1:291650523519:web:00aa2397531e5b8a0a4a4a",
       measurementId: "G-TCRPBENHR8"
     };
-    const app = firebase.initializeApp(firebaseConfig);
-    const analytics = firebase.analytics();
-  </script>  <script>
-    const wheel = document.getElementById("wheel");
-    const spinBtn = document.getElementById("spinBtn");
-    const result = document.getElementById("result");
 
-    spinBtn.addEventListener("click", () => {
-      const angle = Math.floor(Math.random() * 360 + 1080); // min 3 full spins
-      wheel.style.transition = "transform 4s ease-out";
-      wheel.style.transform = rotate(${angle}deg);
-
-      const prizes = ["₹10", "₹20", "₹50", "₹100", "₹200"];
-      const index = Math.floor(((angle % 360) / 72)) % 5;
-      setTimeout(() => {
-        result.innerText = आपने जीता: ${prizes[index]};
-        alert("इनाम क्लेम करने के लिए फॉर्म भरें या स्टोर पर संपर्क करें!");
-      }, 4200);
-    });
-
-    const mobileData = Array.from({ length: 100 }, (_, i) => ({
-      name: Mobile ${i + 1},
-      img: "https://via.placeholder.com/100"
-    }));
-
-    const mobileList = document.getElementById("mobiles");
-    mobileData.forEach(mob => {
-      const div = document.createElement("div");
-      div.className = "mobile-card";
-      div.innerHTML = <img src="${mob.img}" alt="${mob.name}" /><p>${mob.name}</p>;
-      mobileList.appendChild(div);
-    });
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
   </script></body>
 </html>
