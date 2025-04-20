@@ -1,153 +1,165 @@
 <!DOCTYPE html><html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUPESH ELECTRONICS SPIN & WIN 2025</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rupesh Electronics - Spin & Win 2025</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8956191401262476" crossorigin="anonymous"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";const firebaseConfig = {
+  apiKey: "AIzaSyCe7mySfFf2zxwJIEU3iWF7AJptYw1A9Xk",
+  authDomain: "sample-firebase-ai-app-bc608.firebaseapp.com",
+  projectId: "sample-firebase-ai-app-bc608",
+  storageBucket: "sample-firebase-ai-app-bc608.appspot.com",
+  messagingSenderId: "291650523519",
+  appId: "1:291650523519:web:00aa2397531e5b8a0a4a4a",
+  measurementId: "G-TCRPBENHR8",
+  databaseURL: "https://sample-firebase-ai-app-bc608-default-rtdb.firebaseio.com/"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.submitClaim = function() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const upi = document.getElementById("upi").value;
+
+  const claimRef = ref(db, 'claims');
+  const newClaim = push(claimRef);
+
+  set(newClaim, {
+    name,
+    email,
+    phone,
+    upi
+  }).then(() => {
+    alert("आपका क्लेम सफलतापूर्वक दर्ज हो गया है।");
+    document.getElementById("claim-form").reset();
+  });
+}
+
+  </script>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
       color: #333;
     }
     header {
-      background-color: #ff5e57;
+      background: #e74c3c;
       color: white;
+      padding: 20px;
       text-align: center;
-      padding: 1rem;
-      font-size: 1.8rem;
-      font-weight: bold;
+      font-size: 24px;
     }
     .wheel-container {
       text-align: center;
       margin: 30px auto;
-    }
-    #pointer {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid black;
-      margin: auto;
     }
     #wheel {
       width: 300px;
       height: 300px;
       border-radius: 50%;
       border: 10px solid #333;
-      background: conic-gradient(
-        #ff6384 0deg 60deg,
-        #36a2eb 60deg 120deg,
-        #cc65fe 120deg 180deg,
-        #ffce56 180deg 240deg,
-        #2ecc71 240deg 300deg,
-        #e74c3c 300deg 360deg
-      );
+      background: conic-gradient(#f1c40f 0deg 60deg, #2ecc71 60deg 120deg, #3498db 120deg 180deg, #9b59b6 180deg 240deg, #e67e22 240deg 300deg, #e74c3c 300deg 360deg);
       margin: auto;
       transition: transform 4s ease-out;
     }
+    #pointer {
+      width: 0; 
+      height: 0; 
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid black;
+      margin: auto;
+    }
     button {
-      background-color: #27ae60;
-      color: white;
-      padding: 12px 24px;
-      font-size: 18px;
       margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #27ae60;
+      color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
     }
-    .sections {
+    .section {
+      padding: 20px;
       background: white;
       margin: 20px;
-      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .footer {
+    .socials img {
+      width: 30px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+    footer {
       background: #2c3e50;
       color: white;
-      padding: 20px;
       text-align: center;
-    }
-    .socials a {
-      margin: 0 10px;
-      color: white;
-      font-size: 24px;
-      text-decoration: none;
-    }
-    .claim-form {
-      margin: 20px;
       padding: 20px;
-      background: #e0f7fa;
-      border-radius: 10px;
     }
-    .claim-form input {
+    input, label {
       display: block;
-      width: 100%;
-      margin-bottom: 10px;
+      margin: 10px auto;
+      width: 80%;
       padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .claim-form button {
-      background: #00796b;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <header>RUPESH ELECTRONICS - SPIN & WIN OFFER 2025</header>  <div class="wheel-container">
+  <header>RUPESH ELECTRONICS - SPIN & WIN 2025</header>  <div class="wheel-container">
     <div id="pointer"></div>
     <div id="wheel"></div>
     <button onclick="spinWheel()">SPIN NOW</button>
     <p id="result"></p>
-  </div>  <div class="claim-form">
-    <h3>इनाम क्लेम करें</h3>
-    <form id="claimForm">
-      <input type="text" id="name" placeholder="नाम" required />
-      <input type="email" id="email" placeholder="ईमेल" required />
-      <input type="tel" id="phone" placeholder="फोन नंबर" required />
-      <button type="submit">सबमिट करें</button>
+  </div>  <div class="section">
+    <h2>Claim Your Reward</h2>
+    <form id="claim-form" onsubmit="event.preventDefault(); submitClaim();">
+      <label>नाम</label>
+      <input type="text" id="name" required>
+      <label>ईमेल</label>
+      <input type="email" id="email" required>
+      <label>मोबाइल नंबर</label>
+      <input type="tel" id="phone" required>
+      <label>UPI ID</label>
+      <input type="text" id="upi" required>
+      <button type="submit">क्लेम करें</button>
     </form>
-  </div>  <div class="sections">
+  </div>  <div class="section">
+    <h2>Terms & Conditions (शर्तें)</h2>
+    <p>यह ऑफर सीमित समय के लिए है। एक यूजर केवल एक बार स्पिन कर सकता है। नकद इनाम कंपनी द्वारा मैन्युअल रूप से भेजा जाएगा।</p>
+  </div>  <div class="section">
     <h2>Privacy Policy (गोपनीयता नीति)</h2>
-    <p>हम आपकी गोपनीयता का सम्मान करते हैं। आपकी जानकारी को सुरक्षित और निजी रखा जाता है।</p>
-  </div>  <div class="sections">
-    <h2>Terms & Conditions (नियम और शर्तें)</h2>
-    <p>यह ऑफर सीमित समय के लिए है। एक यूज़र एक बार ही स्पिन कर सकता है। इनाम नकद या कॉइन के रूप में होगा।</p>
-  </div>  <div class="sections">
-    <h2>Disclaimer (अस्वीकरण)</h2>
-    <p>यह वेबसाइट केवल प्रचार के उद्देश्य से बनाई गई है। किसी भी प्रकार का कानूनी दावा अमान्य होगा।</p>
-  </div>  <div class="sections">
+    <p>हम आपके डाटा की गोपनीयता का सम्मान करते हैं। आपका डेटा सिर्फ इनाम भेजने के लिए इस्तेमाल किया जाएगा और किसी के साथ साझा नहीं किया जाएगा।</p>
+  </div>  <div class="section">
     <h2>Contact Us</h2>
-    <p>Email: support@rupeshelectronics2003@gmail.com.in<br>Phone: +91-9334113322</p>
-  </div>  <div class="footer">
-    <p>Follow us on:</p>
+    <p>Email: support@rupeshelectronics.com<br>Phone: +91-9334113322</p>
+  </div>  <footer>
+    <p>हमसे जुड़ें:</p>
     <div class="socials">
-      <a href="https://facebook.com" target="_blank">🔵</a>
-      <a href="https://instagram.com" target="_blank">🟣</a>
-      <a href="https://x.com" target="_blank">⚫</a>
-      <a href="https://youtube.com" target="_blank">🔴</a>
+      <a href="https://facebook.com"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png"></a>
+      <a href="https://instagram.com"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+      <a href="https://twitter.com"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"></a>
     </div>
-    <p>&copy; 2025 RUPESH ELECTRONICS. All rights reserved.</p>
-  </div>  <script>
-    let angle = 0;
+    <p>&copy; 2025 Rupesh Electronics. All Rights Reserved.</p>
+  </footer>  <script>
+    let degree = 0;
     function spinWheel() {
-      const wheel = document.getElementById("wheel");
       const result = document.getElementById("result");
-      const options = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
-      const rand = Math.floor(Math.random() * options.length);
-      const spinAngle = 360 * 4 + rand * (360 / options.length);
-      angle += spinAngle;
-      wheel.style.transform = rotate(${angle}deg);
+      const values = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
+      const angles = [0, 60, 120, 180, 240, 300];
+      const random = Math.floor(Math.random() * 6);
+      degree += 360 * 5 + angles[random];
+      document.getElementById("wheel").style.transform = rotate(${degree}deg);
       setTimeout(() => {
-        result.innerText = "आपका इनाम: " + options[rand];
+        result.innerText = आपने जीता: ${values[random]};
       }, 4000);
     }
-
-    document.getElementById("claimForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("आपका क्लेम सफलतापूर्वक सबमिट हो गया है!");
-    });
   </script></body>
 </html>
