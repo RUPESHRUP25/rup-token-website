@@ -1,3 +1,196 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>RUPESH ELECTRONICS SPECIAL OFFER - Spin & Win</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #fffde7, #fff9c4);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      background-color: #ffeb3b;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #d84315;
+      box-shadow: 0 2px 5px #999;
+    }
+    #wheelCanvas {
+      margin: 20px auto;
+      border: 10px solid #ff9800;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #999;
+    }
+    #spinBtn {
+      padding: 14px 35px;
+      font-size: 18px;
+      background-color: #fdd835;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 22px;
+      color: green;
+      font-weight: bold;
+    }
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid red;
+      margin: 0 auto;
+    }
+    .social-icons img {
+      width: 32px;
+      margin: 10px;
+    }
+    .google-form-btn {
+      margin-top: 20px;
+      background: #2196f3;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .ads-section {
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1>RUPESH ELECTRONICS SPECIAL OFFER</h1>
+<div class="arrow"></div>
+<canvas id="wheelCanvas" width="300" height="300"></canvas><br>
+<button id="spinBtn">Spin</button>
+<div id="result"></div>
+
+<a class="google-form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?usp=header" target="_blank">Claim Your Reward</a>
+
+<!-- Adsterra & ProfitRate Ads -->
+<div class="ads-section">
+  <script type="text/javascript">
+    atOptions = {
+      'key': '178c7ef4252d26312a8dc8f179174a57',
+      'format': 'iframe',
+      'height': 300,
+      'width': 160,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/178c7ef4252d26312a8dc8f179174a57/invoke.js"></script>
+
+  <script type="text/javascript">
+    atOptions = {
+      'key': '8260a384f2873808c815a85bc3ce32c9',
+      'format': 'iframe',
+      'height': 60,
+      'width': 468,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/8260a384f2873808c815a85bc3ce32c9/invoke.js"></script>
+
+  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
+  <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
+  <script async="async" data-cfasync="false" src="//pl26423656.profitableratecpm.com/94cca711e5b1506682116f313cd83036/invoke.js"></script>
+  <div id="container-94cca711e5b1506682116f313cd83036"></div>
+</div>
+
+<!-- Social Links -->
+<div class="social-icons">
+  <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145802.png"></a>
+  <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+  <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
+</div>
+
+<script>
+  const canvas = document.getElementById("wheelCanvas");
+  const ctx = canvas.getContext("2d");
+  const segments = ['₹10', '₹20', '₹50', '₹100', '₹200', 'Better Luck'];
+  const colors = ['#e57373', '#f06292', '#64b5f6', '#81c784', '#ffd54f', '#eeeeee'];
+  let startAngle = 0;
+  let arc = Math.PI / (segments.length / 2);
+  let spinTimeout = null;
+  let spinAngleStart = 0;
+  let spinTime = 0;
+  let spinTimeTotal = 0;
+
+  function drawWheel() {
+    ctx.clearRect(0, 0, 300, 300);
+    for (let i = 0; i < segments.length; i++) {
+      let angle = startAngle + i * arc;
+      ctx.fillStyle = colors[i];
+      ctx.beginPath();
+      ctx.moveTo(150, 150);
+      ctx.arc(150, 150, 150, angle, angle + arc, false);
+      ctx.lineTo(150, 150);
+      ctx.fill();
+
+      ctx.save();
+      ctx.fillStyle = "#000";
+      ctx.font = "bold 14px sans-serif";
+      ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
+      ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      ctx.fillText(segments[i], -ctx.measureText(segments[i]).width / 2, 0);
+      ctx.restore();
+    }
+  }
+
+  function rotateWheel() {
+    spinAngleStart = Math.random() * 30 + 30; // Increased initial speed
+    spinTime = 0;
+    spinTimeTotal = Math.random() * 2000 + 2000; // Shorter duration
+    rotate();
+  }
+
+  function rotate() {
+    spinTime += 20;
+    if (spinTime >= spinTimeTotal) {
+      stopRotateWheel();
+      return;
+    }
+    let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+    startAngle += (spinAngle * Math.PI / 180);
+    drawWheel();
+    spinTimeout = setTimeout(rotate, 20); // Faster animation
+  }
+
+  function stopRotateWheel() {
+    clearTimeout(spinTimeout);
+    let degrees = startAngle * 180 / Math.PI + 90;
+    let arcd = arc * 180 / Math.PI;
+    let index = Math.floor((360 - (degrees % 360)) / arcd);
+    document.getElementById("result").innerText = "आपने जीता: " + segments[index];
+  }
+
+  function easeOut(t, b, c, d) {
+    let ts = (t /= d) * t;
+    let tc = ts * t;
+    return b + c * (tc + -3 * ts + 3 * t);
+  }
+
+  document.getElementById("spinBtn").addEventListener("click", () => {
+    document.getElementById("result").innerText = "";
+    rotateWheel();
+  });
+
+  drawWheel();
+</script>
+</body>
+</html>
+
 <!DOCTYPE html><html lang="hi">
 <head>
   <meta charset="UTF-8">
