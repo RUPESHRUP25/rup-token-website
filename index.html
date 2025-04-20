@@ -1,211 +1,209 @@
-<!DOCTYPE html><html lang="hi">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>RUPESH ELECTRONICS SPECIAL OFFER - Spin & Win</title>
+  <title>RUPESH ELECTRONICS SPECIAL OFFER</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #fffde7, #fff9c4);
+      background: linear-gradient(to bottom right, #f7f3e9, #fff2d0);
       text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      background-color: #ffeb3b;
       padding: 20px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #d84315;
-      box-shadow: 0 2px 5px #999;
     }
     #wheelCanvas {
-      margin: 20px auto;
-      border: 10px solid #ff9800;
+      border: 8px solid orange;
       border-radius: 50%;
-      box-shadow: 0 0 20px #999;
+      margin-top: 20px;
     }
-    #spinBtn {
-      padding: 14px 35px;
-      font-size: 18px;
-      background-color: #fdd835;
+    .spin-btn {
+      margin: 20px;
+      padding: 10px 20px;
+      background: #ffd700;
       border: none;
+      font-size: 18px;
       border-radius: 10px;
       cursor: pointer;
-      margin-top: 20px;
-      font-weight: bold;
     }
-    #result {
-      margin-top: 20px;
-      font-size: 22px;
-      color: green;
-      font-weight: bold;
-    }
-    .arrow {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid red;
-      margin: 0 auto;
-    }
-    .social-icons img {
-      width: 32px;
-      margin: 10px;
-    }
-    .google-form-btn {
-      margin-top: 20px;
-      background: #2196f3;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      display: inline-block;
-    }
-    .ads-section {
-      margin: 30px 0;
-    }
-    input {
+    .claim-box input {
+      margin: 5px;
       padding: 10px;
-      width: 250px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      width: 80%;
     }
-  </style>  <!-- Firebase SDKs -->  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>  <script>
+    .claim-btn {
+      padding: 10px 20px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .section {
+      margin-top: 40px;
+      text-align: left;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .social-icons a {
+      margin: 10px;
+      font-size: 24px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="background: yellow; padding: 10px;">RUPESH ELECTRONICS SPECIAL OFFER</h1>
+  <canvas id="wheelCanvas" width="300" height="300"></canvas>
+  <br>
+  <button class="spin-btn" onclick="spinWheel()">Spin</button>
+  <h2 id="resultText"></h2>
+
+  <div class="claim-box">
+    <h3>पुरस्कार क्लेम करें</h3>
+    <input type="text" id="name" placeholder="नाम दर्ज करें"><br>
+    <input type="text" id="phone" placeholder="फोन नंबर"><br>
+    <input type="text" id="upi" placeholder="UPI ID"><br>
+    <button class="claim-btn" onclick="claimPrize()">Claim Now</button>
+    <p id="claimStatus" style="color:red;"></p>
+  </div>
+
+  <div class="section">
+    <h3>100 मोबाइल फ़ोन की लिस्ट:</h3>
+    <ul>
+      <li>Vivo Y29 - ₹14,999</li>
+      <li>Vivo Y39 - ₹15,999</li>
+      <li>Vivo V50 - ₹22,999</li>
+      <!-- और आइटम यहाँ जोड़ें... -->
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Terms & Conditions (नियम और शर्तें)</h3>
+    <p>यह ऑफर सीमित समय के लिए है। एक यूजर एक बार ही स्पिन कर सकता है। गलत जानकारी देने पर पुरस्कार रद्द हो सकता है।</p>
+  </div>
+
+  <div class="section">
+    <h3>Privacy Policy (गोपनीयता नीति)</h3>
+    <p>आपकी जानकारी सुरक्षित रखी जाएगी और किसी तीसरे पक्ष के साथ साझा नहीं की जाएगी।</p>
+  </div>
+
+  <div class="section">
+    <h3>Disclaimer (अस्वीकरण)</h3>
+    <p>यह वेबसाइट प्रमोशनल उद्देश्य से है। किसी प्रकार के वित्तीय निवेश या नुकसान की जिम्मेदारी नहीं होगी।</p>
+  </div>
+
+  <div class="social-icons">
+    <h3>हमसे जुड़ें:</h3>
+    <a href="#">Facebook</a> |
+    <a href="#">Instagram</a> |
+    <a href="#">YouTube</a>
+  </div>
+
+  <!-- AdSense Placeholder -->
+  <div style="margin-top: 30px;">
+    <h4>Google AdSense Placeholder</h4>
+    <div style="width: 300px; height: 250px; background: #ccc; margin: auto;">AdSense Ad</div>
+  </div>
+
+  <!-- Adsterra Ad Placeholder -->
+  <div style="margin-top: 20px;">
+    <h4>Adsterra Placeholder</h4>
+    <div style="width: 300px; height: 250px; background: #ddd; margin: auto;">Adsterra Ad</div>
+  </div>
+
+  <script>
+    // Replace this with your actual config from Firebase
     const firebaseConfig = {
-      apiKey: "AIzaSyCe7mySfFf2zxwJIEU3iWF7AJptYw1A9Xk",
-      authDomain: "sample-firebase-ai-app-bc608.firebaseapp.com",
-      projectId: "sample-firebase-ai-app-bc608",
-      storageBucket: "sample-firebase-ai-app-bc608.appspot.com",
-      messagingSenderId: "291650523519",
-      appId: "1:291650523519:web:00aa2397531e5b8a0a4a4a",
-      measurementId: "G-TCRPBENHR8"
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
     };
+
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-  </script></head>
-<body><h1>RUPESH ELECTRONICS SPECIAL OFFER</h1>
-<div class="arrow"></div>
-<canvas id="wheelCanvas" width="300" height="300"></canvas><br>
-<button id="spinBtn">Spin</button>
-<div id="result"></div><!-- Claim Form --><div style="margin-top: 20px;">
-  <h3>पुरस्कार क्लेम करें</h3>
-  <form id="claimForm">
-    <input type="text" placeholder="नाम" id="name" required><br>
-    <input type="text" placeholder="फोन नंबर" id="phone" required><br>
-    <input type="text" placeholder="UPI ID" id="upi" required><br>
-    <button type="submit" class="google-form-btn">Claim Now</button>
-  </form>
-  <div id="formStatus" style="margin-top: 10px; font-weight: bold;"></div>
-</div><!-- Adsterra & ProfitRate Ads --><div class="ads-section">
-  <script type="text/javascript">
-    atOptions = {
-      'key': '178c7ef4252d26312a8dc8f179174a57',
-      'format': 'iframe',
-      'height': 300,
-      'width': 160,
-      'params': {}
-    };
-  </script>
-  <script type="text/javascript" src="//www.highperformanceformat.com/178c7ef4252d26312a8dc8f179174a57/invoke.js"></script>
-</div><!-- Social Links --><div class="social-icons">
-  <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145802.png"></a>
-  <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
-  <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
-</div><script>
-  const canvas = document.getElementById("wheelCanvas");
-  const ctx = canvas.getContext("2d");
-  const segments = ['₹10', '₹20', '₹50', '₹100', '₹200', 'Better Luck'];
-  const colors = ['#e57373', '#f06292', '#64b5f6', '#81c784', '#ffd54f', '#eeeeee'];
-  let startAngle = 0;
-  let arc = Math.PI / (segments.length / 2);
-  let spinTimeout = null;
-  let spinAngleStart = 0;
-  let spinTime = 0;
-  let spinTimeTotal = 0;
 
-  function drawWheel() {
-    ctx.clearRect(0, 0, 300, 300);
-    for (let i = 0; i < segments.length; i++) {
-      let angle = startAngle + i * arc;
-      ctx.fillStyle = colors[i];
-      ctx.beginPath();
-      ctx.moveTo(150, 150);
-      ctx.arc(150, 150, 150, angle, angle + arc, false);
-      ctx.lineTo(150, 150);
-      ctx.fill();
+    const rewards = ["₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck"];
+    const colors = ["#f44336", "#e91e63", "#2196f3", "#4caf50", "#ff9800", "#9e9e9e"];
+    const canvas = document.getElementById("wheelCanvas");
+    const ctx = canvas.getContext("2d");
+    const slices = rewards.length;
+    let isSpinning = false;
+    let finalReward = "";
 
-      ctx.save();
-      ctx.fillStyle = "#000";
-      ctx.font = "bold 14px sans-serif";
-      ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
-      ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      ctx.fillText(segments[i], -ctx.measureText(segments[i]).width / 2, 0);
-      ctx.restore();
+    function drawWheel() {
+      let angle = 0;
+      const arc = (2 * Math.PI) / slices;
+      for (let i = 0; i < slices; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = colors[i];
+        ctx.moveTo(150, 150);
+        ctx.arc(150, 150, 150, angle, angle + arc);
+        ctx.fill();
+        ctx.fillStyle = "#fff";
+        ctx.font = "18px Arial";
+        ctx.translate(150, 150);
+        ctx.rotate(angle + arc / 2);
+        ctx.fillText(rewards[i], 80, 10);
+        ctx.rotate(-(angle + arc / 2));
+        ctx.translate(-150, -150);
+        angle += arc;
+      }
     }
-  }
 
-  function rotateWheel() {
-    spinAngleStart = Math.random() * 30 + 30;
-    spinTime = 0;
-    spinTimeTotal = Math.random() * 2000 + 2000;
-    rotate();
-  }
-
-  function rotate() {
-    spinTime += 20;
-    if (spinTime >= spinTimeTotal) {
-      stopRotateWheel();
-      return;
-    }
-    let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-    startAngle += (spinAngle * Math.PI / 180);
     drawWheel();
-    spinTimeout = setTimeout(rotate, 20);
-  }
 
-  function stopRotateWheel() {
-    clearTimeout(spinTimeout);
-    let degrees = startAngle * 180 / Math.PI + 90;
-    let arcd = arc * 180 / Math.PI;
-    let index = Math.floor((360 - (degrees % 360)) / arcd);
-    document.getElementById("result").innerText = "आपने जीता: " + segments[index];
-  }
+    function spinWheel() {
+      if (isSpinning) return;
+      isSpinning = true;
+      const spinAngle = Math.floor(Math.random() * 360) + 720;
+      const duration = 3000;
+      let start = null;
+      function rotate(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const angle = (spinAngle * progress) / duration;
+        canvas.style.transform = rotate(${angle}deg);
+        if (progress < duration) {
+          requestAnimationFrame(rotate);
+        } else {
+          const degree = spinAngle % 360;
+          const index = Math.floor((360 - degree) / (360 / slices)) % slices;
+          finalReward = rewards[index];
+          document.getElementById("resultText").innerText = आपने जीता: ${finalReward};
+          isSpinning = false;
+        }
+      }
+      requestAnimationFrame(rotate);
+    }
 
-  function easeOut(t, b, c, d) {
-    let ts = (t /= d) * t;
-    let tc = ts * t;
-    return b + c * (tc + -3 * ts + 3 * t);
-  }
+    function claimPrize() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const upi = document.getElementById("upi").value.trim();
+      const prize = finalReward;
 
-  document.getElementById("spinBtn").addEventListener("click", () => {
-    document.getElementById("result").innerText = "";
-    rotateWheel();
-  });
+      if (!name || !phone || !upi || !prize || prize === "Better Luck") {
+        document.getElementById("claimStatus").innerText = "त्रुटि! कृपया सभी सही जानकारी भरें।";
+        return;
+      }
 
-  drawWheel();
+      db.collection("spin_claims").add({
+        name, phone, upi, prize, time: new Date().toISOString()
+      }).then(() => {
+        document.getElementById("claimStatus").style.color = "green";
+        document.getElementById("claimStatus").innerText = "क्लेम सफलतापूर्वक सबमिट हो गया!";
+      }).catch(err => {
+        document.getElementById("claimStatus").innerText = "त्रुटि! कृपया पुनः प्रयास करें।";
+      });
+    }
+  </script>
 
-  document.getElementById("claimForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const upi = document.getElementById("upi").value;
-
-    db.collection("claims").add({
-      name: name,
-      phone: phone,
-      upi: upi,
-      time: new Date().toLocaleString()
-    })
-    .then(() => {
-      document.getElementById("formStatus").innerText = "क्लेम सफल! जल्द ही पैसे भेजे जाएंगे।";
-      document.getElementById("claimForm").reset();
-    })
-    .catch((error) => {
-      console.error("Error writing document: ", error);
-      document.getElementById("formStatus").innerText = "त्रुटि! कृपया फिर से प्रयास करें।";
-    });
-  });
-</script></body>
+</body>
 </html>
