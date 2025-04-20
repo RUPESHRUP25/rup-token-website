@@ -2,7 +2,12 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title> RUPESH ELECTRONICS - Spin & Win</title>
+  <title>RUPESH ELECTRONICS SPECIAL OFFER - Spin & Win</title>
+
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-665944a224f7e2d1"
+     crossorigin="anonymous"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -115,11 +120,7 @@
   <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
 </div>
 
- <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    
-   
-   
-   <script>
+<script>
   const canvas = document.getElementById("wheelCanvas");
   const ctx = canvas.getContext("2d");
   const segments = ['₹10', '₹20', '₹50', '₹100', '₹200', 'Better Luck'];
@@ -153,9 +154,9 @@
   }
 
   function rotateWheel() {
-    spinAngleStart = Math.random() * 30 + 30; // Increased initial speed
+    spinAngleStart = Math.random() * 30 + 30;
     spinTime = 0;
-    spinTimeTotal = Math.random() * 2000 + 2000; // Shorter duration
+    spinTimeTotal = Math.random() * 2000 + 2000;
     rotate();
   }
 
@@ -168,7 +169,7 @@
     let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
     startAngle += (spinAngle * Math.PI / 180);
     drawWheel();
-    spinTimeout = setTimeout(rotate, 20); // Faster animation
+    spinTimeout = setTimeout(rotate, 20);
   }
 
   function stopRotateWheel() {
