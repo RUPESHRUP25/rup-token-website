@@ -1,137 +1,192 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Spin & Win - RUPESH ELECTRONICS</title>
+  <meta charset="UTF-8">
+  <title>RUPESH ELECTRONICS SPECIAL OFFER - Spin & Win</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #fffde7, #fff9c4);
       text-align: center;
-      padding: 20px;
-    }h1 {
-  color: #fff;
-  background: #e84393;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-#wheel {
-  width: 300px;
-  height: 300px;
-  margin: 30px auto;
-  border-radius: 50%;
-  border: 10px solid #2d3436;
-  background: conic-gradient(
-    #ff6384 0deg 60deg,
-    #36a2eb 60deg 120deg,
-    #cc65fe 120deg 180deg,
-    #ffce56 180deg 240deg,
-    #2ecc71 240deg 300deg,
-    #e74c3c 300deg 360deg
-  );
-  transition: transform 3s ease-out;
-}
-
-#pointer {
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-bottom: 30px solid #2d3436;
-  margin: auto;
-}
-
-#spinButton {
-  margin-top: 20px;
-  padding: 12px 30px;
-  font-size: 20px;
-  background-color: #00b894;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#result {
-  margin-top: 20px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #2d3436;
-}
-
-.social-icons {
-  margin-top: 30px;
-}
-.social-icons a {
-  margin: 0 10px;
-  text-decoration: none;
-  font-size: 24px;
-  color: #fff;
-}
-
-.policy {
-  margin-top: 40px;
-  text-align: left;
-  background: #ffffffc7;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-  </style>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>  <h1>RUPESH ELECTRONICS - Spin & Win</h1>  <div id="pointer"></div>
-  <div id="wheel"></div>
-  <button id="spinButton" onclick="spin()">SPIN NOW</button>
-  <div id="result"></div>  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-whatsapp"></i></a>
-    <a href="#"><i class="fab fa-youtube"></i></a>
-  </div>  <div class="policy">
-    <h3>गोपनीयता नीति (Privacy Policy)</h3>
-    <p>आपके द्वारा प्रदान की गई सभी जानकारी को गोपनीय रखा जाएगा। हम आपकी अनुमति के बिना किसी तीसरे पक्ष के साथ डेटा साझा नहीं करते।</p><h3>नियम और शर्तें (Terms & Conditions)</h3>
-<p>यह ऑफर सीमित समय के लिए है। हर ग्राहक एक दिन में एक बार ही स्पिन कर सकता है। इनाम की राशि हमारी शर्तों के अनुसार दी जाएगी।</p>
-
-<h3>कॉन्टैक्ट करें (Contact Us)</h3>
-<p>किसी भी सवाल या शिकायत के लिए हमसे WhatsApp या ईमेल के ज़रिए संपर्क करें।</p>
-
-  </div>  <!-- Firebase Claim Section -->  <div class="policy">
-    <h3>प्राइज क्लेम करें</h3>
-    <form id="claimForm">
-      <input type="text" id="name" placeholder="नाम" required><br><br>
-      <input type="email" id="email" placeholder="ईमेल" required><br><br>
-      <input type="text" id="phone" placeholder="फोन नंबर" required><br><br>
-      <input type="text" id="upi" placeholder="UPI ID" required><br><br>
-      <button type="submit">क्लेम करें</button>
-    </form>
-  </div>  <script>
-    let spinning = false;
-
-    function spin() {
-      if (spinning) return;
-      spinning = true;
-
-      const outcomes = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
-      const anglePerSlice = 360 / outcomes.length;
-      const selectedIndex = Math.floor(Math.random() * outcomes.length);
-      const totalRotation = 3600 + (selectedIndex * anglePerSlice);
-      const wheel = document.getElementById("wheel");
-
-      wheel.style.transform = rotate(${totalRotation}deg);
-
-      setTimeout(() => {
-        document.getElementById("result").innerText = आपने जीता: ${outcomes[selectedIndex]};
-        spinning = false;
-      }, 3000);
+      margin: 0;
+      padding: 0;
     }
+    h1 {
+      background-color: #ffeb3b;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #d84315;
+      box-shadow: 0 2px 5px #999;
+    }
+    #wheelCanvas {
+      margin: 20px auto;
+      border: 10px solid #ff9800;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #999;
+    }
+    #spinBtn {
+      padding: 14px 35px;
+      font-size: 18px;
+      background-color: #fdd835;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 22px;
+      color: green;
+      font-weight: bold;
+    }
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid red;
+      margin: 0 auto;
+    }
+    .social-icons img {
+      width: 32px;
+      margin: 10px;
+    }
+    .google-form-btn {
+      margin-top: 20px;
+      background: #2196f3;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .ads-section {
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
 
-    document.getElementById("claimForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("प्राइज क्लेम सफलतापूर्वक सबमिट किया गया है!");
-      // Firebase save logic yahan add karein
-    });
-  </script></body>
+<h1>RUPESH ELECTRONICS SPECIAL OFFER</h1>
+<div class="arrow"></div>
+<canvas id="wheelCanvas" width="300" height="300"></canvas><br>
+<button id="spinBtn">Spin</button>
+<div id="result"></div>
+
+<a class="google-form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?usp=header" target="_blank">Claim Your Reward</a>
+
+<!-- Adsterra & ProfitRate Ads -->
+<div class="ads-section">
+  <script type="text/javascript">
+    atOptions = {
+      'key': '178c7ef4252d26312a8dc8f179174a57',
+      'format': 'iframe',
+      'height': 300,
+      'width': 160,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/178c7ef4252d26312a8dc8f179174a57/invoke.js"></script>
+
+  <script type="text/javascript">
+    atOptions = {
+      'key': '8260a384f2873808c815a85bc3ce32c9',
+      'format': 'iframe',
+      'height': 60,
+      'width': 468,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/8260a384f2873808c815a85bc3ce32c9/invoke.js"></script>
+
+  <script type='text/javascript' src='//pl26421804.profitableratecpm.com/be/db/5f/bedb5f9636fc57cde685cd9b8c00a236.js'></script>
+  <script type='text/javascript' src='//pl26421957.profitableratecpm.com/bd/c2/5c/bdc25c8eadd7bf2315ea95009be1a0ce.js'></script>
+  <script async="async" data-cfasync="false" src="//pl26423656.profitableratecpm.com/94cca711e5b1506682116f313cd83036/invoke.js"></script>
+  <div id="container-94cca711e5b1506682116f313cd83036"></div>
+</div>
+
+<!-- Social Links -->
+<div class="social-icons">
+  <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145802.png"></a>
+  <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+  <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
+</div>
+
+<script>
+  const canvas = document.getElementById("wheelCanvas");
+  const ctx = canvas.getContext("2d");
+  const segments = ['₹10', '₹20', '₹50', '₹100', '₹200', 'Better Luck'];
+  const colors = ['#e57373', '#f06292', '#64b5f6', '#81c784', '#ffd54f', '#eeeeee'];
+  let startAngle = 0;
+  let arc = Math.PI / (segments.length / 2);
+  let spinTimeout = null;
+  let spinAngleStart = 0;
+  let spinTime = 0;
+  let spinTimeTotal = 0;
+
+  function drawWheel() {
+    ctx.clearRect(0, 0, 300, 300);
+    for (let i = 0; i < segments.length; i++) {
+      let angle = startAngle + i * arc;
+      ctx.fillStyle = colors[i];
+      ctx.beginPath();
+      ctx.moveTo(150, 150);
+      ctx.arc(150, 150, 150, angle, angle + arc, false);
+      ctx.lineTo(150, 150);
+      ctx.fill();
+
+      ctx.save();
+      ctx.fillStyle = "#000";
+      ctx.font = "bold 14px sans-serif";
+      ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
+      ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      ctx.fillText(segments[i], -ctx.measureText(segments[i]).width / 2, 0);
+      ctx.restore();
+    }
+  }
+
+  function rotateWheel() {
+    spinAngleStart = Math.random() * 30 + 30; // Increased initial speed
+    spinTime = 0;
+    spinTimeTotal = Math.random() * 2000 + 2000; // Shorter duration
+    rotate();
+  }
+
+  function rotate() {
+    spinTime += 20;
+    if (spinTime >= spinTimeTotal) {
+      stopRotateWheel();
+      return;
+    }
+    let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+    startAngle += (spinAngle * Math.PI / 180);
+    drawWheel();
+    spinTimeout = setTimeout(rotate, 20); // Faster animation
+  }
+
+  function stopRotateWheel() {
+    clearTimeout(spinTimeout);
+    let degrees = startAngle * 180 / Math.PI + 90;
+    let arcd = arc * 180 / Math.PI;
+    let index = Math.floor((360 - (degrees % 360)) / arcd);
+    document.getElementById("result").innerText = "आपने जीता: " + segments[index];
+  }
+
+  function easeOut(t, b, c, d) {
+    let ts = (t /= d) * t;
+    let tc = ts * t;
+    return b + c * (tc + -3 * ts + 3 * t);
+  }
+
+  document.getElementById("spinBtn").addEventListener("click", () => {
+    document.getElementById("result").innerText = "";
+    rotateWheel();
+  });
+
+  drawWheel();
+</script>
+</body>
 </html>
