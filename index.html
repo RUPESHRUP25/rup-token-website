@@ -92,4 +92,46 @@
     <a href="#"><i class="fab fa-youtube"></i></a>
   </div>  <div class="policy">
     <h3>गोपनीयता नीति (Privacy Policy)</h3>
-    <p>आपके द्वारा प्रदान की गई सभी जानकारी को गोपनीय रखा जाएगा। हम आपकी अनुमति के बिना किसी तीसरे पक्ष के साथ डेटा साझा नहीं करते।</p
+    <p>आपके द्वारा प्रदान की गई सभी जानकारी को गोपनीय रखा जाएगा। हम आपकी अनुमति के बिना किसी तीसरे पक्ष के साथ डेटा साझा नहीं करते।</p><h3>नियम और शर्तें (Terms & Conditions)</h3>
+<p>यह ऑफर सीमित समय के लिए है। हर ग्राहक एक दिन में एक बार ही स्पिन कर सकता है। इनाम की राशि हमारी शर्तों के अनुसार दी जाएगी।</p>
+
+<h3>कॉन्टैक्ट करें (Contact Us)</h3>
+<p>किसी भी सवाल या शिकायत के लिए हमसे WhatsApp या ईमेल के ज़रिए संपर्क करें।</p>
+
+  </div>  <!-- Firebase Claim Section -->  <div class="policy">
+    <h3>प्राइज क्लेम करें</h3>
+    <form id="claimForm">
+      <input type="text" id="name" placeholder="नाम" required><br><br>
+      <input type="email" id="email" placeholder="ईमेल" required><br><br>
+      <input type="text" id="phone" placeholder="फोन नंबर" required><br><br>
+      <input type="text" id="upi" placeholder="UPI ID" required><br><br>
+      <button type="submit">क्लेम करें</button>
+    </form>
+  </div>  <script>
+    let spinning = false;
+
+    function spin() {
+      if (spinning) return;
+      spinning = true;
+
+      const outcomes = ["₹10", "₹20", "₹50", "₹100", "₹200", "Try Again"];
+      const anglePerSlice = 360 / outcomes.length;
+      const selectedIndex = Math.floor(Math.random() * outcomes.length);
+      const totalRotation = 3600 + (selectedIndex * anglePerSlice);
+      const wheel = document.getElementById("wheel");
+
+      wheel.style.transform = rotate(${totalRotation}deg);
+
+      setTimeout(() => {
+        document.getElementById("result").innerText = आपने जीता: ${outcomes[selectedIndex]};
+        spinning = false;
+      }, 3000);
+    }
+
+    document.getElementById("claimForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("प्राइज क्लेम सफलतापूर्वक सबमिट किया गया है!");
+      // Firebase save logic yahan add karein
+    });
+  </script></body>
+</html>
