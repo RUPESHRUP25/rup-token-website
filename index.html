@@ -1,136 +1,150 @@
-<!DOCTYPE html><html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spin & Win - Rupesh Electronics</title>
+  <meta charset="UTF-8">
+  <title>Mobile Catalog</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #ffe259, #ffa751);
       margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #333;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #444;
+    }
+
+    nav button {
+      background: #444;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    nav button:hover {
+      background: #666;
+    }
+
+    .brand-section {
+      display: none;
       padding: 20px;
     }
-    #wheel {
-      margin: 20px auto;
-      width: 350px;
-      height: 350px;
-      border-radius: 50%;
-      border: 10px solid orange;
-      position: relative;
-      overflow: hidden;
-      transition: transform 4s cubic-bezier(0.2, 1, 0.2, 1);
+
+    .brand-section.active {
+      display: block;
     }
-    .segment {
-      width: 50%;
-      height: 50%;
-      position: absolute;
-      transform-origin: 100% 100%;
-      background-color: #fff;
-      border-right: 1px solid #000;
+
+    .mobile-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
     }
-    #pointer {
-      width: 0;
-      height: 0;
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
-      border-bottom: 30px solid red;
-      margin: 0 auto;
-    }
-    #spinBtn {
-      padding: 10px 30px;
-      font-size: 18px;
-      background: #ffc107;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    #result {
-      font-size: 22px;
-      color: green;
-      margin: 20px 0;
-    }
-    #claimForm {
-      display: none;
-      margin-top: 20px;
-    }
-    input {
-      margin: 5px;
+
+    .mobile-card {
+      background: white;
+      border: 1px solid #ccc;
       padding: 10px;
-      width: 250px;
+      cursor: pointer;
     }
-    #walletPoints {
-      margin-top: 20px;
-      font-size: 20px;
-      color: blue;
+
+    .details {
+      display: none;
+      margin-top: 10px;
+      background: #eef;
+      padding: 10px;
+    }
+
+    .details.active {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <h2>RUPESH ELECTRONICS SPECIAL OFFER</h2>
-  <div id="pointer"></div>
-  <div id="wheel"></div>
-  <button id="spinBtn">Spin</button>
-  <div id="result"></div>  <form id="claimForm">
-    <input type="text" id="name" placeholder="नाम" required><br>
-    <input type="text" id="phone" placeholder="फ़ोन नंबर" required><br>
-    <input type="email" id="email" placeholder="ईमेल" required><br>
-    <input type="text" id="upi" placeholder="UPI ID" required><br>
-    <button type="submit">Claim Now</button>
-  </form>  <div id="walletPoints"></div>  <script>
-    const wheel = document.getElementById("wheel");
-    const result = document.getElementById("result");
-    const claimForm = document.getElementById("claimForm");
-    const walletPoints = document.getElementById("walletPoints");
 
-    const segments = ["₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck", "₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck", "₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck", "₹10", "₹20"];
-    const colors = ["#ff7979", "#badc58", "#f9ca24", "#7ed6df", "#e056fd", "#dff9fb"];
+<header>
+  <h1>📱 Mobile Catalog</h1>
+</header>
 
-    let degreePerSegment = 360 / segments.length;
-    segments.forEach((val, i) => {
-      const seg = document.createElement("div");
-      seg.className = "segment";
-      seg.style.backgroundColor = colors[i % colors.length];
-      seg.style.transform = rotate(${i * degreePerSegment}deg) skewY(-${90 - degreePerSegment}deg);
-      seg.innerHTML = <div style="transform: skewY(${90 - degreePerSegment}deg) rotate(${degreePerSegment / 2}deg); position: absolute; right: -100%; width: 200%; text-align: center;">${val}</div>;
-      wheel.appendChild(seg);
-    });
+<nav>
+  <button onclick="showBrand('vivo')">Vivo</button>
+  <button onclick="showBrand('samsung')">Samsung</button>
+  <button onclick="showBrand('redmi')">Redmi</button>
+</nav>
 
-    let spinning = false;
-    document.getElementById("spinBtn").addEventListener("click", () => {
-      if (spinning) return;
-      spinning = true;
-      result.innerText = "घुमा रहे हैं...";
-      const rotation = 3600 + Math.floor(Math.random() * 360);
-      wheel.style.transform = rotate(${rotation}deg);
+<!-- Vivo Mobiles -->
+<section id="vivo" class="brand-section">
+  <h2>Vivo Mobiles</h2>
+  <div class="mobile-list">
+    <div class="mobile-card" onclick="toggleDetails(this)">
+      Vivo Y21
+      <div class="details">Display: 6.5", Battery: 5000mAh, Price: ₹12,000</div>
+    </div>
+    <div class="mobile-card" onclick="toggleDetails(this)">
+      Vivo V25
+      <div class="details">Display: 6.4", Camera: 64MP, Price: ₹24,000</div>
+    </div>
+    <!-- Add more Vivo models... -->
+  </div>
+</section>
 
-      setTimeout(() => {
-        const normalized = rotation % 360;
-        const index = Math.floor((360 - normalized) / degreePerSegment) % segments.length;
-        const prize = segments[index];
-        result.innerText = आपने जीता: ${prize};
-        if (prize.includes("₹")) {
-          claimForm.style.display = "block";
-        } else {
-          claimForm.style.display = "none";
-        }
-        spinning = false;
-      }, 4000);
-    });
+<!-- Samsung Mobiles -->
+<section id="samsung" class="brand-section">
+  <h2>Samsung Mobiles</h2>
+  <div class="mobile-list">
+    <div class="mobile-card" onclick="toggleDetails(this)">
+      Samsung Galaxy M14
+      <div class="details">Display: 6.6", Battery: 6000mAh, Price: ₹13,000</div>
+    </div>
+    <div class="mobile-card" onclick="toggleDetails(this)">
+      Samsung S23 Ultra
+      <div class="details">Display: 6.8", Camera: 200MP, Price: ₹1,20,000</div>
+    </div>
+    <!-- Add more Samsung models... -->
+  </div>
+</section>
 
-    claimForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const email = document.getElementById("email").value;
-      const upi = document.getElementById("upi").value;
-      result.innerText = "क्लेम सबमिट किया गया!";
-      walletPoints.innerText = Wallet Points क्रेडिट किए गए: 1; // दिखावे के लिए
-      claimForm.style.display = "none";
+<!-- Redmi Mobiles -->
+<section id="redmi" class="brand-section">
+  <h2>Redmi Mobiles</h2>
+  <div class="mobile-list">
+    <div class="mobile-card" onclick="toggleDetails(this)">
+      Redmi Note 12
+      <div class="details">Display: 6.7", 5G, Price: ₹16,000</div>
+    </div>
+    <div class="mobile-card" onclick="toggleDetails(this)">
+      Redmi 12C
+      <div class="details">Display: 6.5", Budget phone, Price: ₹8,500</div>
+    </div>
+    <!-- Add more Redmi models... -->
+  </div>
+</section>
 
-      // Firebase भेजने का कोड यहाँ होगा (बाद में जोड़ेंगे)
-      console.log({ name, phone, email, upi });
-    });
-  </script></body>
+<script>
+  function showBrand(brand) {
+    const sections = document.querySelectorAll('.brand-section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(brand).classList.add('active');
+  }
+
+  function toggleDetails(card) {
+    const detail = card.querySelector('.details');
+    detail.classList.toggle('active');
+  }
+
+  // Default brand on load
+  showBrand('vivo');
+</script>
+
+</body>
 </html>
