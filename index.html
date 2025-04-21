@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin & Win - रुपये में जीतें!</title>
+    <title>Spin & Win - रहस्यमय पुरस्कार!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -69,6 +69,7 @@
             font-weight: bold;
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 1.5rem;
         }
         
         .spin-btn {
@@ -89,47 +90,56 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.3);
         }
         
-        .wallet-section {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .wallet-balance {
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
+            z-index: 1000;
+            display: none;
         }
         
-        .balance-amount {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .prize-popup {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 300px;
+            width: 90%;
+            animation: popIn 0.5s;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .prize-amount {
+            font-size: 2.5rem;
             color: #ff6b6b;
+            font-weight: bold;
+            margin: 15px 0;
         }
         
-        .redeem-form input, .redeem-form select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        .prize-message {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
         }
         
-        .redeem-btn {
-            background: linear-gradient(90deg, #4CAF50, #2E7D32);
+        .close-popup {
+            background: #4CAF50;
             color: white;
             border: none;
-            padding: 10px;
-            width: 100%;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .redeem-btn:hover {
-            background: linear-gradient(90deg, #2E7D32, #1B5E20);
+            font-size: 1rem;
         }
         
         .social-links {
@@ -168,18 +178,13 @@
             color: #777;
             font-size: 0.9rem;
         }
-        
-        .rupee-symbol:before {
-            content: "₹";
-            margin-right: 2px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>SPIN & WIN</h1>
-            <p>पहिया घुमाएं और रुपये जीतें!</p>
+            <p>पहिया घुमाएं और रहस्यमय पुरस्कार जीतें!</p>
         </header>
         
         <div class="wheel-container">
@@ -187,23 +192,12 @@
             <button class="spin-btn" id="spinBtn">पहिया घुमाएं</button>
         </div>
         
-        <div class="wallet-section">
-            <h2>आपका वॉलेट</h2>
-            <div class="wallet-balance">
-                <span>उपलब्ध शेष:</span>
-                <span class="balance-amount rupee-symbol">0.00</span>
-            </div>
-            
-            <div class="redeem-form">
-                <input type="number" id="redeemAmount" placeholder="रिडीम करने के लिए राशि दर्ज करें" min="100" step="1">
-                <select id="paymentMethod">
-                    <option value="">भुगतान विधि चुनें</option>
-                    <option value="paytm">PayTM</option>
-                    <option value="upi">UPI</option>
-                    <option value="bank">बैंक ट्रांसफर</option>
-                    <option value="amazon">Amazon पे</option>
-                </select>
-                <button class="redeem-btn" id="redeemBtn">रिडीम करें</button>
+        <div class="popup-overlay" id="popupOverlay">
+            <div class="prize-popup">
+                <h2>बधाई हो!</h2>
+                <div class="prize-amount" id="prizeAmount">₹100</div>
+                <div class="prize-message" id="prizeMessage">आपने ₹100 जीते हैं!</div>
+                <button class="close-popup" id="closePopup">ठीक है</button>
             </div>
         </div>
         
@@ -218,43 +212,85 @@
             <p>© 2023 Spin & Win. सर्वाधिकार सुरक्षित</p>
         </footer>
     </div>
+
+    <!-- Audio elements for sound effects -->
+    <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
+    <audio id="spinSound" src="https://assets.mixkit.co/sfx/preview/mixkit-slot-machine-spin-1930.mp3"></audio>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Wheel setup
+            // Elements
             const wheel = document.getElementById('wheel');
             const spinBtn = document.getElementById('spinBtn');
-            const redeemBtn = document.getElementById('redeemBtn');
-            const balanceAmount = document.querySelector('.balance-amount');
+            const popupOverlay = document.getElementById('popupOverlay');
+            const prizeAmount = document.getElementById('prizeAmount');
+            const prizeMessage = document.getElementById('prizeMessage');
+            const closePopup = document.getElementById('closePopup');
+            const winSound = document.getElementById('winSound');
+            const spinSound = document.getElementById('spinSound');
             
+            // Prizes data
             const prizes = [
-                { text: '₹100', value: 100 },
-                { text: '₹50', value: 50 },
-                { text: '₹20', value: 20 },
-                { text: 'मुफ्त स्पिन', value: 0 },
-                { text: '₹75', value: 75 },
-                { text: 'फिर से प्रयास करें', value: 0 },
-                { text: '₹200', value: 200 },
-                { text: '₹30', value: 30 }
-            ];
-            
-            const colors = [
-                '#FF5252', '#FF4081', '#E040FB', 
-                '#7C4DFF', '#536DFE', '#448AFF', 
-                '#40C4FF', '#18FFFF'
+                { 
+                    symbol: '★', 
+                    amount: 100, 
+                    message: 'बधाई हो! आपने ₹100 जीते हैं!',
+                    color: '#FF5252'
+                },
+                { 
+                    symbol: '♦', 
+                    amount: 50, 
+                    message: 'वाह! आपको ₹50 मिले हैं!',
+                    color: '#FF4081'
+                },
+                { 
+                    symbol: '♥', 
+                    amount: 20, 
+                    message: 'अच्छा! ₹20 आपके खाते में!',
+                    color: '#E040FB'
+                },
+                { 
+                    symbol: '♣', 
+                    amount: 0, 
+                    message: 'अगली बार जरूर जीतेंगे!',
+                    color: '#7C4DFF'
+                },
+                { 
+                    symbol: '♠', 
+                    amount: 75, 
+                    message: 'शानदार! ₹75 की जीत!',
+                    color: '#536DFE'
+                },
+                { 
+                    symbol: '✿', 
+                    amount: 0, 
+                    message: 'कोई जीत नहीं, फिर कोशिश करें!',
+                    color: '#448AFF'
+                },
+                { 
+                    symbol: '☀', 
+                    amount: 200, 
+                    message: 'अद्भुत! आपने ₹200 जीते!',
+                    color: '#40C4FF'
+                },
+                { 
+                    symbol: '☘', 
+                    amount: 30, 
+                    message: 'बढ़िया! ₹30 आपके हुए!',
+                    color: '#18FFFF'
+                }
             ];
             
             // Create wheel segments
             prizes.forEach((prize, index) => {
                 const segment = document.createElement('div');
                 segment.className = 'wheel-item';
-                segment.textContent = prize.text;
-                segment.style.backgroundColor = colors[index];
+                segment.textContent = prize.symbol;
+                segment.style.backgroundColor = prize.color;
                 segment.style.transform = `rotate(${index * 45}deg) skewY(-45deg)`;
                 wheel.appendChild(segment);
             });
             
-            let currentBalance = 0;
             let canSpin = true;
             
             // Spin functionality
@@ -264,6 +300,10 @@
                 canSpin = false;
                 spinBtn.disabled = true;
                 
+                // Play spin sound
+                spinSound.currentTime = 0;
+                spinSound.play();
+                
                 const randomDegree = Math.floor(Math.random() * 360) + 1440;
                 wheel.style.transform = `rotate(${randomDegree}deg)`;
                 
@@ -271,44 +311,28 @@
                     const winningIndex = Math.floor((randomDegree % 360) / 45);
                     const prize = prizes[winningIndex];
                     
-                    if (prize.value > 0) {
-                        currentBalance += prize.value;
-                        balanceAmount.textContent = '₹' + currentBalance.toFixed(2);
-                        alert(`बधाई हो! आपने जीता ${prize.text}`);
+                    // Show popup with prize details
+                    if (prize.amount > 0) {
+                        prizeAmount.textContent = `₹${prize.amount}`;
+                        prizeAmount.style.color = '#4CAF50';
+                        winSound.currentTime = 0;
+                        winSound.play();
                     } else {
-                        alert(prize.text);
+                        prizeAmount.textContent = '₹0';
+                        prizeAmount.style.color = '#ff6b6b';
                     }
+                    prizeMessage.textContent = prize.message;
+                    
+                    popupOverlay.style.display = 'flex';
                     
                     spinBtn.disabled = false;
                     canSpin = true;
                 }, 3000);
             });
             
-            // Redemption functionality
-            redeemBtn.addEventListener('click', function() {
-                const amount = parseFloat(document.getElementById('redeemAmount').value);
-                const method = document.getElementById('paymentMethod').value;
-                
-                if (!amount || amount < 100) {
-                    alert('न्यूनतम रिडीम राशि ₹100 है');
-                    return;
-                }
-                
-                if (amount > currentBalance) {
-                    alert('अपर्याप्त शेष');
-                    return;
-                }
-                
-                if (!method) {
-                    alert('कृपया भुगतान विधि चुनें');
-                    return;
-                }
-                
-                currentBalance -= amount;
-                balanceAmount.textContent = '₹' + currentBalance.toFixed(2);
-                alert(`₹${amount.toFixed(2)} की रिडीम रिक्वेस्ट ${method} के माध्यम से सबमिट कर दी गई है!`);
-                document.getElementById('redeemAmount').value = '';
-                document.getElementById('paymentMethod').value = '';
+            // Close popup
+            closePopup.addEventListener('click', function() {
+                popupOverlay.style.display = 'none';
             });
         });
     </script>
