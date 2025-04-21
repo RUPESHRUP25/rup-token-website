@@ -1,14 +1,316 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  </head>
-  rupesh kumar
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin & Win - रुपये में जीतें!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        
+        .wheel-container {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .wheel {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #333;
+            box-shadow: 0 0 0 5px #fff, 0 0 20px rgba(0,0,0,0.2);
+            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+        
+        .wheel-item {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .spin-btn {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .spin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .wallet-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .wallet-balance {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .balance-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        
+        .redeem-form input, .redeem-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .redeem-btn {
+            background: linear-gradient(90deg, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .redeem-btn:hover {
+            background: linear-gradient(90deg, #2E7D32, #1B5E20);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .facebook { background: #3b5998; }
+        .twitter { background: #1DA1F2; }
+        .instagram { background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D); }
+        .whatsapp { background: #25D366; }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .rupee-symbol:before {
+            content: "₹";
+            margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SPIN & WIN</h1>
+            <p>पहिया घुमाएं और रुपये जीतें!</p>
+        </header>
+        
+        <div class="wheel-container">
+            <div class="wheel" id="wheel"></div>
+            <button class="spin-btn" id="spinBtn">पहिया घुमाएं</button>
+        </div>
+        
+        <div class="wallet-section">
+            <h2>आपका वॉलेट</h2>
+            <div class="wallet-balance">
+                <span>उपलब्ध शेष:</span>
+                <span class="balance-amount rupee-symbol">0.00</span>
+            </div>
+            
+            <div class="redeem-form">
+                <input type="number" id="redeemAmount" placeholder="रिडीम करने के लिए राशि दर्ज करें" min="100" step="1">
+                <select id="paymentMethod">
+                    <option value="">भुगतान विधि चुनें</option>
+                    <option value="paytm">PayTM</option>
+                    <option value="upi">UPI</option>
+                    <option value="bank">बैंक ट्रांसफर</option>
+                    <option value="amazon">Amazon पे</option>
+                </select>
+                <button class="redeem-btn" id="redeemBtn">रिडीम करें</button>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        <footer>
+            <p>© 2023 Spin & Win. सर्वाधिकार सुरक्षित</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wheel setup
+            const wheel = document.getElementById('wheel');
+            const spinBtn = document.getElementById('spinBtn');
+            const redeemBtn = document.getElementById('redeemBtn');
+            const balanceAmount = document.querySelector('.balance-amount');
+            
+            const prizes = [
+                { text: '₹100', value: 100 },
+                { text: '₹50', value: 50 },
+                { text: '₹20', value: 20 },
+                { text: 'मुफ्त स्पिन', value: 0 },
+                { text: '₹75', value: 75 },
+                { text: 'फिर से प्रयास करें', value: 0 },
+                { text: '₹200', value: 200 },
+                { text: '₹30', value: 30 }
+            ];
+            
+            const colors = [
+                '#FF5252', '#FF4081', '#E040FB', 
+                '#7C4DFF', '#536DFE', '#448AFF', 
+                '#40C4FF', '#18FFFF'
+            ];
+            
+            // Create wheel segments
+            prizes.forEach((prize, index) => {
+                const segment = document.createElement('div');
+                segment.className = 'wheel-item';
+                segment.textContent = prize.text;
+                segment.style.backgroundColor = colors[index];
+                segment.style.transform = `rotate(${index * 45}deg) skewY(-45deg)`;
+                wheel.appendChild(segment);
+            });
+            
+            let currentBalance = 0;
+            let canSpin = true;
+            
+            // Spin functionality
+            spinBtn.addEventListener('click', function() {
+                if (!canSpin) return;
+                
+                canSpin = false;
+                spinBtn.disabled = true;
+                
+                const randomDegree = Math.floor(Math.random() * 360) + 1440;
+                wheel.style.transform = `rotate(${randomDegree}deg)`;
+                
+                setTimeout(() => {
+                    const winningIndex = Math.floor((randomDegree % 360) / 45);
+                    const prize = prizes[winningIndex];
+                    
+                    if (prize.value > 0) {
+                        currentBalance += prize.value;
+                        balanceAmount.textContent = '₹' + currentBalance.toFixed(2);
+                        alert(`बधाई हो! आपने जीता ${prize.text}`);
+                    } else {
+                        alert(prize.text);
+                    }
+                    
+                    spinBtn.disabled = false;
+                    canSpin = true;
+                }, 3000);
+            });
+            
+            // Redemption functionality
+            redeemBtn.addEventListener('click', function() {
+                const amount = parseFloat(document.getElementById('redeemAmount').value);
+                const method = document.getElementById('paymentMethod').value;
+                
+                if (!amount || amount < 100) {
+                    alert('न्यूनतम रिडीम राशि ₹100 है');
+                    return;
+                }
+                
+                if (amount > currentBalance) {
+                    alert('अपर्याप्त शेष');
+                    return;
+                }
+                
+                if (!method) {
+                    alert('कृपया भुगतान विधि चुनें');
+                    return;
+                }
+                
+                currentBalance -= amount;
+                balanceAmount.textContent = '₹' + currentBalance.toFixed(2);
+                alert(`₹${amount.toFixed(2)} की रिडीम रिक्वेस्ट ${method} के माध्यम से सबमिट कर दी गई है!`);
+                document.getElementById('redeemAmount').value = '';
+                document.getElementById('paymentMethod').value = '';
+            });
+        });
+    </script>
+</body>
 </html>
