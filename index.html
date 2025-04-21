@@ -1,43 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="hi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Spin & Earn | Reward Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spin & Win - Rupesh Electronics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ffe259, #ffa751);
+      margin: 0;
+      padding: 20px;
+    }
+    #wheel {
+      margin: 20px auto;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      border: 10px solid orange;
+      position: relative;
+      overflow: hidden;
+      transition: transform 4s cubic-bezier(0.2, 1, 0.2, 1);
+    }
+    .segment {
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      transform-origin: 100% 100%;
+      background-color: #fff;
+      border-right: 1px solid #000;
+    }
+    #pointer {
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 30px solid red;
+      margin: 0 auto;
+    }
+    #spinBtn {
+      padding: 10px 30px;
+      font-size: 18px;
+      background: #ffc107;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    #result {
+      font-size: 22px;
+      color: green;
+      margin: 20px 0;
+    }
+    #claimForm {
+      display: none;
+      margin-top: 20px;
+    }
+    input {
+      margin: 5px;
+      padding: 10px;
+      width: 250px;
+    }
+    #walletPoints {
+      margin-top: 20px;
+      font-size: 20px;
+      color: blue;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🎉 Spin & Win Rewards!</h1>
-  </header>
+  <h2>RUPESH ELECTRONICS SPECIAL OFFER</h2>
+  <div id="pointer"></div>
+  <div id="wheel"></div>
+  <button id="spinBtn">Spin</button>
+  <div id="result"></div>  <form id="claimForm">
+    <input type="text" id="name" placeholder="नाम" required><br>
+    <input type="text" id="phone" placeholder="फ़ोन नंबर" required><br>
+    <input type="email" id="email" placeholder="ईमेल" required><br>
+    <input type="text" id="upi" placeholder="UPI ID" required><br>
+    <button type="submit">Claim Now</button>
+  </form>  <div id="walletPoints"></div>  <script>
+    const wheel = document.getElementById("wheel");
+    const result = document.getElementById("result");
+    const claimForm = document.getElementById("claimForm");
+    const walletPoints = document.getElementById("walletPoints");
 
-  <section class="wallet">
-    💰 Your Wallet Balance: <span id="wallet">0</span> Points
-  </section>
+    const segments = ["₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck", "₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck", "₹10", "₹20", "₹50", "₹100", "₹200", "Better Luck", "₹10", "₹20"];
+    const colors = ["#ff7979", "#badc58", "#f9ca24", "#7ed6df", "#e056fd", "#dff9fb"];
 
-  <section class="spin-area">
-    <div class="wheel" id="wheel"></div>
-    <button id="spinBtn">🎯 Spin Now</button>
-    <p id="result"></p>
-  </section>
+    let degreePerSegment = 360 / segments.length;
+    segments.forEach((val, i) => {
+      const seg = document.createElement("div");
+      seg.className = "segment";
+      seg.style.backgroundColor = colors[i % colors.length];
+      seg.style.transform = rotate(${i * degreePerSegment}deg) skewY(-${90 - degreePerSegment}deg);
+      seg.innerHTML = <div style="transform: skewY(${90 - degreePerSegment}deg) rotate(${degreePerSegment / 2}deg); position: absolute; right: -100%; width: 200%; text-align: center;">${val}</div>;
+      wheel.appendChild(seg);
+    });
 
-  <!-- AdSense Placeholder -->
-  <section class="ads">
-    <!-- Replace below with your AdSense code -->
-    <div class="ad-box">[Google Ad will appear here]</div>
-  </section>
+    let spinning = false;
+    document.getElementById("spinBtn").addEventListener("click", () => {
+      if (spinning) return;
+      spinning = true;
+      result.innerText = "घुमा रहे हैं...";
+      const rotation = 3600 + Math.floor(Math.random() * 360);
+      wheel.style.transform = rotate(${rotation}deg);
 
-  <footer>
-    <p>Follow us on:</p>
-    <div class="social-links">
-      <a href="https://facebook.com" target="_blank">Facebook</a> |
-      <a href="https://instagram.com" target="_blank">Instagram</a> |
-      <a href="https://t.me" target="_blank">Telegram</a> |
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-    </div>
-    <p>&copy; 2025 Spin & Earn. All rights reserved.</p>
-  </footer>
+      setTimeout(() => {
+        const normalized = rotation % 360;
+        const index = Math.floor((360 - normalized) / degreePerSegment) % segments.length;
+        const prize = segments[index];
+        result.innerText = आपने जीता: ${prize};
+        if (prize.includes("₹")) {
+          claimForm.style.display = "block";
+        } else {
+          claimForm.style.display = "none";
+        }
+        spinning = false;
+      }, 4000);
+    });
 
-  <script src="spin.js"></script>
-</body>
+    claimForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const upi = document.getElementById("upi").value;
+      result.innerText = "क्लेम सबमिट किया गया!";
+      walletPoints.innerText = Wallet Points क्रेडिट किए गए: 1; // दिखावे के लिए
+      claimForm.style.display = "none";
+
+      // Firebase भेजने का कोड यहाँ होगा (बाद में जोड़ेंगे)
+      console.log({ name, phone, email, upi });
+    });
+  </script></body>
 </html>
