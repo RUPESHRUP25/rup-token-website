@@ -1,167 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile Catalog</title>
+  <title>RUPESH REWARD HUB</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #ff7e5f, #feb47b); /* Colorful background */
-      color: #fff;
-    }
-
-    header {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 20px;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
       text-align: center;
     }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #333;
-    }
-
-    nav button {
-      background: #444;
+    h1 {
+      background: #ff9800;
       color: white;
-      border: none;
+      padding: 20px;
+      font-size: 28px;
+    }
+    .section {
+      background: white;
+      margin: 20px;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    button {
       padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #4caf50;
+      color: white;
       cursor: pointer;
     }
-
-    nav button:hover {
-      background: #666;
-    }
-
-    .brand-section {
-      display: none;
-      padding: 20px;
-    }
-
-    .brand-section.active {
-      display: block;
-    }
-
-    .mobile-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
-
-    .mobile-card {
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 8px;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .mobile-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .details {
-      display: none;
+    .result {
       margin-top: 10px;
-      background: #eef;
-      padding: 10px;
-      border-radius: 5px;
-    }
-
-    .details.active {
-      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
     }
   </style>
 </head>
 <body>
+  <h1>RUPESH REWARD HUB</h1>  <!-- Scratch & Win -->  <div class="section">
+    <h2>Scratch & Win</h2>
+    <button onclick="scratchWin()">Scratch Now</button>
+    <div class="result" id="scratchResult"></div>
+  </div>  <!-- Daily Lucky Draw -->  <div class="section">
+    <h2>Daily Lucky Draw</h2>
+    <button onclick="dailyDraw()">Try Your Luck</button>
+    <div class="result" id="drawResult"></div>
+  </div>  <!-- Quiz & Win -->  <div class="section">
+    <h2>Quiz & Win</h2>
+    <p>What is the capital of India?</p>
+    <button onclick="quizAnswer('Delhi')">Delhi</button>
+    <button onclick="quizAnswer('Mumbai')">Mumbai</button>
+    <button onclick="quizAnswer('Kolkata')">Kolkata</button>
+    <div class="result" id="quizResult"></div>
+  </div>  <!-- Reward Points System -->  <div class="section">
+    <h2>Reward Points</h2>
+    <button onclick="addPoints()">Collect Daily Reward</button>
+    <div class="result" id="pointResult">Your Points: 0</div>
+  </div>  <!-- Scratch Coupon Generator -->  <div class="section">
+    <h2>Scratch Coupon Generator</h2>
+    <button onclick="generateCoupon()">Generate Coupon</button>
+    <div class="result" id="couponResult"></div>
+  </div>  <script>
+    // Scratch & Win Logic
+    function scratchWin() {
+      const prizes = ["₹10", "₹50", "₹100", "Better Luck Next Time"];
+      const prize = prizes[Math.floor(Math.random() * prizes.length)];
+      document.getElementById("scratchResult").innerText = "You got: " + prize;
+    }
 
-<header>
-  <h1>📱 Mobile Catalog</h1>
-</header>
+    // Daily Lucky Draw
+    function dailyDraw() {
+      const draw = ["Lucky Winner! ₹200", "₹20", "₹50", "Try Again Tomorrow"];
+      const result = draw[Math.floor(Math.random() * draw.length)];
+      document.getElementById("drawResult").innerText = result;
+    }
 
-<nav>
-  <button onclick="showBrand('vivo')">Vivo</button>
-  <button onclick="showBrand('samsung')">Samsung</button>
-  <button onclick="showBrand('redmi')">Redmi</button>
-</nav>
+    // Quiz & Win
+    function quizAnswer(answer) {
+      const correct = "Delhi";
+      if (answer === correct) {
+        document.getElementById("quizResult").innerText = "Correct! You won ₹100!";
+      } else {
+        document.getElementById("quizResult").innerText = "Oops! Wrong Answer.";
+      }
+    }
 
-<!-- Vivo Mobiles -->
-<section id="vivo" class="brand-section">
-  <h2>Vivo Mobiles</h2>
-  <div class="mobile-list">
-    <div class="mobile-card" onclick="toggleDetails(this)">
-      <img src="https://via.placeholder.com/250" alt="Vivo Y21">
-      Vivo Y21
-      <div class="details">Display: 6.5", Battery: 5000mAh, Price: ₹12,000</div>
-    </div>
-    <div class="mobile-card" onclick="toggleDetails(this)">
-      <img src="https://via.placeholder.com/250" alt="Vivo V25">
-      Vivo V25
-      <div class="details">Display: 6.4", Camera: 64MP, Price: ₹24,000</div>
-    </div>
-    <!-- Add more Vivo models... -->
-  </div>
-</section>
+    // Reward Points
+    let points = 0;
+    function addPoints() {
+      points += 10;
+      document.getElementById("pointResult").innerText = "Your Points: " + points;
+    }
 
-<!-- Samsung Mobiles -->
-<section id="samsung" class="brand-section">
-  <h2>Samsung Mobiles</h2>
-  <div class="mobile-list">
-    <div class="mobile-card" onclick="toggleDetails(this)">
-      <img src="https://via.placeholder.com/250" alt="Samsung Galaxy M14">
-      Samsung Galaxy M14
-      <div class="details">Display: 6.6", Battery: 6000mAh, Price: ₹13,000</div>
-    </div>
-    <div class="mobile-card" onclick="toggleDetails(this)">
-      <img src="https://via.placeholder.com/250" alt="Samsung S23 Ultra">
-      Samsung S23 Ultra
-      <div class="details">Display: 6.8", Camera: 200MP, Price: ₹1,20,000</div>
-    </div>
-    <!-- Add more Samsung models... -->
-  </div>
-</section>
-
-<!-- Redmi Mobiles -->
-<section id="redmi" class="brand-section">
-  <h2>Redmi Mobiles</h2>
-  <div class="mobile-list">
-    <div class="mobile-card" onclick="toggleDetails(this)">
-      <img src="https://via.placeholder.com/250" alt="Redmi Note 12">
-      Redmi Note 12
-      <div class="details">Display: 6.7", 5G, Price: ₹16,000</div>
-    </div>
-    <div class="mobile-card" onclick="toggleDetails(this)">
-      <img src="https://via.placeholder.com/250" alt="Redmi 12C">
-      Redmi 12C
-      <div class="details">Display: 6.5", Budget phone, Price: ₹8,500</div>
-    </div>
-    <!-- Add more Redmi models... -->
-  </div>
-</section>
-
-<script>
-  function showBrand(brand) {
-    const sections = document.querySelectorAll('.brand-section');
-    sections.forEach(sec => sec.classList.remove('active'));
-    document.getElementById(brand).classList.add('active');
-  }
-
-  function toggleDetails(card) {
-    const detail = card.querySelector('.details');
-    detail.classList.toggle('active');
-  }
-
-  // Default brand on load
-  showBrand('vivo');
-</script>
-
-</body>
+    // Coupon Generator
+    function generateCoupon() {
+      const code = 'RUP-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+      document.getElementById("couponResult").innerText = "Your Coupon Code: " + code;
+    }
+  </script></body>
 </html>
