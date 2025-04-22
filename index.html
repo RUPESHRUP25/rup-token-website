@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RUPESH ELECTRONICS  - Spin & Win</title>
+  <title>RUPESH ELECTRONICS - Spin & Win</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -269,6 +269,36 @@
     .reward-item:last-child {
       border-bottom: none;
     }
+    .legal-section {
+      margin: 20px auto;
+      max-width: 800px;
+      padding: 20px;
+      text-align: left;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .legal-section h2 {
+      color: #d84315;
+      border-bottom: 2px solid #ff9800;
+      padding-bottom: 5px;
+    }
+    @media (max-width: 600px) {
+      #wheelCanvas {
+        width: 250px;
+        height: 250px;
+      }
+      .wallet-options {
+        flex-direction: column;
+      }
+      .tab-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+      .legal-section {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -287,59 +317,20 @@
   <button id="spinBtn">Spin</button>
   <div id="result"></div>
 
-  <div class="wallet-section">
-    <h3>अपना वॉलेट चुनें</h3>
-    <div class="wallet-options">
-      <button class="wallet-btn" onclick="selectWallet('')"></button>
-      <button class="wallet-btn" onclick="selectWallet('')"></button>
-      <button class="wallet-btn" onclick="selectWallet('')"></button>
-      <button class="wallet-btn" onclick="selectWallet('')"></button>
-      <button class="wallet-btn" onclick="selectWallet('')"></button>
-    </div>
-    <div id="walletInfo" style="display: none;">
-      <p>:</p>
-      <input type="text" id="walletAddress" value="" readonly>
-      <button id="copyWalletBtn" onclick="copyWalletAddress()"></button>
-      <p class="wallet-instructions"></p>
-    </div>
-  </div>
-
-  <a id="claimBtn" class="action-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?usp=header" target="_blank" style="display: none;">Claim Your Reward</a>
-
   <div class="youtube-section">
     <h3>हमारे YouTube चैनल से जुड़ें</h3>
     <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
     <div class="youtube-container">
-      <iframe src="https://youtu.be/GcTJL-FIAHw?si=bQpd01g8BKEtTCrr" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/GcTJL-FIAHw" frameborder="0" allowfullscreen></iframe>
     </div>
     <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="action-btn" target="_blank">Subscribe Now</a>
   </div>
 </div>
-  <div class="youtube-section">
-    <h3>हमारे YouTube चैनल से जुड़ें</h3>
-    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
-    <div class="youtube-container">
-      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=RUPESH_ELECTRONICS" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <a href="https://www.youtube.com/channel/YOUR_CHANNEL_ID" class="action-btn" target="_blank">Subscribe Now</a>
-  </div>
-</div>
-<div class="youtube-section">
-    <h3>हमारे YouTube चैनल से जुड़ें</h3>
-    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
-    <div class="youtube-container">
-      <iframe src="https://youtu.be/oyhOtPFHUqI?si=5n9WXeslQLCpKCNV" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <a href="https://youtube.com/@mrrupeshkumar000?si=rBnhcFT91mI98V-I" class="action-btn" target="_blank">Subscribe Now</a>
-  </div>
-</div>
-
 
 <div id="rewardsTab" class="tab-content">
   <div class="reward-history">
     <h3>आपके पुरस्कार</h3>
     <div id="rewardsList">
-      <!-- Rewards will be populated here -->
       <p id="noRewards">आपने अभी तक कोई पुरस्कार नहीं जीता है। स्पिन करके पुरस्कार जीतें!</p>
     </div>
   </div>
@@ -355,6 +346,10 @@
     <div class="form-group">
       <label for="password">पासवर्ड</label>
       <input type="password" id="password" placeholder="••••••••">
+    </div>
+    <div class="form-group">
+      <input type="checkbox" id="ageVerify" required>
+      <label for="ageVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
     </div>
     <button class="login-btn" onclick="login()">लॉगिन करें</button>
     <p style="margin-top: 15px;">नए यहाँ? <a href="#" onclick="showRegister()">अकाउंट बनाएं</a></p>
@@ -379,6 +374,10 @@
         <label for="regMobile">मोबाइल नंबर</label>
         <input type="tel" id="regMobile" placeholder="9876543210">
       </div>
+      <div class="form-group">
+        <input type="checkbox" id="regAgeVerify" required>
+        <label for="regAgeVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
+      </div>
       <button class="login-btn" onclick="register()">रजिस्टर करें</button>
       <p style="margin-top: 15px;">पहले से अकाउंट है? <a href="#" onclick="showLogin()">लॉगिन करें</a></p>
     </div>
@@ -400,19 +399,6 @@
   <script>
        (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
-  
-  <!-- Vertical Ad -->
-  <div style="margin-top: 20px;">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-         data-ad-slot="YOUR_AD_SLOT"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
 </div>
 
 <!-- Social Links -->
@@ -426,9 +412,32 @@
   <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" title="WhatsApp">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
   </a>
-  <a href="https://youtube.com/@mrrupeshkumar000?si=rBnhcFT91mI98V-I" target="_blank" title="YouTube">
+  <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" target="_blank" title="YouTube">
     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
   </a>
+</div>
+
+<!-- Legal Sections -->
+<div class="legal-section">
+  <h2>प्राइवेसी पॉलिसी</h2>
+  <p>हम आपके व्यक्तिगत डेटा की सुरक्षा को गंभीरता से लेते हैं। हम आपके नाम, ईमेल, फ़ोन नंबर जैसी जानकारी केवल इनाम भेजने के उद्देश्य से एकत्र करते हैं। आपकी जानकारी को कभी भी किसी तीसरे पक्ष के साथ साझा नहीं किया जाएगा।</p>
+</div>
+
+<div class="legal-section">
+  <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
+  <p><strong>Q1: मैं इनाम कैसे जीत सकता हूँ?</strong><br>
+  A1: आप Spin & Win व्हील को घुमाकर इनाम जीत सकते हैं।</p>
+
+  <p><strong>Q2: मैं इनाम कैसे प्राप्त करूँ?</strong><br>
+  A2: जीतने के बाद, कृपया अपना खाता बनाएं और अपनी जानकारी सबमिट करें।</p>
+
+  <p><strong>Q3: क्या इनाम मिलने की गारंटी है?</strong><br>
+  A3: नहीं, सभी इनाम रैंडम और भाग्य पर आधारित होते हैं।</p>
+</div>
+
+<div class="legal-section">
+  <h2>डिस्क्लेमर</h2>
+  <p>यह वेबसाइट केवल मनोरंजन और प्रमोशन के उद्देश्य से बनाई गई है। इसमें दिए गए ऑफर्स और रिवार्ड्स किसी भी प्रकार की गारंटी के साथ नहीं आते। किसी भी नुकसान के लिए हम उत्तरदायी नहीं होंगे। यूज़र को अपनी सूझबूझ से भाग लेना चाहिए।</p>
 </div>
 
 <script>
@@ -457,14 +466,28 @@
   const ctx = canvas.getContext("2d");
   const spinBtn = document.getElementById("spinBtn");
   const resultDiv = document.getElementById("result");
-  const claimBtn = document.getElementById("claimBtn");
-  const walletInfo = document.getElementById("walletInfo");
   const noRewardsMsg = document.getElementById("noRewards");
   
-  const segments = ['₹10','NextTime', '₹20', 'NextTime','₹50','NextTime', '₹100', 'NextTime','₹200', 'NextTime'];
+  const segments = [
+    {value: '₹10', weight: 15}, 
+    {value: '₹20', weight: 10},
+    {value: '₹50', weight: 5},
+    {value: '₹100', weight: 3},
+    {value: '₹200', weight: 1},
+    {value: 'NextTime', weight: 66}
+  ];
+  
+  // Convert weights to segments array
+  const weightedSegments = [];
+  segments.forEach(segment => {
+    for (let i = 0; i < segment.weight; i++) {
+      weightedSegments.push(segment.value);
+    }
+  });
+  
   const colors = ['#e57373', '#f06292','#64b5f6', '#f06292','#81c784','#64b5f6', '#f06292', '#eeeeee', '#ffd54f', '#eeeeee'];
   let startAngle = 0;
-  let arc = Math.PI / (segments.length / 2);
+  let arc = Math.PI / (weightedSegments.length / 2);
   let spinTimeout = null;
   let spinAngleStart = 0;
   let spinTime = 0;
@@ -474,9 +497,9 @@
 
   function drawWheel() {
     ctx.clearRect(0, 0, 300, 300);
-    for (let i = 0; i < segments.length; i++) {
+    for (let i = 0; i < weightedSegments.length; i++) {
       let angle = startAngle + i * arc;
-      ctx.fillStyle = colors[i];
+      ctx.fillStyle = colors[i % colors.length];
       ctx.beginPath();
       ctx.moveTo(150, 150);
       ctx.arc(150, 150, 150, angle, angle + arc, false);
@@ -488,7 +511,7 @@
       ctx.font = "bold 14px sans-serif";
       ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      ctx.fillText(segments[i], -ctx.measureText(segments[i]).width / 2, 0);
+      ctx.fillText(weightedSegments[i], -ctx.measureText(weightedSegments[i]).width / 2, 0);
       ctx.restore();
     }
   }
@@ -496,6 +519,11 @@
   function rotateWheel() {
     if (hasSpun) {
       alert("आप पहले ही स्पिन कर चुके हैं!");
+      return;
+    }
+    
+    if (!document.getElementById('ageVerify').checked) {
+      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
       return;
     }
     
@@ -524,15 +552,12 @@
     let degrees = startAngle * 180 / Math.PI + 90;
     let arcd = arc * 180 / Math.PI;
     let index = Math.floor((360 - (degrees % 360)) / arcd);
-    let prize = segments[index];
+    let prize = weightedSegments[index];
     
     resultDiv.innerText = "आपने जीता: " + prize;
     hasSpun = true;
     
     if (prize !== "NextTime") {
-      walletInfo.style.display = "block";
-      claimBtn.style.display = "inline-block";
-      
       // Add to rewards
       const reward = {
         id: Date.now(),
@@ -549,18 +574,6 @@
     let ts = (t /= d) * t;
     let tc = ts * t;
     return b + c * (tc + -3 * ts + 3 * t);
-  }
-
-  // Wallet functions
-  function selectWallet(walletName) {
-    alert(`आपने ${walletName} चुना है। पुरस्कार प्राप्त करने के लिए UPI ID का उपयोग करें।`);
-  }
-
-  function copyWalletAddress() {
-    const walletInput = document.getElementById("walletAddress");
-    walletInput.select();
-    document.execCommand("copy");
-    alert("UPI ID कॉपी हो गई: " + walletInput.value);
   }
 
   // Login/Register functions
@@ -583,8 +596,12 @@
       return;
     }
     
+    if (!document.getElementById('ageVerify').checked) {
+      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
+      return;
+    }
+    
     alert("लॉगिन सफल! (डेमो)");
-    // In a real app, you would validate credentials with your backend
   }
 
   function register() {
@@ -603,9 +620,13 @@
       return;
     }
     
+    if (!document.getElementById('regAgeVerify').checked) {
+      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
+      return;
+    }
+    
     alert("रजिस्ट्रेशन सफल! (डेमो)");
     showLogin();
-    // In a real app, you would send this data to your backend
   }
 
   // Rewards functions
@@ -636,32 +657,5 @@
   spinBtn.addEventListener("click", rotateWheel);
   drawWheel();
 </script>
-  <section>
-    <h2>प्राइवेसी पॉलिसी,</h2>
- <p>हम आपके व्यक्तिगत डेटा की सुरक्षा को गंभीरता से लेते हैं। हम आपके नाम, ईमेल, फ़ोन नंबर और UPI आईडी जैसी जानकारी केवल इनाम भेजने के उद्देश्य से एकत्र करते हैं। आपकी जानकारी को कभी भी किसी तीसरे पक्ष के साथ साझा नहीं किया जाएगा।</p>
-  </section>
-
-  <section>
-    <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
-    <p><strong>Q1: मैं इनाम कैसे जीत सकता हूँ?</strong><br>
-    A1: आप Spin & Win,से इनाम जीत सकते हैं।</p>
-
-    <p><strong>Q2: मैं इनाम कैसे प्राप्त करूँ?</strong><br>
-    A2: जीतने के बाद, कृपया अपने नाम, ईमेल, फ़ोन नंबर और UPI आईडी के साथ फॉर्म भरें। इनाम मैन्युअल रूप से UPI के जरिए भेजा जाएगा।</p>
-
-    <p><strong>Q3: क्या इनाम मिलने की गारंटी है?</strong><br>
-    A3: नहीं, सभी इनाम रैंडम और भाग्य पर आधारित होते हैं।</p>
-  </section>
-
-  <section>
-    <h2>डिस्क्लेमर</h2>
-    <p>यह वेबसाइट केवल मनोरंजन और प्रमोशन के उद्देश्य से बनाई   गई है। इसमें दिए गए ऑफर्स,रिवार्ड्स किसी भी प्रकार   की गारंटी के साथ नहीं आते। किसी भी नुकसान के लिए हम उत्तरदायी नहीं होंगे। यूज़र को अपनी सूझबूझ से भाग लेना चाहिए।</p>
-  </section>
-<!-- रजिस्ट्रेशन फॉर्म में जोड़ें -->
-<div class="form-group">
-  <input type="checkbox" id="ageVerify" required>
-  <label for="ageVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
-</div>
-  </section>
 </body>
 </html>
