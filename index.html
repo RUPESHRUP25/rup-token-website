@@ -488,20 +488,25 @@
     }
   });
 
+// Save reward and auto-update to Completed after 1 minute
+function saveRewardWithAutoComplete(userId, amount) {
+  const rewardRef = database.ref("rewards/" + userId).push();
+  const timestamp = new Date().toLocaleString();
 
+  rewardRef.set({
+    amount: "₹" + amount,
+    timestamp: timestamp,
+    status: "Pending"
+  }).then(() => {
+    console.log("Reward saved as Pending");
 
-
-
-
-
-
-
-
-
-
-
-
-
+    setTimeout(() => {
+      rewardRef.update({ status: "Completed" }).then(() => {
+        console.log("Reward auto-updated to Completed");
+      });
+    }, 60000); // 1 minute = 60,000 ms
+  });
+}
 
 
 
