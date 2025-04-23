@@ -461,19 +461,18 @@
 <script>
   // Firebase configuration
   const firebaseConfig = {
-   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-   const firebaseConfig = {
-  apiKey: "AIzaSyBcdSsQTepHActnokxV5F1YS3zeBOBkoQg",
-  authDomain: "ruptoken-5e3a0.firebaseapp.com",
-  databaseURL: "https://ruptoken-5e3a0-default-rtdb.firebaseio.com",
-  projectId: "ruptoken-5e3a0",
-  storageBucket: "ruptoken-5e3a0.firebasestorage.app",
-  messagingSenderId: "719313334393",
-  appId: "1:719313334393:web:7a50e9369e87254eb824a8",
-  measurementId: "G-4B8RSJKGEP"
-};
+    apiKey: "AIzaSyBcdSsQTepHActnokxV5F1YS3zeBOBkoQg",
+    authDomain: "ruptoken-5e3a0.firebaseapp.com",
+    databaseURL: "https://ruptoken-5e3a0-default-rtdb.firebaseio.com",
+    projectId: "ruptoken-5e3a0",
+    storageBucket: "ruptoken-5e3a0.appspot.com",
+    messagingSenderId: "719313334393",
+    appId: "1:719313334393:web:7a50e9369e87254eb824a8",
+    measurementId: "G-4B8RSJKGEP"
+  };
+
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
   const auth = firebase.auth();
 
@@ -539,20 +538,21 @@
   let hasSpun = false;
 
   function drawWheel() {
-    ctx.clearRect(0, 0, 300, 300);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < weightedSegments.length; i++) {
       let angle = startAngle + i * arc;
       ctx.fillStyle = colors[i % colors.length];
       ctx.beginPath();
-      ctx.moveTo(150, 150);
-      ctx.arc(150, 150, 150, angle, angle + arc, false);
-      ctx.lineTo(150, 150);
+      ctx.moveTo(canvas.width/2, canvas.height/2);
+      ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, angle, angle + arc, false);
+      ctx.lineTo(canvas.width/2, canvas.height/2);
       ctx.fill();
 
       ctx.save();
       ctx.fillStyle = "#000";
       ctx.font = "bold 14px sans-serif";
-      ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
+      ctx.translate(canvas.width/2 + Math.cos(angle + arc / 2) * (canvas.width/2 - 50), 
+                    canvas.height/2 + Math.sin(angle + arc / 2) * (canvas.height/2 - 50));
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
       ctx.fillText(weightedSegments[i], -ctx.measureText(weightedSegments[i]).width / 2, 0);
       ctx.restore();
@@ -597,10 +597,12 @@
     let degrees = startAngle * 180 / Math.PI + 90;
     let arcd = arc * 180 / Math.PI;
     let index = Math.floor((360 - (degrees % 360)) / arcd);
+    index %= weightedSegments.length; // Ensure index is within bounds
     let prize = weightedSegments[index];
     
     resultDiv.innerText = "आपने जीता: " + prize;
     hasSpun = true;
+    spinBtn.disabled = false;
     
     if (prize !== "NextTime") {
       // Add to rewards in Firebase
@@ -615,6 +617,7 @@
         database.ref('users/' + user.uid + '/rewards').push(reward)
           .then(() => {
             console.log("Reward saved to Firebase");
+            loadUserRewards(user.uid); // Refresh rewards list
           })
           .catch((error) => {
             console.error("Error saving reward: ", error);
@@ -678,6 +681,7 @@
         // Signed in
         const user = userCredential.user;
         console.log("User logged in:", user.uid);
+        hasSpun = false; // Reset spin on login
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -735,6 +739,7 @@
     auth.signOut().then(() => {
       // Sign-out successful.
       showLogin();
+      hasSpun = false; // Reset spin on logout
     }).catch((error) => {
       // An error happened.
       console.error("Logout error:", error);
