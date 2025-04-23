@@ -7,3 +7,14 @@ const firebaseConfig = {
     messagingSenderId: "719313334393",
     appId: "1:719313334393:web:7a50e9369e87254eb824a8",
     measurementId: "G-4B8RSJKGEP"
+{
+  rewards: [
+    {
+      amount: 20,
+      date: "4/23/2025",
+      status: "Transferred",
+      method: "Manual UPI",
+      transactionId: "UPI123456" // अपना UPI रेफरेंस ID डालें
+    }
+  ]
+}
