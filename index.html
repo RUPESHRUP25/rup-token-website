@@ -5,688 +5,736 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUPESH ELECTRONICS - Spin & Win</title>
   <style>
+    :root {
+      --primary: #FF5722;
+      --secondary: #FF9800;
+      --accent: #FFC107;
+      --dark: #E64A19;
+      --light: #FFE0B2;
+      --success: #4CAF50;
+      --info: #2196F3;
+      --warning: #FFEB3B;
+      --danger: #F44336;
+      --facebook: #3b5998;
+      --instagram: #E1306C;
+      --whatsapp: #25D366;
+      --youtube: #FF0000;
+      --twitter: #1DA1F2;
+      --telegram: #0088cc;
+      --linkedin: #0077B5;
+      --text: #333;
+      --white: #ffffff;
+      --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      --wheel-border: #FF5722;
+    }
+    
     body {
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #fffde7, #fff9c4);
+      background: var(--bg-gradient);
       text-align: center;
       margin: 0;
       padding: 0;
-      color: #333;
+      color: var(--text);
+      min-height: 100vh;
     }
+    
     h1 {
-      background-color: #ffeb3b;
+      background: linear-gradient(to right, var(--primary), var(--dark));
       padding: 20px;
       font-size: 28px;
       font-weight: bold;
-      color: #d84315;
-      box-shadow: 0 2px 5px #999;
+      color: white;
       margin: 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
     #wheelCanvas {
       margin: 20px auto;
-      border: 10px solid #ff9800;
+      border: 15px solid var(--wheel-border);
       border-radius: 50%;
-      box-shadow: 0 0 20px #999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      background: white;
     }
+    
     #spinBtn {
-      padding: 14px 35px;
+      padding: 15px 40px;
       font-size: 18px;
-      background-color: #fdd835;
+      background: linear-gradient(to right, var(--primary), var(--dark));
+      color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 50px;
       cursor: pointer;
-      margin-top: 20px;
+      margin: 20px 0;
       font-weight: bold;
       transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-transform: uppercase;
     }
+    
     #spinBtn:hover {
-      background-color: #ffc107;
-      transform: scale(1.05);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
+    
     #spinBtn:disabled {
-      background-color: #cccccc;
+      background: #cccccc;
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
     }
+    
     #result {
-      margin-top: 20px;
-      font-size: 22px;
-      color: green;
+      margin: 20px auto;
+      padding: 15px;
+      font-size: 24px;
       font-weight: bold;
-      min-height: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+      transition: all 0.3s;
     }
+    
+    .win {
+      color: var(--success);
+      animation: pulse 1s infinite;
+    }
+    
+    .lose {
+      color: var(--danger);
+    }
+    
     .arrow {
       width: 0;
       height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid red;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 40px solid var(--primary);
       margin: 0 auto;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+      position: relative;
+      z-index: 10;
     }
+    
     .social-icons {
       display: flex;
       justify-content: center;
       gap: 15px;
-      margin: 20px 0;
+      margin: 30px 0;
+      flex-wrap: wrap;
     }
+    
     .social-icons a {
-      display: inline-block;
-      transition: transform 0.3s;
-    }
-    .social-icons a:hover {
-      transform: scale(1.1);
-    }
-    .social-icons img {
-      width: 40px;
-      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .action-btn {
-      margin: 15px auto;
-      background: #2196f3;
-      color: white;
-      padding: 12px 25px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      display: inline-block;
       transition: all 0.3s;
-    }
-    .action-btn:hover {
-      background: #0d8bf2;
-      transform: scale(1.05);
+      text-decoration: none;
+      color: white;
+      font-size: 24px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    .ads-section {
-      margin: 30px auto;
-      max-width: 100%;
-      padding: 10px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    .social-icons a:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
-    .wallet-section {
-      margin: 20px auto;
-      max-width: 500px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    .facebook {
+      background: var(--facebook);
     }
-    .wallet-options {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
+    
+    .instagram {
+      background: var(--instagram);
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
     }
-    .wallet-btn {
-      padding: 10px 20px;
-      background: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    
+    .whatsapp {
+      background: var(--whatsapp);
+    }
+    
+    .youtube {
+      background: var(--youtube);
+    }
+    
+    .twitter {
+      background: var(--twitter);
+    }
+    
+    .telegram {
+      background: var(--telegram);
+    }
+    
+    .linkedin {
+      background: var(--linkedin);
+    }
+    
+    .btn {
+      margin: 15px;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 50px;
       font-weight: bold;
+      display: inline-block;
       transition: all 0.3s;
-    }
-    .wallet-btn:hover {
-      background: #3e8e41;
-      transform: scale(1.05);
-    }
-    #walletAddress {
-      margin-top: 15px;
-      padding: 10px;
-      width: 80%;
-      max-width: 300px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    #copyWalletBtn {
-      padding: 10px 15px;
-      background: #2196f3;
-      color: white;
       border: none;
-      border-radius: 5px;
       cursor: pointer;
-      margin-left: 5px;
-      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      color: white;
     }
-    #copyWalletBtn:hover {
-      background: #0d8bf2;
+    
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary), var(--dark));
     }
-    .wallet-instructions {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #666;
-      line-height: 1.5;
+    
+    .btn-secondary {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
     }
-    .login-section {
-      margin: 20px auto;
-      max-width: 400px;
+    
+    .btn-success {
+      background: linear-gradient(to right, var(--success), #2E7D32);
+    }
+    
+    .btn-info {
+      background: linear-gradient(to right, var(--info), #1565C0);
+    }
+    
+    .btn-warning {
+      background: linear-gradient(to right, var(--warning), #F9A825);
+      color: var(--text);
+    }
+    
+    .btn-danger {
+      background: linear-gradient(to right, var(--danger), #C62828);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .card {
+      margin: 30px auto;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 800px;
+      text-align: center;
     }
+    
+    .card h2, .card h3 {
+      color: var(--primary);
+      margin-top: 0;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+    
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       text-align: left;
     }
+    
     .form-group label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       font-weight: bold;
+      color: var(--text);
     }
-    .form-group input {
+    
+    .form-group input, .form-group select {
       width: 100%;
-      padding: 10px;
+      padding: 12px 15px;
       border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    .login-btn {
-      width: 100%;
-      padding: 12px;
-      background: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
+      border-radius: 8px;
       font-size: 16px;
       transition: all 0.3s;
     }
-    .login-btn:hover {
-      background: #3e8e41;
+    
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255,87,34,0.2);
+      outline: none;
     }
-    .youtube-section {
-      margin: 30px auto;
-      max-width: 800px;
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
     }
-    .youtube-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      margin-top: 15px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    
+    .checkbox-group input {
+      margin-right: 10px;
+      width: auto;
     }
-    .youtube-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    
     .tab-container {
       display: flex;
       justify-content: center;
       margin: 20px 0;
+      flex-wrap: wrap;
     }
+    
     .tab-btn {
-      padding: 10px 20px;
+      padding: 12px 25px;
       background: #e0e0e0;
       border: none;
       cursor: pointer;
       font-weight: bold;
       transition: all 0.3s;
+      font-size: 16px;
+      color: #555;
     }
+    
     .tab-btn.active {
-      background: #2196f3;
+      background: linear-gradient(to right, var(--primary), var(--dark));
       color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    .tab-btn:first-child {
-      border-radius: 5px 0 0 5px;
-    }
-    .tab-btn:last-child {
-      border-radius: 0 5px 5px 0;
-    }
+    
     .tab-content {
       display: none;
+      animation: fadeIn 0.5s;
     }
+    
     .tab-content.active {
       display: block;
     }
+    
     .reward-history {
       margin: 20px auto;
-      max-width: 600px;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 800px;
     }
+    
     .reward-item {
       display: flex;
       justify-content: space-between;
-      padding: 10px 0;
+      align-items: center;
+      padding: 15px;
       border-bottom: 1px solid #eee;
+      transition: all 0.3s;
     }
-    .reward-item:last-child {
-      border-bottom: none;
+    
+    .reward-item:hover {
+      background: #f9f9f9;
+      transform: translateX(5px);
     }
-    .legal-section {
+    
+    .reward-prize {
+      font-weight: bold;
+      color: var(--primary);
+      font-size: 18px;
+    }
+    
+    .reward-date {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .reward-status {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    
+    .status-pending {
+      background: #fff3e0;
+      color: var(--secondary);
+    }
+    
+    .status-completed {
+      background: #e8f5e9;
+      color: var(--success);
+    }
+    
+    .wallet-container {
       margin: 20px auto;
-      max-width: 800px;
-      padding: 20px;
-      text-align: left;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 500px;
+      text-align: center;
     }
-    .legal-section h2 {
-      color: #d84315;
-      border-bottom: 2px solid #ff9800;
-      padding-bottom: 5px;
+    
+    .wallet-balance {
+      font-size: 36px;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 20px 0;
     }
-    @media (max-width: 600px) {
-      #wheelCanvas {
-        width: 250px;
-        height: 250px;
-      }
-      .wallet-options {
-        flex-direction: column;
-      }
-      .tab-btn {
-        padding: 8px 12px;
-        font-size: 14px;
-      }
-      .legal-section {
+    
+    .wallet-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .terms-container {
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 800px;
+      text-align: left;
+    }
+    
+    .terms-container h3 {
+      color: var(--primary);
+      margin-top: 20px;
+    }
+    
+    .terms-container p, .terms-container ul {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .terms-container ul {
+      padding-left: 20px;
+    }
+    
+    .terms-container li {
+      margin-bottom: 8px;
+    }
+    
+    footer {
+      background: linear-gradient(to right, var(--primary), var(--dark));
+      color: white;
+      padding: 20px;
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+    }
+    
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 22px;
         padding: 15px;
+      }
+      
+      #wheelCanvas {
+        width: 280px;
+        height: 280px;
+        border-width: 10px;
+      }
+      
+      .card, .reward-history, .terms-container {
+        padding: 15px;
+        margin: 20px 10px;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        margin: 10px;
+      }
+      
+      .wallet-balance {
+        font-size: 28px;
       }
     }
   </style>
 </head>
 <body>
-
-<h1>RUPESH ELECTRONICS SPECIAL OFFER</h1>
-<div class="arrow"></div>
-
-<div class="tab-container">
-  <button class="tab-btn active" onclick="openTab('spinTab')">Spin & Win</button>
-  <button class="tab-btn" onclick="openTab('rewardsTab')">My Rewards</button>
-  <button class="tab-btn" onclick="openTab('accountTab')">Account</button>
-</div>
-
-<div id="spinTab" class="tab-content active">
-  <canvas id="wheelCanvas" width="300" height="300"></canvas><br>
-  <button id="spinBtn">Spin</button>
-  <div id="result"></div>
-
-  <div class="youtube-section">
-    <h3>हमारे YouTube चैनल से जुड़ें</h3>
-    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
-    <div class="youtube-container">
-      <iframe src="https://www.youtube.com/embed/GcTJL-FIAHw" frameborder="0" allowfullscreen></iframe>
+  <h1>RUPESH ELECTRONICS - Spin & Win</h1>
+  
+  <div class="container">
+    <div class="tab-container">
+      <button class="tab-btn active" onclick="openTab('spin')">Spin Wheel</button>
+      <button class="tab-btn" onclick="openTab('rewards')">My Rewards</button>
+      <button class="tab-btn" onclick="openTab('wallet')">My Wallet</button>
+      <button class="tab-btn" onclick="openTab('terms')">Terms & Conditions</button>
     </div>
-    <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="action-btn" target="_blank">Subscribe Now</a>
-  </div>
-</div>
-  <div class="youtube-section">
-    <h3>हमारे YouTube चैनल से जुड़ें</h3>
-    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
-    <div class="youtube-container">
-      <iframe src="https://www.youtube.com/embed/l9kmeF2nKEU" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="action-btn" target="_blank">Subscribe Now</a>
-  </div>
-</div>
-  <div class="youtube-section">
-    <h3>हमारे YouTube चैनल से जुड़ें</h3>
-    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
-    <div class="youtube-container">
-      <iframe src="https://www.youtube.com/embed/0Wc2AHtZ65g" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="action-btn" target="_blank">Subscribe Now</a>
-  </div>
-</div>
-
-<div id="rewardsTab" class="tab-content">
-  <div class="reward-history">
-    <h3>आपके पुरस्कार</h3>
-    <div id="rewardsList">
-      <p id="noRewards">आपने अभी तक कोई पुरस्कार नहीं जीता है। स्पिन करके पुरस्कार जीतें!</p>
-    </div>
-  </div>
-</div>
-
-<div id="accountTab" class="tab-content">
-  <div class="login-section">
-    <h3>लॉगिन या रजिस्टर करें</h3>
-    <div class="form-group">
-      <label for="email">ईमेल</label>
-      <input type="email" id="email" placeholder="your@email.com">
-    </div>
-    <div class="form-group">
-      <label for="password">पासवर्ड</label>
-      <input type="password" id="password" placeholder="••••••••">
-    </div>
-    <div class="form-group">
-      <input type="checkbox" id="ageVerify" required>
-      <label for="ageVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
-    </div>
-    <button class="login-btn" onclick="login()">लॉगिन करें</button>
-    <p style="margin-top: 15px;">नए यहाँ? <a href="#" onclick="showRegister()">अकाउंट बनाएं</a></p>
-  </div>
-
-  <div id="registerSection" style="display: none;">
-    <div class="login-section">
-      <h3>नया अकाउंट बनाएं</h3>
-      <div class="form-group">
-        <label for="regName">नाम</label>
-        <input type="text" id="regName" placeholder="आपका नाम">
+    
+    <div id="spin" class="tab-content active">
+      <div class="card">
+        <h2>Try Your Luck!</h2>
+        <p>Spin the wheel to win exciting prizes and discounts from RUPESH ELECTRONICS</p>
+        
+        <div class="arrow"></div>
+        <canvas id="wheelCanvas" width="400" height="400"></canvas>
+        
+        <button id="spinBtn" onclick="spinWheel()">SPIN NOW</button>
+        <div id="result">Spin the wheel to win a prize!</div>
+        
+        <div class="social-icons">
+          <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="regEmail">ईमेल</label>
-        <input type="email" id="regEmail" placeholder="your@email.com">
+    </div>
+    
+    <div id="rewards" class="tab-content">
+      <div class="reward-history">
+        <h2>My Reward History</h2>
+        
+        <div class="reward-item">
+          <div>
+            <div class="reward-prize">10% Discount on Electronics</div>
+            <div class="reward-date">25 May 2023</div>
+          </div>
+          <div class="reward-status status-completed">Claimed</div>
+        </div>
+        
+        <div class="reward-item">
+          <div>
+            <div class="reward-prize">Free Bluetooth Earbuds</div>
+            <div class="reward-date">18 May 2023</div>
+          </div>
+          <div class="reward-status status-pending">Pending</div>
+        </div>
+        
+        <div class="reward-item">
+          <div>
+            <div class="reward-prize">₹500 Shopping Voucher</div>
+            <div class="reward-date">10 May 2023</div>
+          </div>
+          <div class="reward-status status-completed">Claimed</div>
+        </div>
+        
+        <div class="reward-item">
+          <div>
+            <div class="reward-prize">15% Discount on Next Purchase</div>
+            <div class="reward-date">5 May 2023</div>
+          </div>
+          <div class="reward-status status-completed">Claimed</div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="regPassword">पासवर्ड</label>
-        <input type="password" id="regPassword" placeholder="••••••••">
+    </div>
+    
+    <div id="wallet" class="tab-content">
+      <div class="wallet-container">
+        <h2>My Wallet</h2>
+        <p>Available balance to use on your next purchase</p>
+        
+        <div class="wallet-balance">₹1,250</div>
+        
+        <div class="wallet-actions">
+          <button class="btn btn-primary">Add Money</button>
+          <button class="btn btn-success">Withdraw</button>
+          <button class="btn btn-info">Transaction History</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="regMobile">मोबाइल नंबर</label>
-        <input type="tel" id="regMobile" placeholder="9876543210">
+    </div>
+    
+    <div id="terms" class="tab-content">
+      <div class="terms-container">
+        <h2>Terms & Conditions</h2>
+        
+        <h3>Eligibility</h3>
+        <p>This Spin & Win contest is open to all customers of RUPESH ELECTRONICS who are at least 18 years of age.</p>
+        
+        <h3>How to Participate</h3>
+        <ul>
+          <li>Each customer is entitled to one free spin per day</li>
+          <li>Additional spins can be earned by making purchases or referring friends</li>
+          <li>Spins must be completed in one session - you cannot save partial spins</li>
+        </ul>
+        
+        <h3>Prizes</h3>
+        <ul>
+          <li>All prizes are non-transferable and cannot be exchanged for cash</li>
+          <li>Discount coupons are valid for 30 days from the date of issue</li>
+          <li>Physical prizes must be claimed within 15 days at any RUPESH ELECTRONICS store</li>
+        </ul>
+        
+        <h3>General Terms</h3>
+        <ul>
+          <li>RUPESH ELECTRONICS reserves the right to modify or terminate this contest at any time</li>
+          <li>Any attempt to manipulate the spin wheel will result in disqualification</li>
+          <li>All decisions by RUPESH ELECTRONICS regarding prize distribution are final</li>
+        </ul>
+        
+        <p>By participating in this contest, you agree to these terms and conditions.</p>
       </div>
-      <div class="form-group">
-        <input type="checkbox" id="regAgeVerify" required>
-        <label for="regAgeVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
-      </div>
-      <button class="login-btn" onclick="register()">रजिस्टर करें</button>
-      <p style="margin-top: 15px;">पहले से अकाउंट है? <a href="#" onclick="showLogin()">लॉगिन करें</a></p>
     </div>
   </div>
-</div>
-
-<!-- AdSense Ads -->
-<div class="ads-section">
-  <h3>Sponsored Ads</h3>
-  <!-- AdSense Code -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
-  <!-- Horizontal Ad -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-       data-ad-slot="YOUR_AD_SLOT"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
+  
+  <footer>
+    <p>© 2023 RUPESH ELECTRONICS. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+  </footer>
+  
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-</div>
-
-<!-- Social Links -->
-<div class="social-icons">
-  <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank" title="Facebook">
-    <img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook">
-  </a>
-  <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank" title="Instagram">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-  </a>
-  <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" title="WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-  </a>
-  <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" target="_blank" title="YouTube">
-    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-  </a>
-</div>
-
-<!-- Legal Sections -->
-<div class="legal-section">
-  <h2>🔒 प्राइवेसी पॉलिसी</h2>
-  <p>हम आपके व्यक्तिगत डेटा की सुरक्षा को गंभीरता से लेते हैं। हम आपके नाम, ईमेल, फ़ोन नंबर जैसी जानकारी केवल इनाम भेजने के उद्देश्य से एकत्र करते हैं। आपकी जानकारी को कभी भी किसी तीसरे पक्ष के साथ साझा नहीं किया जाएगा।</p>
-  <p>हमारी वेबसाइट Google AdSense का उपयोग करती है जो कुकीज़ के माध्यम से आपकी जानकारी को एकत्र कर सकती है ताकि आपको प्रासंगिक विज्ञापन दिखाए जा सकें।</p>
-  <p>Google और उसके साझेदार विज्ञापनदाताओं द्वारा आपकी जानकारी का उपयोग किया जा सकता है, लेकिन यह केवल विज्ञापन अनुभव को बेहतर बनाने के लिए होता है।</p>
-  <p>आप Google की विज्ञापन सेटिंग्स पर जाकर व्यक्तिगत विज्ञापन बंद कर सकते हैं।</p>
-  <p>हम समय-समय पर अपनी नीति को अपडेट कर सकते हैं। कृपया नियमित रूप से इस पेज को देखें।</p>
-</div>
-</div>
-
-<div class="legal-section">
-  <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
-  <p><strong>Q1: मैं इनाम कैसे जीत सकता हूँ?</strong><br>
-  A1: आप Spin & Win व्हील को घुमाकर इनाम जीत सकते हैं।</p>
-
-  <p><strong>Q2: मैं इनाम कैसे प्राप्त करूँ?</strong><br>
-  A2: जीतने के बाद, कृपया अपना खाता बनाएं और अपनी जानकारी सबमिट करें।</p>
-
-  <p><strong>Q3: क्या इनाम मिलने की गारंटी है?</strong><br>
-  A3: नहीं, सभी इनाम रैंडम और भाग्य पर आधारित होते हैं।</p>
-</div>
-
-<div class="legal-section">
-  <h2>डिस्क्लेमर</h2>
-  <p>यह वेबसाइट केवल मनोरंजन और प्रमोशन के उद्देश्य से बनाई गई है। इसमें दिए गए ऑफर्स और रिवार्ड्स किसी भी प्रकार की गारंटी के साथ नहीं आते। किसी भी नुकसान के लिए हम उत्तरदायी नहीं होंगे। यूज़र को अपनी सूझबूझ से भाग लेना चाहिए।</p>
-</div>
-
-</div>
-
-<script>
-  // Tab functionality
-  function openTab(tabName) {
-    const tabs = document.getElementsByClassName('tab-content');
-    for (let i = 0; i < tabs.length; i++) {
-      tabs[i].classList.remove('active');
-    }
+    // Wheel configuration
+    const segments = [
+      { text: "10% OFF", color: "#FF5722", textColor: "#FFFFFF" },
+      { text: "Better Luck Next Time", color: "#FF9800", textColor: "#FFFFFF" },
+      { text: "Free Headphones", color: "#FFC107", textColor: "#333333" },
+      { text: "₹500 Voucher", color: "#4CAF50", textColor: "#FFFFFF" },
+      { text: "15% OFF", color: "#2196F3", textColor: "#FFFFFF" },
+      { text: "Try Again", color: "#9C27B0", textColor: "#FFFFFF" },
+      { text: "Free Power Bank", color: "#607D8B", textColor: "#FFFFFF" },
+      { text: "20% OFF", color: "#F44336", textColor: "#FFFFFF" }
+    ];
     
-    const tabBtns = document.getElementsByClassName('tab-btn');
-    for (let i = 0; i < tabBtns.length; i++) {
-      tabBtns[i].classList.remove('active');
-    }
+    const canvas = document.getElementById("wheelCanvas");
+    const ctx = canvas.getContext("2d");
+    const spinBtn = document.getElementById("spinBtn");
+    const resultDiv = document.getElementById("result");
+    let isSpinning = false;
+    let currentRotation = 0;
     
-    document.getElementById(tabName).classList.add('active');
-    event.currentTarget.classList.add('active');
-    
-    if (tabName === 'rewardsTab') {
-      loadRewards();
-    }
-  }
-  
-  // Wheel functionality
-  const canvas = document.getElementById("wheelCanvas");
-  const ctx = canvas.getContext("2d");
-  const spinBtn = document.getElementById("spinBtn");
-  const resultDiv = document.getElementById("result");
-  const noRewardsMsg = document.getElementById("noRewards");
-  
-  const segments = [
-    {value: '₹10', weight: 15}, 
-    {value: '₹20', weight: 10},
-    {value: '₹50', weight: 5},
-    {value: '₹100', weight: 3},
-    {value: '₹200', weight: 1},
-    {value: 'NextTime', weight: 66}
-  ];
-  
-  // Convert weights to segments array
-  const weightedSegments = [];
-  segments.forEach(segment => {
-    for (let i = 0; i < segment.weight; i++) {
-      weightedSegments.push(segment.value);
-    }
-  });
-  
-  const colors = ['#e57373', '#f06292','#64b5f6', '#f06292','#81c784','#64b5f6', '#f06292', '#eeeeee', '#ffd54f', '#eeeeee'];
-  let startAngle = 0;
-  let arc = Math.PI / (weightedSegments.length / 2);
-  let spinTimeout = null;
-  let spinAngleStart = 0;
-  let spinTime = 0;
-  let spinTimeTotal = 0;
-  let hasSpun = false;
-  let rewards = JSON.parse(localStorage.getItem('rewards')) || [];
-
-  function drawWheel() {
-    ctx.clearRect(0, 0, 300, 300);
-    for (let i = 0; i < weightedSegments.length; i++) {
-      let angle = startAngle + i * arc;
-      ctx.fillStyle = colors[i % colors.length];
+    // Draw the wheel
+    function drawWheel() {
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = canvas.width / 2 - 10;
+      const segmentAngle = (2 * Math.PI) / segments.length;
+      
+      // Draw segments
+      for (let i = 0; i < segments.length; i++) {
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, i * segmentAngle, (i + 1) * segmentAngle);
+        ctx.closePath();
+        ctx.fillStyle = segments[i].color;
+        ctx.fill();
+        
+        // Draw segment border
+        ctx.strokeStyle = "#FFFFFF";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Draw text
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(i * segmentAngle + segmentAngle / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = segments[i].textColor;
+        ctx.font = "bold 16px Arial";
+        ctx.fillText(segments[i].text, radius - 20, 5);
+        ctx.restore();
+      }
+      
+      // Draw center circle
       ctx.beginPath();
-      ctx.moveTo(150, 150);
-      ctx.arc(150, 150, 150, angle, angle + arc, false);
-      ctx.lineTo(150, 150);
+      ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+      ctx.fillStyle = "#FFFFFF";
       ctx.fill();
-
-      ctx.save();
-      ctx.fillStyle = "#000";
-      ctx.font = "bold 14px sans-serif";
-      ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
-      ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      ctx.fillText(weightedSegments[i], -ctx.measureText(weightedSegments[i]).width / 2, 0);
-      ctx.restore();
-    }
-  }
-
-  function rotateWheel() {
-    if (hasSpun) {
-      alert("आप पहले ही स्पिन कर चुके हैं!");
-      return;
+      ctx.strokeStyle = "#333333";
+      ctx.lineWidth = 3;
+      ctx.stroke();
     }
     
-    if (!document.getElementById('ageVerify').checked) {
-      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
-      return;
+    // Spin the wheel
+    function spinWheel() {
+      if (isSpinning) return;
+      
+      isSpinning = true;
+      spinBtn.disabled = true;
+      resultDiv.textContent = "Spinning...";
+      resultDiv.className = "";
+      
+      const spinDuration = 3000 + Math.random() * 2000; // 3-5 seconds
+      const spins = 5 + Math.random() * 5; // 5-10 full spins
+      const totalRotation = spins * 2 * Math.PI + (Math.random() * 2 * Math.PI);
+      const startTime = Date.now();
+      
+      function animate() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / spinDuration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
+        currentRotation = easeOut * totalRotation;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(currentRotation);
+        ctx.translate(-canvas.width / 2, -canvas.height / 2);
+        drawWheel();
+        ctx.restore();
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          finishSpin();
+        }
+      }
+      
+      animate();
     }
     
-    spinBtn.disabled = true;
-    resultDiv.innerText = "";
-    spinAngleStart = Math.random() * 30 + 30;
-    spinTime = 0;
-    spinTimeTotal = Math.random() * 2000 + 2000;
-    rotate();
-  }
-
-  function rotate() {
-    spinTime += 20;
-    if (spinTime >= spinTimeTotal) {
-      stopRotateWheel();
-      return;
-    }
-    let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-    startAngle += (spinAngle * Math.PI / 180);
-    drawWheel();
-    spinTimeout = setTimeout(rotate, 20);
-  }
-
-  function stopRotateWheel() {
-    clearTimeout(spinTimeout);
-    let degrees = startAngle * 180 / Math.PI + 90;
-    let arcd = arc * 180 / Math.PI;
-    let index = Math.floor((360 - (degrees % 360)) / arcd);
-    let prize = weightedSegments[index];
-    
-    resultDiv.innerText = "आपने जीता: " + prize;
-    hasSpun = true;
-    
-    if (prize !== "NextTime") {
-      // Add to rewards
-      const reward = {
-        id: Date.now(),
-        prize: prize,
-        date: new Date().toLocaleDateString(),
-        claimed: false
-      };
-      rewards.push(reward);
-      localStorage.setItem('rewards', JSON.stringify(rewards));
-    }
-  }
-
-  function easeOut(t, b, c, d) {
-    let ts = (t /= d) * t;
-    let tc = ts * t;
-    return b + c * (tc + -3 * ts + 3 * t);
-  }
-
-  // Login/Register functions
-  function showRegister() {
-    document.querySelector('.login-section').style.display = 'none';
-    document.getElementById('registerSection').style.display = 'block';
-  }
-
-  function showLogin() {
-    document.querySelector('.login-section').style.display = 'block';
-    document.getElementById('registerSection').style.display = 'none';
-  }
-
-  function login() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    if (!email || !password) {
-      alert("कृपया ईमेल और पासवर्ड दर्ज करें");
-      return;
+    // Finish spin and show result
+    function finishSpin() {
+      isSpinning = false;
+      spinBtn.disabled = false;
+      
+      const segmentAngle = (2 * Math.PI) / segments.length;
+      const normalizedRotation = currentRotation % (2 * Math.PI);
+      const winningSegment = Math.floor((2 * Math.PI - normalizedRotation) / segmentAngle) % segments.length;
+      const prize = segments[winningSegment].text;
+      
+      resultDiv.textContent = You won: ${prize}!;
+      
+      if (prize.includes("OFF") || prize.includes("Voucher") || prize.includes("Free")) {
+        resultDiv.className = "win";
+      } else {
+        resultDiv.className = "lose";
+      }
     }
     
-    if (!document.getElementById('ageVerify').checked) {
-      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
-      return;
+    // Tab functionality
+    function openTab(tabName) {
+      const tabContents = document.getElementsByClassName("tab-content");
+      for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+      }
+      
+      const tabButtons = document.getElementsByClassName("tab-btn");
+      for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+      }
+      
+      document.getElementById(tabName).classList.add("active");
+      event.currentTarget.classList.add("active");
     }
     
-    alert("लॉगिन सफल! (डेमो)");
-  }
-
-  function register() {
-    const name = document.getElementById('regName').value;
-    const email = document.getElementById('regEmail').value;
-    const password = document.getElementById('regPassword').value;
-    const mobile = document.getElementById('regMobile').value;
-    
-    if (!name || !email || !password || !mobile) {
-      alert("कृपया सभी फ़ील्ड भरें");
-      return;
-    }
-    
-    if (mobile.length !== 10 || isNaN(mobile)) {
-      alert("कृपया वैध मोबाइल नंबर दर्ज करें");
-      return;
-    }
-    
-    if (!document.getElementById('regAgeVerify').checked) {
-      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
-      return;
-    }
-    
-    alert("रजिस्ट्रेशन सफल! (डेमो)");
-    showLogin();
-  }
-
-  // Rewards functions
-  function loadRewards() {
-    const rewardsList = document.getElementById('rewardsList');
-    
-    if (rewards.length === 0) {
-      noRewardsMsg.style.display = 'block';
-      return;
-    }
-    
-    noRewardsMsg.style.display = 'none';
-    rewardsList.innerHTML = '';
-    
-    rewards.forEach(reward => {
-      const rewardItem = document.createElement('div');
-      rewardItem.className = 'reward-item';
-      rewardItem.innerHTML = `
-        <span>${reward.prize}</span>
-        <span>${reward.date}</span>
-        <span>${reward.claimed ? 'Claimed' : 'Pending'}</span>
-      `;
-      rewardsList.appendChild(rewardItem);
-    });
-  }
-
-  // Initialize
-  spinBtn.addEventListener("click", rotateWheel);
-  drawWheel();
-</script>
-</body>
-  <!-- Footer -->
-<footer>
-  © 2025 RUPESH ELECTRONICS
-</footer>
-</script>
+    // Initialize
+    window.onload = function() {
+      drawWheel();
+    };
+  </script>
 </body>
 </html>
