@@ -1,171 +1,98 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rupesh Electronics - Spin & Win</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spin & Win - Rupesh Electronics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body { font-family: sans-serif; margin: 0; background: #f0f0f0; }
-    header, nav, main { padding: 1rem; text-align: center; }
-    .wheel { width: 300px; height: 300px; margin: auto; border-radius: 50%; border: 10px solid #555; background: conic-gradient(#e74c3c 0% 20%, #3498db 20% 40%, #2ecc71 40% 60%, #f1c40f 60% 80%, #9b59b6 80% 100%); transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1); }
-    .btn { background: #2980b9; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
-    .tabs { display: flex; justify-content: space-around; background: #333; color: white; }
-    .tab { flex: 1; padding: 1rem; cursor: pointer; }
-    .active { background: #444; }
-    .content { display: none; padding: 1rem; }
-    .show { display: block; }
-    .wallet { margin-top: 1rem; }
-    input, button { margin: 0.5rem; padding: 0.5rem; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f2f2f2; }
+    header, footer { background: #000; color: #fff; text-align: center; padding: 10px; }
+    nav { display: flex; justify-content: space-around; background: #222; padding: 10px 0; }
+    nav a { color: white; text-decoration: none; padding: 8px 16px; }
+    .tab-content { padding: 20px; display: none; }
+    .tab-content.active { display: block; }
+    #wheel { width: 300px; height: 300px; border: 10px solid #555; border-radius: 50%; margin: 20px auto; }
+    .social-icons { margin: 10px 0; }
+    .social-icons a { margin: 0 10px; color: white; font-size: 24px; }
+    .video-slot { text-align: center; margin: 20px; }
+    .video-slot iframe { width: 90%; max-width: 600px; height: 300px; }
+    .subscribe-btn { display: inline-block; background: red; color: white; padding: 10px 20px; margin-top: 10px; text-decoration: none; border-radius: 5px; }
   </style>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <header>
-    <h1>Rupesh Electronics - Spin & Win</h1>
-    <div id="loginSection">
-      <input type="email" id="email" placeholder="ईमेल डालें">
-      <input type="password" id="password" placeholder="पासवर्ड डालें">
-      <button class="btn" onclick="login()">लॉगिन करें</button>
-      <button class="btn" onclick="signup()">साइनअप</button>
-    </div>
-    <div id="userSection" style="display:none">
-      <p id="userEmail"></p>
-      <button class="btn" onclick="logout()">लॉगआउट</button>
-    </div>
+    <h1>Spin & Win - Rupesh Electronics</h1>
   </header>
-  
-  <nav class="tabs">
-    <div class="tab active" onclick="switchTab('spin')">Spin Wheel</div>
-    <div class="tab" onclick="switchTab('rewards')">My Rewards</div>
-    <div class="tab" onclick="switchTab('wallet')">My Wallet</div>
-    <div class="tab" onclick="switchTab('terms')">Terms</div>
+  <nav>
+    <a href="#" onclick="showTab('spin')">Spin Wheel</a>
+    <a href="#" onclick="showTab('rewards')">My Rewards</a>
+    <a href="#" onclick="showTab('wallet')">My Wallet</a>
+    <a href="#" onclick="showTab('terms')">Terms</a>
   </nav>
 
-  <main>
-    <div id="spin" class="content show">
-      <div class="wheel" id="wheel"></div>
-      <button class="btn" onclick="spinWheel()">स्पिन करें</button>
-      <p id="resultText"></p>
-    </div>
+  <div id="spin" class="tab-content active">
+    <h2>Spin the Wheel</h2>
+    <canvas id="wheel"></canvas>
+    <button onclick="spinWheel()">Spin</button>
+    <div id="spin-result"></div>
+  </div>
 
-    <div id="rewards" class="content">
-      <h2>आपके रिवॉर्ड्स</h2>
-      <ul id="rewardList"></ul>
-    </div>
+  <div id="rewards" class="tab-content">
+    <h2>Your Rewards</h2>
+    <ul id="reward-list"></ul>
+  </div>
 
-    <div id="wallet" class="content">
-      <h2>आपका वॉलेट</h2>
-      <p id="walletPoints">Points: 0</p>
-      <p id="walletINR">INR: ₹0</p>
-      <button class="btn" onclick="claimReward()">WhatsApp से क्लेम करें</button>
-    </div>
+  <div id="wallet" class="tab-content">
+    <h2>Your Wallet</h2>
+    <p>Total Points: <span id="points">0</span></p>
+    <p>Balance (INR): ₹<span id="balance">0.00</span></p>
+    <button onclick="claimReward()">Claim via WhatsApp</button>
+  </div>
 
-    <div id="terms" class="content">
-      <h2>नियम और शर्तें</h2>
-      <p>हर दिन एक बार स्पिन करें। हर 1000 पॉइंट्स पर ₹1 क्लेम करें।</p>
+  <div id="terms" class="tab-content">
+    <h2>Terms & Conditions</h2>
+    <p>1. Spin daily to win points.</p>
+    <p>2. 1000 points = ₹1.00</p>
+    <p>3. Claim directly through WhatsApp.</p>
+  </div>
+
+  <div class="video-slot">
+    <h2>Watch and Subscribe</h2>
+    <iframe src="https://www.youtube.com/embed/oyhOtPFHUqI" frameborder="0" allowfullscreen></iframe><br>
+    <a class="subscribe-btn" href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank">Subscribe to Channel</a>
+  </div>
+
+  <footer>
+    <p>Follow us on:</p>
+    <div class="social-icons">
+      <a href="https://wa.me/919334113322" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/169rNXq4oi/" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
-  </main>
+    <p>&copy; 2025 Rupesh Electronics</p>
+  </footer>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "YOUR_ID",
-      appId: "YOUR_APP_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    let currentUser = null;
-    let wheel = document.getElementById('wheel');
-    let canSpin = true;
-
-    function switchTab(id) {
-      document.querySelectorAll('.content').forEach(e => e.classList.remove('show'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('show');
-      event.target.classList.add('active');
+    let points = 0;
+    function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(div => div.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
-
     function spinWheel() {
-      if (!currentUser || !canSpin) return alert("पहले लॉगिन करें और दिन में एक बार ही स्पिन करें");
-      canSpin = false;
-      let deg = Math.floor(5000 + Math.random() * 5000);
-      wheel.style.transform = rotate(${deg}deg);
-      let points = Math.floor(Math.random() * 20) + 1;
-      setTimeout(() => {
-        document.getElementById('resultText').innerText = आपको ${points} पॉइंट्स मिले!;
-        updatePoints(points);
-      }, 5000);
+      const reward = Math.floor(Math.random() * 20) + 1;
+      points += reward;
+      document.getElementById("spin-result").innerText = You won ${reward} points!;
+      document.getElementById("points").innerText = points;
+      document.getElementById("balance").innerText = (points / 1000).toFixed(2);
+      const li = document.createElement("li");
+      li.innerText = +${reward} points;
+      document.getElementById("reward-list").appendChild(li);
     }
-
-    function updatePoints(points) {
-      let ref = db.collection("users").doc(currentUser.uid);
-      ref.get().then(doc => {
-        let data = doc.data();
-        let totalPoints = (data.points || 0) + points;
-        ref.set({ points: totalPoints }, { merge: true });
-        loadWallet();
-        loadRewards(points);
-      });
-    }
-
-    function loadWallet() {
-      if (!currentUser) return;
-      db.collection("users").doc(currentUser.uid).get().then(doc => {
-        let pts = doc.data().points || 0;
-        document.getElementById('walletPoints').innerText = Points: ${pts};
-        document.getElementById('walletINR').innerText = INR: ₹${(pts / 1000).toFixed(2)};
-      });
-    }
-
-    function loadRewards(points) {
-      let ul = document.getElementById("rewardList");
-      let li = document.createElement("li");
-      li.innerText = ${points} पॉइंट्स मिले;
-      ul.appendChild(li);
-    }
-
     function claimReward() {
-      db.collection("users").doc(currentUser.uid).get().then(doc => {
-        let pts = doc.data().points || 0;
-        let inr = (pts / 1000).toFixed(2);
-        let msg = नमस्ते, मुझे ₹${inr} क्लेम करना है (${pts} पॉइंट्स);
-        window.open(https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(msg)});
-      });
-    }
-
-    function login() {
-      let email = document.getElementById('email').value;
-      let pass = document.getElementById('password').value;
-      auth.signInWithEmailAndPassword(email, pass)
-        .then(user => {
-          currentUser = user.user;
-          document.getElementById('loginSection').style.display = 'none';
-          document.getElementById('userSection').style.display = 'block';
-          document.getElementById('userEmail').innerText = currentUser.email;
-          loadWallet();
-        })
-        .catch(err => alert("गलत ईमेल या पासवर्ड"));
-    }
-
-    function signup() {
-      let email = document.getElementById('email').value;
-      let pass = document.getElementById('password').value;
-      auth.createUserWithEmailAndPassword(email, pass).then(login);
-    }
-
-    function logout() {
-      auth.signOut();
-      currentUser = null;
-      document.getElementById('loginSection').style.display = 'block';
-      document.getElementById('userSection').style.display = 'none';
+      const message = encodeURIComponent(Hello! I want to claim ₹${(points / 1000).toFixed(2)} with ${points} points.);
+      window.open(https://wa.me/919334113322?text=${message}, '_blank');
     }
   </script>
 </body>
