@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUPESH ELECTRONICS - Spin & Win</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary: #FF5722;
@@ -36,6 +37,7 @@
       padding: 0;
       color: var(--text);
       min-height: 100vh;
+      touch-action: manipulation;
     }
     
     h1 {
@@ -61,6 +63,9 @@
       border-radius: 50%;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       background: white;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
     }
     
     #spinBtn {
@@ -284,10 +289,11 @@
       justify-content: center;
       margin: 20px 0;
       flex-wrap: wrap;
+      gap: 5px;
     }
     
     .tab-btn {
-      padding: 12px 25px;
+      padding: 12px 15px;
       background: #e0e0e0;
       border: none;
       cursor: pointer;
@@ -295,6 +301,10 @@
       transition: all 0.3s;
       font-size: 16px;
       color: #555;
+      border-radius: 8px;
+      flex: 1;
+      min-width: 120px;
+      white-space: nowrap;
     }
     
     .tab-btn.active {
@@ -465,10 +475,69 @@
       .btn {
         padding: 10px 20px;
         margin: 10px;
+        font-size: 14px;
       }
       
       .wallet-balance {
         font-size: 28px;
+      }
+      
+      .tab-btn {
+        padding: 10px 8px;
+        font-size: 14px;
+        min-width: 90px;
+      }
+      
+      #result {
+        font-size: 20px;
+        padding: 10px;
+        margin: 10px;
+      }
+      
+      .reward-prize {
+        font-size: 16px;
+      }
+      
+      .reward-status {
+        font-size: 12px;
+      }
+      
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 18px;
+      }
+      
+      #wheelCanvas {
+        width: 250px;
+        height: 250px;
+      }
+      
+      #spinBtn {
+        padding: 12px 30px;
+        font-size: 16px;
+      }
+      
+      .tab-btn {
+        font-size: 12px;
+        min-width: 80px;
+        padding: 8px 5px;
+      }
+      
+      .wallet-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .wallet-actions .btn {
+        width: 80%;
+        max-width: 250px;
       }
     }
   </style>
@@ -478,10 +547,10 @@
   
   <div class="container">
     <div class="tab-container">
-      <button class="tab-btn active" onclick="openTab('spin')">Spin Wheel</button>
-      <button class="tab-btn" onclick="openTab('rewards')">My Rewards</button>
-      <button class="tab-btn" onclick="openTab('wallet')">My Wallet</button>
-      <button class="tab-btn" onclick="openTab('terms')">Terms & Conditions</button>
+      <button class="tab-btn active" data-tab="spin">Spin Wheel</button>
+      <button class="tab-btn" data-tab="rewards">My Rewards</button>
+      <button class="tab-btn" data-tab="wallet">My Wallet</button>
+      <button class="tab-btn" data-tab="terms">Terms</button>
     </div>
     
     <div id="spin" class="tab-content active">
@@ -492,7 +561,7 @@
         <div class="arrow"></div>
         <canvas id="wheelCanvas" width="400" height="400"></canvas>
         
-        <button id="spinBtn" onclick="spinWheel()">SPIN NOW</button>
+        <button id="spinBtn">SPIN NOW</button>
         <div id="result">Spin the wheel to win a prize!</div>
         
         <div class="social-icons">
@@ -551,9 +620,9 @@
         <div class="wallet-balance">₹1,250</div>
         
         <div class="wallet-actions">
-          <button class="btn btn-primary">Add Money</button>
-          <button class="btn btn-success">Withdraw</button>
-          <button class="btn btn-info">Transaction History</button>
+          <button class="btn btn-primary" id="addMoneyBtn">Add Money</button>
+          <button class="btn btn-success" id="withdrawBtn">Withdraw</button>
+          <button class="btn btn-info" id="historyBtn">Transaction History</button>
         </div>
       </div>
     </div>
@@ -595,7 +664,6 @@
     <p>© 2023 RUPESH ELECTRONICS. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
   </footer>
   
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script>
     // Wheel configuration
     const segments = [
@@ -615,6 +683,14 @@
     const resultDiv = document.getElementById("result");
     let isSpinning = false;
     let currentRotation = 0;
+    
+    // Adjust canvas size for mobile
+    function resizeCanvas() {
+      const maxWidth = Math.min(window.innerWidth - 40, 400);
+      canvas.width = maxWidth;
+      canvas.height = maxWidth;
+      drawWheel();
+    }
     
     // Draw the wheel
     function drawWheel() {
@@ -643,7 +719,7 @@
         ctx.rotate(i * segmentAngle + segmentAngle / 2);
         ctx.textAlign = "right";
         ctx.fillStyle = segments[i].textColor;
-        ctx.font = "bold 16px Arial";
+        ctx.font = "bold " + Math.max(12, radius/12) + "px Arial";
         ctx.fillText(segments[i].text, radius - 20, 5);
         ctx.restore();
       }
@@ -716,25 +792,83 @@
     }
     
     // Tab functionality
-    function openTab(tabName) {
-      const tabContents = document.getElementsByClassName("tab-content");
-      for (let i = 0; i < tabContents.length; i++) {
-        tabContents[i].classList.remove("active");
-      }
+    function setupTabs() {
+      const tabButtons = document.querySelectorAll(".tab-btn");
       
-      const tabButtons = document.getElementsByClassName("tab-btn");
-      for (let i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].classList.remove("active");
-      }
+      tabButtons.forEach(button => {
+        button.addEventListener("click", function() {
+          const tabName = this.getAttribute("data-tab");
+          
+          // Hide all tab contents
+          document.querySelectorAll(".tab-content").forEach(tab => {
+            tab.classList.remove("active");
+          });
+          
+          // Remove active class from all buttons
+          tabButtons.forEach(btn => {
+            btn.classList.remove("active");
+          });
+          
+          // Show selected tab and mark button as active
+          document.getElementById(tabName).classList.add("active");
+          this.classList.add("active");
+        });
+      });
+    }
+    
+    // Initialize wallet buttons
+    function setupWalletButtons() {
+      document.getElementById("addMoneyBtn").addEventListener("click", function() {
+        alert("Add Money feature will be available soon!");
+      });
       
-      document.getElementById(tabName).classList.add("active");
-      event.currentTarget.classList.add("active");
+      document.getElementById("withdrawBtn").addEventListener("click", function() {
+        alert("Withdrawal feature will be available soon!");
+      });
+      
+      document.getElementById("historyBtn").addEventListener("click", function() {
+        alert("Transaction history will be available soon!");
+      });
+    }
+    
+    // Initialize social icons
+    function setupSocialIcons() {
+      const socialLinks = [
+        { class: "facebook", url: "https://facebook.com/rupeshelectronics" },
+        { class: "instagram", url: "https://instagram.com/rupeshelectronics" },
+        { class: "whatsapp", url: "https://wa.me/919876543210" },
+        { class: "youtube", url: "https://youtube.com/rupeshelectronics" },
+        { class: "twitter", url: "https://twitter.com/rupeshelectronics" }
+      ];
+      
+      socialLinks.forEach(social => {
+        const icon = document.querySelector(.social-icons .${social.class});
+        if (icon) {
+          icon.addEventListener("click", function(e) {
+            e.preventDefault();
+            alert(Redirecting to ${social.class} page);
+            // In a real app, you would use: window.open(social.url, '_blank');
+          });
+        }
+      });
     }
     
     // Initialize
-    window.onload = function() {
+    window.addEventListener("DOMContentLoaded", function() {
+      resizeCanvas();
       drawWheel();
-    };
+      setupTabs();
+      setupWalletButtons();
+      setupSocialIcons();
+      
+      // Add spin button event listener
+      spinBtn.addEventListener("click", spinWheel);
+      
+      // Handle window resize
+      window.addEventListener("resize", function() {
+        resizeCanvas();
+      });
+    });
   </script>
 </body>
 </html>
