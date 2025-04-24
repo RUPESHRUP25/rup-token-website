@@ -6,120 +6,499 @@
   <title>Spin & Win - Rupesh Electronics</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f2f2f2; }
-    header, footer { background: #000; color: #fff; text-align: center; padding: 10px; }
-    nav { display: flex; justify-content: space-around; background: #222; padding: 10px 0; }
-    nav a { color: white; text-decoration: none; padding: 8px 16px; }
-    .tab-content { padding: 20px; display: none; }
-    .tab-content.active { display: block; }
-    #wheel { width: 300px; height: 300px; border: 10px solid #555; border-radius: 50%; margin: 20px auto; position: relative; }
-    #wheel .sector { position: absolute; width: 100%; height: 100%; background: #ddd; clip-path: polygon(50% 0%, 100% 100%, 0% 100%); transform-origin: 50% 100%; }
-    #wheel .sector:nth-child(odd) { background: #f44336; }
-    #wheel .sector:nth-child(even) { background: #4caf50; }
-    .social-icons { margin: 10px 0; }
-    .social-icons a { margin: 0 10px; color: white; font-size: 24px; }
-    .video-slot { text-align: center; margin: 20px; }
-    .video-slot iframe { width: 90%; max-width: 600px; height: 300px; }
-    .subscribe-btn { display: inline-block; background: red; color: white; padding: 10px 20px; margin-top: 10px; text-decoration: none; border-radius: 5px; }
-    #spin-result { font-size: 16px; margin-top: 10px; }
-    #spin-button { padding: 10px 20px; background-color: #ff9800; border: none; color: white; font-size: 18px; cursor: pointer; }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: white;
+      min-height: 100vh;
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      border-bottom: 3px solid #ff9800;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(34, 34, 34, 0.8);
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    
+    nav a:hover {
+      background: #ff9800;
+      transform: scale(1.1);
+    }
+    
+    .tab-content {
+      padding: 25px;
+      display: none;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      margin: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    #wheel-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 30px 0;
+    }
+    
+    #wheel {
+      width: 300px;
+      height: 300px;
+      border: 15px solid #444;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      background: #222;
+    }
+    
+    #wheel .sector {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      transform-origin: 50% 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 20px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+    
+    #wheel-pointer {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: #ff5722;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      z-index: 10;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    #spin-button {
+      padding: 15px 40px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      border: none;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    #spin-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    #spin-button:active {
+      transform: translateY(1px);
+    }
+    
+    #spin-result {
+      font-size: 24px;
+      margin-top: 20px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .video-slot {
+      text-align: center;
+      margin: 30px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    
+    .video-slot iframe {
+      width: 90%;
+      max-width: 600px;
+      height: 340px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .subscribe-btn {
+      display: inline-block;
+      background: linear-gradient(to right, #ff0000, #cc0000);
+      color: white;
+      padding: 12px 25px;
+      margin-top: 15px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .subscribe-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(255, 0, 0, 0.4);
+    }
+    
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      border-top: 3px solid #ff9800;
+    }
+    
+    .social-icons {
+      margin: 15px 0;
+    }
+    
+    .social-icons a {
+      margin: 0 15px;
+      color: white;
+      font-size: 28px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    
+    .social-icons a:hover {
+      transform: translateY(-5px) scale(1.2);
+      color: #ff9800;
+    }
+    
+    #reward-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    #reward-list li {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 5px solid #ff9800;
+      animation: slideIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    #music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+    
+    #music-control:hover {
+      background: #ff9800;
+      transform: scale(1.1);
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
+  <!-- Music Control -->
+  <div id="music-control" onclick="toggleMusic()">
+    <i class="fas fa-music" style="font-size: 24px; color: white;"></i>
+  </div>
+  <audio id="background-music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="win-sound">
+    <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+  </audio>
+
   <header>
-    <h1>Spin & Win - Rupesh Electronics</h1>
+    <h1>🎡 Spin & Win 🎡</h1>
+    <p>Rupesh Electronics - Daily Rewards</p>
   </header>
+  
   <nav>
-    <a href="#" onclick="showTab('spin')">Spin Wheel</a>
-    <a href="#" onclick="showTab('rewards')">My Rewards</a>
-    <a href="#" onclick="showTab('wallet')">My Wallet</a>
-    <a href="#" onclick="showTab('terms')">Terms</a>
+    <a href="#" onclick="showTab('spin')"><i class="fas fa-redo-alt"></i> Spin Wheel</a>
+    <a href="#" onclick="showTab('rewards')"><i class="fas fa-gift"></i> My Rewards</a>
+    <a href="#" onclick="showTab('wallet')"><i class="fas fa-wallet"></i> My Wallet</a>
+    <a href="#" onclick="showTab('terms')"><i class="fas fa-file-alt"></i> Terms</a>
   </nav>
 
   <div id="spin" class="tab-content active">
-    <h2>Spin the Wheel</h2>
-    <div id="wheel"></div>
-    <button id="spin-button" onclick="spinWheel()">Spin</button>
-    <div id="spin-result"></div>
+    <h2><i class="fas fa-star"></i> Spin the Wheel <i class="fas fa-star"></i></h2>
+    <div id="wheel-container">
+      <div id="wheel-pointer"></div>
+      <div id="wheel"></div>
+      <button id="spin-button" onclick="spinWheel()"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
+      <div id="spin-result">Spin to win amazing rewards!</div>
+    </div>
   </div>
 
   <div id="rewards" class="tab-content">
-    <h2>Your Rewards</h2>
+    <h2><i class="fas fa-trophy"></i> Your Rewards</h2>
     <ul id="reward-list"></ul>
   </div>
 
   <div id="wallet" class="tab-content">
-    <h2>Your Wallet</h2>
-    <p>Total Points: <span id="points">0</span></p>
-    <p>Balance (INR): ₹<span id="balance">0.00</span></p>
-    <button onclick="claimReward()">Claim via WhatsApp</button>
+    <h2><i class="fas fa-rupee-sign"></i> Your Wallet</h2>
+    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+      <p style="font-size: 24px;">Total Points: <span id="points" style="color: #ffeb3b;">0</span></p>
+      <p style="font-size: 24px;">Balance (INR): ₹<span id="balance" style="color: #4caf50;">0.00</span></p>
+    </div>
+    <button onclick="claimReward()" style="margin-top: 20px; padding: 15px 30px; background: linear-gradient(to right, #4CAF50, #2E7D32); border: none; color: white; font-size: 18px; border-radius: 50px; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <i class="fab fa-whatsapp"></i> Claim via WhatsApp
+    </button>
   </div>
 
   <div id="terms" class="tab-content">
-    <h2>Terms & Conditions</h2>
-    <p>1. Spin daily to win points.</p>
-    <p>2. 1000 points = ₹1.00</p>
-    <p>3. Claim directly through WhatsApp.</p>
+    <h2><i class="fas fa-info-circle"></i> Terms & Conditions</h2>
+    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+      <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Spin daily to win points</p>
+      <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> 1000 points = ₹1.00</p>
+      <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Claim directly through WhatsApp</p>
+      <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Maximum 1 spin per day</p>
+      <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Prizes are non-transferable</p>
+    </div>
   </div>
 
   <div class="video-slot">
-    <h2>Watch and Subscribe</h2>
-    <iframe src="https://www.youtube.com/embed/oyhOtPFHUqI" frameborder="0" allowfullscreen></iframe><br>
-    <a class="subscribe-btn" href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank">Subscribe to Channel</a>
+    <h2><i class="fab fa-youtube" style="color: red;"></i> Watch and Subscribe</h2>
+    <iframe src="https://www.youtube.com/embed/oyhOtPFHUqI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+    <a class="subscribe-btn" href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank">
+      <i class="fab fa-youtube"></i> Subscribe to Channel
+    </a>
   </div>
 
   <footer>
     <p>Follow us on:</p>
     <div class="social-icons">
-      <a href="https://wa.me/919334113322" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/share/169rNXq4oi/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://wa.me/919334113322" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/169rNXq4oi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
     </div>
-    <p>&copy; 2025 Rupesh Electronics</p>
+    <p>&copy; 2025 Rupesh Electronics | All Rights Reserved</p>
   </footer>
 
   <script>
+    // Background music control
+    const backgroundMusic = document.getElementById('background-music');
+    const winSound = document.getElementById('win-sound');
+    
+    function toggleMusic() {
+      if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        document.querySelector('#music-control i').classList.remove('fa-music');
+        document.querySelector('#music-control i').classList.add('fa-volume-up');
+      } else {
+        backgroundMusic.pause();
+        document.querySelector('#music-control i').classList.remove('fa-volume-up');
+        document.querySelector('#music-control i').classList.add('fa-music');
+      }
+    }
+    
+    // Try to autoplay music (may not work due to browser policies)
+    document.addEventListener('click', function() {
+      if (backgroundMusic.paused) {
+        backgroundMusic.volume = 0.3;
+        backgroundMusic.play().catch(e => console.log("Autoplay prevented:", e));
+      }
+    }, { once: true });
+
     let points = 0;
+    let canSpin = true;
+    
     function showTab(id) {
       document.querySelectorAll('.tab-content').forEach(div => div.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
-    // Creating a simple wheel with multiple sectors
+    // Create colorful wheel with prizes
     function createWheel() {
       const wheel = document.getElementById("wheel");
-      const numberOfSectors = 8;
-      const anglePerSector = 360 / numberOfSectors;
+      const prizes = [
+        { text: "10 Points", color: "#FF5252", value: 10 },
+        { text: "5 Points", color: "#FF4081", value: 5 },
+        { text: "20 Points", color: "#E040FB", value: 20 },
+        { text: "15 Points", color: "#7C4DFF", value: 15 },
+        { text: "50 Points", color: "#536DFE", value: 50 },
+        { text: "5 Points", color: "#448AFF", value: 5 },
+        { text: "10 Points", color: "#40C4FF", value: 10 },
+        { text: "100 Points", color: "#18FFFF", value: 100 }
+      ];
+      
+      const anglePerSector = 360 / prizes.length;
 
-      for (let i = 0; i < numberOfSectors; i++) {
+      prizes.forEach((prize, index) => {
         const sector = document.createElement("div");
         sector.classList.add("sector");
-        sector.style.transform = rotate(${i * anglePerSector}deg);
+        sector.style.transform = rotate(${index * anglePerSector}deg);
+        sector.style.backgroundColor = prize.color;
+        
+        const prizeText = document.createElement("div");
+        prizeText.textContent = prize.text;
+        prizeText.style.transform = rotate(${anglePerSector/2}deg) translateY(30px);
+        prizeText.style.fontSize = "14px";
+        
+        sector.appendChild(prizeText);
         wheel.appendChild(sector);
-      }
+      });
     }
 
     createWheel();
 
     function spinWheel() {
+      if (!canSpin) return;
+      
+      canSpin = false;
       const wheel = document.getElementById("wheel");
-      const randomSpin = Math.floor(Math.random() * 360) + 3600; // Random spin angle
-      wheel.style.transition = "transform 3s ease-out";
-      wheel.style.transform = rotate(${randomSpin}deg);
+      const spinResult = document.getElementById("spin-result");
+      
+      // Reset wheel position for continuous spinning
+      wheel.style.transition = 'none';
+      wheel.style.transform = 'rotate(0deg)';
+      
+      // Force reflow
+      setTimeout(() => {
+        const randomSpin = Math.floor(Math.random() * 360) + 5 * 360; // At least 5 full rotations
+        wheel.style.transition = "transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)";
+        wheel.style.transform = rotate(${randomSpin}deg);
+        
+        // Calculate prize after spin completes
+        setTimeout(() => {
+          const prizeValues = [10, 5, 20, 15, 50, 5, 10, 100];
+          const winningAngle = randomSpin % 360;
+          const prizeIndex = Math.floor(((360 - winningAngle) % 360) / (360 / prizeValues.length));
+          const reward = prizeValues[prizeIndex];
+          
+          points += reward;
+          spinResult.innerHTML = 🎉 Congratulations! You won <strong>${reward} points</strong>! 🎉;
+          
+          // Play win sound
+          winSound.currentTime = 0;
+          winSound.play();
+          
+          // Update UI
+          document.getElementById("points").innerText = points;
+          document.getElementById("balance").innerText = (points / 1000).toFixed(2);
+          
+          // Add to reward list
+          const li = document.createElement("li");
+          li.innerHTML = <i class="fas fa-coins" style="color: gold;"></i> +${reward} points (${new Date().toLocaleString()});
+          document.getElementById("reward-list").prepend(li);
+          
+          // Create confetti effect
+          createConfetti();
+          
+          canSpin = true;
+        }, 3000);
+      }, 10);
+    }
 
-      const reward = Math.floor(Math.random() * 20) + 1;
-      points += reward;
-      document.getElementById("spin-result").innerText = You won ${reward} points!;
-      document.getElementById("points").innerText = points;
-      document.getElementById("balance").innerText = (points / 1000).toFixed(2);
-      const li = document.createElement("li");
-      li.innerText = +${reward} points;
-      document.getElementById("reward-list").appendChild(li);
+    function createConfetti() {
+      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = -10 + 'px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.opacity = Math.random();
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.transform = rotate(${Math.random() * 360}deg);
+        
+        document.body.appendChild(confetti);
+        
+        const animationDuration = Math.random() * 3 + 2;
+        
+        confetti.animate([
+          { top: '-10px', opacity: 1, transform: rotate(0deg) scale(1) },
+          { top: '100vh', opacity: 0, transform: rotate(${Math.random() * 360}deg) scale(0) }
+        ], {
+          duration: animationDuration * 1000,
+          easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)',
+          fill: 'forwards'
+        });
+        
+        setTimeout(() => confetti.remove(), animationDuration * 1000);
+      }
     }
 
     function claimReward() {
-      const message = encodeURIComponent(Hello! I want to claim ₹${(points / 1000).toFixed(2)} with ${points} points.);
+      if (points < 1000) {
+        alert("You need at least 1000 points (₹1.00) to claim your reward!");
+        return;
+      }
+      
+      const message = encodeURIComponent(Hello Rupesh Electronics! I want to claim my reward of ₹${(points / 1000).toFixed(2)} (${points} points).);
       window.open(https://wa.me/919334113322?text=${message}, '_blank');
     }
   </script>
