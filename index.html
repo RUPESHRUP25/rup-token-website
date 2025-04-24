@@ -5,359 +5,216 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUPESH ELECTRONICS - Spin & Win</title>
   <style>
-    :root {
-      --primary: #FF5722;
-      --secondary: #FF9800;
-      --accent: #FFC107;
-      --dark: #E64A19;
-      --light: #FFE0B2;
-      --success: #4CAF50;
-      --info: #2196F3;
-      --warning: #FFEB3B;
-      --danger: #F44336;
-      --facebook: #3b5998;
-      --instagram: #E1306C;
-      --whatsapp: #25D366;
-      --youtube: #FF0000;
-      --text: #333;
-      --white: #ffffff;
-      --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      --wheel-border: #FF5722;
-    }
-    
     body {
       font-family: 'Arial', sans-serif;
-      background: var(--bg-gradient);
+      background: linear-gradient(to right, #fffde7, #fff9c4);
       text-align: center;
       margin: 0;
       padding: 0;
-      color: var(--text);
-      min-height: 100vh;
+      color: #333;
     }
-    
     h1 {
-      background: linear-gradient(to right, var(--primary), var(--dark));
+      background-color: #ffeb3b;
       padding: 20px;
       font-size: 28px;
       font-weight: bold;
-      color: white;
+      color: #d84315;
+      box-shadow: 0 2px 5px #999;
       margin: 0;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
     #wheelCanvas {
       margin: 20px auto;
-      border: 15px solid var(--wheel-border);
+      border: 10px solid #ff9800;
       border-radius: 50%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      background: white;
+      box-shadow: 0 0 20px #999;
     }
-    
     #spinBtn {
-      padding: 15px 40px;
+      padding: 14px 35px;
       font-size: 18px;
-      background: linear-gradient(to right, var(--primary), var(--dark));
-      color: white;
+      background-color: #fdd835;
       border: none;
-      border-radius: 50px;
+      border-radius: 10px;
       cursor: pointer;
-      margin: 20px 0;
+      margin-top: 20px;
       font-weight: bold;
       transition: all 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      text-transform: uppercase;
     }
-    
     #spinBtn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      background-color: #ffc107;
+      transform: scale(1.05);
     }
-    
     #spinBtn:disabled {
-      background: #cccccc;
+      background-color: #cccccc;
       cursor: not-allowed;
       transform: none;
-      box-shadow: none;
     }
-    
     #result {
-      margin: 20px auto;
-      padding: 15px;
-      font-size: 24px;
+      margin-top: 20px;
+      font-size: 22px;
+      color: green;
       font-weight: bold;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 500px;
-      transition: all 0.3s;
+      min-height: 30px;
     }
-    
-    .win {
-      color: var(--success);
-      animation: pulse 1s infinite;
-    }
-    
-    .lose {
-      color: var(--danger);
-    }
-    
     .arrow {
       width: 0;
       height: 0;
-      border-left: 25px solid transparent;
-      border-right: 25px solid transparent;
-      border-bottom: 40px solid var(--primary);
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid red;
       margin: 0 auto;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-      position: relative;
-      z-index: 10;
     }
-    
     .social-icons {
       display: flex;
       justify-content: center;
       gap: 15px;
-      margin: 30px 0;
-      flex-wrap: wrap;
+      margin: 20px 0;
     }
-    
     .social-icons a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      transition: all 0.3s;
-      text-decoration: none;
-      color: white;
-      font-size: 24px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: inline-block;
+      transition: transform 0.3s;
     }
-    
     .social-icons a:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+      transform: scale(1.1);
     }
-    
-    .facebook {
-      background: var(--facebook);
+    .social-icons img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    
-    .instagram {
-      background: var(--instagram);
-      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-    }
-    
-    .whatsapp {
-      background: var(--whatsapp);
-    }
-    
-    .youtube {
-      background: var(--youtube);
-    }
-    
-    .btn {
-      margin: 15px;
-      padding: 12px 30px;
+    .action-btn {
+      margin: 15px auto;
+      background: #2196f3;
+      color: white;
+      padding: 12px 25px;
       text-decoration: none;
-      border-radius: 50px;
+      border-radius: 8px;
       font-weight: bold;
       display: inline-block;
       transition: all 0.3s;
-      border: none;
-      cursor: pointer;
+    }
+    .action-btn:hover {
+      background: #0d8bf2;
+      transform: scale(1.05);
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      color: white;
     }
-    
-    .btn-primary {
-      background: linear-gradient(to right, var(--primary), var(--dark));
-    }
-    
-    .btn-secondary {
-      background: linear-gradient(to right, var(--secondary), var(--primary));
-    }
-    
-    .btn-success {
-      background: linear-gradient(to right, var(--success), #2E7D32);
-    }
-    
-    .btn-info {
-      background: linear-gradient(to right, var(--info), #1565C0);
-    }
-    
-    .btn-warning {
-      background: linear-gradient(to right, var(--warning), #F9A825);
-      color: var(--text);
-    }
-    
-    .btn-danger {
-      background: linear-gradient(to right, var(--danger), #C62828);
-    }
-    
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
-    
-    .card {
+    .ads-section {
       margin: 30px auto;
+      max-width: 100%;
+      padding: 10px;
       background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      max-width: 800px;
-      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    
-    .card h2, .card h3 {
-      color: var(--primary);
-      margin-top: 0;
-      border-bottom: 2px solid var(--secondary);
-      padding-bottom: 10px;
-      display: inline-block;
+    .wallet-section {
+      margin: 20px auto;
+      max-width: 500px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    
+    .wallet-options {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .wallet-btn {
+      padding: 10px 20px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    .wallet-btn:hover {
+      background: #3e8e41;
+      transform: scale(1.05);
+    }
+    #walletAddress {
+      margin-top: 15px;
+      padding: 10px;
+      width: 80%;
+      max-width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    #copyWalletBtn {
+      padding: 10px 15px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 5px;
+      transition: all 0.3s;
+    }
+    #copyWalletBtn:hover {
+      background: #0d8bf2;
+    }
+    .wallet-instructions {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+    .login-section {
+      margin: 20px auto;
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: left;
     }
-    
     .form-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-weight: bold;
-      color: var(--text);
     }
-    
     .form-group input {
       width: 100%;
-      padding: 12px 15px;
+      padding: 10px;
       border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-      transition: all 0.3s;
+      border-radius: 5px;
+      font-size: 14px;
     }
-    
-    .form-group input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(255,87,34,0.2);
-      outline: none;
-    }
-    
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-    
-    .checkbox-group input {
-      margin-right: 10px;
-      width: auto;
-    }
-    
-    .tab-container {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-    
-    .tab-btn {
-      padding: 12px 25px;
-      background: #e0e0e0;
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: #4caf50;
+      color: white;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
-      transition: all 0.3s;
       font-size: 16px;
-      color: #555;
+      transition: all 0.3s;
     }
-    
-    .tab-btn.active {
-      background: linear-gradient(to right, var(--primary), var(--dark));
-      color: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    .login-btn:hover {
+      background: #3e8e41;
     }
-    
-    .tab-content {
-      display: none;
-      animation: fadeIn 0.5s;
-    }
-    
-    .tab-content.active {
-      display: block;
-    }
-    
-    .reward-history {
-      margin: 20px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    .youtube-section {
+      margin: 30px auto;
       max-width: 800px;
     }
-    
-    .reward-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      border-bottom: 1px solid #eee;
-      transition: all 0.3s;
-    }
-    
-    .reward-item:hover {
-      background: #f9f9f9;
-      transform: translateX(5px);
-    }
-    
-    .reward-prize {
-      font-weight: bold;
-      color: var(--primary);
-      font-size: 18px;
-    }
-    
-    .reward-date {
-      color: #666;
-      font-size: 14px;
-    }
-    
-    .reward-status {
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-    
-    .status-pending {
-      background: #fff3e0;
-      color: var(--secondary);
-    }
-    
-    .status-completed {
-      background: #e8f5e9;
-      color: var(--success);
-    }
-    
     .youtube-container {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
-      margin: 20px 0;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      margin-top: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    
     .youtube-container iframe {
       position: absolute;
       top: 0;
@@ -366,196 +223,80 @@
       height: 100%;
       border: none;
     }
-    
-    .spinner {
-      border: 4px solid rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-      border-top: 4px solid var(--primary);
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-      display: none;
+    .tab-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
     }
-    
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      background-color: var(--primary);
-      opacity: 0;
-      z-index: 999;
-      animation: confetti 5s ease-in-out;
-    }
-    
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-    }
-    
-    .modal-content {
-      background-color: #fefefe;
-      margin: 5% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 700px;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      animation: modalopen 0.4s;
-    }
-    
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
+    .tab-btn {
+      padding: 10px 20px;
+      background: #e0e0e0;
+      border: none;
       cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
     }
-    
-    .modal-body {
+    .tab-btn.active {
+      background: #2196f3;
+      color: white;
+    }
+    .tab-btn:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+    .tab-btn:last-child {
+      border-radius: 0 5px 5px 0;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .reward-history {
+      margin: 20px auto;
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .reward-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .reward-item:last-child {
+      border-bottom: none;
+    }
+    .legal-section {
+      margin: 20px auto;
+      max-width: 800px;
       padding: 20px;
       text-align: left;
-      max-height: 60vh;
-      overflow-y: auto;
-    }
-    
-    .modal-footer {
-      padding: 10px 0;
-      text-align: right;
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-    
-    .footer-links a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: bold;
-    }
-    
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-    
-    /* AdSense container */
-    .ad-container {
-      margin: 20px auto;
-      padding: 15px;
       background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 728px;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed #ccc;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    
-    .ad-container p {
-      margin: 0;
-      color: #666;
+    .legal-section h2 {
+      color: #d84315;
+      border-bottom: 2px solid #ff9800;
+      padding-bottom: 5px;
     }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes confetti {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(1000px) rotate(720deg); opacity: 0; }
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    @keyframes modalopen {
-      from { opacity: 0; transform: translateY(-50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @media (max-width: 768px) {
-      #wheelCanvas {
-        width: 280px;
-        height: 280px;
-      }
-      
-      .tab-btn {
-        padding: 10px 15px;
-        font-size: 14px;
-      }
-      
-      .reward-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      
-      .modal-content {
-        width: 90%;
-        margin: 10% auto;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 22px;
-        padding: 15px;
-      }
-      
+    @media (max-width: 600px) {
       #wheelCanvas {
         width: 250px;
         height: 250px;
-        border-width: 10px;
       }
-      
-      .tab-container {
+      .wallet-options {
         flex-direction: column;
       }
-      
       .tab-btn {
-        width: 100%;
-        border-radius: 0;
+        padding: 8px 12px;
+        font-size: 14px;
       }
-      
-      .modal-content {
-        width: 95%;
-        padding: 10px;
-      }
-      
-      .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+      .legal-section {
+        padding: 15px;
       }
     }
   </style>
@@ -565,64 +306,75 @@
 <h1>RUPESH ELECTRONICS SPECIAL OFFER</h1>
 <div class="arrow"></div>
 
-<div class="container">
-  <div class="tab-container">
-    <button class="tab-btn active" onclick="openTab('spinTab')">Spin & Win</button>
-    <button class="tab-btn" onclick="openTab('rewardsTab')">My Rewards</button>
-    <button class="tab-btn" onclick="openTab('accountTab')">Account</button>
+<div class="tab-container">
+  <button class="tab-btn active" onclick="openTab('spinTab')">Spin & Win</button>
+  <button class="tab-btn" onclick="openTab('rewardsTab')">My Rewards</button>
+  <button class="tab-btn" onclick="openTab('accountTab')">Account</button>
+</div>
+
+<div id="spinTab" class="tab-content active">
+  <canvas id="wheelCanvas" width="300" height="300"></canvas><br>
+  <button id="spinBtn">Spin</button>
+  <div id="result"></div>
+
+  <div class="youtube-section">
+    <h3>हमारे YouTube चैनल से जुड़ें</h3>
+    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
+    <div class="youtube-container">
+      <iframe src="https://www.youtube.com/embed/GcTJL-FIAHw" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="action-btn" target="_blank">Subscribe Now</a>
+  </div>
+</div>
+  <div class="youtube-section">
+    <h3>हमारे YouTube चैनल से जुड़ें</h3>
+    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
+    <div class="youtube-container">
+      <iframe src="https://www.youtube.com/embed/l9kmeF2nKEU" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="action-btn" target="_blank">Subscribe Now</a>
+  </div>
+</div>
+  <div class="youtube-section">
+    <h3>हमारे YouTube चैनल से जुड़ें</h3>
+    <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
+    <div class="youtube-container">
+      <iframe src="https://www.youtube.com/embed/0Wc2AHtZ65g" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="action-btn" target="_blank">Subscribe Now</a>
+  </div>
+</div>
+
+<div id="rewardsTab" class="tab-content">
+  <div class="reward-history">
+    <h3>आपके पुरस्कार</h3>
+    <div id="rewardsList">
+      <p id="noRewards">आपने अभी तक कोई पुरस्कार नहीं जीता है। स्पिन करके पुरस्कार जीतें!</p>
+    </div>
+  </div>
+</div>
+
+<div id="accountTab" class="tab-content">
+  <div class="login-section">
+    <h3>लॉगिन या रजिस्टर करें</h3>
+    <div class="form-group">
+      <label for="email">ईमेल</label>
+      <input type="email" id="email" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label for="password">पासवर्ड</label>
+      <input type="password" id="password" placeholder="••••••••">
+    </div>
+    <div class="form-group">
+      <input type="checkbox" id="ageVerify" required>
+      <label for="ageVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
+    </div>
+    <button class="login-btn" onclick="login()">लॉगिन करें</button>
+    <p style="margin-top: 15px;">नए यहाँ? <a href="#" onclick="showRegister()">अकाउंट बनाएं</a></p>
   </div>
 
-  <div id="spinTab" class="tab-content active">
-    <canvas id="wheelCanvas" width="350" height="350"></canvas><br>
-    <button id="spinBtn" class="btn btn-primary">SPIN NOW</button>
-    <div id="result"></div>
-    <div class="spinner" id="loadingSpinner"></div>
-
-    <!-- AdSense Container -->
-    <div class="ad-container">
-      <p>Advertisement</p>
-      <!-- AdSense code will be inserted here -->
-    </div>
-
-    <div class="card">
-      <h3>हमारे YouTube चैनल से जुड़ें</h3>
-      <p>नवीनतम ऑफर और अपडेट के लिए हमारे YouTube चैनल को सब्सक्राइब करें</p>
-      <div class="youtube-container">
-        <iframe src="https://www.youtube.com/embed/GcTJL-FIAHw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="btn btn-danger" target="_blank">Subscribe Now</a>
-    </div>
-  </div>
-
-  <div id="rewardsTab" class="tab-content">
-    <div class="reward-history">
-      <h3>आपके पुरस्कार</h3>
-      <div id="rewardsList">
-        <p id="noRewards">आपने अभी तक कोई पुरस्कार नहीं जीता है। स्पिन करके पुरस्कार जीतें!</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="accountTab" class="tab-content">
-    <div id="loginSection" class="card">
-      <h3>लॉगिन या रजिस्टर करें</h3>
-      <div class="form-group">
-        <label for="email">ईमेल</label>
-        <input type="email" id="email" placeholder="your@email.com">
-      </div>
-      <div class="form-group">
-        <label for="password">पासवर्ड</label>
-        <input type="password" id="password" placeholder="••••••••">
-      </div>
-      <div class="checkbox-group">
-        <input type="checkbox" id="ageVerify" required>
-        <label for="ageVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
-      </div>
-      <button class="btn btn-primary" onclick="login()">लॉगिन करें</button>
-      <p style="margin-top: 15px;">नए यहाँ? <a href="#" onclick="showRegister()" style="color: var(--primary); font-weight: bold;">अकाउंट बनाएं</a></p>
-    </div>
-
-    <div id="registerSection" class="card" style="display: none;">
+  <div id="registerSection" style="display: none;">
+    <div class="login-section">
       <h3>नया अकाउंट बनाएं</h3>
       <div class="form-group">
         <label for="regName">नाम</label>
@@ -634,203 +386,89 @@
       </div>
       <div class="form-group">
         <label for="regPassword">पासवर्ड</label>
-        <input type="password" id="regPassword" placeholder="•••••••• (कम से कम 6 अक्षर)">
+        <input type="password" id="regPassword" placeholder="••••••••">
       </div>
       <div class="form-group">
         <label for="regMobile">मोबाइल नंबर</label>
         <input type="tel" id="regMobile" placeholder="9876543210">
       </div>
-      <div class="checkbox-group">
+      <div class="form-group">
         <input type="checkbox" id="regAgeVerify" required>
         <label for="regAgeVerify">मैं पुष्टि करता हूं कि मैं 18+ वर्ष का हूं</label>
       </div>
-      <button class="btn btn-primary" onclick="register()">रजिस्टर करें</button>
-      <p style="margin-top: 15px;">पहले से अकाउंट है? <a href="#" onclick="showLogin()" style="color: var(--primary); font-weight: bold;">लॉगिन करें</a></p>
-    </div>
-
-    <div id="profileSection" class="card" style="display: none;">
-      <h3>आपका प्रोफाइल</h3>
-      <div id="userProfileInfo"></div>
-      <button class="btn btn-danger" onclick="logout()">लॉग आउट</button>
+      <button class="login-btn" onclick="register()">रजिस्टर करें</button>
+      <p style="margin-top: 15px;">पहले से अकाउंट है? <a href="#" onclick="showLogin()">लॉगिन करें</a></p>
     </div>
   </div>
+</div>
+
+<!-- AdSense Ads -->
+<div class="ads-section">
+  <h3>Sponsored Ads</h3>
+  <!-- AdSense Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+  <!-- Horizontal Ad -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+       data-ad-slot="YOUR_AD_SLOT"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </div>
 
 <!-- Social Links -->
 <div class="social-icons">
-  <a href="https://www.facebook.com/share/1QN2tDUeQD/" class="facebook" target="_blank" title="Facebook">
-    <i class="fab fa-facebook-f"></i>
+  <a href="https://www.facebook.com/share/1QN2tDUeQD/" target="_blank" title="Facebook">
+    <img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook">
   </a>
-  <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" class="instagram" target="_blank" title="Instagram">
-    <i class="fab fa-instagram"></i>
+  <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank" title="Instagram">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
   </a>
-  <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" class="whatsapp" target="_blank" title="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+  <a href="https://whatsapp.com/channel/0029Va8ksDrF6smvRNvEdt1y" target="_blank" title="WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
   </a>
-  <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" class="youtube" target="_blank" title="YouTube">
-    <i class="fab fa-youtube"></i>
+  <a href="https://www.youtube.com/channel/UCDTlEqT18uR2cLOBu4YI-rg" target="_blank" title="YouTube">
+    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
   </a>
 </div>
 
-<!-- Footer Links -->
-<div class="footer-links">
-  <a href="#" onclick="openModal('termsModal')">Terms & Conditions</a>
-  <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
-  <a href="#" onclick="openModal('disclaimerModal')">Disclaimer</a>
-  <a href="mailto:rupeshelectronics@gmail.com">Contact Us</a>
+<!-- Legal Sections -->
+<div class="legal-section">
+  <h2>प्राइवेसी पॉलिसी</h2>
+  <p>हम आपके व्यक्तिगत डेटा की सुरक्षा को गंभीरता से लेते हैं। हम आपके नाम, ईमेल, फ़ोन नंबर जैसी जानकारी केवल इनाम भेजने के उद्देश्य से एकत्र करते हैं। आपकी जानकारी को कभी भी किसी तीसरे पक्ष के साथ साझा नहीं किया जाएगा।</p>
 </div>
 
-<!-- AdSense Container -->
-<div class="ad-container">
-  <p>Advertisement</p>
-  <!-- AdSense code will be inserted here -->
+<div class="legal-section">
+  <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
+  <p><strong>Q1: मैं इनाम कैसे जीत सकता हूँ?</strong><br>
+  A1: आप Spin & Win व्हील को घुमाकर इनाम जीत सकते हैं।</p>
+
+  <p><strong>Q2: मैं इनाम कैसे प्राप्त करूँ?</strong><br>
+  A2: जीतने के बाद, कृपया अपना खाता बनाएं और अपनी जानकारी सबमिट करें।</p>
+
+  <p><strong>Q3: क्या इनाम मिलने की गारंटी है?</strong><br>
+  A3: नहीं, सभी इनाम रैंडम और भाग्य पर आधारित होते हैं।</p>
 </div>
 
-<!-- Modal for Terms & Conditions -->
-<div id="termsModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('termsModal')">&times;</span>
-    <h2>Terms & Conditions</h2>
-    <div class="modal-body">
-      <h3>RUPESH ELECTRONICS Spin & Win Terms and Conditions</h3>
-      <p>1. This Spin & Win promotion is open to all customers of RUPESH ELECTRONICS who are 18 years or older.</p>
-      <p>2. Each registered user is allowed one spin per day.</p>
-      <p>3. Prizes are non-transferable and cannot be exchanged for cash.</p>
-      <p>4. To claim your prize, you must visit our store with valid ID and the winning notification.</p>
-      <p>5. Prizes must be claimed within 7 days of winning.</p>
-      <p>6. RUPESH ELECTRONICS reserves the right to verify the validity of claims and may request additional information.</p>
-      <p>7. Employees of RUPESH ELECTRONICS and their immediate family members are not eligible to participate.</p>
-      <p>8. By participating, you agree to receive promotional communications from RUPESH ELECTRONICS.</p>
-      <p>9. RUPESH ELECTRONICS reserves the right to modify or terminate the promotion at any time without prior notice.</p>
-      <p>10. The decision of RUPESH ELECTRONICS regarding any aspect of the promotion is final and binding.</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" onclick="closeModal('termsModal')">Close</button>
-    </div>
-  </div>
+<div class="legal-section">
+  <h2>डिस्क्लेमर</h2>
+  <p>यह वेबसाइट केवल मनोरंजन और प्रमोशन के उद्देश्य से बनाई गई है। इसमें दिए गए ऑफर्स और रिवार्ड्स किसी भी प्रकार की गारंटी के साथ नहीं आते। किसी भी नुकसान के लिए हम उत्तरदायी नहीं होंगे। यूज़र को अपनी सूझबूझ से भाग लेना चाहिए।</p>
 </div>
 
-<!-- Modal for Privacy Policy -->
-<div id="privacyModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('privacyModal')">&times;</span>
-    <h2>Privacy Policy</h2>
-    <div class="modal-body">
-      <h3>RUPESH ELECTRONICS Privacy Policy</h3>
-      <p>1. We collect personal information including name, email, and phone number for the purpose of this promotion.</p>
-      <p>2. Your information will be used to communicate with you about your prize and for marketing purposes.</p>
-      <p>3. We implement appropriate security measures to protect your personal information.</p>
-      <p>4. We will not sell or share your personal information with third parties without your consent, except as required by law.</p>
-      <p>5. By participating, you consent to the collection and use of your information as described in this policy.</p>
-      <p>6. You may request access to or correction of your personal information by contacting us.</p>
-      <p>7. We may update this privacy policy from time to time, and the updated version will be posted on our website.</p>
-      <p>8. If you wish to unsubscribe from marketing communications, you may do so at any time.</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" onclick="closeModal('privacyModal')">Close</button>
-    </div>
-  </div>
+  <!-- Privacy Policy -->
+<div class="privacy" id="privacy-policy">
+  <h3>🔒 प्राइवेसी पॉलिसी</h3>
+  <p>हमारी वेबसाइट Google AdSense का उपयोग करती है जो कुकीज़ के माध्यम से आपकी जानकारी को एकत्र कर सकती है ताकि आपको प्रासंगिक विज्ञापन दिखाए जा सकें।</p>
+  <p>Google और उसके साझेदार विज्ञापनदाताओं द्वारा आपकी जानकारी का उपयोग किया जा सकता है, लेकिन यह केवल विज्ञापन अनुभव को बेहतर बनाने के लिए होता है।</p>
+  <p>आप Google की विज्ञापन सेटिंग्स पर जाकर व्यक्तिगत विज्ञापन बंद कर सकते हैं।</p>
+  <p>हम आपकी किसी भी व्यक्तिगत जानकारी को किसी थर्ड पार्टी के साथ साझा नहीं करते।</p>
+  <p>हम समय-समय पर अपनी नीति को अपडेट कर सकते हैं। कृपया नियमित रूप से इस पेज को देखें।</p>
 </div>
-
-<!-- Modal for Disclaimer -->
-<div id="disclaimerModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('disclaimerModal')">&times;</span>
-    <h2>Disclaimer</h2>
-    <div class="modal-body">
-      <h3>RUPESH ELECTRONICS Spin & Win Disclaimer</h3>
-      <p>1. This promotion is in no way sponsored, endorsed, or administered by, or associated with Facebook, Instagram, WhatsApp, or YouTube.</p>
-      <p>2. Participants release these platforms from any liability related to this promotion.</p>
-      <p>3. RUPESH ELECTRONICS makes no representations or warranties of any kind regarding the prizes.</p>
-      <p>4. The promotion is subject to all applicable laws and regulations.</p>
-      <p>5. RUPESH ELECTRONICS is not responsible for any technical issues that may prevent participation.</p>
-      <p>6. Participation constitutes acceptance of these terms and the decisions of RUPESH ELECTRONICS.</p>
-      <p>7. Prizes are subject to availability and may be substituted with alternatives of equal value.</p>
-      <p>8. RUPESH ELECTRONICS reserves the right to disqualify any participant who violates these terms.</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" onclick="closeModal('disclaimerModal')">Close</button>
-    </div>
-  </div>
-</div>
-
-<!-- Font Awesome for Social Icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-
-<!-- AdSense Code -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
 <script>
-  // Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyBcdSsQTepHActnokxV5F1YS3zeBOBkoQg",
-    authDomain: "ruptoken-5e3a0.firebaseapp.com",
-    databaseURL: "https://ruptoken-5e3a0-default-rtdb.firebaseio.com",
-    projectId: "ruptoken-5e3a0",
-    storageBucket: "ruptoken-5e3a0.appspot.com",
-    messagingSenderId: "719313334393",
-    appId: "1:719313334393:web:7a50e9369e87254eb824a8",
-    measurementId: "G-4B8RSJKGEP"
-  };
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
-  const auth = firebase.auth();
-  
-  // Global variables
-  let currentUser = null;
-  let lastSpinDate = null;
-  let hasSpun = false;
-
-  // Check auth state
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in
-      currentUser = user;
-      showProfile(user);
-      loadUserRewards(user.uid);
-      checkLastSpinDate(user.uid);
-    } else {
-      // No user is signed in
-      currentUser = null;
-      showLogin();
-    }
-  });
-
-  // Check when user last spun the wheel
-  function checkLastSpinDate(userId) {
-    database.ref('users/' + userId + '/lastSpinDate').once('value').then((snapshot) => {
-      const lastDate = snapshot.val();
-      if (lastDate) {
-        lastSpinDate = new Date(lastDate);
-        const today = new Date();
-        
-        // Reset spin if it's a new day
-        if (today.toDateString() !== lastSpinDate.toDateString()) {
-          hasSpun = false;
-          document.getElementById('spinBtn').disabled = false;
-        } else {
-          hasSpun = true;
-          document.getElementById('spinBtn').disabled = true;
-        }
-      }
-    });
-  }
-
-  // Update last spin date in Firebase
-  function updateLastSpinDate(userId) {
-    const today = new Date().toISOString();
-    database.ref('users/' + userId).update({
-      lastSpinDate: today
-    });
-  }
-
   // Tab functionality
   function openTab(tabName) {
     const tabs = document.getElementsByClassName('tab-content');
@@ -845,6 +483,10 @@
     
     document.getElementById(tabName).classList.add('active');
     event.currentTarget.classList.add('active');
+    
+    if (tabName === 'rewardsTab') {
+      loadRewards();
+    }
   }
   
   // Wheel functionality
@@ -852,579 +494,202 @@
   const ctx = canvas.getContext("2d");
   const spinBtn = document.getElementById("spinBtn");
   const resultDiv = document.getElementById("result");
-  const loadingSpinner = document.getElementById("loadingSpinner");
   const noRewardsMsg = document.getElementById("noRewards");
   
-  // Prize segments with weights (higher weight = smaller chance)
   const segments = [
-    {value: '₹10', weight: 15, color: '#e57373'}, 
-    {value: '₹20', weight: 10, color: '#64b5f6'},
-    {value: '₹50', weight: 5, color: '#81c784'},
-    {value: '₹100', weight: 3, color: '#ffd54f'},
-    {value: '₹200', weight: 1, color: '#ba68c8'},
-    {value: 'NextTime', weight: 66, color: '#eeeeee'}
+    {value: '₹10', weight: 15}, 
+    {value: '₹20', weight: 10},
+    {value: '₹50', weight: 5},
+    {value: '₹100', weight: 3},
+    {value: '₹200', weight: 1},
+    {value: 'NextTime', weight: 66}
   ];
   
   // Convert weights to segments array
   const weightedSegments = [];
   segments.forEach(segment => {
     for (let i = 0; i < segment.weight; i++) {
-      weightedSegments.push(segment);
+      weightedSegments.push(segment.value);
     }
   });
   
+  const colors = ['#e57373', '#f06292','#64b5f6', '#f06292','#81c784','#64b5f6', '#f06292', '#eeeeee', '#ffd54f', '#eeeeee'];
   let startAngle = 0;
-  const arc = Math.PI / (weightedSegments.length / 2);
+  let arc = Math.PI / (weightedSegments.length / 2);
   let spinTimeout = null;
   let spinAngleStart = 0;
   let spinTime = 0;
   let spinTimeTotal = 0;
-
-  // Draw the wheel
-  function drawWheel() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw segments
-    for (let i = 0; i < weightedSegments.length; i++) {
-      const angle = startAngle + i * arc;
-      ctx.fillStyle = weightedSegments[i].color;
-      ctx.beginPath();
-      ctx.moveTo(canvas.width/2, canvas.height/2);
-      ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, angle, angle + arc, false);
-      ctx.lineTo(canvas.width/2, canvas.height/2);
-      ctx.fill();
-
-      // Add border between segments
-      ctx.strokeStyle = "#fff";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(canvas.width/2, canvas.height/2);
-      ctx.lineTo(canvas.width/2 + Math.cos(angle) * (canvas.width/2), 
-                canvas.height/2 + Math.sin(angle) * (canvas.height/2));
-      ctx.stroke();
-
-      // Add text
-      ctx.save();
-      ctx.fillStyle = "#000";
-      ctx.font = "bold 14px sans-serif";
-      ctx.translate(canvas.width/2 + Math.cos(angle + arc / 2) * (canvas.width/2 - 60), 
-                    canvas.height/2 + Math.sin(angle + arc / 2) * (canvas.height/2 - 60));
-      ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      
-      // Adjust text for longer values
-      const text = weightedSegments[i].value;
-      const maxWidth = 80;
-      if (ctx.measureText(text).width > maxWidth) {
-        ctx.font = "bold 12px sans-serif";
-      }
-      
-      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
-      ctx.restore();
-    }
-    
-    // Draw center circle
-    ctx.fillStyle = "#fff";
-    ctx.beginPath();
-    ctx.arc(canvas.width/2, canvas.height/2, 20, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.strokeStyle = "#ddd";
-    ctx.lineWidth = 5;
-    ctx.stroke();
-  }
-
-  // Rotate the wheel
-  function rotateWheel() {
-    if (!currentUser) {
-      alert("कृपया पहले लॉगिन करें");
-      openTab('accountTab');
-      return;
-    }
-    
-    if (hasSpun) {
-      alert("आज आप पहले ही स्पिन कर चुके हैं! कल फिर कोशिश करें");
-      return;
-    }
-    
-    spinBtn.disabled = true;
-    resultDiv.innerText = "";
-    loadingSpinner.style.display = 'block';
-    
-    // Random spin parameters
-    spinAngleStart = Math.random() * 30 + 30;
-    spinTime = 0;
-    spinTimeTotal = Math.random() * 2000 + 2000;
-    
-    // Start rotation
-    rotate();
-  }
-
-  // Animation for wheel rotation
-  function rotate() {
-    spinTime += 20;
-    if (
-      <!DOCTYPE html>
-<html lang="hi">
-<head>
-  <!-- [Previous head content remains exactly the same until the script section] -->
-</head>
-<body>
-
-<!-- [All previous HTML content remains exactly the same until the script section] -->
-
-<script>
-  // Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyBcdSsQTepHActnokxV5F1YS3zeBOBkoQg",
-    authDomain: "ruptoken-5e3a0.firebaseapp.com",
-    databaseURL: "https://ruptoken-5e3a0-default-rtdb.firebaseio.com",
-    projectId: "ruptoken-5e3a0",
-    storageBucket: "ruptoken-5e3a0.appspot.com",
-    messagingSenderId: "719313334393",
-    appId: "1:719313334393:web:7a50e9369e87254eb824a8",
-    measurementId: "G-4B8RSJKGEP"
-  };
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
-  const auth = firebase.auth();
-  
-  // Global variables
-  let currentUser = null;
-  let lastSpinDate = null;
   let hasSpun = false;
-  let wheelSpinning = false;
+  let rewards = JSON.parse(localStorage.getItem('rewards')) || [];
 
-  // Check auth state
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in
-      currentUser = user;
-      showProfile(user);
-      loadUserRewards(user.uid);
-      checkLastSpinDate(user.uid);
-    } else {
-      // No user is signed in
-      currentUser = null;
-      showLogin();
-    }
-  });
-
-  // Check when user last spun the wheel
-  function checkLastSpinDate(userId) {
-    database.ref('users/' + userId + '/lastSpinDate').once('value').then((snapshot) => {
-      const lastDate = snapshot.val();
-      if (lastDate) {
-        lastSpinDate = new Date(lastDate);
-        const today = new Date();
-        
-        // Reset spin if it's a new day
-        if (today.toDateString() !== lastSpinDate.toDateString()) {
-          hasSpun = false;
-          document.getElementById('spinBtn').disabled = false;
-        } else {
-          hasSpun = true;
-          document.getElementById('spinBtn').disabled = true;
-          document.getElementById('result').innerHTML = "आप आज पहले ही स्पिन कर चुके हैं! कल फिर कोशिश करें";
-        }
-      }
-    }).catch((error) => {
-      console.error("Error checking last spin date:", error);
-    });
-  }
-
-  // Update last spin date in Firebase
-  function updateLastSpinDate(userId) {
-    const today = new Date().toISOString();
-    return database.ref('users/' + userId).update({
-      lastSpinDate: today
-    });
-  }
-
-  // Add reward to user's history
-  function addRewardToHistory(userId, prize) {
-    const rewardData = {
-      prize: prize,
-      date: new Date().toISOString(),
-      status: 'pending'
-    };
-    
-    return database.ref('rewards/' + userId).push(rewardData);
-  }
-
-  // Tab functionality
-  function openTab(tabName) {
-    const tabs = document.getElementsByClassName('tab-content');
-    for (let i = 0; i < tabs.length; i++) {
-      tabs[i].classList.remove('active');
-    }
-    
-    const tabBtns = document.getElementsByClassName('tab-btn');
-    for (let i = 0; i < tabBtns.length; i++) {
-      tabBtns[i].classList.remove('active');
-    }
-    
-    document.getElementById(tabName).classList.add('active');
-    event.currentTarget.classList.add('active');
-  }
-  
-  // Wheel functionality
-  const canvas = document.getElementById("wheelCanvas");
-  const ctx = canvas.getContext("2d");
-  const spinBtn = document.getElementById("spinBtn");
-  const resultDiv = document.getElementById("result");
-  const loadingSpinner = document.getElementById("loadingSpinner");
-  const noRewardsMsg = document.getElementById("noRewards");
-  
-  // Prize segments with weights (higher weight = smaller chance)
-  const segments = [
-    {value: '₹10', weight: 15, color: '#e57373'}, 
-    {value: '₹20', weight: 10, color: '#64b5f6'},
-    {value: '₹50', weight: 5, color: '#81c784'},
-    {value: '₹100', weight: 3, color: '#ffd54f'},
-    {value: '₹200', weight: 1, color: '#ba68c8'},
-    {value: 'Next Time', weight: 66, color: '#eeeeee'}
-  ];
-  
-  // Convert weights to segments array
-  const weightedSegments = [];
-  segments.forEach(segment => {
-    for (let i = 0; i < segment.weight; i++) {
-      weightedSegments.push(segment);
-    }
-  });
-  
-  let startAngle = 0;
-  const arc = Math.PI / (weightedSegments.length / 2);
-  let spinTimeout = null;
-  let spinAngleStart = 0;
-  let spinTime = 0;
-  let spinTimeTotal = 0;
-
-  // Draw the wheel
   function drawWheel() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw segments
+    ctx.clearRect(0, 0, 300, 300);
     for (let i = 0; i < weightedSegments.length; i++) {
-      const angle = startAngle + i * arc;
-      ctx.fillStyle = weightedSegments[i].color;
+      let angle = startAngle + i * arc;
+      ctx.fillStyle = colors[i % colors.length];
       ctx.beginPath();
-      ctx.moveTo(canvas.width/2, canvas.height/2);
-      ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, angle, angle + arc, false);
-      ctx.lineTo(canvas.width/2, canvas.height/2);
+      ctx.moveTo(150, 150);
+      ctx.arc(150, 150, 150, angle, angle + arc, false);
+      ctx.lineTo(150, 150);
       ctx.fill();
 
-      // Add border between segments
-      ctx.strokeStyle = "#fff";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(canvas.width/2, canvas.height/2);
-      ctx.lineTo(canvas.width/2 + Math.cos(angle) * (canvas.width/2), 
-                canvas.height/2 + Math.sin(angle) * (canvas.height/2));
-      ctx.stroke();
-
-      // Add text
       ctx.save();
       ctx.fillStyle = "#000";
       ctx.font = "bold 14px sans-serif";
-      ctx.translate(canvas.width/2 + Math.cos(angle + arc / 2) * (canvas.width/2 - 60), 
-                    canvas.height/2 + Math.sin(angle + arc / 2) * (canvas.height/2 - 60));
+      ctx.translate(150 + Math.cos(angle + arc / 2) * 100, 150 + Math.sin(angle + arc / 2) * 100);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      
-      // Adjust text for longer values
-      const text = weightedSegments[i].value;
-      const maxWidth = 80;
-      if (ctx.measureText(text).width > maxWidth) {
-        ctx.font = "bold 12px sans-serif";
-      }
-      
-      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+      ctx.fillText(weightedSegments[i], -ctx.measureText(weightedSegments[i]).width / 2, 0);
       ctx.restore();
     }
-    
-    // Draw center circle
-    ctx.fillStyle = "#fff";
-    ctx.beginPath();
-    ctx.arc(canvas.width/2, canvas.height/2, 20, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.strokeStyle = "#ddd";
-    ctx.lineWidth = 5;
-    ctx.stroke();
   }
 
-  // Rotate the wheel
   function rotateWheel() {
-    if (!currentUser) {
-      alert("कृपया पहले लॉगिन करें");
-      openTab('accountTab');
-      return;
-    }
-    
     if (hasSpun) {
-      alert("आज आप पहले ही स्पिन कर चुके हैं! कल फिर कोशिश करें");
+      alert("आप पहले ही स्पिन कर चुके हैं!");
       return;
     }
     
-    if (wheelSpinning) return;
+    if (!document.getElementById('ageVerify').checked) {
+      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
+      return;
+    }
     
     spinBtn.disabled = true;
     resultDiv.innerText = "";
-    loadingSpinner.style.display = 'block';
-    wheelSpinning = true;
-    
-    // Random spin parameters
     spinAngleStart = Math.random() * 30 + 30;
     spinTime = 0;
     spinTimeTotal = Math.random() * 2000 + 2000;
-    
-    // Start rotation
     rotate();
   }
 
-  // Animation for wheel rotation
   function rotate() {
     spinTime += 20;
     if (spinTime >= spinTimeTotal) {
-      stopRotate();
+      stopRotateWheel();
       return;
     }
-    
-    const spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+    let spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
     startAngle += (spinAngle * Math.PI / 180);
     drawWheel();
     spinTimeout = setTimeout(rotate, 20);
   }
 
-  // Easing function for smooth stop
+  function stopRotateWheel() {
+    clearTimeout(spinTimeout);
+    let degrees = startAngle * 180 / Math.PI + 90;
+    let arcd = arc * 180 / Math.PI;
+    let index = Math.floor((360 - (degrees % 360)) / arcd);
+    let prize = weightedSegments[index];
+    
+    resultDiv.innerText = "आपने जीता: " + prize;
+    hasSpun = true;
+    
+    if (prize !== "NextTime") {
+      // Add to rewards
+      const reward = {
+        id: Date.now(),
+        prize: prize,
+        date: new Date().toLocaleDateString(),
+        claimed: false
+      };
+      rewards.push(reward);
+      localStorage.setItem('rewards', JSON.stringify(rewards));
+    }
+  }
+
   function easeOut(t, b, c, d) {
-    const ts = (t /= d) * t;
-    const tc = ts * t;
+    let ts = (t /= d) * t;
+    let tc = ts * t;
     return b + c * (tc + -3 * ts + 3 * t);
   }
 
-  // Stop rotation and determine prize
-  function stopRotate() {
-    clearTimeout(spinTimeout);
-    const degrees = startAngle * 180 / Math.PI + 90;
-    const arcd = arc * 180 / Math.PI;
-    const index = Math.floor((360 - degrees % 360) / arcd) % weightedSegments.length;
-    const prize = weightedSegments[index].value;
-    
-    loadingSpinner.style.display = 'none';
-    resultDiv.className = prize === 'Next Time' ? 'lose' : 'win';
-    resultDiv.innerHTML = prize === 'Next Time' ? 
-      'बधाई हो! आपने ₹0 जीता है. कल फिर कोशिश करें!' : 
-      `बधाई हो! आपने ${prize} जीता है!`;
-    
-    // Add confetti if won
-    if (prize !== 'Next Time') {
-      createConfetti();
-    }
-    
-    // Save the spin result
-    if (currentUser) {
-      hasSpun = true;
-      updateLastSpinDate(currentUser.uid)
-        .then(() => addRewardToHistory(currentUser.uid, prize))
-        .then(() => loadUserRewards(currentUser.uid))
-        .catch(error => {
-          console.error("Error saving spin result:", error);
-          alert("पुरस्कार सहेजने में त्रुटि। कृपया बाद में पुनः प्रयास करें।");
-        });
-    }
-    
-    wheelSpinning = false;
-  }
-
-  // Create confetti effect
-  function createConfetti() {
-    const colors = ['#FF5722', '#FF9800', '#FFC107', '#FFEB3B', '#4CAF50', '#2196F3', '#9C27B0'];
-    
-    for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.width = Math.random() * 10 + 5 + 'px';
-      confetti.style.height = Math.random() * 10 + 5 + 'px';
-      confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-      document.body.appendChild(confetti);
-      
-      // Remove confetti after animation
-      setTimeout(() => {
-        confetti.remove();
-      }, 5000);
-    }
-  }
-
-  // Load user rewards
-  function loadUserRewards(userId) {
-    database.ref('rewards/' + userId).once('value').then((snapshot) => {
-      const rewards = snapshot.val();
-      const rewardsList = document.getElementById('rewardsList');
-      
-      if (!rewards || Object.keys(rewards).length === 0) {
-        noRewardsMsg.style.display = 'block';
-        rewardsList.innerHTML = '<p id="noRewards">आपने अभी तक कोई पुरस्कार नहीं जीता है। स्पिन करके पुरस्कार जीतें!</p>';
-        return;
-      }
-      
-      noRewardsMsg.style.display = 'none';
-      let html = '';
-      
-      Object.keys(rewards).forEach(key => {
-        const reward = rewards[key];
-        const date = new Date(reward.date).toLocaleDateString('hi-IN');
-        const statusClass = reward.status === 'completed' ? 'status-completed' : 'status-pending';
-        
-        html += `
-          <div class="reward-item">
-            <div class="reward-prize">${reward.prize}</div>
-            <div class="reward-date">${date}</div>
-            <div class="reward-status ${statusClass}">${reward.status === 'completed' ? 'प्राप्त' : 'लंबित'}</div>
-          </div>
-        `;
-      });
-      
-      rewardsList.innerHTML = html;
-    }).catch(error => {
-      console.error("Error loading rewards:", error);
-      noRewardsMsg.style.display = 'block';
-    });
-  }
-
-  // Show user profile
-  function showProfile(user) {
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('registerSection').style.display = 'none';
-    document.getElementById('profileSection').style.display = 'block';
-    
-    database.ref('users/' + user.uid).once('value').then((snapshot) => {
-      const userData = snapshot.val();
-      let html = `
-        <p><strong>नाम:</strong> ${userData?.name || 'नहीं दिया गया'}</p>
-        <p><strong>ईमेल:</strong> ${user.email}</p>
-        <p><strong>मोबाइल:</strong> ${userData?.mobile || 'नहीं दिया गया'}</p>
-      `;
-      document.getElementById('userProfileInfo').innerHTML = html;
-    });
-  }
-
-  // Show login form
-  function showLogin() {
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('registerSection').style.display = 'none';
-    document.getElementById('profileSection').style.display = 'none';
-  }
-
-  // Show registration form
+  // Login/Register functions
   function showRegister() {
-    document.getElementById('loginSection').style.display = 'none';
+    document.querySelector('.login-section').style.display = 'none';
     document.getElementById('registerSection').style.display = 'block';
-    document.getElementById('profileSection').style.display = 'none';
   }
 
-  // User login
+  function showLogin() {
+    document.querySelector('.login-section').style.display = 'block';
+    document.getElementById('registerSection').style.display = 'none';
+  }
+
   function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const ageVerified = document.getElementById('ageVerify').checked;
     
     if (!email || !password) {
       alert("कृपया ईमेल और पासवर्ड दर्ज करें");
       return;
     }
     
-    if (!ageVerified) {
-      alert("आपको 18+ वर्ष का होना आवश्यक है");
+    if (!document.getElementById('ageVerify').checked) {
+      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
       return;
     }
     
-    auth.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Login successful
-        currentUser = userCredential.user;
-      })
-      .catch((error) => {
-        alert("लॉगिन असफल: " + error.message);
-      });
+    alert("लॉगिन सफल! (डेमो)");
   }
 
-  // User registration
   function register() {
     const name = document.getElementById('regName').value;
     const email = document.getElementById('regEmail').value;
     const password = document.getElementById('regPassword').value;
     const mobile = document.getElementById('regMobile').value;
-    const ageVerified = document.getElementById('regAgeVerify').checked;
     
     if (!name || !email || !password || !mobile) {
       alert("कृपया सभी फ़ील्ड भरें");
       return;
     }
     
-    if (password.length < 6) {
-      alert("पासवर्ड कम से कम 6 अक्षरों का होना चाहिए");
+    if (mobile.length !== 10 || isNaN(mobile)) {
+      alert("कृपया वैध मोबाइल नंबर दर्ज करें");
       return;
     }
     
-    if (!ageVerified) {
-      alert("आपको 18+ वर्ष का होना आवश्यक है");
+    if (!document.getElementById('regAgeVerify').checked) {
+      alert("कृपया पुष्टि करें कि आप 18+ वर्ष के हैं");
       return;
     }
     
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Registration successful
-        currentUser = userCredential.user;
-        
-        // Save additional user data
-        return database.ref('users/' + currentUser.uid).set({
-          name: name,
-          email: email,
-          mobile: mobile,
-          createdAt: new Date().toISOString()
-        });
-      })
-      .then(() => {
-        alert("रजिस्ट्रेशन सफल!");
-      })
-      .catch((error) => {
-        alert("रजिस्ट्रेशन असफल: " + error.message);
-      });
+    alert("रजिस्ट्रेशन सफल! (डेमो)");
+    showLogin();
   }
 
-  // User logout
-  function logout() {
-    auth.signOut().then(() => {
-      currentUser = null;
-      showLogin();
-    }).catch((error) => {
-      alert("लॉगआउट असफल: " + error.message);
+  // Rewards functions
+  function loadRewards() {
+    const rewardsList = document.getElementById('rewardsList');
+    
+    if (rewards.length === 0) {
+      noRewardsMsg.style.display = 'block';
+      return;
+    }
+    
+    noRewardsMsg.style.display = 'none';
+    rewardsList.innerHTML = '';
+    
+    rewards.forEach(reward => {
+      const rewardItem = document.createElement('div');
+      rewardItem.className = 'reward-item';
+      rewardItem.innerHTML = `
+        <span>${reward.prize}</span>
+        <span>${reward.date}</span>
+        <span>${reward.claimed ? 'Claimed' : 'Pending'}</span>
+      `;
+      rewardsList.appendChild(rewardItem);
     });
   }
 
-  // Modal functions
-  function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
-  }
-
-  function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-  }
-
-  // Initialize the wheel
+  // Initialize
+  spinBtn.addEventListener("click", rotateWheel);
   drawWheel();
-  spinBtn.addEventListener('click', rotateWheel);
-
-  // Close modal when clicking outside
-  window.onclick = function(event) {
-    if (event.target.className === 'modal') {
-      event.target.style.display = 'none';
-    }
-  }
 </script>
-
+</body>
+  <!-- Footer -->
+<footer>
+  © 2025 RUPESH ELECTRONICS
+</footer>
+</script>
 </body>
 </html>
