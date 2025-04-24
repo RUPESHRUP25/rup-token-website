@@ -347,6 +347,25 @@
   </footer>
 
   <script>
+    // Initialize points from localStorage or set to 0
+    let points = localStorage.getItem('spinPoints') ? parseInt(localStorage.getItem('spinPoints')) : 0;
+    let canSpin = true;
+    let lastSpinDate = localStorage.getItem('lastSpinDate');
+    
+    // Initialize UI
+    document.addEventListener('DOMContentLoaded', function() {
+      updatePointsDisplay();
+      createWheel();
+      
+      // Check if already spun today
+      const today = new Date().toDateString();
+      if (lastSpinDate === today) {
+        document.getElementById('spin-button').disabled = true;
+        document.getElementById('spin-result').innerHTML = 
+          "You've already spun today! Come back tomorrow!";
+      }
+    });
+
     // Background music control
     const backgroundMusic = document.getElementById('background-music');
     const winSound = document.getElementById('win-sound');
@@ -371,9 +390,6 @@
       }
     }, { once: true });
 
-    let points = 0;
-    let canSpin = true;
-    
     function showTab(id) {
       document.querySelectorAll('.tab-content').forEach(div => div.classList.remove('active'));
       document.getElementById(id).classList.add('active');
@@ -382,6 +398,8 @@
     // Create colorful wheel with prizes
     function createWheel() {
       const wheel = document.getElementById("wheel");
+      wheel.innerHTML = ''; // Clear any existing wheel
+      
       const prizes = [
         { text: "10 Points", color: "#FF5252", value: 10 },
         { text: "5 Points", color: "#FF4081", value: 5 },
@@ -411,10 +429,14 @@
       });
     }
 
-    createWheel();
-
     function spinWheel() {
       if (!canSpin) return;
+      
+      const today = new Date().toDateString();
+      if (lastSpinDate === today) {
+        alert("You can only spin once per day!");
+        return;
+      }
       
       canSpin = false;
       const wheel = document.getElementById("wheel");
@@ -440,25 +462,39 @@
           points += reward;
           spinResult.innerHTML = 🎉 Congratulations! You won <strong>${reward} points</strong>! 🎉;
           
+          // Save to localStorage
+          localStorage.setItem('spinPoints', points);
+          localStorage.setItem('lastSpinDate', today);
+          
           // Play win sound
           winSound.currentTime = 0;
           winSound.play();
           
           // Update UI
-          document.getElementById("points").innerText = points;
-          document.getElementById("balance").innerText = (points / 1000).toFixed(2);
+          updatePointsDisplay();
           
           // Add to reward list
-          const li = document.createElement("li");
-          li.innerHTML = <i class="fas fa-coins" style="color: gold;"></i> +${reward} points (${new Date().toLocaleString()});
-          document.getElementById("reward-list").prepend(li);
+          addRewardToHistory(reward);
           
           // Create confetti effect
           createConfetti();
           
+          // Disable spin button for today
+          document.getElementById('spin-button').disabled = true;
           canSpin = true;
         }, 3000);
       }, 10);
+    }
+
+    function updatePointsDisplay() {
+      document.getElementById("points").innerText = points;
+      document.getElementById("balance").innerText = (points / 1000).toFixed(2);
+    }
+
+    function addRewardToHistory(reward) {
+      const li = document.createElement("li");
+      li.innerHTML = <i class="fas fa-coins" style="color: gold;"></i> +${reward} points (${new Date().toLocaleString()});
+      document.getElementById("reward-list").prepend(li);
     }
 
     function createConfetti() {
@@ -498,8 +534,16 @@
         return;
       }
       
-      const message = encodeURIComponent(Hello Rupesh Electronics! I want to claim my reward of ₹${(points / 1000).toFixed(2)} (${points} points).);
-      window.open(https://wa.me/919334113322?text=${message}, '_blank');
+      const amount = (points / 1000).toFixed(2);
+      const message = Hello Rupesh Electronics! I want to claim my reward of ₹${amount} (${points} points). My registered mobile number is: [YOUR_NUMBER_HERE];
+      
+      // Open WhatsApp with prefilled message
+      window.open(https://wa.me/919334113322?text=${encodeURIComponent(message)}, '_blank');
+      
+      // Optional: Reset points after claim
+      // points = 0;
+      // localStorage.setItem('spinPoints', points);
+      // updatePointsDisplay();
     }
   </script>
 </body>
