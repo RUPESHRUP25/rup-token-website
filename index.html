@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spin & Win - Rupesh Electronics</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
     
@@ -287,6 +289,7 @@
       display: flex;
       align-items: center;
       border-left: 5px solid #ff9800;
+      flex-wrap: wrap;
     }
     
     .reward-item img {
@@ -299,11 +302,13 @@
     
     .reward-item .reward-info {
       flex: 1;
+      min-width: 200px;
     }
     
     .reward-item .reward-points {
       font-weight: bold;
       color: #ffeb3b;
+      margin: 0 15px;
     }
     
     .claim-btn {
@@ -314,6 +319,7 @@
       border-radius: 20px;
       cursor: pointer;
       transition: all 0.3s;
+      margin: 5px;
     }
     
     .claim-btn:hover {
@@ -335,6 +341,97 @@
       padding-bottom: 5px;
       display: inline-block;
     }
+    
+    /* Ad container styles */
+    .ad-container {
+      width: 100%;
+      margin: 20px 0;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .ad-label {
+      font-size: 12px;
+      color: #cccccc;
+      margin-bottom: 5px;
+    }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+    
+    .modal-content {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 500px;
+      position: relative;
+      animation: modalFadeIn 0.3s;
+    }
+    
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .close-modal {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close-modal:hover {
+      color: #ff9800;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background: rgba(255,255,255,0.9);
+    }
+    
+    .submit-btn {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
@@ -348,6 +445,61 @@
   <audio id="win-sound">
     <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
   </audio>
+
+  <!-- Ad Modal -->
+  <div id="adModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2>Watch Ad to Spin</h2>
+      <p>Please watch this short ad to unlock your spin opportunity!</p>
+      
+      <!-- Ad Container -->
+      <div class="ad-container">
+        <div class="ad-label">ADVERTISEMENT</div>
+        <!-- Replace with your actual AdSense ad code -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+      
+      <button class="submit-btn" onclick="adWatched()">I Watched the Ad</button>
+    </div>
+  </div>
+
+  <!-- Claim Form Modal -->
+  <div id="claimModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2>Claim Your Reward</h2>
+      <p>Please fill this form to claim your reward</p>
+      
+      <form id="claimForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">WhatsApp Number</label>
+          <input type="tel" id="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Full Address</label>
+          <input type="text" id="address" required>
+        </div>
+        <div class="form-group">
+          <label for="product">Product Claiming</label>
+          <input type="text" id="product" readonly>
+        </div>
+        <button type="submit" class="submit-btn">Submit via WhatsApp</button>
+      </form>
+    </div>
+  </div>
 
   <header>
     <h1>🎡 Spin & Win 🎡</h1>
@@ -364,10 +516,26 @@
 
   <div id="spin" class="tab-content active">
     <h2><i class="fas fa-star"></i> Spin the Wheel <i class="fas fa-star"></i></h2>
+    
+    <!-- Ad before spin -->
+    <div class="ad-container">
+      <div class="ad-label">ADVERTISEMENT</div>
+      <!-- Replace with your actual AdSense ad code -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+           data-ad-slot="0987654321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
     <div id="wheel-container">
       <div id="wheel-pointer"></div>
       <div id="wheel"></div>
-      <button id="spin-button" onclick="spinWheel()"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
+      <button id="spin-button" onclick="showAdModal()"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
       <div id="spin-result">Spin to win amazing rewards!</div>
     </div>
   </div>
@@ -375,6 +543,21 @@
   <div id="rewards" class="tab-content">
     <h2><i class="fas fa-trophy"></i> Your Rewards History</h2>
     <ul id="reward-list"></ul>
+    
+    <!-- Ad in rewards section -->
+    <div class="ad-container">
+      <div class="ad-label">ADVERTISEMENT</div>
+      <!-- Replace with your actual AdSense ad code -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+           data-ad-slot="1122334455"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
   </div>
 
   <div id="wallet" class="tab-content">
@@ -399,27 +582,7 @@
         <p>High quality protective cover for your smartphone</p>
       </div>
       <div class="reward-points">50,000 Points</div>
-      <button class="claim-btn" onclick="redeemProduct('Mobile Cover', 50000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61BGE6iu4AL._SL1500_.jpg" alt="Bluetooth Speaker">
-      <div class="reward-info">
-        <h3>Bluetooth Speaker</h3>
-        <p>Portable wireless speaker with rich sound</p>
-      </div>
-      <div class="reward-points">75,000 Points</div>
-      <button class="claim-btn" onclick="redeemProduct('Bluetooth Speaker', 75000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61DuOZ0VbVL._SL1500_.jpg" alt="Pen Drive">
-      <div class="reward-info">
-        <h3>32GB Pen Drive</h3>
-        <p>High speed USB flash drive</p>
-      </div>
-      <div class="reward-points">60,000 Points</div>
-      <button class="claim-btn" onclick="redeemProduct('32GB Pen Drive', 60000)">Redeem</button>
+      <button class="claim-btn" onclick="showClaimModal('Premium Mobile Cover', 50000)">Redeem</button>
     </div>
     
     <div class="reward-item">
@@ -429,7 +592,47 @@
         <p>9H hardness tempered glass for mobile protection</p>
       </div>
       <div class="reward-points">40,000 Points</div>
-      <button class="claim-btn" onclick="redeemProduct('Tempered Glass', 40000)">Redeem</button>
+      <button class="claim-btn" onclick="showClaimModal('Tempered Glass', 40000)">Redeem</button>
+    </div>
+    
+    <div class="reward-item">
+      <img src="https://m.media-amazon.com/images/I/61DuOZ0VbVL._SL1500_.jpg" alt="Mobile Sticker">
+      <div class="reward-info">
+        <h3>Mobile Sticker Set</h3>
+        <p>Premium quality decorative stickers for your phone</p>
+      </div>
+      <div class="reward-points">30,000 Points</div>
+      <button class="claim-btn" onclick="showClaimModal('Mobile Sticker Set', 30000)">Redeem</button>
+    </div>
+    
+    <div class="reward-item">
+      <img src="https://m.media-amazon.com/images/I/61BGE6iu4AL._SL1500_.jpg" alt="Bluetooth Speaker">
+      <div class="reward-info">
+        <h3>Bluetooth Speaker</h3>
+        <p>Portable wireless speaker with rich sound</p>
+      </div>
+      <div class="reward-points">75,000 Points</div>
+      <button class="claim-btn" onclick="showClaimModal('Bluetooth Speaker', 75000)">Redeem</button>
+    </div>
+    
+    <div class="reward-item">
+      <img src="https://m.media-amazon.com/images/I/51VQ6x9z0RL._SL1500_.jpg" alt="Bluetooth Earbuds">
+      <div class="reward-info">
+        <h3>Bluetooth Earbuds</h3>
+        <p>Wireless stereo earbuds with mic</p>
+      </div>
+      <div class="reward-points">85,000 Points</div>
+      <button class="claim-btn" onclick="showClaimModal('Bluetooth Earbuds', 85000)">Redeem</button>
+    </div>
+    
+    <div class="reward-item">
+      <img src="https://m.media-amazon.com/images/I/71hEzQGO5qL._SL1500_.jpg" alt="Smartphone">
+      <div class="reward-info">
+        <h3>Smartphone (Up to ₹8,000)</h3>
+        <p>Latest model smartphone with warranty</p>
+      </div>
+      <div class="reward-points">250,000 Points</div>
+      <button class="claim-btn" onclick="showClaimModal('Smartphone (Up to ₹8,000)', 250000)">Redeem</button>
     </div>
   </div>
 
@@ -441,8 +644,9 @@
       <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Spin daily to win points (maximum 5 spins per day)</p>
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> 1000 points = ₹1.00 when redeemed as cash</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Points can be redeemed for products starting from 50,000 points</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Claim rewards directly through WhatsApp</p>
+        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Points can be redeemed for products starting from 30,000 points</p>
+        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Must watch ad before each spin</p>
+        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Claim rewards directly through WhatsApp or Google Form</p>
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Prizes are non-transferable</p>
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Rupesh Electronics reserves the right to modify or terminate the program at any time</p>
       </div>
@@ -455,6 +659,7 @@
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Your data will not be shared with third parties without consent</p>
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Points and rewards are stored in your browser's local storage</p>
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Clearing browser data may result in loss of unredeemed points</p>
+        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> We use Google AdSense to display relevant ads</p>
       </div>
     </div>
     
@@ -466,6 +671,7 @@
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Actual products may vary slightly from images</p>
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Rewards are subject to availability</p>
         <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> No cash alternative for physical rewards</p>
+        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Ads help support this free rewards program</p>
       </div>
     </div>
   </div>
@@ -496,6 +702,8 @@
     let lastSpinDate = localStorage.getItem('lastSpinDate');
     let rewardsHistory = JSON.parse(localStorage.getItem('rewardsHistory')) || [];
     let redeemedItems = JSON.parse(localStorage.getItem('redeemedItems')) || [];
+    let currentProductToClaim = null;
+    let currentProductPoints = 0;
     
     // Initialize UI
     document.addEventListener('DOMContentLoaded', function() {
@@ -505,7 +713,27 @@
       
       // Check if already spun today
       checkDailySpin();
+      
+      // Initialize AdSense ads
+      initializeAds();
+      
+      // Form submission handler
+      document.getElementById('claimForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitClaimForm();
+      });
     });
+
+    function initializeAds() {
+      // Load AdSense ads
+      try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.log("AdSense error:", e);
+      }
+    }
 
     function checkDailySpin() {
       const today = new Date().toDateString();
@@ -554,15 +782,15 @@
       const wheel = document.getElementById("wheel");
       wheel.innerHTML = ''; // Clear any existing wheel
       
-      const prizes = [
-        { text: "150 Points", color: "#FF5252",value: 150 },
-        { text: "250 Points", color: "#FF4081",value: 250 },
-        { text: "200 Points", color: "#E040FB",value: 200 },
-        { text: "300 Points", color: "#7C4DFF",value: 300 },
-        { text: "350 Points", color: "#536DFE",value: 350 },
-        { text: "400 Points", color: "#448AFF",value: 400 },
-        { text: "450 Points", color: "#40C4FF",value: 450 },
-        { text: "500 Points", color: "#18FFFF",value: 500 }
+     const prizes = [
+        { text: "150 Points", color: "#FF5252",  value: 150 },
+        { text: "250 Points", color: "#FF4081",  value: 250 },
+        { text: "200 Points", color: "#E040FB",  value: 200 },
+        { text: "300 Points", color: "#7C4DFF",  value: 300 },
+        { text: "350 Points", color: "#536DFE",  value: 350 },
+        { text: "400 Points", color: "#448AFF",  value: 400 },
+        { text: "450 Points", color: "#40C4FF",  value: 450 }, /* Fixed display */
+        { text: "500 Points", color: "#18FFFF",  value: 500 }
       ];
       
       const anglePerSector = 360 / prizes.length;
@@ -575,14 +803,74 @@
         
         const prizeText = document.createElement("div");
         prizeText.textContent = prize.text;
-        prizeText.style.transform = `rotate(${anglePerSector/2}deg) translate(30px, 30px)`;
-        prizeText.style.fontSize = "14px";
-        prizeText.style.textAlign = "center";
-        prizeText.style.width = "80px";
         
         sector.appendChild(prizeText);
         wheel.appendChild(sector);
       });
+    }
+
+    function showAdModal() {
+      document.getElementById('adModal').style.display = 'block';
+    }
+    
+    function adWatched() {
+      closeModal();
+      spinWheel();
+    }
+    
+    function showClaimModal(product, pointsRequired) {
+      if (points < pointsRequired) {
+        alert(`You need ${pointsRequired} points to redeem this product!`);
+        return;
+      }
+      
+      currentProductToClaim = product;
+      currentProductPoints = pointsRequired;
+      document.getElementById('product').value = product;
+      document.getElementById('claimModal').style.display = 'block';
+    }
+    
+    function submitClaimForm() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const product = document.getElementById('product').value;
+      
+      // Deduct points
+      points -= currentProductPoints;
+      localStorage.setItem('spinPoints', points);
+      
+      // Add to redemption history
+      rewardsHistory.unshift({
+        product: product,
+        points: currentProductPoints,
+        date: new Date().toISOString(),
+        type: 'redemption'
+      });
+      localStorage.setItem('rewardsHistory', JSON.stringify(rewardsHistory));
+      
+      // Update UI
+      updatePointsDisplay();
+      addRewardToHistory(product, 'redemption');
+      closeModal();
+      
+      // Send WhatsApp message
+      const message = `*Rupesh Electronics Reward Claim*\n\n` +
+                     `Name: ${name}\n` +
+                     `Phone: ${phone}\n` +
+                     `Address: ${address}\n` +
+                     `Product: ${product}\n` +
+                     `Points Used: ${currentProductPoints}`;
+      
+      window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
+      
+      // Reset form
+      document.getElementById('claimForm').reset();
+    }
+    
+    function closeModal() {
+      document.getElementById('adModal').style.display = 'none';
+      document.getElementById('claimModal').style.display = 'none';
     }
 
     function spinWheel() {
@@ -614,7 +902,7 @@
         
         // Calculate prize after spin completes
         setTimeout(() => {
-          const prizeValues = [150,250,200,300,350,400,   450    ,500];
+          const prizeValues = [150, 250, 200, 300, 350, 400, 450, 500];
           const normalizedAngle = randomSpin % 360;
           const prizeIndex = Math.floor((360 - normalizedAngle) / (360 / prizeValues.length)) % prizeValues.length;
           const reward = prizeValues[prizeIndex];
@@ -724,35 +1012,6 @@
       
       // Open WhatsApp with prefilled message
       window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
-    }
-    
-    function redeemProduct(productName, pointsRequired) {
-      if (points < pointsRequired) {
-        alert(`You need ${pointsRequired} points to redeem this product!`);
-        return;
-      }
-      
-      if (confirm(`Are you sure you want to redeem ${productName} for ${pointsRequired} points?`)) {
-        points -= pointsRequired;
-        localStorage.setItem('spinPoints', points);
-        
-        // Add to redemption history
-        rewardsHistory.unshift({
-          product: productName,
-          points: pointsRequired,
-          date: new Date().toISOString(),
-          type: 'redemption'
-        });
-        localStorage.setItem('rewardsHistory', JSON.stringify(rewardsHistory));
-        
-        // Update UI
-        updatePointsDisplay();
-        addRewardToHistory(productName, 'redemption');
-        
-        // Send WhatsApp message
-        const message = `Hello Rupesh Electronics! I want to redeem my ${pointsRequired} points for ${productName}. My registered mobile number is: [YOUR_NUMBER_HERE]`;
-        window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
-      }
     }
   </script>
 </body>
