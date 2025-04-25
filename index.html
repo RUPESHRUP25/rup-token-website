@@ -432,6 +432,204 @@
     .submit-btn:hover {
       transform: translateY(-2px);
     }
+    
+    /* FAQ Styles */
+    .faq-item {
+      margin-bottom: 15px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 15px;
+      background: rgba(0,0,0,0.3);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    
+    .faq-question:hover {
+      background: rgba(0,0,0,0.4);
+    }
+    
+    .faq-answer {
+      padding: 0 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .faq-answer.show {
+      padding: 15px;
+      max-height: 500px;
+    }
+    
+    /* About Us and Contact Styles */
+    .content-section {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .content-section h2 {
+      color: #ff9800;
+      border-bottom: 2px solid #ff9800;
+      padding-bottom: 5px;
+    }
+    
+    .team-member {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.3);
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .team-member img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+      border: 3px solid #ff9800;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .contact-card {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid #ff9800;
+    }
+    
+    .contact-card h3 {
+      margin-top: 0;
+      color: #ff9800;
+    }
+    
+    /* Tech Article Styles */
+    .article-card {
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .article-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .article-content {
+      padding: 20px;
+    }
+    
+    .article-content h3 {
+      margin-top: 0;
+      color: #ff9800;
+    }
+    
+    .read-more {
+      display: inline-block;
+      background: #ff9800;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .read-more:hover {
+      background: #ff5722;
+      transform: translateY(-2px);
+    }
+    
+    /* Referral Section */
+    .referral-container {
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    
+    .referral-code {
+      font-size: 24px;
+      font-weight: bold;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 15px 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .referral-code:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .share-btn {
+      padding: 10px 20px;
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .share-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .whatsapp {
+      background: #25D366;
+    }
+    
+    .facebook {
+      background: #3b5998;
+    }
+    
+    .twitter {
+      background: #1DA1F2;
+    }
+    
+    .copy-btn {
+      background: #ff9800;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .copy-btn:hover {
+      background: #ff5722;
+      transform: translateY(-3px);
+    }
   </style>
 </head>
 <body>
@@ -511,9 +709,15 @@
     <a href="#" onclick="showTab('rewards')"><i class="fas fa-gift"></i> My Rewards</a>
     <a href="#" onclick="showTab('wallet')"><i class="fas fa-wallet"></i> My Wallet</a>
     <a href="#" onclick="showTab('redeem')"><i class="fas fa-shopping-bag"></i> Redeem Rewards</a>
+    <a href="#" onclick="showTab('refer')"><i class="fas fa-user-plus"></i> Refer & Earn</a>
+    <a href="#" onclick="showTab('about')"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="#" onclick="showTab('contact')"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="#" onclick="showTab('tech')"><i class="fas fa-microchip"></i> Tech Articles</a>
+    <a href="#" onclick="showTab('faq')"><i class="fas fa-question-circle"></i> FAQ</a>
     <a href="#" onclick="showTab('terms')"><i class="fas fa-file-alt"></i> Terms</a>
   </nav>
 
+  <!-- Spin Wheel Tab -->
   <div id="spin" class="tab-content active">
     <h2><i class="fas fa-star"></i> Spin the Wheel <i class="fas fa-star"></i></h2>
     
@@ -540,6 +744,7 @@
     </div>
   </div>
 
+  <!-- Rewards History Tab -->
   <div id="rewards" class="tab-content">
     <h2><i class="fas fa-trophy"></i> Your Rewards History</h2>
     <ul id="reward-list"></ul>
@@ -560,6 +765,7 @@
     </div>
   </div>
 
+  <!-- Wallet Tab -->
   <div id="wallet" class="tab-content">
     <h2><i class="fas fa-rupee-sign"></i> Your Wallet</h2>
     <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
@@ -571,6 +777,7 @@
     </button>
   </div>
 
+  <!-- Redeem Tab -->
   <div id="redeem" class="tab-content">
     <h2><i class="fas fa-gift"></i> Redeem Your Points</h2>
     <p>Exchange your points for amazing products:</p>
@@ -636,6 +843,362 @@
     </div>
   </div>
 
+  <!-- Refer & Earn Tab -->
+  <div id="refer" class="tab-content">
+    <h2><i class="fas fa-user-plus"></i> Refer & Earn</h2>
+    
+    <div class="referral-container">
+      <h3>Invite Friends & Earn 500 Points Each!</h3>
+      <p>Share your referral code with friends and earn points when they sign up and spin the wheel.</p>
+      
+      <div class="content-section">
+        <h4>How it works:</h4>
+        <ol>
+          <li>Share your unique referral code below with friends</li>
+          <li>Your friend signs up using your code</li>
+          <li>When they complete their first spin, you get 500 points!</li>
+          <li>No limit on how many friends you can refer</li>
+        </ol>
+      </div>
+      
+      <div class="content-section">
+        <h4>Your Unique Referral Code:</h4>
+        <div class="referral-code" id="referralCode" onclick="copyReferralCode()">RUPEESH-<span id="userCode">X7F9K2</span></div>
+        <button class="copy-btn" onclick="copyReferralCode()"><i class="fas fa-copy"></i> Copy Code</button>
+        
+        <p style="margin-top: 20px;">Or share directly via:</p>
+        <div class="share-buttons">
+          <a href="#" class="share-btn whatsapp" onclick="shareViaWhatsApp()"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="#" class="share-btn facebook" onclick="shareViaFacebook()"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="#" class="share-btn twitter" onclick="shareViaTwitter()"><i class="fab fa-twitter"></i> Twitter</a>
+        </div>
+      </div>
+      
+      <div class="content-section">
+        <h4>Your Referral Stats:</h4>
+        <p>Total Referrals: <strong id="totalReferrals">0</strong></p>
+        <p>Points Earned from Referrals: <strong id="referralPoints">0</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us Tab -->
+  <div id="about" class="tab-content">
+    <h2><i class="fas fa-info-circle"></i> About Rupesh Electronics</h2>
+    
+    <div class="content-section">
+      <h3>Our Story</h3>
+      <p>Founded in 2010, Rupesh Electronics has grown from a small mobile repair shop to one of the most trusted electronics retailers in the region. Our journey began with a simple mission: to provide high-quality electronic products and services at affordable prices.</p>
+      <p>Over the years, we've expanded our offerings to include the latest smartphones, accessories, and home electronics, always staying true to our commitment to customer satisfaction and technological innovation.</p>
+    </div>
+    
+    <div class="content-section">
+      <h3>Our Mission</h3>
+      <p>At Rupesh Electronics, we believe technology should be accessible to everyone. Our mission is to:</p>
+      <ul>
+        <li>Provide top-quality electronic products at competitive prices</li>
+        <li>Offer exceptional customer service and technical support</li>
+        <li>Educate our customers about technology through workshops and resources</li>
+        <li>Give back to our community through various initiatives</li>
+      </ul>
+    </div>
+    
+    <div class="content-section">
+      <h3>Meet Our Team</h3>
+      
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rupesh Kumar">
+        <div>
+          <h4>Rupesh Kumar</h4>
+          <p><strong>Founder & CEO</strong></p>
+          <p>With over 15 years of experience in the electronics industry, Rupesh leads our company with vision and passion for technology.</p>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Sharma">
+        <div>
+          <h4>Priya Sharma</h4>
+          <p><strong>Customer Service Manager</strong></p>
+          <p>Priya ensures every customer receives the best possible experience when shopping with us.</p>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Amit Patel">
+        <div>
+          <h4>Amit Patel</h4>
+          <p><strong>Technical Specialist</strong></p>
+          <p>Amit and his team handle all technical support and repairs with expertise and care.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h3>Why Choose Us?</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
+          <h4 style="margin-top: 0;"><i class="fas fa-award" style="color: #ff9800;"></i> Quality Products</h4>
+          <p>We source only the best products from trusted manufacturers and suppliers.</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
+          <h4 style="margin-top: 0;"><i class="fas fa-rupee-sign" style="color: #ff9800;"></i> Best Prices</h4>
+          <p>Our direct relationships with suppliers allow us to offer competitive pricing.</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
+          <h4 style="margin-top: 0;"><i class="fas fa-headset" style="color: #ff9800;"></i> Expert Support</h4>
+          <p>Our knowledgeable staff is always ready to help with any questions.</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
+          <h4 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #ff9800;"></i> Warranty Protection</h4>
+          <p>All products come with manufacturer warranty and our own service guarantee.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Tab -->
+  <div id="contact" class="tab-content">
+    <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+    
+    <div class="content-section">
+      <h3>Get in Touch</h3>
+      <p>We'd love to hear from you! Whether you have questions about our products, need technical support, or want to provide feedback, our team is ready to assist you.</p>
+      
+      <div class="contact-info">
+        <div class="contact-card">
+          <h3><i class="fas fa-map-marker-alt"></i> Our Store</h3>
+          <p>123 Electronics Lane<br>
+          Tech City, TC 123456<br>
+          India</p>
+          <p><a href="https://maps.google.com" target="_blank" style="color: #ff9800;">View on Map →</a></p>
+        </div>
+        
+        <div class="contact-card">
+          <h3><i class="fas fa-phone-alt"></i> Call Us</h3>
+          <p>Sales: <a href="tel:+919334113322" style="color: white;">+91 9334113322</a><br>
+          Support: <a href="tel:+919334113322" style="color: white;">+91 9334113322</a><br>
+          WhatsApp: <a href="https://wa.me/919334113322" style="color: white;">+91 9334113322</a></p>
+        </div>
+        
+        <div class="contact-card">
+          <h3><i class="fas fa-envelope"></i> Email Us</h3>
+          <p>General Inquiries: <a href="mailto:info@rupeshelectronics.com" style="color: white;">info@rupeshelectronics.com</a><br>
+          Support: <a href="mailto:support@rupeshelectronics.com" style="color: white;">support@rupeshelectronics.com</a><br>
+          Business: <a href="mailto:business@rupeshelectronics.com" style="color: white;">business@rupeshelectronics.com</a></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h3>Store Hours</h3>
+      <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
+        <p><strong>Monday - Saturday:</strong> 10:00 AM - 8:00 PM</p>
+        <p><strong>Sunday:</strong> 11:00 AM - 6:00 PM</p>
+        <p><strong>Holidays:</strong> Closed on major national holidays</p>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h3>Send Us a Message</h3>
+      <form style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+        <div class="form-group">
+          <label for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-phone">Phone Number</label>
+          <input type="tel" id="contact-phone">
+        </div>
+        <div class="form-group">
+          <label for="contact-subject">Subject</label>
+          <select id="contact-subject" required>
+            <option value="">Select a subject</option>
+            <option value="sales">Sales Inquiry</option>
+            <option value="support">Technical Support</option>
+            <option value="feedback">Feedback/Suggestion</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" rows="4" required style="width: 100%; padding: 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9);"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tech Articles Tab -->
+  <div id="tech" class="tab-content">
+    <h2><i class="fas fa-microchip"></i> Tech Articles & Guides</h2>
+    <p>Stay updated with the latest in technology with our informative articles and buying guides.</p>
+    
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smartphone Buying Guide">
+      <div class="article-content">
+        <h3>How to Choose the Perfect Smartphone in 2025</h3>
+        <p>With so many options available, selecting the right smartphone can be overwhelming. Our comprehensive guide walks you through all the factors to consider...</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+    
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Battery Care Tips">
+      <div class="article-content">
+        <h3>10 Proven Ways to Extend Your Phone's Battery Life</h3>
+        <p>Learn professional tips and tricks to maximize your smartphone's battery performance and lifespan...</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+    
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wireless Earbuds">
+      <div class="article-content">
+        <h3>True Wireless Earbuds: What to Look For Before Buying</h3>
+        <p>From sound quality to battery life, we break down the key features to consider when shopping for wireless earbuds...</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+    
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="5G Technology">
+      <div class="article-content">
+        <h3>5G Explained: What It Means for Your Mobile Experience</h3>
+        <p>Understand how 5G technology works and how it will transform your smartphone usage in the coming years...</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+    
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smartphone Photography">
+      <div class="article-content">
+        <h3>Smartphone Photography Tips for Stunning Photos</h3>
+        <p>You don't need an expensive camera to take amazing photos. Learn professional techniques using just your smartphone...</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+    
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1517430545161-0adf6d68812f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mobile Security">
+      <div class="article-content">
+        <h3>Essential Mobile Security Tips Everyone Should Know</h3>
+        <p>Protect your personal data and privacy with these crucial smartphone security practices...</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Tab -->
+  <div id="faq" class="tab-content">
+    <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>How does the Spin & Win wheel work?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Our Spin & Win wheel is a fun way to earn points that can be redeemed for rewards. Each day, you can spin the wheel once to win points ranging from 150 to 500. These points accumulate in your wallet and can be redeemed for products or converted to cash (1000 points = ₹1).</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>How do I claim my rewards?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>To claim your rewards, go to the "Redeem Rewards" tab and select the product you want. If you have enough points, click the "Redeem" button and fill out the claim form. For cash redemption, visit the "My Wallet" tab and click "Claim via WhatsApp" to initiate the process.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Is there a limit to how many times I can spin?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>You can spin the wheel once per day. The spin resets at midnight local time. We may occasionally offer bonus spins during special promotions.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>How does the referral program work?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Our referral program allows you to earn 500 points for each friend who signs up using your unique referral code and completes their first spin. There's no limit to how many friends you can refer. You can find your referral code and sharing options in the "Refer & Earn" tab.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Do my points expire?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Points expire after 6 months of inactivity (no spins or redemptions). As long as you're actively using your account, your points will remain valid.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Can I transfer my points to another account?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>No, points are non-transferable and can only be used by the account holder who earned them.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Why do I need to watch an ad before spinning?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>The ads help support this free rewards program. Watching a short ad allows us to continue offering these rewards without any cost to our users.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>How long does it take to receive redeemed products?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Physical products typically ship within 3-5 business days after claim verification. Delivery times vary based on your location but generally take 5-7 business days within India.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>What payment methods do you accept for cash redemptions?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>We process cash redemptions via UPI, Paytm, or direct bank transfer. The minimum redemption amount is ₹10 (10,000 points).</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>I cleared my browser data and lost my points. Can I recover them?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        <p>Points are stored in your browser's local storage. If you clear this data, we cannot recover lost points. We recommend redeeming your points regularly or contacting us to register your account if you haven't already.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Tab -->
   <div id="terms" class="tab-content">
     <h2><i class="fas fa-info-circle"></i> Terms & Conditions</h2>
     
@@ -693,6 +1256,11 @@
       <a href="https://www.facebook.com/share/169rNXq4oi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
     </div>
     <p>&copy; 2025 Rupesh Electronics | All Rights Reserved</p>
+    <p style="font-size: 12px; margin-top: 10px;">
+      <a href="#" onclick="showTab('terms')" style="color: #cccccc;">Terms of Service</a> | 
+      <a href="#" onclick="showTab('privacy')" style="color: #cccccc;">Privacy Policy</a> | 
+      <a href="#" onclick="showTab('contact')" style="color: #cccccc;">Contact Us</a>
+    </p>
   </footer>
 
   <script>
@@ -704,12 +1272,16 @@
     let redeemedItems = JSON.parse(localStorage.getItem('redeemedItems')) || [];
     let currentProductToClaim = null;
     let currentProductPoints = 0;
+    let referralCode = "RUPEESH-X7F9K2";
+    let totalReferrals = localStorage.getItem('totalReferrals') || 0;
+    let referralPoints = localStorage.getItem('referralPoints') || 0;
     
     // Initialize UI
     document.addEventListener('DOMContentLoaded', function() {
       updatePointsDisplay();
       createWheel();
       loadRewardsHistory();
+      updateReferralStats();
       
       // Check if already spun today
       checkDailySpin();
@@ -722,6 +1294,9 @@
         e.preventDefault();
         submitClaimForm();
       });
+      
+      // Initialize FAQ items
+      initFaq();
     });
 
     function initializeAds() {
@@ -775,6 +1350,9 @@
     function showTab(id) {
       document.querySelectorAll('.tab-content').forEach(div => div.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      
+      // Scroll to top when switching tabs
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Create colorful wheel with prizes
@@ -1012,6 +1590,72 @@
       
       // Open WhatsApp with prefilled message
       window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
+    }
+    
+    // FAQ Functions
+    function initFaq() {
+      // Close all FAQ answers by default
+      document.querySelectorAll('.faq-answer').forEach(answer => {
+        answer.style.maxHeight = '0';
+      });
+    }
+    
+    function toggleFaq(question) {
+      const answer = question.nextElementSibling;
+      const isOpen = answer.classList.contains('show');
+      
+      // Close all other FAQ answers
+      document.querySelectorAll('.faq-answer').forEach(item => {
+        item.classList.remove('show');
+        item.style.maxHeight = '0';
+      });
+      
+      // Toggle the clicked one
+      if (!isOpen) {
+        answer.classList.add('show');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+    
+    // Referral Functions
+    function updateReferralStats() {
+      document.getElementById('totalReferrals').textContent = totalReferrals;
+      document.getElementById('referralPoints').textContent = referralPoints;
+      document.getElementById('userCode').textContent = referralCode.split('-')[1];
+    }
+    
+    function copyReferralCode() {
+      navigator.clipboard.writeText(referralCode)
+        .then(() => {
+          alert('Referral code copied to clipboard!');
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+          // Fallback for older browsers
+          const textarea = document.createElement('textarea');
+          textarea.value = referralCode;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          alert('Referral code copied to clipboard!');
+        });
+    }
+    
+    function shareViaWhatsApp() {
+      const message = `Join Rupesh Electronics Spin & Win and use my referral code ${referralCode} to get bonus points! ${window.location.href}`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+    }
+    
+    function shareViaFacebook() {
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=Join Rupesh Electronics Spin & Win and use my referral code ${referralCode} to get bonus points!`;
+      window.open(url, '_blank', 'width=600,height=400');
+    }
+    
+    function shareViaTwitter() {
+      const text = `Join Rupesh Electronics Spin & Win and use my referral code ${referralCode} to get bonus points!`;
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
+      window.open(url, '_blank', 'width=600,height=400');
     }
   </script>
 </body>
