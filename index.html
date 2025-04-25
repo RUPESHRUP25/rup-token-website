@@ -614,7 +614,7 @@
         
         // Calculate prize after spin completes
         setTimeout(() => {
-          const prizeValues = [150,250,200,300,350,400,450,500];
+          const prizeValues = [150,250,200,300,350,400,   450    ,500];
           const normalizedAngle = randomSpin % 360;
           const prizeIndex = Math.floor((360 - normalizedAngle) / (360 / prizeValues.length)) % prizeValues.length;
           const reward = prizeValues[prizeIndex];
