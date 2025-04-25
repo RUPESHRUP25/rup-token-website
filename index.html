@@ -555,14 +555,14 @@
       wheel.innerHTML = ''; // Clear any existing wheel
       
       const prizes = [
-        { text: "150 Points", color: "#FF5252",  value: 150 },
-        { text: "250 Points", color: "#FF4081",  value: 250 },
-        { text: "200 Points", color: "#E040FB",  value: 200 },
-        { text: "300 Points", color: "#7C4DFF",  value: 300 },
-        { text: "350 Points", color: "#536DFE",  value: 350 },
-        { text: "400 Points", color: "#448AFF",  value: 400 },
-        { text: "450 Points", color: "#40C4FF",  value: 450 },
-        { text: "500 Points", color: "#18FFFF",  value: 500 }
+        { text: "150 Points", color: "#FF5252",value: 150 },
+        { text: "250 Points", color: "#FF4081",value: 250 },
+        { text: "200 Points", color: "#E040FB",value: 200 },
+        { text: "300 Points", color: "#7C4DFF",value: 300 },
+        { text: "350 Points", color: "#536DFE",value: 350 },
+        { text: "400 Points", color: "#448AFF",value: 400 },
+        { text: "450 Points", color: "#40C4FF",value: 450 },
+        { text: "500 Points", color: "#18FFFF",value: 500 }
       ];
       
       const anglePerSector = 360 / prizes.length;
@@ -614,7 +614,7 @@
         
         // Calculate prize after spin completes
         setTimeout(() => {
-          const prizeValues = [150, 250, 200, 300, 350, 400, 450, 500];
+          const prizeValues = [150,250,200,300,350,400,450,500];
           const normalizedAngle = randomSpin % 360;
           const prizeIndex = Math.floor((360 - normalizedAngle) / (360 / prizeValues.length)) % prizeValues.length;
           const reward = prizeValues[prizeIndex];
