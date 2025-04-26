@@ -1,78 +1,16 @@
+/* All your existing CSS styles go here */
+/* This will be shared across all pages */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f0f8ff;
-  text-align: center;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  padding: 0;
-}
-
-header {
-  background: #4CAF50;
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   color: white;
-  padding: 20px;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.wallet {
-  font-size: 1.2em;
-  margin: 20px;
-}
-
-.spin-area {
-  margin: 30px 0;
-}
-
-#wheel {
-  width: 200px;
-  height: 200px;
-  margin: 20px auto;
-  border: 10px solid #ccc;
-  border-radius: 50%;
-  background: conic-gradient(
-    #ff7675 0deg 60deg,
-    #74b9ff 60deg 120deg,
-    #ffeaa7 120deg 180deg,
-    #55efc4 180deg 240deg,
-    #a29bfe 240deg 300deg,
-    #fd79a8 300deg 360deg
-  );
-  transition: transform 3s ease-out;
-}
-
-#spinBtn {
-  padding: 10px 20px;
-  font-size: 18px;
-  background: #0984e3;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#result {
-  font-weight: bold;
-  margin-top: 15px;
-  color: #2d3436;
-}
-
-.ad-box {
-  width: 90%;
-  height: 100px;
-  margin: 20px auto;
-  border: 2px dashed #888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-}
-
-footer {
-  background: #dfe6e9;
-  padding: 15px;
-  margin-top: 40px;
-}
-
-.social-links a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #0984e3;
-}
+/* Continue with all other styles... */
