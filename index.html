@@ -1,1042 +1,301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spin & Win - Rupesh Electronics</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4134333140441390" crossorigin="anonymous"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्पिन एंड विन - रूपेश इलेक्ट्रॉनिक्स</title>
     
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-      color: white;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    <!-- फॉन्ट और आइकन लिंक -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    header {
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      border-bottom: 3px solid #ff9800;
-    }
-    
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background: rgba(34, 34, 34, 0.8);
-      padding: 12px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      flex-wrap: wrap;
-    }
-    
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: all 0.3s;
-      margin: 5px;
-    }
-    
-    nav a:hover {
-      background: #ff9800;
-      transform: scale(1.1);
-    }
-    
-    .tab-content {
-      padding: 25px;
-      display: none;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 15px;
-      margin: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    }
-    
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    #wheel-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 30px 0;
-    }
-    
-    #wheel {
-      width: 280px;
-      height: 280px;
-      border: 15px solid #444;
-      border-radius: 50%;
-      position: relative;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-      transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-      background: #222;
-      overflow: hidden;
-    }
-    
-    #wheel .sector {
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      left: 50%;
-      top: 0;
-      transform-origin: 0% 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding-top: 20px;
-      font-weight: bold;
-      color: white;
-      text-shadow: 1px 1px 2px black;
-      box-sizing: border-box;
-    }
-    
-    #wheel-pointer {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: #ff5722;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      z-index: 10;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    
-    #spin-button {
-      padding: 15px 40px;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      border: none;
-      color: white;
-      font-size: 20px;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      margin-top: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    #spin-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-    
-    #spin-button:active {
-      transform: translateY(1px);
-    }
-    
-    #spin-button:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-      transform: none !important;
-    }
-    
-    #spin-result {
-      font-size: 24px;
-      margin-top: 20px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 15px;
-      border-radius: 10px;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    
-    .video-slot {
-      text-align: center;
-      margin: 30px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-    }
-    
-    .video-slot iframe {
-      width: 90%;
-      max-width: 600px;
-      height: 340px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-    
-    .subscribe-btn {
-      display: inline-block;
-      background: linear-gradient(to right, #ff0000, #cc0000);
-      color: white;
-      padding: 12px 25px;
-      margin-top: 15px;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    
-    .subscribe-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(255, 0, 0, 0.4);
-    }
-    
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-      border-top: 3px solid #ff9800;
-    }
-    
-    .social-icons {
-      margin: 15px 0;
-    }
-    
-    .social-icons a {
-      margin: 0 15px;
-      color: white;
-      font-size: 28px;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-    
-    .social-icons a:hover {
-      transform: translateY(-5px) scale(1.2);
-      color: #ff9800;
-    }
-    
-    #reward-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    
-    #reward-list li {
-      background: rgba(255, 255, 255, 0.1);
-      margin: 10px 0;
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 5px solid #ff9800;
-      animation: slideIn 0.5s ease-out;
-    }
-    
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    #music-control {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1000;
-      transition: all 0.3s;
-    }
-    
-    #music-control:hover {
-      background: #ff9800;
-      transform: scale(1.1);
-    }
-    
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #f00;
-      opacity: 0;
-      z-index: 999;
-    }
-    
-    /* Reward items styles */
-    .reward-item {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      border-left: 5px solid #ff9800;
-      flex-wrap: wrap;
-    }
-    
-    .reward-item img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 15px;
-    }
-    
-    .reward-item .reward-info {
-      flex: 1;
-      min-width: 200px;
-    }
-    
-    .reward-item .reward-points {
-      font-weight: bold;
-      color: #ffeb3b;
-      margin: 0 15px;
-    }
-    
-    .claim-btn {
-      background: linear-gradient(to right, #4CAF50, #2E7D32);
-      border: none;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin: 5px;
-    }
-    
-    .claim-btn:hover {
-      transform: scale(1.05);
-    }
-    
-    .claim-btn:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-    }
-    
-    /* Terms section styles */
-    .terms-section {
-      margin-bottom: 20px;
-    }
-    
-    .terms-section h3 {
-      border-bottom: 2px solid #ff9800;
-      padding-bottom: 5px;
-      display: inline-block;
-    }
-    
-    /* Ad container styles */
-    .ad-container {
-      width: 100%;
-      margin: 20px 0;
-      text-align: center;
-      background: rgba(255,255,255,0.1);
-      padding: 15px;
-      border-radius: 10px;
-    }
-    
-    .ad-label {
-      font-size: 12px;
-      color: #cccccc;
-      margin-bottom: 5px;
-    }
-    
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1001;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-    }
-    
-    .modal-content {
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-      margin: 15% auto;
-      padding: 20px;
-      border-radius: 15px;
-      width: 80%;
-      max-width: 500px;
-      position: relative;
-      animation: modalFadeIn 0.3s;
-    }
-    
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(-50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .close-modal {
-      position: absolute;
-      right: 15px;
-      top: 10px;
-      color: #fff;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-    .close-modal:hover {
-      color: #ff9800;
-    }
-    
-    .form-group {
-      margin-bottom: 15px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      background: rgba(255,255,255,0.9);
-    }
-    
-    .submit-btn {
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    
-    .submit-btn:hover {
-      transform: translateY(-2px);
-    }
-  </style>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+
+    <style>
+        /* बेसिक स्टाइलिंग */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: white;
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* हेडर स्टाइल */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            border-bottom: 3px solid #ff9800;
+        }
+
+        /* व्हील कंटेनर */
+        #wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        /* स्पिन व्हील */
+        #wheel {
+            width: 280px;
+            height: 280px;
+            border: 15px solid #444;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            background: #222;
+            overflow: hidden;
+        }
+
+        /* स्पिन बटन */
+        #spin-button {
+            padding: 15px 40px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border: none;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* लॉगिन मोडल */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .login-content {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            margin: 100px auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        /* और स्टाइल्स आपकी जरूरत के अनुसार जोड़ें */
+    </style>
 </head>
 <body>
-  <!-- Music Control -->
-  <div id="music-control" onclick="toggleMusic()">
-    <i class="fas fa-music" style="font-size: 24px; color: white;"></i>
-  </div>
-  <audio id="background-music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="win-sound">
-    <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Ad Modal -->
-  <div id="adModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Watch Ad to Spin</h2>
-      <p>Please watch this short ad to unlock your spin opportunity!</p>
-      
-      <!-- Ad Container -->
-      <div class="ad-container">
-        <div class="ad-label">ADVERTISEMENT</div>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-4134333140441390"
-             data-ad-slot="4631826219"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-      
-      <button class="submit-btn" onclick="adWatched()">I Watched the Ad</button>
+    <!-- लॉगिन मोडल -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <h2>लॉगिन / रजिस्टर</h2>
+            <input type="email" id="loginEmail" class="login-input" placeholder="ईमेल">
+            <input type="password" id="loginPassword" class="login-input" placeholder="पासवर्ड">
+            <button id="loginBtn" class="login-btn">लॉगिन</button>
+            <button id="registerBtn" class="login-btn" style="background:linear-gradient(to right, #4CAF50, #2E7D32)">रजिस्टर</button>
+            <p id="loginError" style="color:#ff9800;margin-top:10px;"></p>
+        </div>
     </div>
-  </div>
 
-  <!-- Claim Form Modal -->
-  <div id="claimModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Claim Your Reward</h2>
-      <p>Please fill this form to claim your reward</p>
-      
-      <form id="claimForm">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">WhatsApp Number</label>
-          <input type="tel" id="phone" required>
-        </div>
-        <div class="form-group">
-          <label for="address">Full Address</label>
-          <input type="text" id="address" required>
-        </div>
-        <div class="form-group">
-          <label for="product">Product Claiming</label>
-          <input type="text" id="product" readonly>
-        </div>
-        <button type="submit" class="submit-btn">Submit via WhatsApp</button>
-      </form>
-    </div>
-  </div>
+    <!-- मुख्य कंटेंट -->
+    <header>
+        <h1>🎡 स्पिन एंड विन 🎡</h1>
+        <p>रूपेश इलेक्ट्रॉनिक्स - डेली रिवॉर्ड्स</p>
+    </header>
 
-  <header>
-    <h1>🎡 Spin & Win 🎡</h1>
-    <p>Rupesh Electronics - Daily Rewards</p>
-  </header>
-  
-  <nav>
-    <a href="#" onclick="showTab('spin')"><i class="fas fa-redo-alt"></i> Spin Wheel</a>
-    <a href="#" onclick="showTab('rewards')"><i class="fas fa-gift"></i> My Rewards</a>
-    <a href="#" onclick="showTab('wallet')"><i class="fas fa-wallet"></i> My Wallet</a>
-    <a href="#" onclick="showTab('redeem')"><i class="fas fa-shopping-bag"></i> Redeem Rewards</a>
-    <a href="#" onclick="showTab('terms')"><i class="fas fa-file-alt"></i> Terms</a>
-  </nav>
-
-  <div id="spin" class="tab-content active">
-    <h2><i class="fas fa-star"></i> Spin the Wheel <i class="fas fa-star"></i></h2>
-    
-    <!-- Ad before spin -->
-    <div class="ad-container">
-      <div class="ad-label">ADVERTISEMENT</div>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-4134333140441390"
-           data-ad-slot="4631826219"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </div>
-    
     <div id="wheel-container">
-      <div id="wheel-pointer"></div>
-      <div id="wheel"></div>
-      <button id="spin-button" onclick="showAdModal()"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
-      <div id="spin-result">Spin to win amazing rewards!</div>
+        <div id="wheel"></div>
+        <button id="spin-button"><i class="fas fa-sync-alt"></i> स्पिन करें</button>
+        <div id="spin-result">अद्भुत पुरस्कार जीतने के लिए स्पिन करें!</div>
     </div>
-  </div>
 
-  <div id="rewards" class="tab-content">
-    <h2><i class="fas fa-trophy"></i> Your Rewards History</h2>
-    <ul id="reward-list"></ul>
-    
-    <!-- Ad in rewards section -->
-    <div class="ad-container">
-      <div class="ad-label">ADVERTISEMENT</div>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-4134333140441390"
-           data-ad-slot="4631826219"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </div>
-  </div>
+    <script>
+        // Firebase कॉन्फिगरेशन - अपनी वास्तविक जानकारी से बदलें
+        const firebaseConfig = {
+            apiKey: "AIzaSyYOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
-  <div id="wallet" class="tab-content">
-    <h2><i class="fas fa-rupee-sign"></i> Your Wallet</h2>
-    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-      <p style="font-size: 24px;">Total Points: <span id="points" style="color: #ffeb3b;">0</span></p>
-      <p style="font-size: 24px;">Balance (INR): ₹<span id="balance" style="color: #4caf50;">0.00</span></p>
-    </div>
-    <button onclick="claimReward()" style="margin-top: 20px; padding: 15px 30px; background: linear-gradient(to right, #4CAF50, #2E7D32); border: none; color: white; font-size: 18px; border-radius: 50px; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-      <i class="fab fa-whatsapp"></i> Claim via WhatsApp
-    </button>
-  </div>
+        // Firebase इनिशियलाइज़ करें
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
 
-  <div id="redeem" class="tab-content">
-    <h2><i class="fas fa-gift"></i> Redeem Your Points</h2>
-    <p>Exchange your points for amazing products:</p>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61L1ItFgFHL._SL1500_.jpg" alt="Mobile Cover">
-      <div class="reward-info">
-        <h3>Premium Mobile Cover</h3>
-        <p>High quality protective cover for your smartphone</p>
-      </div>
-      <div class="reward-points">50,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Premium Mobile Cover', 50000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/71Swqqe7XAL._SL1500_.jpg" alt="Tempered Glass">
-      <div class="reward-info">
-        <h3>Tempered Glass (Screen Protector)</h3>
-        <p>9H hardness tempered glass for mobile protection</p>
-      </div>
-      <div class="reward-points">40,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Tempered Glass', 40000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61DuOZ0VbVL._SL1500_.jpg" alt="Mobile Sticker">
-      <div class="reward-info">
-        <h3>Mobile Sticker Set</h3>
-        <p>Premium quality decorative stickers for your phone</p>
-      </div>
-      <div class="reward-points">30,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Mobile Sticker Set', 30000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61BGE6iu4AL._SL1500_.jpg" alt="Bluetooth Speaker">
-      <div class="reward-info">
-        <h3>Bluetooth Speaker</h3>
-        <p>Portable wireless speaker with rich sound</p>
-      </div>
-      <div class="reward-points">75,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Bluetooth Speaker', 75000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/51VQ6x9z0RL._SL1500_.jpg" alt="Bluetooth Earbuds">
-      <div class="reward-info">
-        <h3>Bluetooth Earbuds</h3>
-        <p>Wireless stereo earbuds with mic</p>
-      </div>
-      <div class="reward-points">85,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Bluetooth Earbuds', 85000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/71hEzQGO5qL._SL1500_.jpg" alt="Smartphone">
-      <div class="reward-info">
-        <h3>Smartphone (Up to ₹8,000)</h3>
-        <p>Latest model smartphone with warranty</p>
-      </div>
-      <div class="reward-points">250,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Smartphone (Up to ₹8,000)', 250000)">Redeem</button>
-    </div>
-  </div>
+        // ग्लोबल वेरिएबल्स
+        let currentUser = null;
+        let points = 0;
 
-  <div id="terms" class="tab-content">
-    <h2><i class="fas fa-info-circle"></i> Terms & Conditions</h2>
-    
-    <div class="terms-section">
-      <h3><i class="fas fa-gavel"></i> Terms of Service</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Spin daily to win points (maximum 5 spins per day)</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> 1000 points = ₹1.00 when redeemed as cash</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Points can be redeemed for products starting from 30,000 points</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Must watch ad before each spin</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Claim rewards directly through WhatsApp or Google Form</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Prizes are non-transferable</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Rupesh Electronics reserves the right to modify or terminate the program at any time</p>
-      </div>
-    </div>
-    
-    <div class="terms-section">
-      <h3><i class="fas fa-shield-alt"></i> Privacy Policy</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> We collect only necessary information to provide rewards</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Your data will not be shared with third parties without consent</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Points and rewards are stored in your browser's local storage</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Clearing browser data may result in loss of unredeemed points</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> We use Google AdSense to display relevant ads</p>
-      </div>
-    </div>
-    
-    <div class="terms-section">
-      <h3><i class="fas fa-exclamation-triangle"></i> Disclaimer</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> This is a promotional program by Rupesh Electronics</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Product images are for representation only</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Actual products may vary slightly from images</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Rewards are subject to availability</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> No cash alternative for physical rewards</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Ads help support this free rewards program</p>
-      </div>
-    </div>
-  </div>
+        // DOM कंटेंट लोड होने पर
+        document.addEventListener('DOMContentLoaded', function() {
+            // ऑथ स्टेट चेक करें
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    currentUser = user;
+                    document.getElementById('loginModal').style.display = 'none';
+                    loadUserData();
+                    initWheel();
+                } else {
+                    document.getElementById('loginModal').style.display = 'block';
+                }
+            });
 
-  <div class="video-slot">
-    <h2><i class="fab fa-youtube" style="color: red;"></i> Watch and Subscribe</h2>
-    <iframe src="https://www.youtube.com/embed/oyhOtPFHUqI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
-    <a class="subscribe-btn" href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank">
-      <i class="fab fa-youtube"></i> Subscribe to Channel
-    </a>
-  </div>
-
-  <footer>
-    <p>Follow us on:</p>
-    <div class="social-icons">
-      <a href="https://wa.me/919334113322" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/share/169rNXq4oi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-    </div>
-    <p>&copy; 2025 Rupesh Electronics | All Rights Reserved</p>
-  </footer>
-
-  <script>
-    // Initialize points from localStorage or set to 0
-    let points = localStorage.getItem('spinPoints') ? parseInt(localStorage.getItem('spinPoints')) : 0;
-    let canSpin = true;
-    let lastSpinDate = localStorage.getItem('lastSpinDate');
-    let rewardsHistory = JSON.parse(localStorage.getItem('rewardsHistory')) || [];
-    let redeemedItems = JSON.parse(localStorage.getItem('redeemedItems')) || [];
-    let currentProductToClaim = null;
-    let currentProductPoints = 0;
-    let spinCountToday = localStorage.getItem('spinCountToday') ? parseInt(localStorage.getItem('spinCountToday')) : 0;
-    const maxSpinsPerDay = 5;
-    
-    // Initialize UI
-    document.addEventListener('DOMContentLoaded', function() {
-      updatePointsDisplay();
-      createWheel();
-      loadRewardsHistory();
-      
-      // Check if already spun today
-      checkDailySpin();
-      
-      // Initialize AdSense ads
-      initializeAds();
-      
-      // Form submission handler
-      document.getElementById('claimForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        submitClaimForm();
-      });
-    });
-
-    function initializeAds() {
-      // Load AdSense ads
-      try {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.log("AdSense error:", e);
-      }
-    }
-
-    function checkDailySpin() {
-      const today = new Date().toDateString();
-      if (lastSpinDate === today && spinCountToday >= maxSpinsPerDay) {
-        document.getElementById('spin-button').disabled = true;
-        document.getElementById('spin-result').innerHTML = 
-          "You've used all your spins today! Come back tomorrow!";
-      } else if (lastSpinDate === today) {
-        document.getElementById('spin-result').innerHTML = 
-          `You have ${maxSpinsPerDay - spinCountToday} spins left today!`;
-      }
-    }
-
-    // Background music control
-    const backgroundMusic = document.getElementById('background-music');
-    const winSound = document.getElementById('win-sound');
-    
-    function toggleMusic() {
-      if (backgroundMusic.paused) {
-        backgroundMusic.volume = 0.3;
-        backgroundMusic.play()
-          .then(() => {
-            document.querySelector('#music-control i').classList.remove('fa-music');
-            document.querySelector('#music-control i').classList.add('fa-volume-up');
-          })
-          .catch(e => console.log("Audio play failed:", e));
-      } else {
-        backgroundMusic.pause();
-        document.querySelector('#music-control i').classList.remove('fa-volume-up');
-        document.querySelector('#music-control i').classList.add('fa-music');
-      }
-    }
-    
-    // Try to autoplay music (may not work due to browser policies)
-    document.addEventListener('click', function() {
-      if (backgroundMusic.paused) {
-        backgroundMusic.volume = 0.3;
-        backgroundMusic.play().catch(e => console.log("Autoplay prevented:", e));
-      }
-    }, { once: true });
-
-    function showTab(id) {
-      document.querySelectorAll('.tab-content').forEach(div => div.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    // Create colorful wheel with prizes
-    function createWheel() {
-      const wheel = document.getElementById("wheel");
-      wheel.innerHTML = ''; // Clear any existing wheel
-      
-     const prizes = [
-        { text: "150 Points", color: "#FF5252",  value: 150 },
-        { text: "250 Points", color: "#FF4081",  value: 250 },
-        { text: "200 Points", color: "#E040FB",  value: 200 },
-        { text: "300 Points", color: "#7C4DFF",  value: 300 },
-        { text: "350 Points", color: "#536DFE",  value: 350 },
-        { text: "400 Points", color: "#448AFF",  value: 400 },
-        { text: "450 Points", color: "#40C4FF",  value: 450 },
-        { text: "500 Points", color: "#18FFFF",  value: 500 }
-      ];
-      
-      const anglePerSector = 360 / prizes.length;
-
-      prizes.forEach((prize, index) => {
-        const sector = document.createElement("div");
-        sector.classList.add("sector");
-        sector.style.transform = `rotate(${index * anglePerSector}deg)`;
-        sector.style.backgroundColor = prize.color;
-        
-        const prizeText = document.createElement("div");
-        prizeText.textContent = prize.text;
-        prizeText.style.transform = `rotate(${anglePerSector/2}deg)`;
-        prizeText.style.transformOrigin = '0 0';
-        prizeText.style.marginTop = '20px';
-        
-        sector.appendChild(prizeText);
-        wheel.appendChild(sector);
-      });
-    }
-
-    function showAdModal() {
-      document.getElementById('adModal').style.display = 'block';
-    }
-    
-    function adWatched() {
-      closeModal();
-      spinWheel();
-    }
-    
-    function showClaimModal(product, pointsRequired) {
-      if (points < pointsRequired) {
-        alert(`You need ${pointsRequired} points to redeem this product!`);
-        return;
-      }
-      
-      currentProductToClaim = product;
-      currentProductPoints = pointsRequired;
-      document.getElementById('product').value = product;
-      document.getElementById('claimModal').style.display = 'block';
-    }
-    
-    function submitClaimForm() {
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const product = document.getElementById('product').value;
-      
-      // Deduct points
-      points -= currentProductPoints;
-      localStorage.setItem('spinPoints', points);
-      
-      // Add to redemption history
-      rewardsHistory.unshift({
-        product: product,
-        points: currentProductPoints,
-        date: new Date().toISOString(),
-        type: 'redemption'
-      });
-      localStorage.setItem('rewardsHistory', JSON.stringify(rewardsHistory));
-      
-      // Update UI
-      updatePointsDisplay();
-      addRewardToHistory(product, 'redemption');
-      closeModal();
-      
-      // Send WhatsApp message
-      const message = `*Rupesh Electronics Reward Claim*\n\n` +
-                     `Name: ${name}\n` +
-                     `Phone: ${phone}\n` +
-                     `Address: ${address}\n` +
-                     `Product: ${product}\n` +
-                     `Points Used: ${currentProductPoints}`;
-      
-      window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
-      
-      // Reset form
-      document.getElementById('claimForm').reset();
-    }
-    
-    function closeModal() {
-      document.getElementById('adModal').style.display = 'none';
-      document.getElementById('claimModal').style.display = 'none';
-    }
-
-    function spinWheel() {
-      if (!canSpin) return;
-      
-      const today = new Date().toDateString();
-      if (lastSpinDate !== today) {
-        // New day, reset spin count
-        spinCountToday = 0;
-        localStorage.setItem('lastSpinDate', today);
-      }
-      
-      if (spinCountToday >= maxSpinsPerDay) {
-        alert(`You can only spin ${maxSpinsPerDay} times per day! Come back tomorrow.`);
-        return;
-      }
-      
-      canSpin = false;
-      const wheel = document.getElementById("wheel");
-      const spinButton = document.getElementById("spin-button");
-      const spinResult = document.getElementById("spin-result");
-      
-      spinButton.disabled = true;
-      spinResult.textContent = "Spinning... Good luck!";
-      
-      // Reset wheel position for continuous spinning
-      wheel.style.transition = 'none';
-      wheel.style.transform = 'rotate(0deg)';
-      
-      // Force reflow
-      setTimeout(() => {
-        const randomSpin = Math.floor(Math.random() * 360) + 5 * 360; // At least 5 full rotations
-        wheel.style.transition = "transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)";
-        wheel.style.transform = `rotate(${randomSpin}deg)`;
-        
-        // Calculate prize after spin completes
-        setTimeout(() => {
-          const prizeValues = [150, 250, 200, 300, 350, 400, 450, 500];
-          const normalizedAngle = randomSpin % 360;
-          const prizeIndex = Math.floor((360 - normalizedAngle) / (360 / prizeValues.length)) % prizeValues.length;
-          const reward = prizeValues[prizeIndex];
-          
-          points += reward;
-          spinResult.innerHTML = `🎉 Congratulations! You won <strong>${reward} points</strong>! 🎉`;
-          
-          // Update spin count
-          spinCountToday++;
-          localStorage.setItem('spinCountToday', spinCountToday);
-          localStorage.setItem('lastSpinDate', today);
-          
-          // Save to localStorage
-          localStorage.setItem('spinPoints', points);
-          
-          // Add to rewards history
-          rewardsHistory.unshift({
-            points: reward,
-            date: new Date().toISOString(),
-            type: 'spin'
-          });
-          localStorage.setItem('rewardsHistory', JSON.stringify(rewardsHistory));
-          
-          // Play win sound
-          winSound.currentTime = 0;
-          winSound.play().catch(e => console.log("Sound play failed:", e));
-          
-          // Update UI
-          updatePointsDisplay();
-          addRewardToHistory(reward, 'spin');
-          
-          // Create confetti effect
-          createConfetti();
-          
-          canSpin = true;
-          spinButton.disabled = false;
-          
-          // Update spin count message
-          if (spinCountToday >= maxSpinsPerDay) {
-            spinResult.innerHTML += "<br>You've used all your spins today!";
-            spinButton.disabled = true;
-          } else {
-            spinResult.innerHTML += `<br>You have ${maxSpinsPerDay - spinCountToday} spins left today!`;
-          }
-        }, 3000);
-      }, 10);
-    }
-
-    function loadRewardsHistory() {
-      const rewardList = document.getElementById("reward-list");
-      rewardList.innerHTML = '';
-      
-      rewardsHistory.forEach(reward => {
-        const date = new Date(reward.date);
-        const li = document.createElement("li");
-        if (reward.type === 'spin') {
-          li.innerHTML = `<i class="fas fa-coins" style="color: gold;"></i> +${reward.points} points (${date.toLocaleString()})`;
-        } else {
-          li.innerHTML = `<i class="fas fa-gift" style="color: #ff9800;"></i> Redeemed ${reward.product} (${date.toLocaleString()})`;
-        }
-        rewardList.appendChild(li);
-      });
-    }
-
-    function updatePointsDisplay() {
-      document.getElementById("points").innerText = points.toLocaleString();
-      document.getElementById("balance").innerText = (points / 1000).toFixed(2);
-    }
-
-    function addRewardToHistory(reward, type = 'spin') {
-      const li = document.createElement("li");
-      const now = new Date();
-      if (type === 'spin') {
-        li.innerHTML = `<i class="fas fa-coins" style="color: gold;"></i> +${reward} points (${now.toLocaleString()})`;
-      } else {
-        li.innerHTML = `<i class="fas fa-gift" style="color: #ff9800;"></i> Redeemed ${reward} (${now.toLocaleString()})`;
-      }
-      document.getElementById("reward-list").prepend(li);
-    }
-
-    function createConfetti() {
-      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-      
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = -10 + 'px';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.opacity = Math.random();
-        confetti.style.width = Math.random() * 10 + 5 + 'px';
-        confetti.style.height = Math.random() * 10 + 5 + 'px';
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        
-        document.body.appendChild(confetti);
-        
-        const animationDuration = Math.random() * 3 + 2;
-        
-        confetti.animate([
-          { top: '-10px', opacity: 1, transform: 'rotate(0deg) scale(1)' },
-          { top: '100vh', opacity: 0, transform: `rotate(${Math.random() * 360}deg) scale(0)` }
-        ], {
-          duration: animationDuration * 1000,
-          easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)',
-          fill: 'forwards'
+            // लॉगिन/रजिस्टर बटन इवेंट
+            document.getElementById('loginBtn').addEventListener('click', loginUser);
+            document.getElementById('registerBtn').addEventListener('click', registerUser);
         });
-        
-        setTimeout(() => confetti.remove(), animationDuration * 1000);
-      }
-    }
 
-    function claimReward() {
-      if (points < 1000) {
-        alert("You need at least 1000 points (₹1.00) to claim your reward!");
-        return;
-      }
-      
-      const amount = (points / 1000).toFixed(2);
-      const message = `Hello Rupesh Electronics! I want to claim my reward of ₹${amount} (${points} points). My registered mobile number is: [YOUR_NUMBER_HERE]`;
-      
-      // Open WhatsApp with prefilled message
-      window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
-    }
-  </script>
+        // यूजर लॉगिन फंक्शन
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    currentUser = userCredential.user;
+                    document.getElementById('loginModal').style.display = 'none';
+                    loadUserData();
+                })
+                .catch(error => {
+                    document.getElementById('loginError').textContent = error.message;
+                });
+        }
+
+        // यूजर रजिस्टर फंक्शन
+        function registerUser() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    currentUser = userCredential.user;
+                    
+                    // फायरबेस में यूजर डेटा सेव करें
+                    return database.ref('users/' + currentUser.uid).set({
+                        email: email,
+                        points: 0,
+                        createdAt: firebase.database.ServerValue.TIMESTAMP
+                    });
+                })
+                .then(() => {
+                    document.getElementById('loginModal').style.display = 'none';
+                    loadUserData();
+                })
+                .catch(error => {
+                    document.getElementById('loginError').textContent = error.message;
+                });
+        }
+
+        // यूजर डेटा लोड करें
+        function loadUserData() {
+            database.ref('users/' + currentUser.uid).once('value')
+                .then(snapshot => {
+                    const userData = snapshot.val();
+                    points = userData.points || 0;
+                    updateUI();
+                });
+        }
+
+        // व्हील इनिशियलाइज़ करें
+        function initWheel() {
+            const wheel = document.getElementById("wheel");
+            const prizes = [
+                { text: "150 पॉइंट्स", color: "#FF5252", value: 150 },
+                { text: "250 पॉइंट्स", color: "#FF4081", value: 250 },
+                { text: "200 पॉइंट्स", color: "#E040FB", value: 200 },
+                { text: "300 पॉइंट्स", color: "#7C4DFF", value: 300 },
+                { text: "350 पॉइंट्स", color: "#536DFE", value: 350 },
+                { text: "400 पॉइंट्स", color: "#448AFF", value: 400 },
+                { text: "450 पॉइंट्स", color: "#40C4FF", value: 450 },
+                { text: "500 पॉइंट्स", color: "#18FFFF", value: 500 }
+            ];
+
+            // व्हील सेक्टर बनाएं
+            prizes.forEach((prize, index) => {
+                const sector = document.createElement("div");
+                sector.className = "sector";
+                sector.style.transform = `rotate(${index * 45}deg)`;
+                sector.style.backgroundColor = prize.color;
+                
+                const prizeText = document.createElement("div");
+                prizeText.textContent = prize.text;
+                prizeText.style.transform = `rotate(22.5deg)`;
+                prizeText.style.marginTop = "20px";
+                
+                sector.appendChild(prizeText);
+                wheel.appendChild(sector);
+            });
+
+            // स्पिन बटन इवेंट
+            document.getElementById("spin-button").addEventListener("click", spinWheel);
+        }
+
+        // स्पिन व्हील फंक्शन
+        function spinWheel() {
+            if (!currentUser) return;
+            
+            const wheel = document.getElementById("wheel");
+            const spinButton = document.getElementById("spin-button");
+            const spinResult = document.getElementById("spin-result");
+            
+            spinButton.disabled = true;
+            spinResult.textContent = "स्पिन हो रहा है... शुभकामनाएँ!";
+            
+            const randomSpin = Math.floor(Math.random() * 360) + 5 * 360;
+            wheel.style.transition = "transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)";
+            wheel.style.transform = `rotate(${randomSpin}deg)`;
+            
+            setTimeout(() => {
+                const prizeValues = [150, 250, 200, 300, 350, 400, 450, 500];
+                const normalizedAngle = randomSpin % 360;
+                const prizeIndex = Math.floor((360 - normalizedAngle) / 45) % prizeValues.length;
+                const reward = prizeValues[prizeIndex];
+                
+                points += reward;
+                spinResult.innerHTML = `🎉 बधाई हो! आपने <strong>${reward} पॉइंट्स</strong> जीते! 🎉`;
+                
+                // फायरबेस में डेटा सेव करें
+                database.ref('spins/' + currentUser.uid).push({
+                    points: reward,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                });
+                
+                database.ref('users/' + currentUser.uid).update({
+                    points: firebase.database.ServerValue.increment(reward)
+                });
+                
+                spinButton.disabled = false;
+            }, 3000);
+        }
+
+        // UI अपडेट करें
+        function updateUI() {
+            // अपने UI एलिमेंट्स को अपडेट करें
+            console.log("यूजर पॉइंट्स:", points);
+        }
+    </script>
 </body>
 </html>
