@@ -5,9 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spin & Win - Rupesh Electronics</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+  
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4134333140441390"></script>
+  
   <style>
+    /* Your existing CSS styles here */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
     
     body {
@@ -21,403 +29,38 @@
       overflow-x: hidden;
     }
     
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    header {
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      border-bottom: 3px solid #ff9800;
-    }
-    
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background: rgba(34, 34, 34, 0.8);
-      padding: 12px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      flex-wrap: wrap;
-    }
-    
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: all 0.3s;
-      margin: 5px;
-    }
-    
-    nav a:hover {
-      background: #ff9800;
-      transform: scale(1.1);
-    }
-    
-    .tab-content {
-      padding: 25px;
-      display: none;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 15px;
-      margin: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    }
-    
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    #wheel-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 30px 0;
-    }
-    
-    #wheel {
-      width: 280px;
-      height: 280px;
-      border: 15px solid #444;
-      border-radius: 50%;
-      position: relative;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-      transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-      background: #222;
-      overflow: hidden;
-    }
-    
-    #wheel .sector {
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      left: 50%;
-      top: 0;
-      transform-origin: 0% 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding-top: 20px;
-      font-weight: bold;
-      color: white;
-      text-shadow: 1px 1px 2px black;
-      box-sizing: border-box;
-    }
-    
-    #wheel-pointer {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: #ff5722;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      z-index: 10;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    
-    #spin-button {
-      padding: 15px 40px;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      border: none;
-      color: white;
-      font-size: 20px;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      margin-top: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    #spin-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-    
-    #spin-button:active {
-      transform: translateY(1px);
-    }
-    
-    #spin-button:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-      transform: none !important;
-    }
-    
-    #spin-result {
-      font-size: 24px;
-      margin-top: 20px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 15px;
-      border-radius: 10px;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    
-    .video-slot {
-      text-align: center;
-      margin: 30px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-    }
-    
-    .video-slot iframe {
-      width: 90%;
-      max-width: 600px;
-      height: 340px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-    
-    .subscribe-btn {
-      display: inline-block;
-      background: linear-gradient(to right, #ff0000, #cc0000);
-      color: white;
-      padding: 12px 25px;
-      margin-top: 15px;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    
-    .subscribe-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(255, 0, 0, 0.4);
-    }
-    
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-      border-top: 3px solid #ff9800;
-    }
-    
-    .social-icons {
-      margin: 15px 0;
-    }
-    
-    .social-icons a {
-      margin: 0 15px;
-      color: white;
-      font-size: 28px;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-    
-    .social-icons a:hover {
-      transform: translateY(-5px) scale(1.2);
-      color: #ff9800;
-    }
-    
-    #reward-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    
-    #reward-list li {
-      background: rgba(255, 255, 255, 0.1);
-      margin: 10px 0;
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 5px solid #ff9800;
-      animation: slideIn 0.5s ease-out;
-    }
-    
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    #music-control {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1000;
-      transition: all 0.3s;
-    }
-    
-    #music-control:hover {
-      background: #ff9800;
-      transform: scale(1.1);
-    }
-    
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #f00;
-      opacity: 0;
-      z-index: 999;
-    }
-    
-    /* Reward items styles */
-    .reward-item {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      border-left: 5px solid #ff9800;
-      flex-wrap: wrap;
-    }
-    
-    .reward-item img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 15px;
-    }
-    
-    .reward-item .reward-info {
-      flex: 1;
-      min-width: 200px;
-    }
-    
-    .reward-item .reward-points {
-      font-weight: bold;
-      color: #ffeb3b;
-      margin: 0 15px;
-    }
-    
-    .claim-btn {
-      background: linear-gradient(to right, #4CAF50, #2E7D32);
-      border: none;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin: 5px;
-    }
-    
-    .claim-btn:hover {
-      transform: scale(1.05);
-    }
-    
-    .claim-btn:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-    }
-    
-    /* Terms section styles */
-    .terms-section {
-      margin-bottom: 20px;
-    }
-    
-    .terms-section h3 {
-      border-bottom: 2px solid #ff9800;
-      padding-bottom: 5px;
-      display: inline-block;
-    }
-    
-    /* Ad container styles */
-    .ad-container {
-      width: 100%;
-      margin: 20px 0;
-      text-align: center;
-      background: rgba(255,255,255,0.1);
-      padding: 15px;
-      border-radius: 10px;
-    }
-    
-    .ad-label {
-      font-size: 12px;
-      color: #cccccc;
-      margin-bottom: 5px;
-    }
-    
-    /* Modal styles */
-    .modal {
+    /* Add login modal styles */
+    .login-modal {
       display: none;
       position: fixed;
-      z-index: 1001;
+      top: 0;
       left: 0;
-      top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.8);
+      z-index: 1002;
     }
     
-    .modal-content {
+    .login-content {
       background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-      margin: 15% auto;
+      margin: 100px auto;
       padding: 20px;
-      border-radius: 15px;
-      width: 80%;
-      max-width: 500px;
-      position: relative;
-      animation: modalFadeIn 0.3s;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
     }
     
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(-50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .close-modal {
-      position: absolute;
-      right: 15px;
-      top: 10px;
-      color: #fff;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-    .close-modal:hover {
-      color: #ff9800;
-    }
-    
-    .form-group {
-      margin-bottom: 15px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    
-    .form-group input, .form-group select {
+    .login-input {
       width: 100%;
-      padding: 10px;
-      border-radius: 5px;
+      padding: 12px;
+      margin: 10px 0;
       border: none;
+      border-radius: 5px;
       background: rgba(255,255,255,0.9);
     }
     
-    .submit-btn {
+    .login-btn {
       background: linear-gradient(to right, #ff416c, #ff4b2b);
       color: white;
       border: none;
@@ -426,1033 +69,178 @@
       cursor: pointer;
       width: 100%;
       font-weight: bold;
-      transition: all 0.3s;
+      margin-top: 10px;
     }
     
-    .submit-btn:hover {
-      transform: translateY(-2px);
-    }
+    /* Rest of your existing CSS styles */
+    /* ... */
     
-    /* FAQ Styles */
-    .faq-item {
-      margin-bottom: 15px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    
-    .faq-question {
-      padding: 15px;
-      background: rgba(0,0,0,0.3);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-    }
-    
-    .faq-question:hover {
-      background: rgba(0,0,0,0.4);
-    }
-    
-    .faq-answer {
-      padding: 0 15px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-    }
-    
-    .faq-answer.show {
-      padding: 15px;
-      max-height: 500px;
-    }
-    
-    /* About Us and Contact Styles */
-    .content-section {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    
-    .content-section h2 {
-      color: #ff9800;
-      border-bottom: 2px solid #ff9800;
-      padding-bottom: 5px;
-    }
-    
-    .team-member {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      background: rgba(0,0,0,0.3);
-      padding: 15px;
-      border-radius: 10px;
-    }
-    
-    .team-member img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 20px;
-      border: 3px solid #ff9800;
-    }
-    
-    .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    
-    .contact-card {
-      flex: 1;
-      min-width: 250px;
-      background: rgba(0,0,0,0.3);
-      padding: 20px;
-      border-radius: 10px;
-      border-left: 5px solid #ff9800;
-    }
-    
-    .contact-card h3 {
-      margin-top: 0;
-      color: #ff9800;
-    }
-    
-    /* Tech Article Styles */
-    .article-card {
-      background: rgba(0,0,0,0.3);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    
-    .article-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    
-    .article-content {
-      padding: 20px;
-    }
-    
-    .article-content h3 {
-      margin-top: 0;
-      color: #ff9800;
-    }
-    
-    .read-more {
-      display: inline-block;
-      background: #ff9800;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    
-    .read-more:hover {
-      background: #ff5722;
-      transform: translateY(-2px);
-    }
-    
-    /* Referral Section */
-    .referral-container {
-      background: rgba(0,0,0,0.3);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-    }
-    
-    .referral-code {
-      font-size: 24px;
-      font-weight: bold;
-      background: rgba(255,255,255,0.1);
-      padding: 10px 20px;
-      border-radius: 10px;
-      display: inline-block;
-      margin: 15px 0;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .referral-code:hover {
-      background: rgba(255,255,255,0.2);
-    }
-    
-    .share-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    
-    .share-btn {
-      padding: 10px 20px;
-      border-radius: 50px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    
-    .share-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    
-    .whatsapp {
-      background: #25D366;
-    }
-    
-    .facebook {
-      background: #3b5998;
-    }
-    
-    .twitter {
-      background: #1DA1F2;
-    }
-    
-    .copy-btn {
-      background: #ff9800;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    
-    .copy-btn:hover {
-      background: #ff5722;
-      transform: translateY(-3px);
-    }
   </style>
+  
+  <!-- Firebase Configuration -->
+  <script>
+    // Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    
+    // Get database and auth references
+    const database = firebase.database();
+    const auth = firebase.auth();
+  </script>
 </head>
 <body>
-  <!-- Music Control -->
-  <div id="music-control" onclick="toggleMusic()">
-    <i class="fas fa-music" style="font-size: 24px; color: white;"></i>
-  </div>
-  <audio id="background-music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="win-sound">
-    <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Ad Modal -->
-  <div id="adModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Watch Ad to Spin</h2>
-      <p>Please watch this short ad to unlock your spin opportunity!</p>
-      
-      <!-- Ad Container -->
-      <div class="ad-container">
-        <div class="ad-label">ADVERTISEMENT</div>
-        <!-- Replace with your actual AdSense ad code -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-8956191401262476"
-             data-ad-slot="8106152892"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-      
-      <button class="submit-btn" onclick="adWatched()">I Watched the Ad</button>
+  <!-- Login Modal -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-content">
+      <h2>Login / Register</h2>
+      <input type="email" id="loginEmail" class="login-input" placeholder="Email">
+      <input type="password" id="loginPassword" class="login-input" placeholder="Password">
+      <button id="loginBtn" class="login-btn">Login</button>
+      <button id="registerBtn" class="login-btn" style="background:linear-gradient(to right, #4CAF50, #2E7D32)">Register</button>
+      <p id="loginError" style="color:#ff9800;margin-top:10px;"></p>
     </div>
   </div>
 
-  <!-- Claim Form Modal -->
-  <div id="claimModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Claim Your Reward</h2>
-      <p>Please fill this form to claim your reward</p>
-      
-      <form id="claimForm">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">WhatsApp Number</label>
-          <input type="tel" id="phone" required>
-        </div>
-        <div class="form-group">
-          <label for="address">Full Address</label>
-          <input type="text" id="address" required>
-        </div>
-        <div class="form-group">
-          <label for="product">Product Claiming</label>
-          <input type="text" id="product" readonly>
-        </div>
-        <button type="submit" class="submit-btn">Submit via WhatsApp</button>
-      </form>
-    </div>
-  </div>
-
-  <header>
-    <h1>🎡 Spin & Win 🎡</h1>
-    <p>Rupesh Electronics - Daily Rewards</p>
-  </header>
-  
-  <nav>
-    <a href="#" onclick="showTab('spin')"><i class="fas fa-redo-alt"></i> Spin Wheel</a>
-    <a href="#" onclick="showTab('rewards')"><i class="fas fa-gift"></i> My Rewards</a>
-    <a href="#" onclick="showTab('wallet')"><i class="fas fa-wallet"></i> My Wallet</a>
-    <a href="#" onclick="showTab('redeem')"><i class="fas fa-shopping-bag"></i> Redeem Rewards</a>
-    <a href="#" onclick="showTab('refer')"><i class="fas fa-user-plus"></i> Refer & Earn</a>
-    <a href="#" onclick="showTab('about')"><i class="fas fa-info-circle"></i> About Us</a>
-    <a href="#" onclick="showTab('contact')"><i class="fas fa-envelope"></i> Contact</a>
-    <a href="#" onclick="showTab('tech')"><i class="fas fa-microchip"></i> Tech Articles</a>
-    <a href="#" onclick="showTab('faq')"><i class="fas fa-question-circle"></i> FAQ</a>
-    <a href="#" onclick="showTab('terms')"><i class="fas fa-file-alt"></i> Terms</a>
-  </nav>
-
-  <!-- Spin Wheel Tab -->
-  <div id="spin" class="tab-content active">
-    <h2><i class="fas fa-star"></i> Spin the Wheel <i class="fas fa-star"></i></h2>
-    
-    <!-- Ad before spin -->
-    <div class="ad-container">
-      <div class="ad-label">ADVERTISEMENT</div>
-      <!-- Replace with your actual AdSense ad code -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-8956191401262476"
-           data-ad-slot="8451280593"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </div>
-    
-    <div id="wheel-container">
-      <div id="wheel-pointer"></div>
-      <div id="wheel"></div>
-      <button id="spin-button" onclick="showAdModal()"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
-      <div id="spin-result">Spin to win amazing rewards!</div>
-    </div>
-  </div>
-
-  <!-- Rewards History Tab -->
-  <div id="rewards" class="tab-content">
-    <h2><i class="fas fa-trophy"></i> Your Rewards History</h2>
-    <ul id="reward-list"></ul>
-    
-    <!-- Ad in rewards section -->
-    <div class="ad-container">
-      <div class="ad-label">ADVERTISEMENT</div>
-      <!-- Replace with your actual AdSense ad code -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-4134333140441390"
-           data-ad-slot="4631826219"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </div>
-  </div>
-
-  <!-- Wallet Tab -->
-  <div id="wallet" class="tab-content">
-    <h2><i class="fas fa-rupee-sign"></i> Your Wallet</h2>
-    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-      <p style="font-size: 24px;">Total Points: <span id="points" style="color: #ffeb3b;">0</span></p>
-      <p style="font-size: 24px;">Balance (INR): ₹<span id="balance" style="color: #4caf50;">0.00</span></p>
-    </div>
-    <button onclick="claimReward()" style="margin-top: 20px; padding: 15px 30px; background: linear-gradient(to right, #4CAF50, #2E7D32); border: none; color: white; font-size: 18px; border-radius: 50px; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-      <i class="fab fa-whatsapp"></i> Claim via WhatsApp
-    </button>
-  </div>
-
-  <!-- Redeem Tab -->
-  <div id="redeem" class="tab-content">
-    <h2><i class="fas fa-gift"></i> Redeem Your Points</h2>
-    <p>Exchange your points for amazing products:</p>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61L1ItFgFHL._SL1500_.jpg" alt="Mobile Cover">
-      <div class="reward-info">
-        <h3>Premium Mobile Cover</h3>
-        <p>High quality protective cover for your smartphone</p>
-      </div>
-      <div class="reward-points">50,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Premium Mobile Cover', 50000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/71Swqqe7XAL._SL1500_.jpg" alt="Tempered Glass">
-      <div class="reward-info">
-        <h3>Tempered Glass (Screen Protector)</h3>
-        <p>9H hardness tempered glass for mobile protection</p>
-      </div>
-      <div class="reward-points">40,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Tempered Glass', 40000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61DuOZ0VbVL._SL1500_.jpg" alt="Mobile Sticker">
-      <div class="reward-info">
-        <h3>Mobile Sticker Set</h3>
-        <p>Premium quality decorative stickers for your phone</p>
-      </div>
-      <div class="reward-points">30,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Mobile Sticker Set', 30000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/61BGE6iu4AL._SL1500_.jpg" alt="Bluetooth Speaker">
-      <div class="reward-info">
-        <h3>Bluetooth Speaker</h3>
-        <p>Portable wireless speaker with rich sound</p>
-      </div>
-      <div class="reward-points">75,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Bluetooth Speaker', 75000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/51VQ6x9z0RL._SL1500_.jpg" alt="Bluetooth Earbuds">
-      <div class="reward-info">
-        <h3>Bluetooth Earbuds</h3>
-        <p>Wireless stereo earbuds with mic</p>
-      </div>
-      <div class="reward-points">85,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Bluetooth Earbuds', 85000)">Redeem</button>
-    </div>
-    
-    <div class="reward-item">
-      <img src="https://m.media-amazon.com/images/I/71hEzQGO5qL._SL1500_.jpg" alt="Smartphone">
-      <div class="reward-info">
-        <h3>Smartphone (Up to ₹8,000)</h3>
-        <p>Latest model smartphone with warranty</p>
-      </div>
-      <div class="reward-points">250,000 Points</div>
-      <button class="claim-btn" onclick="showClaimModal('Smartphone (Up to ₹8,000)', 250000)">Redeem</button>
-    </div>
-  </div>
-
-  <!-- Refer & Earn Tab -->
-  <div id="refer" class="tab-content">
-    <h2><i class="fas fa-user-plus"></i> Refer & Earn</h2>
-    
-    <div class="referral-container">
-      <h3>Invite Friends & Earn 500 Points Each!</h3>
-      <p>Share your referral code with friends and earn points when they sign up and spin the wheel.</p>
-      
-      <div class="content-section">
-        <h4>How it works:</h4>
-        <ol>
-          <li>Share your unique referral code below with friends</li>
-          <li>Your friend signs up using your code</li>
-          <li>When they complete their first spin, you get 500 points!</li>
-          <li>No limit on how many friends you can refer</li>
-        </ol>
-      </div>
-      
-      <div class="content-section">
-        <h4>Your Unique Referral Code:</h4>
-        <div class="referral-code" id="referralCode" onclick="copyReferralCode()">RUPEESH-<span id="userCode">X7F9K2</span></div>
-        <button class="copy-btn" onclick="copyReferralCode()"><i class="fas fa-copy"></i> Copy Code</button>
-        
-        <p style="margin-top: 20px;">Or share directly via:</p>
-        <div class="share-buttons">
-          <a href="#" class="share-btn whatsapp" onclick="shareViaWhatsApp()"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-          <a href="#" class="share-btn facebook" onclick="shareViaFacebook()"><i class="fab fa-facebook"></i> Facebook</a>
-          <a href="#" class="share-btn twitter" onclick="shareViaTwitter()"><i class="fab fa-twitter"></i> Twitter</a>
-        </div>
-      </div>
-      
-      <div class="content-section">
-        <h4>Your Referral Stats:</h4>
-        <p>Total Referrals: <strong id="totalReferrals">0</strong></p>
-        <p>Points Earned from Referrals: <strong id="referralPoints">0</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- About Us Tab -->
-  <div id="about" class="tab-content">
-    <h2><i class="fas fa-info-circle"></i> About Rupesh Electronics</h2>
-    
-    <div class="content-section">
-      <h3>Our Story</h3>
-      <p>Founded in 2010, Rupesh Electronics has grown from a small mobile repair shop to one of the most trusted electronics retailers in the region. Our journey began with a simple mission: to provide high-quality electronic products and services at affordable prices.</p>
-      <p>Over the years, we've expanded our offerings to include the latest smartphones, accessories, and home electronics, always staying true to our commitment to customer satisfaction and technological innovation.</p>
-    </div>
-    
-    <div class="content-section">
-      <h3>Our Mission</h3>
-      <p>At Rupesh Electronics, we believe technology should be accessible to everyone. Our mission is to:</p>
-      <ul>
-        <li>Provide top-quality electronic products at competitive prices</li>
-        <li>Offer exceptional customer service and technical support</li>
-        <li>Educate our customers about technology through workshops and resources</li>
-        <li>Give back to our community through various initiatives</li>
-      </ul>
-    </div>
-    
-    <div class="content-section">
-      <h3>Meet Our Team</h3>
-      
-      <div class="team-member">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2Khic6tceNh0BblpbHKdF9Q64lhBCsN9Tcv1KarObRCqIw_Y4YeUD-lNdccTxsmGcXuIxyRA1UL7j_VD-CtXXjatHZA-VV4Oz5kJoiscp9SZjDZtdQnQc_Rd52SFFx82VGz_74DiaOsT2Fpj93UeGSYXpQWWNxkBfBhiQVA6tfocc_Q/s220/FB_IMG_1745661020921.jpg" alt="Rupesh Kumar">
-        <div>
-          <h4>Rupesh Kumar</h4>
-          <p><strong>Founder & CEO</strong></p>
-          <p>With over 15 years of experience in the electronics industry, Rupesh leads our company with vision and passion for technology.</p>
-        </div>
-      </div>
-      
-      <div class="team-member">
-        <img src="PHOTORUPESH LAGANA HAI" alt="PHOTO LAGANA HAI RUPESH">
-        <div>
-          <h4>PHOTORUPESH LAGANA HAI</h4>
-          <p><strong>Customer Service Manager</strong></p>
-          <p>PHOTORUPESH LAGANA HAI</p>
-        </div>
-      </div>
-      
-      <div class="team-member">
-        <img src="PHOTORUPESH LAGANA HAI" alt="PHOTORUPESH LAGANA HAI">
-        <div>
-          <h4>PHOTORUPESH LAGANA HAI</h4>
-          <p><strong>Technical Specialist</strong></p>
-          <p>Amit and his team handle all technical support and repairs with expertise and care.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="content-section">
-      <h3>Why Choose Us?</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
-          <h4 style="margin-top: 0;"><i class="fas fa-award" style="color: #ff9800;"></i> Quality Products</h4>
-          <p>We source only the best products from trusted manufacturers and suppliers.</p>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
-          <h4 style="margin-top: 0;"><i class="fas fa-rupee-sign" style="color: #ff9800;"></i> Best Prices</h4>
-          <p>Our direct relationships with suppliers allow us to offer competitive pricing.</p>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
-          <h4 style="margin-top: 0;"><i class="fas fa-headset" style="color: #ff9800;"></i> Expert Support</h4>
-          <p>Our knowledgeable staff is always ready to help with any questions.</p>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800;">
-          <h4 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #ff9800;"></i> Warranty Protection</h4>
-          <p>All products come with manufacturer warranty and our own service guarantee.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contact Tab -->
-  <div id="contact" class="tab-content">
-    <h2><i class="fas fa-envelope"></i> Contact Us</h2>
-    
-    <div class="content-section">
-      <h3>Get in Touch</h3>
-      <p>We'd love to hear from you! Whether you have questions about our products, need technical support, or want to provide feedback, our team is ready to assist you.</p>
-      
-      <div class="contact-info">
-        <div class="contact-card">
-          <h3><i class="fas fa-map-marker-alt"></i> Our Store</h3>
-          <p>K-52 HANUMAN NAGAR KANKARBAGH PATNA<br>
-          BIHAR <br>
-          India</p>
-          <p><a href="https://maps.app.goo.gl/pvBxStzKWrtCEXx76" target="_blank" style="color: #ff9800;">View on Map →</a></p>
-        </div>
-        
-        <div class="contact-card">
-          <h3><i class="fas fa-phone-alt"></i> Call Us</h3>
-          <p>Sales: <a href="tel:+919334113322" style="color: white;">+91 9334113322</a><br>
-          Support: <a href="tel:+919334113322" style="color: white;">+91 9334113322</a><br>
-          WhatsApp: <a href="https://wa.me/919334113322" style="color: white;">+91 9334113322</a></p>
-        </div>
-        
-        <div class="contact-card">
-          <h3><i class="fas fa-envelope"></i> Email Us</h3>
-          <p>General Inquiries: <a href="rupeshelectronics2003@gmail.com" style="color: white;">rupeshelectronics2003@gmail.com</a><br>
-          Support: <a href="rupeshelectronics2003@gmail.com" style="color: white;">rupeshelectronics2003@gmail.com</a><br>
-          Business: <a href="rupeshelectronics2003@gmail.com" style="color: white;">rupeshelectronics2003@gmail.com</a></p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="content-section">
-      <h3>Store Hours</h3>
-      <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
-        <p><strong>Monday - Saturday:</strong> 10:00 AM - 8:00 PM</p>
-        <p><strong>Sunday:</strong> 11:00 AM - 6:00 PM</p>
-        <p><strong>Holidays:</strong> Closed on major national holidays</p>
-      </div>
-    </div>
-    
-    <div class="content-section">
-      <h3>Send Us a Message</h3>
-      <form style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
-        <div class="form-group">
-          <label for="contact-name">Your Name</label>
-          <input type="text" id="contact-name" required>
-        </div>
-        <div class="form-group">
-          <label for="contact-email">Email Address</label>
-          <input type="email" id="contact-email" required>
-        </div>
-        <div class="form-group">
-          <label for="contact-phone">Phone Number</label>
-          <input type="tel" id="contact-phone">
-        </div>
-        <div class="form-group">
-          <label for="contact-subject">Subject</label>
-          <select id="contact-subject" required>
-            <option value="">Select a subject</option>
-            <option value="sales">Sales Inquiry</option>
-            <option value="support">Technical Support</option>
-            <option value="feedback">Feedback/Suggestion</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="contact-message">Message</label>
-          <textarea id="contact-message" rows="4" required style="width: 100%; padding: 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9);"></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Tech Articles Tab -->
-  <div id="tech" class="tab-content">
-    <h2><i class="fas fa-microchip"></i> Tech Articles & Guides</h2>
-    <p>Stay updated with the latest in technology with our informative articles and buying guides.</p>
-    
-    <div class="article-card">
-      <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smartphone Buying Guide">
-      <div class="article-content">
-        <h3>How to Choose the Perfect Smartphone in 2025</h3>
-        <p>With so many options available, selecting the right smartphone can be overwhelming. Our comprehensive guide walks you through all the factors to consider...</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </div>
-    
-    <div class="article-card">
-      <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Battery Care Tips">
-      <div class="article-content">
-        <h3>10 Proven Ways to Extend Your Phone's Battery Life</h3>
-        <p>Learn professional tips and tricks to maximize your smartphone's battery performance and lifespan...</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </div>
-    
-    <div class="article-card">
-      <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wireless Earbuds">
-      <div class="article-content">
-        <h3>True Wireless Earbuds: What to Look For Before Buying</h3>
-        <p>From sound quality to battery life, we break down the key features to consider when shopping for wireless earbuds...</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </div>
-    
-    <div class="article-card">
-      <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="5G Technology">
-      <div class="article-content">
-        <h3>5G Explained: What It Means for Your Mobile Experience</h3>
-        <p>Understand how 5G technology works and how it will transform your smartphone usage in the coming years...</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </div>
-    
-    <div class="article-card">
-      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smartphone Photography">
-      <div class="article-content">
-        <h3>Smartphone Photography Tips for Stunning Photos</h3>
-        <p>You don't need an expensive camera to take amazing photos. Learn professional techniques using just your smartphone...</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </div>
-    
-    <div class="article-card">
-      <img src="https://images.unsplash.com/photo-1517430545161-0adf6d68812f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mobile Security">
-      <div class="article-content">
-        <h3>Essential Mobile Security Tips Everyone Should Know</h3>
-        <p>Protect your personal data and privacy with these crucial smartphone security practices...</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ Tab -->
-  <div id="faq" class="tab-content">
-    <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>How does the Spin & Win wheel work?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Our Spin & Win wheel is a fun way to earn points that can be redeemed for rewards. Each day, you can spin the wheel once to win points ranging from 150 to 500. These points accumulate in your wallet and can be redeemed for products or converted to cash (1000 points = ₹1).</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>How do I claim my rewards?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>To claim your rewards, go to the "Redeem Rewards" tab and select the product you want. If you have enough points, click the "Redeem" button and fill out the claim form. For cash redemption, visit the "My Wallet" tab and click "Claim via WhatsApp" to initiate the process.</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Is there a limit to how many times I can spin?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>You can spin the wheel once per day. The spin resets at midnight local time. We may occasionally offer bonus spins during special promotions.</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>How does the referral program work?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Our referral program allows you to earn 500 points for each friend who signs up using your unique referral code and completes their first spin. There's no limit to how many friends you can refer. You can find your referral code and sharing options in the "Refer & Earn" tab.</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Do my points expire?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Points expire after 6 months of inactivity (no spins or redemptions). As long as you're actively using your account, your points will remain valid.</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Can I transfer my points to another account?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>No, points are non-transferable and can only be used by the account holder who earned them.</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>Why do I need to watch an ad before spinning?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>The ads help support this free rewards program. Watching a short ad allows us to continue offering these rewards without any cost to our users.</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>How long does it take to receive redeemed products?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Physical products typically ship within 3-5 business days after claim verification. Delivery times vary based on your location but generally take 5-7 business days within India.</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>What payment methods do you accept for cash redemptions?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>We process cash redemptions via UPI, Paytm, or direct bank transfer. The minimum redemption amount is ₹10 (10,000 points).</p>
-      </div>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <span>I cleared my browser data and lost my points. Can I recover them?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Points are stored in your browser's local storage. If you clear this data, we cannot recover lost points. We recommend redeeming your points regularly or contacting us to register your account if you haven't already.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Terms Tab -->
-  <div id="terms" class="tab-content">
-    <h2><i class="fas fa-info-circle"></i> Terms & Conditions</h2>
-    
-    <div class="terms-section">
-      <h3><i class="fas fa-gavel"></i> Terms of Service</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Spin daily to win points (maximum 1 spins per day)</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> 1000 points = ₹1.00 when redeemed as cash</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Points can be redeemed for products starting from 30,000 points</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Must watch ad before each spin</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Claim rewards directly through WhatsApp or Google Form</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Prizes are non-transferable</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Rupesh Electronics reserves the right to modify or terminate the program at any time</p>
-      </div>
-    </div>
-    
-    <div class="terms-section">
-      <h3><i class="fas fa-shield-alt"></i> Privacy Policy</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> We collect only necessary information to provide rewards</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Your data will not be shared with third parties without consent</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Points and rewards are stored in your browser's local storage</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Clearing browser data may result in loss of unredeemed points</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> We use Google AdSense to display relevant ads</p>
-      </div>
-    </div>
-    
-    <div class="terms-section">
-      <h3><i class="fas fa-exclamation-triangle"></i> Disclaimer</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> This is a promotional program by Rupesh Electronics</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Product images are for representation only</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Actual products may vary slightly from images</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Rewards are subject to availability</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> No cash alternative for physical rewards</p>
-        <p><i class="fas fa-check-circle" style="color: #4caf50;"></i> Ads help support this free rewards program</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="video-slot">
-    <h2><i class="fab fa-youtube" style="color: red;"></i> Watch and Subscribe</h2>
-    <iframe src="https://www.youtube.com/embed/oyhOtPFHUqI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
-    <a class="subscribe-btn" href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank">
-      <i class="fab fa-youtube"></i> Subscribe to Channel
-    </a>
-  </div>
-
-  <footer>
-    <p>Follow us on:</p>
-    <div class="social-icons">
-      <a href="https://wa.me/919334113322" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://youtube.com/@mrrupeshkumar000?si=nixGONixMVyagcr0" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.instagram.com/rupeshelectronics?igsh=cjRteGsyemtzNDI4" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/share/169rNXq4oi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-    </div>
-    <p>&copy; 2025 Rupesh Electronics | All Rights Reserved</p>
-    <p style="font-size: 12px; margin-top: 10px;">
-      <a href="#" onclick="showTab('terms')" style="color: #cccccc;">Terms of Service</a> | 
-      <a href="#" onclick="showTab('privacy')" style="color: #cccccc;">Privacy Policy</a> | 
-      <a href="#" onclick="showTab('contact')" style="color: #cccccc;">Contact Us</a>
-    </p>
-  </footer>
+  <!-- Your existing HTML content -->
+  <!-- ... -->
 
   <script>
-    // Initialize points from localStorage or set to 0
-    let points = localStorage.getItem('spinPoints') ? parseInt(localStorage.getItem('spinPoints')) : 0;
+    // Global variables
+    let currentUser = null;
+    let points = 0;
     let canSpin = true;
-    let lastSpinDate = localStorage.getItem('lastSpinDate');
-    let rewardsHistory = JSON.parse(localStorage.getItem('rewardsHistory')) || [];
-    let redeemedItems = JSON.parse(localStorage.getItem('redeemedItems')) || [];
+    let lastSpinDate = null;
+    let rewardsHistory = [];
+    let redeemedItems = [];
     let currentProductToClaim = null;
     let currentProductPoints = 0;
     let referralCode = "RUPEESH-X7F9K2";
-    let totalReferrals = localStorage.getItem('totalReferrals') || 0;
-    let referralPoints = localStorage.getItem('referralPoints') || 0;
     
-    // Initialize UI
+    // DOM Content Loaded
     document.addEventListener('DOMContentLoaded', function() {
+      // Check auth state
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in
+          currentUser = user;
+          document.getElementById('loginModal').style.display = 'none';
+          loadUserData();
+        } else {
+          // No user signed in
+          document.getElementById('loginModal').style.display = 'block';
+        }
+      });
+      
+      // Login/Register buttons
+      document.getElementById('loginBtn').addEventListener('click', loginUser);
+      document.getElementById('registerBtn').addEventListener('click', registerUser);
+      
+      // Initialize other components
+      if (currentUser) {
+        initializeApp();
+      }
+    });
+    
+    // User Authentication Functions
+    function loginUser() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const errorElement = document.getElementById('loginError');
+      
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          currentUser = userCredential.user;
+          document.getElementById('loginModal').style.display = 'none';
+          initializeApp();
+        })
+        .catch((error) => {
+          errorElement.textContent = error.message;
+        });
+    }
+    
+    function registerUser() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const errorElement = document.getElementById('loginError');
+      
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          currentUser = userCredential.user;
+          
+          // Create user data in database
+          return database.ref('users/' + currentUser.uid).set({
+            email: email,
+            points: 0,
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+            lastLogin: firebase.database.ServerValue.TIMESTAMP
+          });
+        })
+        .then(() => {
+          document.getElementById('loginModal').style.display = 'none';
+          initializeApp();
+        })
+        .catch((error) => {
+          errorElement.textContent = error.message;
+        });
+    }
+    
+    // Load user data from Firebase
+    function loadUserData() {
+      database.ref('users/' + currentUser.uid).once('value')
+        .then((snapshot) => {
+          const userData = snapshot.val();
+          points = userData.points || 0;
+          lastSpinDate = userData.lastSpinDate || null;
+          
+          // Update UI
+          updatePointsDisplay();
+          
+          // Load rewards history
+          database.ref('spins/' + currentUser.uid).once('value')
+            .then((spinSnapshot) => {
+              rewardsHistory = [];
+              spinSnapshot.forEach((childSnapshot) => {
+                rewardsHistory.push({
+                  type: 'spin',
+                  points: childSnapshot.val().points,
+                  date: childSnapshot.val().date
+                });
+              });
+              loadRewardsHistory();
+            });
+        });
+    }
+    
+    // Initialize app components
+    function initializeApp() {
       updatePointsDisplay();
       createWheel();
       loadRewardsHistory();
       updateReferralStats();
-      
-      // Check if already spun today
       checkDailySpin();
-      
-      // Initialize AdSense ads
       initializeAds();
       
-      // Form submission handler
       document.getElementById('claimForm').addEventListener('submit', function(e) {
         e.preventDefault();
         submitClaimForm();
       });
       
-      // Initialize FAQ items
       initFaq();
-    });
-
-    function initializeAds() {
-      // Load AdSense ads
-      try {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.log("AdSense error:", e);
-      }
-    }
-
-    function checkDailySpin() {
-      const today = new Date().toDateString();
-      if (lastSpinDate === today) {
-        document.getElementById('spin-button').disabled = true;
-        document.getElementById('spin-result').innerHTML = 
-          "You've already spun today! Come back tomorrow!";
-      }
-    }
-
-    // Background music control
-    const backgroundMusic = document.getElementById('background-music');
-    const winSound = document.getElementById('win-sound');
-    
-    function toggleMusic() {
-      if (backgroundMusic.paused) {
-        backgroundMusic.volume = 0.3;
-        backgroundMusic.play()
-          .then(() => {
-            document.querySelector('#music-control i').classList.remove('fa-music');
-            document.querySelector('#music-control i').classList.add('fa-volume-up');
-          })
-          .catch(e => console.log("Audio play failed:", e));
-      } else {
-        backgroundMusic.pause();
-        document.querySelector('#music-control i').classList.remove('fa-volume-up');
-        document.querySelector('#music-control i').classList.add('fa-music');
-      }
     }
     
-    // Try to autoplay music (may not work due to browser policies)
-    document.addEventListener('click', function() {
-      if (backgroundMusic.paused) {
-        backgroundMusic.volume = 0.3;
-        backgroundMusic.play().catch(e => console.log("Autoplay prevented:", e));
-      }
-    }, { once: true });
-
-    function showTab(id) {
-      document.querySelectorAll('.tab-content').forEach(div => div.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      
-      // Scroll to top when switching tabs
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Create colorful wheel with prizes
-    function createWheel() {
-      const wheel = document.getElementById("wheel");
-      wheel.innerHTML = ''; // Clear any existing wheel
-      
-     const prizes = [
-        { text: "150 Points", color: "#FF5252",  value: 150 },
-        { text: "250 Points", color: "#FF4081",  value: 250 },
-        { text: "200 Points", color: "#E040FB",  value: 200 },
-        { text: "300 Points", color: "#7C4DFF",  value: 300 },
-        { text: "350 Points", color: "#536DFE",  value: 350 },
-        { text: "400 Points", color: "#448AFF",  value: 400 },
-        { text: "450 Points", color: "#40C4FF",  value: 450 }, /* Fixed display */
-        { text: "500 Points", color: "#18FFFF",  value: 500 }
-      ];
-      
-      const anglePerSector = 360 / prizes.length;
-
-      prizes.forEach((prize, index) => {
-        const sector = document.createElement("div");
-        sector.classList.add("sector");
-        sector.style.transform = `rotate(${index * anglePerSector}deg)`;
-        sector.style.backgroundColor = prize.color;
-        
-        const prizeText = document.createElement("div");
-        prizeText.textContent = prize.text;
-        
-        sector.appendChild(prizeText);
-        wheel.appendChild(sector);
-      });
-    }
-
-    function showAdModal() {
-      document.getElementById('adModal').style.display = 'block';
-    }
-    
-    function adWatched() {
-      closeModal();
-      spinWheel();
-    }
-    
-    function showClaimModal(product, pointsRequired) {
-      if (points < pointsRequired) {
-        alert(`You need ${pointsRequired} points to redeem this product!`);
-        return;
-      }
-      
-      currentProductToClaim = product;
-      currentProductPoints = pointsRequired;
-      document.getElementById('product').value = product;
-      document.getElementById('claimModal').style.display = 'block';
-    }
-    
-    function submitClaimForm() {
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const product = document.getElementById('product').value;
-      
-      // Deduct points
-      points -= currentProductPoints;
-      localStorage.setItem('spinPoints', points);
-      
-      // Add to redemption history
-      rewardsHistory.unshift({
-        product: product,
-        points: currentProductPoints,
-        date: new Date().toISOString(),
-        type: 'redemption'
-      });
-      localStorage.setItem('rewardsHistory', JSON.stringify(rewardsHistory));
-      
-      // Update UI
-      updatePointsDisplay();
-      addRewardToHistory(product, 'redemption');
-      closeModal();
-      
-      // Send WhatsApp message
-      const message = `*Rupesh Electronics Reward Claim*\n\n` +
-                     `Name: ${name}\n` +
-                     `Phone: ${phone}\n` +
-                     `Address: ${address}\n` +
-                     `Product: ${product}\n` +
-                     `Points Used: ${currentProductPoints}`;
-      
-      window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
-      
-      // Reset form
-      document.getElementById('claimForm').reset();
-    }
-    
-    function closeModal() {
-      document.getElementById('adModal').style.display = 'none';
-      document.getElementById('claimModal').style.display = 'none';
-    }
-
+    // Modified spinWheel function with Firebase integration
     function spinWheel() {
-      if (!canSpin) return;
+      if (!canSpin || !currentUser) return;
       
       const today = new Date().toDateString();
       if (lastSpinDate === today) {
@@ -1468,17 +256,14 @@
       spinButton.disabled = true;
       spinResult.textContent = "Spinning... Good luck!";
       
-      // Reset wheel position for continuous spinning
       wheel.style.transition = 'none';
       wheel.style.transform = 'rotate(0deg)';
       
-      // Force reflow
       setTimeout(() => {
-        const randomSpin = Math.floor(Math.random() * 360) + 5 * 360; // At least 5 full rotations
+        const randomSpin = Math.floor(Math.random() * 360) + 5 * 360;
         wheel.style.transition = "transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)";
         wheel.style.transform = `rotate(${randomSpin}deg)`;
         
-        // Calculate prize after spin completes
         setTimeout(() => {
           const prizeValues = [150, 250, 200, 300, 350, 400, 450, 500];
           const normalizedAngle = randomSpin % 360;
@@ -1488,175 +273,99 @@
           points += reward;
           spinResult.innerHTML = `🎉 Congratulations! You won <strong>${reward} points</strong>! 🎉`;
           
-          // Save to localStorage
-          localStorage.setItem('spinPoints', points);
-          localStorage.setItem('lastSpinDate', today);
-          
-          // Add to rewards history
-          rewardsHistory.unshift({
+          // Save to Firebase
+          const spinData = {
             points: reward,
             date: new Date().toISOString(),
-            type: 'spin'
-          });
-          localStorage.setItem('rewardsHistory', JSON.stringify(rewardsHistory));
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          };
           
-          // Play win sound
-          winSound.currentTime = 0;
-          winSound.play().catch(e => console.log("Sound play failed:", e));
-          
-          // Update UI
-          updatePointsDisplay();
-          addRewardToHistory(reward, 'spin');
-          
-          // Create confetti effect
-          createConfetti();
-          
-          canSpin = true;
+          database.ref('spins/' + currentUser.uid).push(spinData)
+            .then(() => {
+              return database.ref('users/' + currentUser.uid).update({
+                points: firebase.database.ServerValue.increment(reward),
+                lastSpinDate: today
+              });
+            })
+            .then(() => {
+              // Update local storage
+              lastSpinDate = today;
+              localStorage.setItem('lastSpinDate', today);
+              
+              rewardsHistory.unshift({
+                points: reward,
+                date: new Date().toISOString(),
+                type: 'spin'
+              });
+              
+              updatePointsDisplay();
+              addRewardToHistory(reward, 'spin');
+              createConfetti();
+              canSpin = true;
+            });
         }, 3000);
       }, 10);
     }
-
-    function loadRewardsHistory() {
-      const rewardList = document.getElementById("reward-list");
-      rewardList.innerHTML = '';
-      
-      rewardsHistory.forEach(reward => {
-        const date = new Date(reward.date);
-        const li = document.createElement("li");
-        if (reward.type === 'spin') {
-          li.innerHTML = `<i class="fas fa-coins" style="color: gold;"></i> +${reward.points} points (${date.toLocaleString()})`;
-        } else {
-          li.innerHTML = `<i class="fas fa-gift" style="color: #ff9800;"></i> Redeemed ${reward.product} (${date.toLocaleString()})`;
-        }
-        rewardList.appendChild(li);
-      });
-    }
-
-    function updatePointsDisplay() {
-      document.getElementById("points").innerText = points;
-      document.getElementById("balance").innerText = (points / 1000).toFixed(2);
-    }
-
-    function addRewardToHistory(reward, type = 'spin') {
-      const li = document.createElement("li");
-      const now = new Date();
-      if (type === 'spin') {
-        li.innerHTML = `<i class="fas fa-coins" style="color: gold;"></i> +${reward} points (${now.toLocaleString()})`;
-      } else {
-        li.innerHTML = `<i class="fas fa-gift" style="color: #ff9800;"></i> Redeemed ${reward} (${now.toLocaleString()})`;
-      }
-      document.getElementById("reward-list").prepend(li);
-    }
-
-    function createConfetti() {
-      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-      
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = -10 + 'px';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.opacity = Math.random();
-        confetti.style.width = Math.random() * 10 + 5 + 'px';
-        confetti.style.height = Math.random() * 10 + 5 + 'px';
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        
-        document.body.appendChild(confetti);
-        
-        const animationDuration = Math.random() * 3 + 2;
-        
-        confetti.animate([
-          { top: '-10px', opacity: 1, transform: 'rotate(0deg) scale(1)' },
-          { top: '100vh', opacity: 0, transform: `rotate(${Math.random() * 360}deg) scale(0)` }
-        ], {
-          duration: animationDuration * 1000,
-          easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)',
-          fill: 'forwards'
-        });
-        
-        setTimeout(() => confetti.remove(), animationDuration * 1000);
-      }
-    }
-
-    function claimReward() {
-      if (points < 1000) {
-        alert("You need at least 1000 points (₹1.00) to claim your reward!");
+    
+    // Modified submitClaimForm with Firebase integration
+    function submitClaimForm() {
+      if (!currentUser) {
+        alert("Please login to claim rewards");
         return;
       }
       
-      const amount = (points / 1000).toFixed(2);
-      const message = `Hello Rupesh Electronics! I want to claim my reward of ₹${amount} (${points} points). My registered mobile number is: [YOUR_NUMBER_HERE]`;
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const product = document.getElementById('product').value;
       
-      // Open WhatsApp with prefilled message
-      window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
-    }
-    
-    // FAQ Functions
-    function initFaq() {
-      // Close all FAQ answers by default
-      document.querySelectorAll('.faq-answer').forEach(answer => {
-        answer.style.maxHeight = '0';
-      });
-    }
-    
-    function toggleFaq(question) {
-      const answer = question.nextElementSibling;
-      const isOpen = answer.classList.contains('show');
+      // Save claim to Firebase
+      const claimData = {
+        product: product,
+        points: currentProductPoints,
+        name: name,
+        phone: phone,
+        address: address,
+        date: new Date().toISOString(),
+        status: "pending",
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      };
       
-      // Close all other FAQ answers
-      document.querySelectorAll('.faq-answer').forEach(item => {
-        item.classList.remove('show');
-        item.style.maxHeight = '0';
-      });
-      
-      // Toggle the clicked one
-      if (!isOpen) {
-        answer.classList.add('show');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    }
-    
-    // Referral Functions
-    function updateReferralStats() {
-      document.getElementById('totalReferrals').textContent = totalReferrals;
-      document.getElementById('referralPoints').textContent = referralPoints;
-      document.getElementById('userCode').textContent = referralCode.split('-')[1];
-    }
-    
-    function copyReferralCode() {
-      navigator.clipboard.writeText(referralCode)
+      database.ref('claims/' + currentUser.uid).push(claimData)
         .then(() => {
-          alert('Referral code copied to clipboard!');
+          return database.ref('users/' + currentUser.uid).update({
+            points: firebase.database.ServerValue.increment(-currentProductPoints)
+          });
         })
-        .catch(err => {
-          console.error('Failed to copy: ', err);
-          // Fallback for older browsers
-          const textarea = document.createElement('textarea');
-          textarea.value = referralCode;
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textarea);
-          alert('Referral code copied to clipboard!');
+        .then(() => {
+          points -= currentProductPoints;
+          updatePointsDisplay();
+          
+          rewardsHistory.unshift({
+            product: product,
+            points: currentProductPoints,
+            date: new Date().toISOString(),
+            type: 'redemption'
+          });
+          
+          addRewardToHistory(product, 'redemption');
+          closeModal();
+          
+          const message = `*Rupesh Electronics Reward Claim*\n\n` +
+                         `Name: ${name}\n` +
+                         `Phone: ${phone}\n` +
+                         `Address: ${address}\n` +
+                         `Product: ${product}\n` +
+                         `Points Used: ${currentProductPoints}`;
+          
+          window.open(`https://wa.me/919334113322?text=${encodeURIComponent(message)}`, '_blank');
+          document.getElementById('claimForm').reset();
         });
     }
     
-    function shareViaWhatsApp() {
-      const message = `Join Rupesh Electronics Spin & Win and use my referral code ${referralCode} to get bonus points! ${window.location.href}`;
-      window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
-    }
+    // Rest of your existing functions (updatePointsDisplay, loadRewardsHistory, etc.)
+    // ...
     
-    function shareViaFacebook() {
-      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=Join Rupesh Electronics Spin & Win and use my referral code ${referralCode} to get bonus points!`;
-      window.open(url, '_blank', 'width=600,height=400');
-    }
-    
-    function shareViaTwitter() {
-      const text = `Join Rupesh Electronics Spin & Win and use my referral code ${referralCode} to get bonus points!`;
-      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
-      window.open(url, '_blank', 'width=600,height=400');
-    }
   </script>
 </body>
 </html>
