@@ -1,301 +1,403 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>स्पिन एंड विन - रूपेश इलेक्ट्रॉनिक्स</title>
+<div class='spin-container'>
+    <div class='spin-header'>
+        <h2>SPIN & WIN REWARDS!</h2>
+        <p>Spin the wheel to win amazing prizes</p>
+    </div>
     
-    <!-- फॉन्ट और आइकन लिंक -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
-
-    <style>
-        /* बेसिक स्टाइलिंग */
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            color: white;
-            min-height: 100vh;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* हेडर स्टाइल */
-        header {
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            border-bottom: 3px solid #ff9800;
-        }
-
-        /* व्हील कंटेनर */
-        #wheel-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 30px auto;
-            max-width: 600px;
-        }
-
-        /* स्पिन व्हील */
-        #wheel {
-            width: 280px;
-            height: 280px;
-            border: 15px solid #444;
-            border-radius: 50%;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-            background: #222;
-            overflow: hidden;
-        }
-
-        /* स्पिन बटन */
-        #spin-button {
-            padding: 15px 40px;
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
-            border: none;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* लॉगिन मोडल */
-        .login-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-        }
-
-        .login-content {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-            margin: 100px auto;
-            padding: 30px;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        /* और स्टाइल्स आपकी जरूरत के अनुसार जोड़ें */
-    </style>
-</head>
-<body>
-    <!-- लॉगिन मोडल -->
-    <div id="loginModal" class="login-modal">
-        <div class="login-content">
-            <h2>लॉगिन / रजिस्टर</h2>
-            <input type="email" id="loginEmail" class="login-input" placeholder="ईमेल">
-            <input type="password" id="loginPassword" class="login-input" placeholder="पासवर्ड">
-            <button id="loginBtn" class="login-btn">लॉगिन</button>
-            <button id="registerBtn" class="login-btn" style="background:linear-gradient(to right, #4CAF50, #2E7D32)">रजिस्टर</button>
-            <p id="loginError" style="color:#ff9800;margin-top:10px;"></p>
+    <div class='wheel-container'>
+        <div class='wheel' id='wheel'>
+            <!-- Wheel segments will be added by JavaScript -->
         </div>
+        <div class='wheel-pointer'></div>
     </div>
-
-    <!-- मुख्य कंटेंट -->
-    <header>
-        <h1>🎡 स्पिन एंड विन 🎡</h1>
-        <p>रूपेश इलेक्ट्रॉनिक्स - डेली रिवॉर्ड्स</p>
-    </header>
-
-    <div id="wheel-container">
-        <div id="wheel"></div>
-        <button id="spin-button"><i class="fas fa-sync-alt"></i> स्पिन करें</button>
-        <div id="spin-result">अद्भुत पुरस्कार जीतने के लिए स्पिन करें!</div>
+    
+    <button class='spin-btn' id='spinBtn'>SPIN NOW</button>
+    
+    <div class='referral-section'>
+        <h3>Refer & Earn</h3>
+        <p>Share your referral code to earn more spins</p>
+        <div class='referral-input'>
+            <input type='text' id='referralCode' placeholder='Enter referral code' readonly/>
+            <button id='copyRefBtn'><i class='fas fa-copy'></i></button>
+        </div>
+        <p id='refStatus'></p>
     </div>
+    
+    <div class='social-links'>
+        <a href='#' class='facebook' id='fbShare'><i class='fab fa-facebook-f'></i></a>
+        <a href='#' class='twitter' id='twitterShare'><i class='fab fa-twitter'></i></a>
+        <a href='#' class='instagram' id='instagramShare'><i class='fab fa-instagram'></i></a>
+        <a href='#' class='whatsapp' id='whatsappShare'><i class='fab fa-whatsapp'></i></a>
+    </div>
+</div>
 
-    <script>
-        // Firebase कॉन्फिगरेशन - अपनी वास्तविक जानकारी से बदलें
-        const firebaseConfig = {
-            apiKey: "AIzaSyYOUR_API_KEY",
-            authDomain: "YOUR_PROJECT.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+<div class='result-modal' id='resultModal'>
+    <div class='modal-content'>
+        <h3>CONGRATULATIONS!</h3>
+        <div class='prize-icon' id='prizeIcon'>
+            <i class='fas fa-gift'></i>
+        </div>
+        <p>You've won: <span id='prizeText'></span></p>
+        <p id='refEarnMessage'></p>
+        <button class='close-modal' id='closeModal'>CLOSE</button>
+    </div>
+</div>
 
-        // Firebase इनिशियलाइज़ करें
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const database = firebase.database();
+<style>
+.spin-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        // ग्लोबल वेरिएबल्स
-        let currentUser = null;
-        let points = 0;
+.spin-header {
+    margin-bottom: 20px;
+}
 
-        // DOM कंटेंट लोड होने पर
-        document.addEventListener('DOMContentLoaded', function() {
-            // ऑथ स्टेट चेक करें
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    currentUser = user;
-                    document.getElementById('loginModal').style.display = 'none';
-                    loadUserData();
-                    initWheel();
-                } else {
-                    document.getElementById('loginModal').style.display = 'block';
-                }
-            });
+.spin-header h2 {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 24px;
+}
 
-            // लॉगिन/रजिस्टर बटन इवेंट
-            document.getElementById('loginBtn').addEventListener('click', loginUser);
-            document.getElementById('registerBtn').addEventListener('click', registerUser);
-        });
+.spin-header p {
+    color: #7f8c8d;
+    margin: 5px 0 0;
+    font-size: 14px;
+}
 
-        // यूजर लॉगिन फंक्शन
-        function loginUser() {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            auth.signInWithEmailAndPassword(email, password)
-                .then(userCredential => {
-                    currentUser = userCredential.user;
-                    document.getElementById('loginModal').style.display = 'none';
-                    loadUserData();
-                })
-                .catch(error => {
-                    document.getElementById('loginError').textContent = error.message;
-                });
-        }
+.wheel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 20px;
+}
 
-        // यूजर रजिस्टर फंक्शन
-        function registerUser() {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(userCredential => {
-                    currentUser = userCredential.user;
-                    
-                    // फायरबेस में यूजर डेटा सेव करें
-                    return database.ref('users/' + currentUser.uid).set({
-                        email: email,
-                        points: 0,
-                        createdAt: firebase.database.ServerValue.TIMESTAMP
-                    });
-                })
-                .then(() => {
-                    document.getElementById('loginModal').style.display = 'none';
-                    loadUserData();
-                })
-                .catch(error => {
-                    document.getElementById('loginError').textContent = error.message;
-                });
-        }
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 8px solid #fff;
+    box-shadow: 0 0 0 8px #2c3e50, 0 0 30px rgba(0, 0, 0, 0.2);
+    transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+    transform: rotate(0deg);
+}
 
-        // यूजर डेटा लोड करें
-        function loadUserData() {
-            database.ref('users/' + currentUser.uid).once('value')
-                .then(snapshot => {
-                    const userData = snapshot.val();
-                    points = userData.points || 0;
-                    updateUI();
-                });
-        }
+.wheel-item {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform-origin: bottom right;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
 
-        // व्हील इनिशियलाइज़ करें
-        function initWheel() {
-            const wheel = document.getElementById("wheel");
-            const prizes = [
-                { text: "150 पॉइंट्स", color: "#FF5252", value: 150 },
-                { text: "250 पॉइंट्स", color: "#FF4081", value: 250 },
-                { text: "200 पॉइंट्स", color: "#E040FB", value: 200 },
-                { text: "300 पॉइंट्स", color: "#7C4DFF", value: 300 },
-                { text: "350 पॉइंट्स", color: "#536DFE", value: 350 },
-                { text: "400 पॉइंट्स", color: "#448AFF", value: 400 },
-                { text: "450 पॉइंट्स", color: "#40C4FF", value: 450 },
-                { text: "500 पॉइंट्स", color: "#18FFFF", value: 500 }
-            ];
+.wheel-pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+}
 
-            // व्हील सेक्टर बनाएं
-            prizes.forEach((prize, index) => {
-                const sector = document.createElement("div");
-                sector.className = "sector";
-                sector.style.transform = `rotate(${index * 45}deg)`;
-                sector.style.backgroundColor = prize.color;
-                
-                const prizeText = document.createElement("div");
-                prizeText.textContent = prize.text;
-                prizeText.style.transform = `rotate(22.5deg)`;
-                prizeText.style.marginTop = "20px";
-                
-                sector.appendChild(prizeText);
-                wheel.appendChild(sector);
-            });
+.wheel-pointer:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 25px solid #e74c3c;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-            // स्पिन बटन इवेंट
-            document.getElementById("spin-button").addEventListener("click", spinWheel);
-        }
+.spin-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    margin-bottom: 20px;
+}
 
-        // स्पिन व्हील फंक्शन
-        function spinWheel() {
-            if (!currentUser) return;
-            
-            const wheel = document.getElementById("wheel");
-            const spinButton = document.getElementById("spin-button");
-            const spinResult = document.getElementById("spin-result");
-            
-            spinButton.disabled = true;
-            spinResult.textContent = "स्पिन हो रहा है... शुभकामनाएँ!";
-            
-            const randomSpin = Math.floor(Math.random() * 360) + 5 * 360;
-            wheel.style.transition = "transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)";
-            wheel.style.transform = `rotate(${randomSpin}deg)`;
-            
-            setTimeout(() => {
-                const prizeValues = [150, 250, 200, 300, 350, 400, 450, 500];
-                const normalizedAngle = randomSpin % 360;
-                const prizeIndex = Math.floor((360 - normalizedAngle) / 45) % prizeValues.length;
-                const reward = prizeValues[prizeIndex];
-                
-                points += reward;
-                spinResult.innerHTML = `🎉 बधाई हो! आपने <strong>${reward} पॉइंट्स</strong> जीते! 🎉`;
-                
-                // फायरबेस में डेटा सेव करें
-                database.ref('spins/' + currentUser.uid).push({
-                    points: reward,
-                    timestamp: firebase.database.ServerValue.TIMESTAMP
-                });
-                
-                database.ref('users/' + currentUser.uid).update({
-                    points: firebase.database.ServerValue.increment(reward)
-                });
-                
-                spinButton.disabled = false;
-            }, 3000);
-        }
+.spin-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(231, 76, 60, 0.6);
+}
 
-        // UI अपडेट करें
-        function updateUI() {
-            // अपने UI एलिमेंट्स को अपडेट करें
-            console.log("यूजर पॉइंट्स:", points);
-        }
-    </script>
-</body>
-</html>
+.spin-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.result-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 350px;
+    animation: modalFadeIn 0.5s;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.prize-icon {
+    font-size: 50px;
+    margin: 15px 0;
+    color: #f39c12;
+}
+
+.close-modal {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.referral-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+}
+
+.referral-input {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.referral-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.referral-input button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a {
+    color: white;
+    background: #2c3e50;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.facebook:hover { background: #3b5998; }
+.twitter:hover { background: #1da1f2; }
+.instagram:hover { background: #e1306c; }
+.whatsapp:hover { background: #25d366; }
+
+/* Prize animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.prize-animation {
+    animation: pulse 1s infinite;
+    color: #e74c3c;
+    font-weight: bold;
+}
+</style>
+
+<script>
+// Prizes configuration (you can modify these)
+const prizes = [
+    { text: "10% Discount", color: "#f39c12", icon: "fa-percentage" },
+    { text: "Free Shipping", color: "#3498db", icon: "fa-truck" },
+    { text: "₹100 Cash", color: "#2ecc71", icon: "fa-rupee-sign" },
+    { text: "Try Again", color: "#e74c3c", icon: "fa-redo" },
+    { text: "₹50 Cash", color: "#9b59b6", icon: "fa-rupee-sign" },
+    { text: "5% Discount", color: "#1abc9c", icon: "fa-percentage" },
+    { text: "Free Gift", color: "#d35400", icon: "fa-gift" },
+    { text: "₹25 Cash", color: "#34495e", icon: "fa-rupee-sign" }
+];
+
+// Generate wheel segments
+function generateWheel() {
+    const wheel = document.getElementById('wheel');
+    wheel.innerHTML = '';
+    const segmentAngle = 360 / prizes.length;
+    
+    prizes.forEach((prize, index) => {
+        const segment = document.createElement('div');
+        segment.className = 'wheel-item';
+        segment.style.transform = `rotate(${segmentAngle * index}deg)`;
+        segment.style.backgroundColor = prize.color;
+        segment.innerHTML = `<span style="transform: rotate(${segmentAngle/2}deg);">${prize.text}</span>`;
+        wheel.appendChild(segment);
+    });
+}
+
+// Spin the wheel with smooth animation
+function spinWheel() {
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+    
+    spinBtn.disabled = true;
+    const segmentAngle = 360 / prizes.length;
+    const extraRotations = 5; // Number of full rotations before stopping
+    const randomSegment = Math.floor(Math.random() * prizes.length);
+    const degreesToStop = (360 * extraRotations) + (segmentAngle * randomSegment);
+    
+    // Reset wheel position (for multiple spins)
+    wheel.style.transition = 'none';
+    wheel.style.transform = 'rotate(0deg)';
+    
+    // Force reflow to apply reset
+    void wheel.offsetWidth;
+    
+    // Apply smooth spinning transition
+    wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+    wheel.style.transform = `rotate(${degreesToStop}deg)`;
+    
+    setTimeout(() => {
+        showResult(prizes[randomSegment]);
+    }, 5000);
+}
+
+// Show result modal with animation
+function showResult(prize) {
+    const prizeText = document.getElementById('prizeText');
+    const prizeIcon = document.getElementById('prizeIcon');
+    const resultModal = document.getElementById('resultModal');
+    const refEarnMessage = document.getElementById('refEarnMessage');
+    
+    prizeText.textContent = prize.text;
+    prizeIcon.innerHTML = `<i class="fas ${prize.icon}"></i>`;
+    
+    // Add pulse animation to prize text
+    prizeText.classList.add('prize-animation');
+    
+    resultModal.style.display = 'flex';
+}
+
+// Generate referral code for user
+function generateReferralCode() {
+    if (!localStorage.getItem('referralCode')) {
+        const code = 'REF' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        localStorage.setItem('referralCode', code);
+        return code;
+    }
+    return localStorage.getItem('referralCode');
+}
+
+// Initialize the widget
+function init() {
+    generateWheel();
+    
+    // Set up referral code
+    const code = generateReferralCode();
+    document.getElementById('referralCode').value = code;
+    
+    // Set up social share links
+    const shareUrl = encodeURIComponent(window.location.href.split('?')[0] + '?ref=' + code);
+    const shareText = encodeURIComponent('Spin the wheel and win amazing prizes! Use my referral code: ' + code);
+    
+    document.getElementById('fbShare').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    document.getElementById('twitterShare').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+    document.getElementById('instagramShare').href = `https://instagram.com`;
+    document.getElementById('whatsappShare').href = `https://wa.me/?text=${shareText} ${shareUrl}`;
+    
+    // Event listeners
+    document.getElementById('spinBtn').addEventListener('click', spinWheel);
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('resultModal').style.display = 'none';
+        document.getElementById('prizeText').classList.remove('prize-animation');
+        document.getElementById('spinBtn').disabled = false;
+    });
+    
+    document.getElementById('copyRefBtn').addEventListener('click', () => {
+        const referralCode = document.getElementById('referralCode');
+        referralCode.select();
+        document.execCommand('copy');
+        document.getElementById('refStatus').textContent = 'Copied to clipboard!';
+        setTimeout(() => {
+            document.getElementById('refStatus').textContent = '';
+        }, 2000);
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+<!-- Add Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
