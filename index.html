@@ -6,7 +6,7 @@
     <title>स्पिन और जीतो</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* मुख्य स्टाइलिंग */
+        /* बेसिक स्टाइलिंग */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -33,7 +33,7 @@
         h1 {
             margin: 0;
             color: #333;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
         }
         
         /* लॉगिन सेक्शन */
@@ -62,11 +62,6 @@
             transition: all 0.3s;
         }
         
-        .login-btn:hover {
-            background-color: #3367D6;
-            transform: translateY(-2px);
-        }
-        
         /* यूजर सेक्शन */
         #user-section {
             display: none;
@@ -91,11 +86,6 @@
             padding: 8px 16px;
             border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .logout-btn:hover {
-            background-color: #c82333;
         }
         
         /* वॉलेट सेक्शन */
@@ -105,14 +95,12 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center;
         }
         
         .balance {
             font-size: 2rem;
             font-weight: bold;
             color: #28a745;
-            margin: 10px 0;
         }
         
         /* स्पिन सेक्शन */
@@ -137,19 +125,6 @@
             margin-top: 30px;
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }
-        
-        #spin-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
-        
-        #spin-button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
         
         /* व्हील डिज़ाइन */
@@ -163,7 +138,6 @@
         #wheel {
             width: 100%;
             height: 100%;
-            transition: transform 3s cubic-bezier(0.17, 0.67, 0.21, 0.99);
         }
         
         #spin-pointer {
@@ -194,7 +168,7 @@
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: bold;
         }
         
@@ -203,7 +177,6 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 16px;
         }
         
         .withdraw-btn {
@@ -215,11 +188,6 @@
             cursor: pointer;
             font-size: 16px;
             width: 100%;
-            transition: all 0.3s;
-        }
-        
-        .withdraw-btn:hover {
-            background-color: #218838;
         }
         
         /* रेफरल सेक्शन */
@@ -229,7 +197,6 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center;
         }
         
         .referral-code {
@@ -241,7 +208,6 @@
             border-radius: 5px;
             display: inline-block;
             margin: 10px 0;
-            word-break: break-all;
         }
         
         .copy-btn {
@@ -252,19 +218,38 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
-            transition: all 0.3s;
         }
         
-        .copy-btn:hover {
-            background-color: #138496;
+        /* रेफरल हिस्ट्री सेक्शन */
+        .referral-history {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .history-table th, .history-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .history-table th {
+            background-color: #f2f2f2;
         }
         
         /* फुटर */
         footer {
             text-align: center;
             padding: 20px;
-            margin-top: 40px;
-            background: linear-gradient(135deg, #333, #000);
+            margin-top: 30px;
+            background: #333;
             color: white;
             border-radius: 10px;
         }
@@ -272,7 +257,6 @@
         .footer-links {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
             margin-bottom: 15px;
         }
         
@@ -280,11 +264,6 @@
             color: white;
             margin: 0 15px;
             text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #FFD700;
         }
         
         .social-icons {
@@ -295,12 +274,6 @@
         .social-icons a {
             color: white;
             margin: 0 10px;
-            transition: all 0.3s;
-        }
-        
-        .social-icons a:hover {
-            color: #FFD700;
-            transform: translateY(-3px);
         }
         
         /* पॉपअप स्टाइलिंग */
@@ -309,7 +282,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: #FFD700;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -317,22 +290,11 @@
             text-align: center;
             max-width: 90%;
             width: 400px;
-            animation: popupIn 0.4s ease-out;
-        }
-        
-        @keyframes popupIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
         }
         
         .popup h2 {
             margin-top: 0;
             color: #333;
-        }
-        
-        .popup p {
-            font-size: 1.2rem;
-            margin: 15px 0;
         }
         
         .popup button {
@@ -342,12 +304,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        
-        .popup button:hover {
-            background-color: #555;
+            margin-top: 15px;
         }
         
         /* रिस्पॉन्सिव डिज़ाइन */
@@ -361,14 +318,12 @@
                 height: 250px;
             }
             
-            #spin-button {
-                padding: 12px 30px;
-                font-size: 1rem;
+            .footer-links {
+                flex-direction: column;
             }
             
             .footer-links a {
-                margin: 0 10px;
-                font-size: 14px;
+                margin: 5px 0;
             }
         }
     </style>
@@ -376,7 +331,7 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-trophy"></i> स्पिन और जीतो</h1>
+            <h1><i class="fas fa-trophy"></i>RUPESH ELECTRONICS</h1>
             <p>घुमाओ और असली पैसे जीतो!</p>
         </header>
         
@@ -431,8 +386,6 @@
                 <label for="payment-method"><i class="fas fa-money-check-alt"></i> भुगतान विधि</label>
                 <select id="payment-method">
                     <option value="UPI" selected>UPI</option>
-                    <option value="Paytm">Paytm</option>
-                    <option value="Bank Transfer">बैंक ट्रांसफर</option>
                 </select>
             </div>
             <div class="form-group" id="upi-id-container">
@@ -453,6 +406,37 @@
             <button class="copy-btn" id="copy-referral-btn"><i class="fas fa-copy"></i> लिंक कॉपी करें</button>
         </div>
         
+        <!-- रेफरल हिस्ट्री सेक्शन -->
+        <div class="referral-history">
+            <h3><i class="fas fa-history"></i> आपकी रेफरल गतिविधि</h3>
+            <div id="referral-stats" style="text-align: center; margin-bottom: 20px;">
+                <div style="display: inline-block; margin: 0 20px;">
+                    <div style="font-size: 24px; font-weight: bold; color: #FFD700;" id="total-referrals">0</div>
+                    <div>कुल रेफरल</div>
+                </div>
+                <div style="display: inline-block; margin: 0 20px;">
+                    <div style="font-size: 24px; font-weight: bold; color: #28a745;" id="referral-earnings">₹0</div>
+                    <div>कुल कमाई</div>
+                </div>
+            </div>
+            <div id="referral-history-loading">लोड हो रहा है...</div>
+            <table class="history-table" id="referral-history-table" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>यूजर</th>
+                        <th>तारीख</th>
+                        <th style="text-align: right;">बोनस</th>
+                    </tr>
+                </thead>
+                <tbody id="referral-history-body">
+                    <!-- यहाँ डेटा लोड होगा -->
+                </tbody>
+            </table>
+            <div id="no-referrals" style="text-align: center; padding: 20px; display: none;">
+                अभी तक कोई रेफरल नहीं किया गया
+            </div>
+        </div>
+        
         <!-- फुटर -->
         <footer>
             <div class="footer-links">
@@ -466,7 +450,6 @@
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
             <p>&copy; 2023 स्पिन और जीतो. सर्वाधिकार सुरक्षित.</p>
         </footer>
@@ -612,6 +595,7 @@
                     createNewUser();
                 } else {
                     updateUserDisplay();
+                    loadReferralHistory(); // रेफरल हिस्ट्री लोड करें
                 }
             });
         }
@@ -670,6 +654,48 @@
                 
                 checkSpinAvailability();
             }
+        }
+
+        // रेफरल हिस्ट्री लोड करें
+        function loadReferralHistory() {
+            const referralHistoryRef = database.ref('referrals').orderByChild('referrerId').equalTo(currentUser.uid);
+            
+            document.getElementById('referral-history-loading').style.display = 'block';
+            document.getElementById('referral-history-table').style.display = 'none';
+            document.getElementById('no-referrals').style.display = 'none';
+            
+            referralHistoryRef.once('value').then((snapshot) => {
+                document.getElementById('referral-history-loading').style.display = 'none';
+                
+                if (snapshot.exists()) {
+                    const referrals = snapshot.val();
+                    const referralHistoryBody = document.getElementById('referral-history-body');
+                    referralHistoryBody.innerHTML = '';
+                    
+                    let totalReferrals = 0;
+                    let totalEarnings = 0;
+                    
+                    Object.values(referrals).forEach(referral => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${referral.referredEmail || 'N/A'}</td>
+                            <td>${new Date(referral.timestamp).toLocaleDateString()}</td>
+                            <td style="text-align: right;">₹10</td>
+                        `;
+                        referralHistoryBody.appendChild(row);
+                        
+                        totalReferrals++;
+                        totalEarnings += 10;
+                    });
+                    
+                    // टोटल स्टैट्स अपडेट करें
+                    document.getElementById('total-referrals').textContent = totalReferrals;
+                    document.getElementById('referral-earnings').textContent = `₹${totalEarnings}`;
+                    document.getElementById('referral-history-table').style.display = 'table';
+                } else {
+                    document.getElementById('no-referrals').style.display = 'block';
+                }
+            });
         }
 
         // स्पिन व्हील घुमाएं
@@ -836,15 +862,32 @@
             referralQuery.once('value').then((snapshot) => {
                 if (snapshot.exists()) {
                     const referrerId = Object.keys(snapshot.val())[0];
+                    const referrerData = snapshot.val()[referrerId];
+                    
+                    // रेफरल रिकॉर्ड क्रिएट करें
+                    const referralData = {
+                        referrerId: referrerId,
+                        referrerEmail: referrerData.email,
+                        referredUserId: currentUser.uid,
+                        referredEmail: currentUser.email,
+                        bonusAmount: 10,
+                        timestamp: new Date().toISOString(),
+                        status: "completed"
+                    };
+                    
+                    database.ref('referrals').push(referralData);
+                    
+                    // रेफरर का डेटा अपडेट करें
                     const referrerUpdates = {
-                        referralCount: (snapshot.val()[referrerId].referralCount || 0) + 1,
-                        balance: (snapshot.val()[referrerId].balance || 0) + 10,
-                        totalEarned: (snapshot.val()[referrerId].totalEarned || 0) + 10
+                        referralCount: (referrerData.referralCount || 0) + 1,
+                        balance: (referrerData.balance || 0) + 10,
+                        totalEarned: (referrerData.totalEarned || 0) + 10
                     };
                     
                     database.ref('users/' + referrerId).update(referrerUpdates)
                         .then(() => {
-                            showSuccessPopup("आपको ₹10 का रेफरल बोनस मिला है!");
+                            // नए यूजर को नोटिफिकेशन दिखाएं
+                            showSuccessPopup("आपने ${referrerData.email} के रेफरल कोड का उपयोग किया है!");
                         });
                 }
             });
