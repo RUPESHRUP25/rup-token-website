@@ -3,459 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>स्पिन और जीतो</title>
+    <title>Rupesh Electronics - Spin & Win</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* बेसिक स्टाइलिंग */
+        /* नया कलर थीम */
+        :root {
+            --primary: #4CAF50;  /* हरा */
+            --secondary: #2196F3; /* नीला */
+            --accent: #FFC107;   /* पीला */
+            --pink: #E91E63;     /* गुलाबी */
+            --dark: #333;
+            --light: #f8f9fa;
+        }
+        
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background: linear-gradient(135deg, var(--light) 0%, #e4e8eb 100%);
+            color: var(--dark);
+            line-height: 1.6;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
         
-        header {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+        /* हेडर स्टाइल */
+        .store-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 20px;
             text-align: center;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid white;
         }
         
-        h1 {
+        .store-header h1 {
             margin: 0;
-            color: #333;
-            font-size: 2.2rem;
-        }
-        
-        /* लॉगिन सेक्शन */
-        #login-section {
-            text-align: center;
-            margin: 30px auto;
-            max-width: 400px;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .login-btn {
-            background-color: #4285F4;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto;
-            transition: all 0.3s;
-        }
-        
-        /* यूजर सेक्शन */
-        #user-section {
-            display: none;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .user-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .logout-btn {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        /* वॉलेट सेक्शन */
-        .wallet-section {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .balance {
             font-size: 2rem;
-            font-weight: bold;
-            color: #28a745;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
-        /* स्पिन सेक्शन */
-        #spin-section {
-            display: none;
-            text-align: center;
+        .store-header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+        }
+        
+        /* सेक्शन कार्ड्स */
+        .section-card {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent);
+            position: relative;
+            overflow: hidden;
         }
         
-        #spin-button {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #333;
+        .section-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--pink));
+        }
+        
+        /* बटन स्टाइल */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
             border-radius: 50px;
-            cursor: pointer;
-            margin-top: 30px;
             font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 10px 5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #45a049);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #0b7dda);
+            color: white;
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), #ffab00);
+            color: #333;
+        }
+        
+        .btn-pink {
+            background: linear-gradient(135deg, var(--pink), #c2185b);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         
         /* व्हील डिज़ाइन */
         #wheel-container {
             width: 300px;
             height: 300px;
-            margin: 0 auto;
+            margin: 30px auto;
             position: relative;
         }
         
         #wheel {
             width: 100%;
             height: 100%;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 10px solid var(--accent);
+            box-shadow: 0 0 0 5px var(--dark), 0 0 30px rgba(0,0,0,0.2);
+            transition: transform 3.5s cubic-bezier(0.17, 0.67, 0.21, 0.99);
+        }
+        
+        .wheel-segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            overflow: hidden;
+        }
+        
+        .wheel-segment span {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            transform: rotate(22.5deg);
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         #spin-pointer {
             position: absolute;
-            top: -20px;
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 30px solid red;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 40px solid var(--accent);
             z-index: 10;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
         }
         
-        /* निकासी सेक्शन */
-        .withdraw-section {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        
-        .withdraw-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-        }
-        
-        /* रेफरल सेक्शन */
-        .referral-section {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .referral-code {
-            font-weight: bold;
-            color: #007bff;
-            font-size: 1.2rem;
-            background: #f8f9fa;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 10px 0;
-        }
-        
-        .copy-btn {
-            background-color: #17a2b8;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
-        /* रेफरल हिस्ट्री सेक्शन */
-        .referral-history {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
+        /* ट्रांजैक्शन टेबल */
         .history-table {
             width: 100%;
             border-collapse: collapse;
-        }
-        
-        .history-table th, .history-table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+            margin-top: 20px;
         }
         
         .history-table th {
-            background-color: #f2f2f2;
-        }
-        
-        /* फुटर */
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background: #333;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
             color: white;
-            border-radius: 10px;
+            padding: 12px;
+            text-align: left;
         }
         
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
+        .history-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
         }
         
-        .footer-links a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
+        .history-table tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.02);
         }
         
-        .social-icons {
-            font-size: 24px;
-            margin: 15px 0;
+        .history-table tr:hover {
+            background-color: rgba(0,0,0,0.05);
         }
         
-        .social-icons a {
-            color: white;
-            margin: 0 10px;
-        }
-        
-        /* पॉपअप स्टाइलिंग */
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #FFD700;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            z-index: 1000;
-            text-align: center;
-            max-width: 90%;
-            width: 400px;
-        }
-        
-        .popup h2 {
-            margin-top: 0;
-            color: #333;
-        }
-        
-        .popup button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        
-        /* रिस्पॉन्सिव डिज़ाइन */
+        /* रेस्पॉन्सिव डिज़ाइन */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
+            }
+            
+            .section-card {
+                padding: 20px;
             }
             
             #wheel-container {
                 width: 250px;
                 height: 250px;
             }
-            
-            .footer-links {
-                flex-direction: column;
-            }
-            
-            .footer-links a {
-                margin: 5px 0;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1><i class="fas fa-trophy"></i>RUPESH ELECTRONICS</h1>
-            <p>घुमाओ और असली पैसे जीतो!</p>
+        <!-- हेडर सेक्शन -->
+        <header class="store-header">
+            <h1><i class="fas fa-mobile-alt"></i> Rupesh Electronics</h1>
+            <p>Spin & Win Amazing Rewards!</p>
         </header>
         
         <!-- लॉगिन सेक्शन -->
-        <div id="login-section">
-            <h2>आपका स्वागत है</h2>
-            <p>खेलने और पैसे कमाने के लिए गूगल से लॉगिन करें</p>
-            <button class="login-btn" id="google-login-btn">
-                <i class="fab fa-google" style="margin-right: 10px;"></i> गूगल से लॉगिन करें
+        <div id="login-section" class="section-card" style="text-align:center;">
+            <h2 style="color: var(--primary);">Customer Rewards Program</h2>
+            <p style="color: var(--dark);">Login to access your rewards</p>
+            <button id="google-login-btn" class="btn btn-primary">
+                <i class="fab fa-google"></i> Login with Google
             </button>
         </div>
         
-        <!-- यूजर सेक्शन -->
-        <div id="user-section">
-            <div class="user-info">
+        <!-- यूजर सेक्शन (लॉगिन के बाद दिखेगा) -->
+        <div id="user-section" class="section-card" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
                 <div>
-                    <h3>नमस्ते, <span id="user-name"></span></h3>
-                    <p><i class="fas fa-envelope"></i> <span id="user-email"></span></p>
+                    <h3 style="margin:0; color: var(--secondary);">Welcome, <span id="user-name"></span></h3>
+                    <p style="margin:5px 0 0; color: var(--dark);"><i class="fas fa-envelope"></i> <span id="user-email"></span></p>
                 </div>
-                <button class="logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> लॉगआउट</button>
+                <button id="logout-btn" class="btn btn-pink">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
             </div>
         </div>
         
         <!-- वॉलेट सेक्शन -->
-        <div class="wallet-section">
-            <h3><i class="fas fa-wallet"></i> आपका वॉलेट</h3>
-            <p>बैलेंस: <span class="balance" id="user-balance">0</span> ₹</p>
-            <p>कुल कमाई: <span class="balance" id="total-earned">0</span> ₹</p>
+        <div id="wallet-section" class="section-card" style="display:none;">
+            <h3 style="color: var(--primary);"><i class="fas fa-wallet"></i> Your Wallet</h3>
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
+                <div>
+                    <p>Current Balance:</p>
+                    <h2 style="margin:5px 0; color: var(--primary);" id="user-balance">₹0</h2>
+                </div>
+                <div>
+                    <p>Total Earned:</p>
+                    <h2 style="margin:5px 0; color: var(--secondary);" id="total-earned">₹0</h2>
+                </div>
+            </div>
         </div>
         
         <!-- स्पिन सेक्शन -->
-        <div id="spin-section">
-            <h2><i class="fas fa-redo"></i> व्हील घुमाएं</h2>
-            <p>हर 6 घंटे में एक बार घुमाएं और पैसे जीतें!</p>
+        <div id="spin-section" class="section-card" style="display:none; text-align:center;">
+            <h2 style="color: var(--pink);"><i class="fas fa-redo"></i> Spin the Wheel</h2>
+            <p style="color: var(--dark);">Win exciting rewards on every spin!</p>
+            
             <div id="wheel-container">
                 <div id="wheel"></div>
                 <div id="spin-pointer"></div>
             </div>
-            <button id="spin-button"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
-            <p id="spin-timer"></p>
+            
+            <button id="spin-button" class="btn btn-accent" style="min-width:200px;">
+                <i class="fas fa-sync-alt"></i> SPIN NOW
+            </button>
+            <p id="spin-timer" style="color: var(--secondary); font-weight:bold;"></p>
         </div>
         
-        <!-- निकासी सेक्शन -->
-        <div class="withdraw-section">
-            <h3><i class="fas fa-rupee-sign"></i> पैसे निकालें</h3>
-            <p>न्यूनतम निकासी राशि: ₹500</p>
-            <div class="form-group">
-                <label for="withdraw-amount"><i class="fas fa-money-bill-wave"></i> राशि (₹)</label>
-                <input type="number" id="withdraw-amount" min="500" placeholder="500">
+        <!-- विथड्रॉल सेक्शन -->
+        <div id="withdraw-section" class="section-card" style="display:none;">
+            <h3 style="color: var(--secondary);"><i class="fas fa-rupee-sign"></i> Withdraw Money</h3>
+            <p style="color: var(--dark);">Minimum withdrawal amount: ₹10</p>
+            
+            <div style="margin:15px 0;">
+                <label style="display:block; margin-bottom:5px; color: var(--dark);">Amount (₹)</label>
+                <input type="number" id="withdraw-amount" min="10" placeholder="Enter amount" 
+                       style="width:100%; padding:12px; border:2px solid #ddd; border-radius:8px; font-size:16px;">
             </div>
-            <div class="form-group">
-                <label for="payment-method"><i class="fas fa-money-check-alt"></i> भुगतान विधि</label>
-                <select id="payment-method">
-                    <option value="UPI" selected>UPI</option>
-                </select>
+            
+            <div style="margin:15px 0;">
+                <label style="display:block; margin-bottom:5px; color: var(--dark);">UPI ID</label>
+                <input type="text" id="upi-id" placeholder="yourname@upi" 
+                       style="width:100%; padding:12px; border:2px solid #ddd; border-radius:8px; font-size:16px;">
             </div>
-            <div class="form-group" id="upi-id-container">
-                <label for="upi-id"><i class="fas fa-mobile-alt"></i> UPI ID</label>
-                <input type="text" id="upi-id" placeholder="yourname@upi">
-            </div>
-            <button class="withdraw-btn" id="withdraw-btn"><i class="fas fa-hand-holding-usd"></i> निकासी अनुरोध</button>
+            
+            <button id="withdraw-btn" class="btn btn-primary" style="width:100%;">
+                <i class="fas fa-hand-holding-usd"></i> Request Withdrawal
+            </button>
         </div>
         
-        <!-- रेफरल सेक्शन -->
-        <div class="referral-section">
-            <h3><i class="fas fa-user-friends"></i> दोस्तों को भेजें और कमाएं</h3>
-            <p>प्रत्येक सफल रेफरल के लिए ₹10 कमाएं!</p>
-            <p>आपका रेफरल कोड:</p>
-            <div class="referral-code" id="referral-code">LOADING...</div>
-            <p>अपना लिंक शेयर करें:</p>
-            <div class="referral-code" id="referral-link">LOADING...</div>
-            <button class="copy-btn" id="copy-referral-btn"><i class="fas fa-copy"></i> लिंक कॉपी करें</button>
-        </div>
-        
-        <!-- रेफरल हिस्ट्री सेक्शन -->
-        <div class="referral-history">
-            <h3><i class="fas fa-history"></i> आपकी रेफरल गतिविधि</h3>
-            <div id="referral-stats" style="text-align: center; margin-bottom: 20px;">
-                <div style="display: inline-block; margin: 0 20px;">
-                    <div style="font-size: 24px; font-weight: bold; color: #FFD700;" id="total-referrals">0</div>
-                    <div>कुल रेफरल</div>
+        <!-- हिस्ट्री सेक्शन -->
+        <div id="history-section" class="section-card" style="display:none;">
+            <h3 style="color: var(--pink);"><i class="fas fa-history"></i> Transaction History</h3>
+            
+            <div id="history-stats" style="display:flex; justify-content:space-around; flex-wrap:wrap; margin:20px 0;">
+                <div style="text-align:center; padding:10px; min-width:100px;">
+                    <div style="font-size:24px; font-weight:bold; color: var(--accent);" id="total-spins">0</div>
+                    <div style="color: var(--dark);">Total Spins</div>
                 </div>
-                <div style="display: inline-block; margin: 0 20px;">
-                    <div style="font-size: 24px; font-weight: bold; color: #28a745;" id="referral-earnings">₹0</div>
-                    <div>कुल कमाई</div>
+                <div style="text-align:center; padding:10px; min-width:100px;">
+                    <div style="font-size:24px; font-weight:bold; color: var(--primary);" id="total-won">₹0</div>
+                    <div style="color: var(--dark);">Total Won</div>
+                </div>
+                <div style="text-align:center; padding:10px; min-width:100px;">
+                    <div style="font-size:24px; font-weight:bold; color: var(--secondary);" id="total-deducted">₹0</div>
+                    <div style="color: var(--dark);">Total Deducted</div>
                 </div>
             </div>
-            <div id="referral-history-loading">लोड हो रहा है...</div>
-            <table class="history-table" id="referral-history-table" style="display: none;">
+            
+            <div id="history-loading" style="text-align:center; padding:20px; color: var(--secondary);">
+                <i class="fas fa-spinner fa-spin"></i> Loading your history...
+            </div>
+            
+            <table class="history-table" id="transaction-history-table" style="display:none;">
                 <thead>
                     <tr>
-                        <th>यूजर</th>
-                        <th>तारीख</th>
-                        <th style="text-align: right;">बोनस</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
-                <tbody id="referral-history-body">
-                    <!-- यहाँ डेटा लोड होगा -->
+                <tbody id="transaction-history-body">
+                    <!-- ट्रांजैक्शन्स यहाँ लोड होंगे -->
                 </tbody>
             </table>
-            <div id="no-referrals" style="text-align: center; padding: 20px; display: none;">
-                अभी तक कोई रेफरल नहीं किया गया
+            
+            <div id="no-history" style="text-align:center; padding:20px; display:none; color: var(--dark);">
+                <i class="fas fa-info-circle"></i> No transactions yet
             </div>
         </div>
-        
-        <!-- फुटर -->
-        <footer>
-            <div class="footer-links">
-                <a href="/terms.html"><i class="fas fa-file-contract"></i> नियम और शर्तें</a>
-                <a href="/privacy.html"><i class="fas fa-lock"></i> गोपनीयता नीति</a>
-                <a href="/faq.html"><i class="fas fa-question-circle"></i> सामान्य प्रश्न</a>
-                <a href="/contact.html"><i class="fas fa-envelope"></i> संपर्क करें</a>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
-            </div>
-            <p>&copy; 2023 स्पिन और जीतो. सर्वाधिकार सुरक्षित.</p>
-        </footer>
     </div>
 
-    <!-- फायरबेस और मुख्य जावास्क्रिप्ट -->
+    <!-- फायरबेस और मेन जावास्क्रिप्ट -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -473,7 +357,7 @@
             measurementId: "G-MFZH0J437W"
         };
         
-        // फायरबेस इनिशियलाइज़
+        // फायरबेस इनिशियलाइज़ करें
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const database = firebase.database();
@@ -483,235 +367,170 @@
         let currentUser = null;
         let userData = null;
         
-        // डॉम तैयार होने पर
+        // DOM रेडी
         document.addEventListener('DOMContentLoaded', function() {
             initializeWheel();
             setupEventListeners();
             checkAuthState();
         });
 
-        // इवेंट लिसनर्स सेटअप
+        // व्हील इनिशियलाइज़ करें
+        function initializeWheel() {
+            const wheel = document.getElementById('wheel');
+            const prizes = [
+                { color: '#FF6384', text: '₹5' },   // लाल
+                { color: '#36A2EB', text: '₹10' },  // नीला
+                { color: '#FFCE56', text: '₹20' },  // पीला
+                { color: '#4BC0C0', text: '₹50' },  // टील
+                { color: '#9966FF', text: '₹100' }, // बैंगनी
+                { color: '#FF9F40', text: '₹5' },   // ऑरेंज
+                { color: '#8AC24A', text: '₹10' },  // हरा
+                { color: '#E03997', text: '₹20' }   // गुलाबी
+            ];
+            
+            wheel.innerHTML = '';
+            const segmentAngle = 360 / prizes.length;
+            
+            prizes.forEach((prize, index) => {
+                const angle = segmentAngle * index;
+                const segment = document.createElement('div');
+                segment.className = 'wheel-segment';
+                segment.style.transform = `rotate(${angle}deg) skewY(${90 - segmentAngle}deg)`;
+                segment.style.background = prize.color;
+                
+                const textSpan = document.createElement('span');
+                textSpan.textContent = prize.text;
+                segment.appendChild(textSpan);
+                
+                wheel.appendChild(segment);
+            });
+        }
+        
+        // इवेंट लिस्नर्स सेटअप करें
         function setupEventListeners() {
             document.getElementById('google-login-btn').addEventListener('click', loginWithGoogle);
             document.getElementById('logout-btn').addEventListener('click', logoutUser);
             document.getElementById('spin-button').addEventListener('click', spinWheel);
             document.getElementById('withdraw-btn').addEventListener('click', requestWithdraw);
-            document.getElementById('copy-referral-btn').addEventListener('click', copyReferralLink);
-            document.getElementById('payment-method').addEventListener('change', toggleUpiField);
         }
-
-        // ऑथ स्टेट चेक
+        
+        // ऑथ स्टेट चेक करें
         function checkAuthState() {
             auth.onAuthStateChanged((user) => {
                 if (user) {
                     currentUser = user;
                     loadUserData();
-                    updateUIForLoggedInUser();
+                    showUserSections();
                 } else {
                     currentUser = null;
-                    updateUIForLoggedOutUser();
+                    hideUserSections();
                 }
             });
         }
-
-        // व्हील इनिशियलाइज़ेशन
-        function initializeWheel() {
-            const wheel = document.getElementById('wheel');
-            const prizes = [
-                { color: '#FF6384', text: '₹5' },
-                { color: '#36A2EB', text: '₹10' },
-                { color: '#FFCE56', text: '₹20' },
-                { color: '#4BC0C0', text: '₹50' },
-                { color: '#9966FF', text: '₹100' },
-                { color: '#FF9F40', text: '₹5' },
-                { color: '#8AC24A', text: '₹10' },
-                { color: '#E03997', text: '₹20' }
-            ];
-            
-            let wheelHTML = '';
-            const segmentAngle = 360 / prizes.length;
-            
-            prizes.forEach((prize, index) => {
-                const angle = segmentAngle * index;
-                wheelHTML += `
-                    <div style="
-                        position: absolute;
-                        width: 50%;
-                        height: 50%;
-                        background: ${prize.color};
-                        transform-origin: bottom right;
-                        transform: rotate(${angle}deg) skewY(${90 - segmentAngle}deg);
-                        overflow: hidden;
-                    ">
-                        <span style="
-                            position: absolute;
-                            right: 10px;
-                            top: 10px;
-                            transform: rotate(${segmentAngle/2}deg);
-                            color: white;
-                            font-weight: bold;
-                            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-                        ">${prize.text}</span>
-                    </div>
-                `;
-            });
-            
-            wheel.innerHTML = wheelHTML;
-            wheel.style.width = '100%';
-            wheel.style.height = '100%';
-            wheel.style.position = 'relative';
-            wheel.style.borderRadius = '50%';
-            wheel.style.overflow = 'hidden';
-            wheel.style.border = '5px solid #333';
-        }
-
-        // गूगल लॉगिन
+        
+        // गूगल से लॉगिन
         function loginWithGoogle() {
             auth.signInWithPopup(provider)
                 .then((result) => {
                     // लॉगिन सफल
                 }).catch((error) => {
-                    console.error("लॉगिन एरर:", error);
-                    showErrorPopup("लॉगिन असफल: " + error.message);
+                    alert("Login failed: " + error.message);
                 });
         }
-
+        
         // लॉगआउट
         function logoutUser() {
             auth.signOut().then(() => {
-                // लॉगआउट सफल
+                alert("Logged out successfully");
             }).catch((error) => {
-                console.error("लॉगआउट एरर:", error);
-                showErrorPopup("लॉगआउट में समस्या आई");
+                alert("Logout failed: " + error.message);
             });
         }
-
+        
+        // यूजर सेक्शन्स दिखाएं
+        function showUserSections() {
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('user-section').style.display = 'block';
+            document.getElementById('wallet-section').style.display = 'block';
+            document.getElementById('spin-section').style.display = 'block';
+            document.getElementById('withdraw-section').style.display = 'block';
+            document.getElementById('history-section').style.display = 'block';
+        }
+        
+        // यूजर सेक्शन्स छुपाएं
+        function hideUserSections() {
+            document.getElementById('login-section').style.display = 'block';
+            document.getElementById('user-section').style.display = 'none';
+            document.getElementById('wallet-section').style.display = 'none';
+            document.getElementById('spin-section').style.display = 'none';
+            document.getElementById('withdraw-section').style.display = 'none';
+            document.getElementById('history-section').style.display = 'none';
+        }
+        
         // यूजर डेटा लोड करें
         function loadUserData() {
             const userRef = database.ref('users/' + currentUser.uid);
+            
             userRef.on('value', (snapshot) => {
                 userData = snapshot.val();
+                
                 if (!userData) {
                     createNewUser();
                 } else {
                     updateUserDisplay();
-                    loadReferralHistory(); // रेफरल हिस्ट्री लोड करें
+                    loadTransactionHistory();
                 }
             });
         }
-
-        // नया यूजर बनाएं
+        
+        // नया यूजर क्रिएट करें
         function createNewUser() {
             const userRef = database.ref('users/' + currentUser.uid);
+            
             const newUser = {
-                username: currentUser.displayName || currentUser.email.split('@')[0],
+                name: currentUser.displayName || currentUser.email.split('@')[0],
                 email: currentUser.email,
-                balance: 10, // नए यूजर को 10 रुपये बोनस
+                balance: 10, // वेलकम बोनस
                 totalEarned: 10,
-                totalWithdrawn: 0,
-                referralCode: generateReferralCode(),
-                referredBy: getUrlParameter('ref'),
                 spinCount: 0,
                 lastSpin: null,
                 createdAt: new Date().toISOString()
             };
             
-            userRef.set(newUser).then(() => {
-                if (newUser.referredBy) {
-                    processReferral(newUser.referredBy);
-                }
-                showSuccessPopup("आपको ₹10 का साइनअप बोनस मिला है!");
-            });
+            userRef.set(newUser)
+                .then(() => {
+                    // वेलकम बोनस ट्रांजैक्शन
+                    addTransaction('bonus', 10);
+                    alert("Welcome! You received ₹10 welcome bonus!");
+                });
         }
-
-        // UI अपडेट (लॉगिन)
-        function updateUIForLoggedInUser() {
-            document.getElementById('login-section').style.display = 'none';
-            document.getElementById('user-section').style.display = 'block';
-            document.getElementById('spin-section').style.display = 'block';
-            
-            // UPI फील्ड टॉगल
-            toggleUpiField();
-        }
-
-        // UI अपडेट (लॉगआउट)
-        function updateUIForLoggedOutUser() {
-            document.getElementById('login-section').style.display = 'block';
-            document.getElementById('user-section').style.display = 'none';
-            document.getElementById('spin-section').style.display = 'none';
-        }
-
-        // यूजर डिस्प्ले अपडेट
+        
+        // यूजर डिस्प्ले अपडेट करें
         function updateUserDisplay() {
-            if (userData) {
-                document.getElementById('user-name').textContent = userData.username;
-                document.getElementById('user-email').textContent = userData.email;
-                document.getElementById('user-balance').textContent = userData.balance.toFixed(2);
-                document.getElementById('total-earned').textContent = userData.totalEarned.toFixed(2);
-                document.getElementById('referral-code').textContent = userData.referralCode;
-                document.getElementById('referral-link').textContent = 
-                    window.location.origin + window.location.pathname + '?ref=' + userData.referralCode;
-                
-                checkSpinAvailability();
-            }
-        }
-
-        // रेफरल हिस्ट्री लोड करें
-        function loadReferralHistory() {
-            const referralHistoryRef = database.ref('referrals').orderByChild('referrerId').equalTo(currentUser.uid);
+            document.getElementById('user-name').textContent = userData.name;
+            document.getElementById('user-email').textContent = userData.email;
+            document.getElementById('user-balance').textContent = '₹' + userData.balance.toFixed(2);
+            document.getElementById('total-earned').textContent = '₹' + userData.totalEarned.toFixed(2);
             
-            document.getElementById('referral-history-loading').style.display = 'block';
-            document.getElementById('referral-history-table').style.display = 'none';
-            document.getElementById('no-referrals').style.display = 'none';
-            
-            referralHistoryRef.once('value').then((snapshot) => {
-                document.getElementById('referral-history-loading').style.display = 'none';
-                
-                if (snapshot.exists()) {
-                    const referrals = snapshot.val();
-                    const referralHistoryBody = document.getElementById('referral-history-body');
-                    referralHistoryBody.innerHTML = '';
-                    
-                    let totalReferrals = 0;
-                    let totalEarnings = 0;
-                    
-                    Object.values(referrals).forEach(referral => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${referral.referredEmail || 'N/A'}</td>
-                            <td>${new Date(referral.timestamp).toLocaleDateString()}</td>
-                            <td style="text-align: right;">₹10</td>
-                        `;
-                        referralHistoryBody.appendChild(row);
-                        
-                        totalReferrals++;
-                        totalEarnings += 10;
-                    });
-                    
-                    // टोटल स्टैट्स अपडेट करें
-                    document.getElementById('total-referrals').textContent = totalReferrals;
-                    document.getElementById('referral-earnings').textContent = `₹${totalEarnings}`;
-                    document.getElementById('referral-history-table').style.display = 'table';
-                } else {
-                    document.getElementById('no-referrals').style.display = 'block';
-                }
-            });
+            checkSpinAvailability();
         }
-
-        // स्पिन व्हील घुमाएं
+        
+        // स्पिन व्हील
         function spinWheel() {
-            if (!canSpin()) return;
+            if (!canSpin()) {
+                alert("You can spin again in " + document.getElementById('spin-timer').textContent);
+                return;
+            }
             
             const spinButton = document.getElementById('spin-button');
             spinButton.disabled = true;
-            spinButton.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> घूम रहा है...';
+            spinButton.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Spinning...';
             
             const spinResult = calculateSpinResult();
-            const spinDuration = 2000 + Math.random() * 3000;
+            const spinDegrees = 360 * 5 + spinResult.angle;
             
             const wheel = document.getElementById('wheel');
-            wheel.style.transition = 'transform ' + (spinDuration/1000) + 's cubic-bezier(0.17, 0.67, 0.21, 0.99)';
-            wheel.style.transform = 'rotate(' + (360 * 5 + spinResult.angle) + 'deg)';
+            wheel.style.transform = `rotate(${spinDegrees}deg)`;
             
             setTimeout(() => {
                 const updates = {
@@ -721,254 +540,37 @@
                     lastSpin: new Date().toISOString()
                 };
                 
-                database.ref('users/' + currentUser.uid).update(updates)
-                    .then(() => {
-                        showRewardPopup(spinResult);
-                        checkSpinAvailability();
-                    });
-            }, spinDuration);
-        }
-
-        // स्पिन उपलब्धता चेक
-        function canSpin() {
-            if (!userData.lastSpin) return true;
-            
-            const lastSpin = new Date(userData.lastSpin);
-            const now = new Date();
-            const hoursSinceLastSpin = (now - lastSpin) / (1000 * 60 * 60);
-            
-            return hoursSinceLastSpin >= 6;
-        }
-
-        // स्पिन टाइमर अपडेट
-        function checkSpinAvailability() {
-            const spinButton = document.getElementById('spin-button');
-            if (canSpin()) {
-                spinButton.disabled = false;
-                spinButton.innerHTML = '<i class="fas fa-sync-alt"></i> SPIN NOW';
-                document.getElementById('spin-timer').textContent = '';
-            } else {
-                spinButton.disabled = true;
-                const lastSpin = new Date(userData.lastSpin);
-                const nextSpin = new Date(lastSpin.getTime() + 6 * 60 * 60 * 1000);
-                const timeLeft = Math.floor((nextSpin - new Date()) / 1000 / 60);
-                
-                if (timeLeft > 0) {
-                    const hours = Math.floor(timeLeft / 60);
-                    const minutes = timeLeft % 60;
-                    document.getElementById('spin-timer').textContent = `अगली स्पिन: ${hours} घंटे ${minutes} मिनट में`;
-                    spinButton.innerHTML = '<i class="fas fa-clock"></i> इंतज़ार करें';
-                    
-                    // टाइमर अपडेट
-                    const timerInterval = setInterval(() => {
-                        const now = new Date();
-                        if (now >= nextSpin) {
-                            clearInterval(timerInterval);
-                            checkSpinAvailability();
-                        }
-                    }, 60000); // हर मिनट अपडेट
-                }
-            }
-        }
-
-        // निकासी अनुरोध
-        function requestWithdraw() {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            const paymentMethod = document.getElementById('payment-method').value;
-            const upiId = document.getElementById('upi-id').value;
-            
-            if (isNaN(amount)) {
-                showErrorPopup("कृपया सही राशि डालें");
-                return;
-            }
-            
-            if (amount < 500) {
-                showErrorPopup("न्यूनतम निकासी राशि ₹500 है");
-                return;
-            }
-            
-            if (amount > userData.balance) {
-                showErrorPopup("आपके पास पर्याप्त बैलेंस नहीं है");
-                return;
-            }
-            
-            if (paymentMethod === 'UPI' && !upiId) {
-                showErrorPopup("कृपया अपना UPI ID डालें");
-                return;
-            }
-            
-            const withdrawData = {
-                amount: amount,
-                status: 'pending',
-                timestamp: new Date().toISOString(),
-                paymentMethod: paymentMethod,
-                paymentDetails: paymentMethod === 'UPI' ? upiId : '',
-                userEmail: userData.email,
-                userName: userData.username
-            };
-            
-            // लोडिंग दिखाएं
-            const withdrawBtn = document.getElementById('withdraw-btn');
-            withdrawBtn.disabled = true;
-            withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> प्रोसेसिंग...';
-            
-            database.ref('withdraws/' + currentUser.uid).push(withdrawData)
-                .then(() => {
-                    // यूजर बैलेंस अपडेट करें
-                    return database.ref('users/' + currentUser.uid).update({
-                        balance: userData.balance - amount,
-                        totalWithdrawn: userData.totalWithdrawn + amount
-                    });
-                })
-                .then(() => {
-                    showSuccessPopup(`₹${amount} का निकासी अनुरोध सफलतापूर्वक भेजा गया!`);
-                    document.getElementById('withdraw-amount').value = '';
-                    document.getElementById('upi-id').value = '';
-                })
-                .catch(error => {
-                    console.error("निकासी एरर:", error);
-                    showErrorPopup("निकासी में समस्या आई. कृपया बाद में प्रयास करें.");
-                })
-                .finally(() => {
-                    withdrawBtn.disabled = false;
-                    withdrawBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> निकासी अनुरोध';
-                });
-        }
-
-        // रेफरल लिंक कॉपी करें
-        function copyReferralLink() {
-            const referralLink = document.getElementById('referral-link').textContent;
-            navigator.clipboard.writeText(referralLink)
-                .then(() => {
-                    showSuccessPopup("रेफरल लिंक कॉपी हो गया!");
-                })
-                .catch(err => {
-                    console.error('कॉपी करने में असफल: ', err);
-                    showErrorPopup('लिंक मैन्युअली कॉपी करें: ' + referralLink);
-                });
-        }
-
-        // UPI फील्ड टॉगल
-        function toggleUpiField() {
-            document.getElementById('upi-id-container').style.display = 
-                document.getElementById('payment-method').value === 'UPI' ? 'block' : 'none';
-        }
-
-        // रेफरल प्रोसेस
-        function processReferral(referralCode) {
-            const usersRef = database.ref('users');
-            const referralQuery = usersRef.orderByChild('referralCode').equalTo(referralCode);
-            
-            referralQuery.once('value').then((snapshot) => {
-                if (snapshot.exists()) {
-                    const referrerId = Object.keys(snapshot.val())[0];
-                    const referrerData = snapshot.val()[referrerId];
-                    
-                    // रेफरल रिकॉर्ड क्रिएट करें
-                    const referralData = {
-                        referrerId: referrerId,
-                        referrerEmail: referrerData.email,
-                        referredUserId: currentUser.uid,
-                        referredEmail: currentUser.email,
-                        bonusAmount: 10,
-                        timestamp: new Date().toISOString(),
-                        status: "completed"
-                    };
-                    
-                    database.ref('referrals').push(referralData);
-                    
-                    // रेफरर का डेटा अपडेट करें
-                    const referrerUpdates = {
-                        referralCount: (referrerData.referralCount || 0) + 1,
-                        balance: (referrerData.balance || 0) + 10,
-                        totalEarned: (referrerData.totalEarned || 0) + 10
-                    };
-                    
-                    database.ref('users/' + referrerId).update(referrerUpdates)
+                // ट्रांजैक्शन रिकॉर्ड करें
+                database.ref('transactions/' + currentUser.uid).push({
+                    type: 'spin',
+                    amount: spinResult.points,
+                    timestamp: new Date().toISOString(),
+                    status: 'completed'
+                }).then(() => {
+                    // यूजर डेटा अपडेट करें
+                    database.ref('users/' + currentUser.uid).update(updates)
                         .then(() => {
-                            // नए यूजर को नोटिफिकेशन दिखाएं
-                            showSuccessPopup("आपने ${referrerData.email} के रेफरल कोड का उपयोग किया है!");
+                            alert(`Congratulations! You won ₹${spinResult.points}`);
+                            spinButton.disabled = false;
+                            spinButton.innerHTML = '<i class="fas fa-sync-alt"></i> SPIN NOW';
+                            checkSpinAvailability();
+                            loadTransactionHistory();
                         });
-                }
-            });
+                });
+            }, 3500);
         }
-
-        // रिवॉर्ड पॉपअप
-        function showRewardPopup(result) {
-            const popup = document.createElement('div');
-            popup.className = 'popup';
-            popup.innerHTML = `
-                <h2><i class="fas fa-trophy"></i> बधाई हो!</h2>
-                <p>आपने जीता: ₹${result.points.toFixed(2)}</p>
-                <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i> बंद करें</button>
-            `;
-            document.body.appendChild(popup);
-            
-            // 5 सेकंड बाद ऑटो क्लोज
-            setTimeout(() => {
-                if (popup.parentNode) {
-                    popup.remove();
-                }
-            }, 5000);
-        }
-
-        // सक्सेस पॉपअप
-        function showSuccessPopup(message) {
-            const popup = document.createElement('div');
-            popup.className = 'popup';
-            popup.style.background = 'linear-gradient(135deg, #28a745, #218838)';
-            popup.style.color = 'white';
-            popup.innerHTML = `
-                <h2><i class="fas fa-check-circle"></i> सफलता!</h2>
-                <p>${message}</p>
-                <button onclick="this.parentElement.remove()" style="background-color: white; color: #28a745;">
-                    <i class="fas fa-thumbs-up"></i> ठीक
-                </button>
-            `;
-            document.body.appendChild(popup);
-            
-            // 5 सेकंड बाद ऑटो क्लोज
-            setTimeout(() => {
-                if (popup.parentNode) {
-                    popup.remove();
-                }
-            }, 5000);
-        }
-
-        // एरर पॉपअप
-        function showErrorPopup(message) {
-            const popup = document.createElement('div');
-            popup.className = 'popup';
-            popup.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
-            popup.style.color = 'white';
-            popup.innerHTML = `
-                <h2><i class="fas fa-exclamation-triangle"></i> त्रुटि!</h2>
-                <p>${message}</p>
-                <button onclick="this.parentElement.remove()" style="background-color: white; color: #dc3545;">
-                    <i class="fas fa-times"></i> बंद करें
-                </button>
-            `;
-            document.body.appendChild(popup);
-            
-            // 5 सेकंड बाद ऑटो क्लोज
-            setTimeout(() => {
-                if (popup.parentNode) {
-                    popup.remove();
-                }
-            }, 5000);
-        }
-
-        // स्पिन रिजल्ट कैलकुलेट
+        
+        // स्पिन रिजल्ट कैलकुलेट करें
         function calculateSpinResult() {
             const prizes = [
-                { points: 5, probability: 0.4, angle: 0 },
-                { points: 10, probability: 0.3, angle: 45 },
-                { points: 20, probability: 0.2, angle: 90 },
-                { points: 50, probability: 0.08, angle: 135 },
-                { points: 100, probability: 0.02, angle: 180 }
+                { points: 5, probability: 0.4, angle: 22.5 },
+                { points: 10, probability: 0.3, angle: 67.5 },
+                { points: 20, probability: 0.2, angle: 112.5 },
+                { points: 50, probability: 0.08, angle: 157.5 },
+                { points: 100, probability: 0.02, angle: 202.5 }
             ];
             
-            let random = Math.random();
+            const random = Math.random();
             let cumulativeProbability = 0;
             
             for (const prize of prizes) {
@@ -980,18 +582,215 @@
             
             return prizes[0];
         }
-
-        // रेफरल कोड जनरेट
-        function generateReferralCode() {
-            return Math.random().toString(36).substring(2, 8).toUpperCase();
+        
+        // स्पिन उपलब्धता चेक करें
+        function canSpin() {
+            if (!userData.lastSpin) return true;
+            
+            const lastSpin = new Date(userData.lastSpin);
+            const now = new Date();
+            const hoursSinceLastSpin = (now - lastSpin) / (1000 * 60 * 60);
+            
+            return hoursSinceLastSpin >= 6;
         }
-
-        // URL पैरामीटर पढ़ें
-        function getUrlParameter(name) {
-            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
-            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            const results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        
+        // स्पिन टाइमर चेक करें
+        function checkSpinAvailability() {
+            const spinButton = document.getElementById('spin-button');
+            const spinTimer = document.getElementById('spin-timer');
+            
+            if (canSpin()) {
+                spinButton.disabled = false;
+                spinTimer.textContent = '';
+            } else {
+                spinButton.disabled = true;
+                const lastSpin = new Date(userData.lastSpin);
+                const nextSpin = new Date(lastSpin.getTime() + 6 * 60 * 60 * 1000);
+                const timeLeft = Math.floor((nextSpin - new Date()) / 1000 / 60);
+                
+                if (timeLeft > 0) {
+                    const hours = Math.floor(timeLeft / 60);
+                    const minutes = timeLeft % 60;
+                    spinTimer.textContent = `${hours}h ${minutes}m`;
+                    
+                    // हर मिनट टाइमर अपडेट करें
+                    setTimeout(checkSpinAvailability, 60000);
+                }
+            }
+        }
+        
+        // विथड्रॉल रिक्वेस्ट
+        function requestWithdraw() {
+            const amount = parseFloat(document.getElementById('withdraw-amount').value);
+            const upiId = document.getElementById('upi-id').value.trim();
+            
+            if (isNaN(amount)) {
+                alert("कृपया वैध राशि दर्ज करें");
+                return;
+            }
+            
+            if (amount < 10) {
+                alert("न्यूनतम निकासी राशि ₹10 है");
+                return;
+            }
+            
+            if (amount > userData.balance) {
+                alert("आपके पास पर्याप्त बैलेंस नहीं है");
+                return;
+            }
+            
+            if (!upiId || !upiId.includes('@')) {
+                alert("कृपया वैध UPI ID दर्ज करें");
+                return;
+            }
+            
+            const withdrawBtn = document.getElementById('withdraw-btn');
+            withdrawBtn.disabled = true;
+            withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            // 2% डिडक्शन कैलकुलेट करें (500 से अधिक रकम पर)
+            const deduction = amount > 500 ? amount * 0.02 : 0;
+            const amountAfterDeduction = amount - deduction;
+            
+            // विथड्रॉल रिक्वेस्ट क्रिएट करें
+            const withdrawRef = database.ref('withdrawals/' + currentUser.uid).push();
+            const withdrawId = withdrawRef.key;
+            
+            const withdrawData = {
+                id: withdrawId,
+                amount: amountAfterDeduction,
+                originalAmount: amount,
+                deduction: deduction,
+                status: 'pending',
+                timestamp: new Date().toISOString(),
+                upiId: upiId,
+                userEmail: userData.email
+            };
+            
+            // ट्रांजैक्शन रिकॉर्ड करें
+            const transactionData = {
+                type: 'withdrawal',
+                amount: amount,
+                deduction: deduction,
+                status: 'pending',
+                timestamp: new Date().toISOString(),
+                withdrawId: withdrawId
+            };
+            
+            // एक साथ सभी अपडेट करें
+            const updates = {};
+            updates['users/' + currentUser.uid + '/balance'] = userData.balance - amount;
+            updates['withdrawals/' + currentUser.uid + '/' + withdrawId] = withdrawData;
+            updates['transactions/' + currentUser.uid + '/' + withdrawId] = transactionData;
+            
+            database.ref().update(updates)
+                .then(() => {
+                    alert(`₹${amountAfterDeduction.toFixed(2)} की निकासी अनुरोधित (₹${deduction.toFixed(2)} कटौती)। 24 घंटे के भीतर प्रोसेस होगी।`);
+                    document.getElementById('withdraw-amount').value = '';
+                    document.getElementById('upi-id').value = '';
+                    loadTransactionHistory();
+                })
+                .catch(error => {
+                    console.error("Withdrawal error:", error);
+                    alert("निकासी विफल हुई। कृपया बाद में पुनः प्रयास करें।");
+                })
+                .finally(() => {
+                    withdrawBtn.disabled = false;
+                    withdrawBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> Request Withdrawal';
+                });
+        }
+        
+        // ट्रांजैक्शन हिस्ट्री लोड करें
+        function loadTransactionHistory() {
+            const historyRef = database.ref('transactions/' + currentUser.uid).orderByChild('timestamp');
+            
+            document.getElementById('history-loading').style.display = 'block';
+            document.getElementById('transaction-history-table').style.display = 'none';
+            document.getElementById('no-history').style.display = 'none';
+            
+            historyRef.once('value').then((snapshot) => {
+                document.getElementById('history-loading').style.display = 'none';
+                
+                if (snapshot.exists()) {
+                    const transactions = snapshot.val();
+                    const tbody = document.getElementById('transaction-history-body');
+                    tbody.innerHTML = '';
+                    
+                    let totalSpins = 0;
+                    let totalWon = 0;
+                    let totalDeducted = 0;
+                    
+                    // ऐरे में कन्वर्ट करें और नए से पुराने सॉर्ट करें
+                    const transactionsArray = Object.entries(transactions).map(([key, value]) => {
+                        return { id: key, ...value };
+                    }).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                    
+                    transactionsArray.forEach(transaction => {
+                        const row = document.createElement('tr');
+                        
+                        let typeText = '';
+                        let amount = 0;
+                        let deduction = 0;
+                        let status = '';
+                        
+                        if (transaction.type === 'spin') {
+                            typeText = 'Spin Win';
+                            amount = transaction.amount;
+                            totalWon += amount;
+                            totalSpins++;
+                            status = '<span class="status-completed">Completed</span>';
+                        } else if (transaction.type === 'withdrawal') {
+                            typeText = 'Withdrawal';
+                            amount = -transaction.amount;
+                            deduction = transaction.deduction || 0;
+                            totalDeducted += deduction;
+                            
+                            if (transaction.status === 'pending') {
+                                status = '<span class="status-pending">Pending</span>';
+                            } else if (transaction.status === 'completed') {
+                                status = '<span class="status-completed">Completed</span>';
+                            } else {
+                                status = '<span class="status-failed">Failed</span>';
+                            }
+                        } else if (transaction.type === 'bonus') {
+                            typeText = 'Bonus';
+                            amount = transaction.amount;
+                            totalWon += amount;
+                            status = '<span class="status-completed">Completed</span>';
+                        }
+                        
+                        row.innerHTML = `
+                            <td>${new Date(transaction.timestamp).toLocaleString()}</td>
+                            <td>${typeText}</td>
+                            <td style="color: ${amount >= 0 ? 'var(--primary)' : 'var(--pink)'}; font-weight:bold;">
+                                ${amount >= 0 ? '+' : ''}₹${Math.abs(amount).toFixed(2)}
+                            </td>
+                            <td>${status}</td>
+                        `;
+                        
+                        tbody.appendChild(row);
+                    });
+                    
+                    // स्टैट्स अपडेट करें
+                    document.getElementById('total-spins').textContent = totalSpins;
+                    document.getElementById('total-won').textContent = '₹' + totalWon.toFixed(2);
+                    document.getElementById('total-deducted').textContent = '₹' + totalDeducted.toFixed(2);
+                    
+                    document.getElementById('transaction-history-table').style.display = 'table';
+                } else {
+                    document.getElementById('no-history').style.display = 'block';
+                }
+            });
+        }
+        
+        // ट्रांजैक्शन ऐड करें
+        function addTransaction(type, amount, status = 'completed') {
+            return database.ref('transactions/' + currentUser.uid).push({
+                type: type,
+                amount: amount,
+                status: status,
+                timestamp: new Date().toISOString()
+            });
         }
     </script>
 </body>
