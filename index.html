@@ -620,8 +620,280 @@
         <header class="store-header">
             <h1><i class="fas fa-mobile-alt"></i> RUPESH ELECTRONICS </h1>
             <p>अपने दोस्तों को हमारे मोबाइल स्टोर में ज्वाइन करवाएं और हर सफल रेफरल पर 10₹ बोनस कमाएं आपके दोस्त को भी 10₹ साइनअप बोनस मिलेगा!</p>
-          <div id="terms">        
-         </div>   
+          <div id="terms">  
+            <div class="mobile-calculator">
+    <h3 style="color:#2E7D32;border-bottom:2px solid #4CAF50;padding-bottom:5px;">
+        <i class="fas fa-mobile-alt"></i>    प्राइस कैलकुलेटर
+    </h3>
+    
+    <!-- Mobile Brand Selection -->
+    <div class="form-group">
+        <label for="mobile-brand"><i class="fas fa-mobile"></i> ब्रांड चुनें (वैकल्पिक)</label>
+        <select id="mobile-brand" class="form-control">
+            <option value="">-- ब्रांड चुनें --</option>
+            <option value="Airtel Recharge">Airtel Recharge</option>
+            <option value="Jio Recharge">Jio Recharge</option>
+            <option value="samsung">Samsung</option>
+            <option value="vivo">Vivo</option>
+            <option value="oppo">Oppo</option>
+            <option value="redmi">Redmi</option>
+            <option value="realme">Realme</option>
+            <option value="apple">Apple</option>
+            <option value="other">अन्य</option>
+        </select>
+    </div>
+    
+    <!-- Manual Price Input -->
+    <div class="form-group">
+        <label for="mobile-price"><i class="fas fa-rupee-sign"></i>  कीमत डालें</label>
+        <input type="number" id="mobile-price" class="form-control" placeholder="उदाहरण: 15000">
+    </div>
+    
+    <!-- Discount Calculator -->
+    <div class="form-group">
+        <label><i class="fas fa-percentage"></i> डिस्काउंट % (2% से 10%)</label>
+        <input type="range" id="discount-percent" min="2" max="10" value="5" step="1" class="discount-slider">
+        <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+            <span>2%</span>
+            <span id="current-percent">5%</span>
+            <span>10%</span>
+        </div>
+    </div>
+    
+    <!-- Calculation Results -->
+    <div id="calculation-result" style="display:none; background:#f8f9fa; padding:15px; border-radius:8px; margin-top:20px;">
+        <h4 style="margin-top:0;color:#2196F3;">
+            <span id="selected-brand"></span>
+            <span id="mobile-model-text"></span>
+        </h4>
+        
+        <div style="display:flex; justify-content:space-between; margin:10px 0;">
+            <span>मूल कीमत:</span>
+            <span id="original-price" style="font-weight:bold;">₹0</span>
+        </div>
+        
+        <div style="display:flex; justify-content:space-between; margin:10px 0;">
+            <span>डिस्काउंट (<span id="show-percent">0</span>%):</span>
+            <span id="discount-amount" style="color:#E91E63;font-weight:bold;">₹0</span>
+        </div>
+        
+        <div style="display:flex; justify-content:space-between; margin:10px 0;font-size:1.1rem;">
+            <span>कुल भुगतान:</span>
+            <span id="final-price" style="color:#4CAF50;font-weight:bold;">₹0</span>
+        </div>
+        
+        <div style="background:#e8f5e9; padding:8px; border-radius:5px; margin-top:10px; font-size:0.9rem;">
+            <i class="fas fa-info-circle" style="color:#2E7D32;"></i> 
+            <span id="saving-message">आप ₹0 की बचत कर रहे हैं</span>
+        </div>
+    </div>
+</div>
+
+<style>
+.mobile-calculator {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.discount-slider {
+    width: 100%;
+    height: 8px;
+    margin: 15px 0;
+    -webkit-appearance: none;
+    background: #e0e0e0;
+    border-radius: 5px;
+    outline: none;
+}
+
+.discount-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#calculation-result {
+    transition: all 0.3s ease;
+}
+</style>
+
+<script>
+// Update calculation when values change
+function updateCalculation() {
+    const brand = document.getElementById('mobile-brand').value;
+    const price = parseInt(document.getElementById('mobile-price').value);
+    const discountPercent = parseInt(document.getElementById('discount-percent').value);
+    const resultDiv = document.getElementById('calculation-result');
+    
+    if(!price || isNaN(price)) {
+        resultDiv.style.display = 'none';
+        return;
+    }
+    
+    // Calculate values
+    const discountAmount = Math.round(price * discountPercent / 100);
+    const finalPrice = price - discountAmount;
+    
+    // Update UI
+    document.getElementById('selected-brand').textContent = brand ? 
+        `${document.getElementById('mobile-brand').options[document.getElementById('mobile-brand').selectedIndex].text} ` : '';
+    document.getElementById('original-price').textContent = `₹${price.toLocaleString('en-IN')}`;
+    document.getElementById('show-percent').textContent = discountPercent;
+    document.getElementById('discount-amount').textContent = `₹${discountAmount.toLocaleString('en-IN')}`;
+    document.getElementById('final-price').textContent = `₹${finalPrice.toLocaleString('en-IN')}`;
+    document.getElementById('saving-message').textContent = `आप ₹${discountAmount.toLocaleString('en-IN')} की बचत कर रहे हैं (${discountPercent}%)`;
+    
+    resultDiv.style.display = 'block';
+}
+
+// Event listeners
+document.getElementById('mobile-brand').addEventListener('change', updateCalculation);
+document.getElementById('mobile-price').addEventListener('input', updateCalculation);
+document.getElementById('discount-percent').addEventListener('input', function() {
+    document.getElementById('current-percent').textContent = this.value + '%';
+    updateCalculation();
+});
+
+// Initialize
+updateCalculation();
+</script>
+         </div>   <div class="simple-products-list">
+    <h3 style="color:#2E7D32;border-bottom:2px solid #4CAF50;padding-bottom:5px;">
+        <i class="fas fa-mobile-alt"></i> प्रोडक्ट प्राइस लिस्ट
+    </h3>
+    
+    <!-- मोबाइल कवर सेक्शन -->
+    <div class="product-category">
+        <h4><i class="fas fa-mobile"></i> मोबाइल कवर प्राइस</h4>
+        <div class="price-table">
+            <div class="price-row">
+                <span>साधारण कवर</span>
+                <span>₹99 - ₹199</span>
+            </div>
+            <div class="price-row">
+                <span>डिजाइनर कवर</span>
+                <span>₹299 - ₹499</span>
+            </div>
+            <div class="price-row">
+                <span>प्रीमियम कवर</span>
+                <span>₹599 - ₹999</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- टेम्पर्ड ग्लास सेक्शन -->
+    <div class="product-category">
+        <h4><i class="fas fa-shield-alt"></i> टेम्पर्ड ग्लास प्राइस</h4>
+        <div class="price-table">
+            <div class="price-row">
+                <span>साधारण ग्लास</span>
+                <span>₹49 - ₹99</span>
+            </div>
+            <div class="price-row">
+                <span>कर्व्ड ग्लास</span>
+                <span>₹149 - ₹299</span>
+            </div>
+            <div class="price-row">
+                <span>प्राइवेसी ग्लास</span>
+                <span>₹199 - ₹399</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- अन्य प्रोडक्ट्स -->
+    <div class="product-category">
+        <h4><i class="fas fa-headphones"></i> अन्य एक्सेसरीज</h4>
+        <div class="price-table">
+            <div class="price-row">
+                <span>वायर्ड इयरफोन</span>
+                <span>₹199 - ₹499</span>
+            </div>
+            <div class="price-row">
+                <span>ब्लूटूथ स्पीकर</span>
+                <span>₹599 - ₹1299</span>
+            </div>
+            <div class="price-row">
+                <span>पावर बैंक</span>
+                <span>₹799 - ₹1999</span>
+            </div>
+            <div class="price-row">
+                <span>चार्जर</span>
+                <span>₹99 - ₹199</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.simple-products-list {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-category {
+    margin-bottom: 20px;
+}
+
+.product-category h4 {
+    color: #2196F3;
+    margin: 15px 0 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.product-category h4 i {
+    margin-right: 10px;
+    color: #FF9800;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.price-row:last-child {
+    border-bottom: none;
+}
+
+.price-row span:first-child {
+    color: #333;
+}
+
+.price-row span:last-child {
+    color: #E91E63;
+    font-weight: bold;
+}
+</style>
     
       </script>
     <h2 style="color: #961911;">रिवॉर्ड्स प्रोग्राम नियम और शर्तें</h2>
