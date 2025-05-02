@@ -2,350 +2,1114 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupesh Electronics - Spin & Win</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spin & Win Rewards</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* नया कलर थीम */
-        :root {
-            --primary: #4CAF50;  /* हरा */
-            --secondary: #2196F3; /* नीला */
-            --accent: #FFC107;   /* पीला */
-            --pink: #E91E63;     /* गुलाबी */
-            --dark: #333;
-            --light: #f8f9fa;
-        }
-        
+        /* Main Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, var(--light) 0%, #e4e8eb 100%);
-            color: var(--dark);
+            background: linear-gradient(135deg, #f0e767 0%, #f0e767 100%);
+            color: #333;
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
         }
         
         .container {
             max-width: 100%;
             margin: 0 auto;
-            padding: 15px;
+            padding: 10px;
         }
         
-        /* हेडर स्टाइल */
+        /* Header */
         .store-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 20px;
+            background: linear-gradient(135deg, #ff6600 0%, #2E7D32 100%);
+            padding: 15px;
             text-align: center;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-            color: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
             position: relative;
             overflow: hidden;
-            border: 3px solid white;
+            border: 2px solid #fff;
+        }
+        
+        .store-header::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(46, 125, 50, 0.3));
+            z-index: -1;
+            border-radius: 15px;
         }
         
         .store-header h1 {
             margin: 0;
-            font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            color: #16fc0a;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         
         .store-header p {
-            margin: 10px 0 0;
-            font-size: 1.1rem;
+            margin: 5px 0 0;
+            color: #8ffc0a;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
         
-        /* सेक्शन कार्ड्स */
-        .section-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--accent);
+        /* Login Section */
+        #login-section {
+            text-align: center;
+            margin: 15px auto;
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #4CAF50;
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, #07e628, #34A853);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        /* User Section */
+        #user-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #4CAF50;
+        }
+        
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        
+        .user-info div {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .logout-btn {
+            background: linear-gradient(135deg, #E91E63, #C2185B);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 14px;
+            margin-top: 8px;
+            width: 100%;
+        }
+        
+        /* Wallet Section */
+        .wallet-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #2196F3;
             position: relative;
             overflow: hidden;
         }
         
-        .section-card::before {
-            content: "";
+        .wallet-section::before {
+            content: "₹";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--pink));
+            top: 10px;
+            right: 10px;
+            font-size: 50px;
+            color: rgba(33, 150, 243, 0.1);
+            z-index: 0;
         }
         
-        /* बटन स्टाइल */
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
+        .balance {
+            font-size: 1.5rem;
             font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: #4CAF50;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Spin Section */
+        #spin-section {
+            display: none;
             text-align: center;
-            margin: 10px 5px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #FFC107;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #45a049);
-            color: white;
+        #spin-button {
+            background: linear-gradient(135deg, #FFC107, #FF9800);
+            color: #5a4a1a;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 200px;
         }
         
-        .btn-secondary {
-            background: linear-gradient(135deg, var(--secondary), #0b7dda);
-            color: white;
+        #spin-button:disabled {
+            background: linear-gradient(135deg, #cccccc, #999999);
+            cursor: not-allowed;
         }
         
-        .btn-accent {
-            background: linear-gradient(135deg, var(--accent), #ffab00);
-            color: #333;
-        }
-        
-        .btn-pink {
-            background: linear-gradient(135deg, var(--pink), #c2185b);
-            color: white;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        /* व्हील डिज़ाइन */
+        /* Wheel Design */
         #wheel-container {
-            width: 300px;
-            height: 300px;
-            margin: 30px auto;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
             position: relative;
         }
         
         #wheel {
             width: 100%;
             height: 100%;
-            position: relative;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 10px solid var(--accent);
-            box-shadow: 0 0 0 5px var(--dark), 0 0 30px rgba(0,0,0,0.2);
-            transition: transform 3.5s cubic-bezier(0.17, 0.67, 0.21, 0.99);
-        }
-        
-        .wheel-segment {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-            transform-origin: bottom right;
-            overflow: hidden;
-        }
-        
-        .wheel-segment span {
-            position: absolute;
-            right: 25px;
-            top: 25px;
-            transform: rotate(22.5deg);
-            color: white;
-            font-weight: bold;
-            font-size: 22px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transition: transform 3s cubic-bezier(0.17, 0.67, 0.21, 0.99);
         }
         
         #spin-pointer {
             position: absolute;
-            top: -25px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-top: 40px solid var(--accent);
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 25px solid #FF9800;
             z-index: 10;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
         }
         
-        /* ट्रांजैक्शन टेबल */
+        /* Withdrawal Section */
+        .withdraw-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #2196F3;
+        }
+        
+        .form-group {
+            margin-bottom: 12px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #c802f0;
+            font-size: 14px;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #2196F3;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .withdraw-btn {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Referral Section */
+        .referral-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #E91E63;
+        }
+        
+        .referral-code {
+            font-weight: bold;
+            color: #E91E63;
+            font-size: 1rem;
+            background: rgba(233, 30, 99, 0.1);
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px 0;
+            border: 1px dashed #E91E63;
+            word-break: break-all;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        /* History Sections */
+        .history-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #4CAF50;
+            overflow-x: auto;
+        }
+        
         .history-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            font-size: 13px;
+            min-width: 500px;
+        }
+        
+        .history-table th, .history-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #4CAF50;
         }
         
         .history-table th {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #2E7D32;
+            font-size: 14px;
+        }
+        
+        /* Status Badges */
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .status-pending {
+            background-color: #FFC107;
+            color: #000;
+        }
+        
+        .status-completed {
+            background-color: #4CAF50;
+            color: #FFF;
+        }
+        
+        .status-failed {
+            background-color: #E91E63;
+            color: #FFF;
+        }
+        
+        /* Social Share */
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+        
+        .whatsapp { background: #25D366; }
+        .facebook { background: #3b5998; }
+        .telegram { background: #0088cc; }
+        .twitter { background: #1DA1F2; }
+        
+        /* Video Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Ad Containers */
+        .ad-container {
+            background: white;
+            padding: 8px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid #FFC107;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .ad-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        .ad-label {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
             padding: 12px;
-            text-align: left;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #2E7D32, #1B5E20);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 13px;
         }
         
-        .history-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #eee;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            gap: 10px;
         }
         
-        .history-table tr:nth-child(even) {
-            background-color: rgba(0,0,0,0.02);
+        .footer-links a {
+            color: #FFC107;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 13px;
         }
         
-        .history-table tr:hover {
-            background-color: rgba(0,0,0,0.05);
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
         }
         
-        /* रेस्पॉन्सिव डिज़ाइन */
-        @media (max-width: 768px) {
+        /* Popups */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 90%;
+            width: 300px;
+            border: 2px solid white;
+            animation: popupEnter 0.3s ease-out;
+        }
+        
+        @keyframes popupEnter {
+            0% { transform: translate(-50%, -60%); opacity: 0; }
+            100% { transform: translate(-50%, -50%); opacity: 1; }
+        }
+        
+        .popup h2 {
+            margin-top: 0;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-size: 1.2rem;
+        }
+        
+        .popup p {
+            margin: 10px 0;
+            color: white;
+        }
+        
+        .popup button {
+            background-color: white;
+            color: #2E7D32;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        /* Overlay for Popups */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Mobile Specific Styles */
+        @media (max-width: 480px) {
             .container {
-                padding: 10px;
+                padding: 8px;
             }
             
-            .section-card {
-                padding: 20px;
+            .store-header h1 {
+                font-size: 1.3rem;
             }
             
             #wheel-container {
-                width: 250px;
-                height: 250px;
+                width: 220px;
+                height: 220px;
+            }
+            
+            #spin-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                max-width: 180px;
+            }
+            
+            .history-table {
+                font-size: 12px;
+            }
+            
+            .history-table th, .history-table td {
+                padding: 6px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .user-info {
+                flex-direction: column;
+            }
+            
+            .logout-btn {
+                margin-top: 8px;
+            }
+        }
+        
+        /* Very small devices */
+        @media (max-width: 360px) {
+            #wheel-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .store-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .store-header p {
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- हेडर सेक्शन -->
+        <!-- Store Header -->
         <header class="store-header">
-            <h1><i class="fas fa-mobile-alt"></i> Rupesh Electronics</h1>
-            <p>Spin & Win Amazing Rewards!</p>
+            <h1><i class="fas fa-mobile-alt"></i> RUPESH ELECTRONICS </h1>
+            <p>अपने दोस्तों को हमारे मोबाइल स्टोर में ज्वाइन करवाएं और हर सफल रेफरल पर 10₹ बोनस कमाएं आपके दोस्त को भी 10₹ साइनअप बोनस मिलेगा!</p>
+          <div id="terms">
+           
+<!-- Updated Redeem Section -->
+<div class="withdraw-section">
+    <h3 style="margin-top: 0; font-size: 1.1rem;"><i class="fas fa-shopping-bag"></i> प्रोडक्ट खरीदें</h3>
+    
+    <div class="form-group">
+        <label for="product-select"><i class="fas fa-mobile"></i> प्रोडक्ट चुनें</label>
+        <select id="product-select" class="form-control">
+            <option value="">-- प्रोडक्ट चुनें --</option>
+            <option value="cover" data-price="100">मोबाइल कवर (₹200)</option>
+            <option value="glass" data-price="100">टेम्पर्ड ग्लास (₹300)</option>
+            <option value="earphones" data-price="100">इयरफोन्स (₹800)</option>
+            <option value="powerbank" data-price="1000">पावर बैंक (₹1200)</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label><i class="fas fa-percentage"></i> डिस्काउंट % (2-10%)</label>
+        <input type="range" id="discount-percent" min="2" max="10" value="5" step="1" 
+               oninput="updateDiscountCalculation()">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
+            <span>2%</span>
+            <span id="current-percent">5%</span>
+            <span>10%</span>
+        </div>
+    </div>
+    
+    <div id="discount-calculation" style="background:#fc770a; padding:10px; border-radius:5px; margin-bottom:15px; display:none;">
+        <p style="margin:5px 0;">
+            प्रोडक्ट कीमत: <span id="product-price">₹0</span>
+        </p>
+        <p style="margin:5px 0;">
+            आपका डिस्काउंट: <span id="discount-amount" style="color:#4CAF50;">₹0</span> (<span id="percent-value">0</span>%)
+        </p>
+        <p style="margin:5px 0; font-weight:bold;">
+            भुगतान राशि: <span id="final-price">₹0</span>
+        </p>
+        <p style="margin:5px 0; font-size:0.8rem;">
+            (आपके वॉलेट से कटेगा: <span id="wallet-deduction">₹0</span>)
+        </p>
+    </div>
+    
+    <button class="withdraw-btn" id="purchase-btn" disabled>
+        <i class="fas fa-shopping-cart"></i> खरीदें
+    </button>
+</div>
+
+<!-- JavaScript Implementation -->
+<script>
+// Update discount calculation when product or percentage changes
+function updateDiscountCalculation() {
+    const productSelect = document.getElementById('product-select');
+    const discountPercent = document.getElementById('discount-percent');
+    const calculationDiv = document.getElementById('discount-calculation');
+    
+    if(!productSelect.value) {
+        calculationDiv.style.display = 'none';
+        document.getElementById('purchase-btn').disabled = true;
+        return;
+    }
+    
+    const productPrice = parseInt(productSelect.selectedOptions[0].dataset.price);
+    const percent = parseInt(discountPercent.value);
+    const discountAmount = Math.floor(productPrice * percent / 100);
+    const finalPrice = productPrice - discountAmount;
+    const userBalance = parseInt(document.getElementById('user-balance').textContent.replace('₹','')) || 0;
+    
+    // Update displayed values
+    document.getElementById('current-percent').textContent = percent + '%';
+    document.getElementById('product-price').textContent = '₹' + productPrice;
+    document.getElementById('discount-amount').textContent = '₹' + discountAmount;
+    document.getElementById('percent-value').textContent = percent;
+    document.getElementById('final-price').textContent = '₹' + finalPrice;
+    document.getElementById('wallet-deduction').textContent = '₹' + discountAmount;
+    
+    // Enable/disable purchase button based on balance
+    if(discountAmount <= userBalance) {
+        document.getElementById('purchase-btn').disabled = false;
+    } else {
+        document.getElementById('purchase-btn').disabled = true;
+        calculationDiv.innerHTML += '<p style="color:#f44336;margin:5px 0;">आपके पास पर्याप्त बैलेंस नहीं है</p>';
+    }
+    
+    calculationDiv.style.display = 'block';
+}
+
+// Purchase button handler
+document.getElementById('purchase-btn').addEventListener('click', function() {
+    const productSelect = document.getElementById('product-select');
+    const productName = productSelect.selectedOptions[0].text;
+    const discountAmount = parseInt(document.getElementById('discount-amount').textContent.replace('₹',''));
+    
+    // Deduct from wallet
+    const currentBalance = parseInt(document.getElementById('user-balance').textContent.replace('₹',''));
+    document.getElementById('user-balance').textContent = '₹' + (currentBalance - discountAmount);
+    
+    // Add to transaction history
+    addTransaction('प्रोडक्ट खरीद', discountAmount, 0, 'completed', productName);
+    
+    // Show success message
+    alert(`आपका ऑर्डर सफलतम पूरा हुआ!\n\n${productName}\nडिस्काउंट: ₹${discountAmount}\nआपका नया बैलेंस: ₹${currentBalance - discountAmount}`);
+    
+    // Reset form
+    document.getElementById('product-select').value = '';
+    document.getElementById('discount-calculation').style.display = 'none';
+    this.disabled = true;
+});
+
+// Initialize event listeners
+document.getElementById('product-select').addEventListener('change', updateDiscountCalculation);
+document.getElementById('discount-percent').addEventListener('input', updateDiscountCalculation);
+
+// Updated addTransaction function
+function addTransaction(type, amount, deduction, status, product = '') {
+    const tableBody = document.getElementById('transaction-history-body');
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('hi-IN') + ' ' + now.toLocaleTimeString('hi-IN');
+    
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${dateStr}</td>
+        <td>${type}<br><small style="color:#666;">${product}</small></td>
+        <td><span class="status-badge status-${status}">${status}</span></td>
+        <td style="text-align: right;">₹${amount}</td>
+        <td style="text-align: right;">₹${deduction || 0}</td>
+    `;
+    
+    tableBody.appendChild(row);
+    
+    // Show table if hidden
+    if (document.getElementById('transaction-history-table').style.display === 'none') {
+        document.getElementById('transaction-history-table').style.display = 'table';
+        document.getElementById('history-loading').style.display = 'none';
+        document.getElementById('no-history').style.display = 'none';
+    }
+}
+</script>
+    <h2 style="color: #961911;">रिवॉर्ड्स प्रोग्राम नियम और शर्तें</h2>
+    <div style="font-size:0.85rem;">
+        <p><strong>1.स्पिन रिवॉर्ड्स:</strong> प्रत्येक उपयोगकर्ता 6 घंटे में एक बार स्पिन कर सकता है। जीत 5₹ से 100₹ के बीच रैंडमली तय होगी।</p>
+        <p><strong>2.रेफरल बोनस:</strong> हर सफल रेफरल जो साइनअप करके स्पिन करे 10₹ बोनस मिलेगा।</p>
+        <p><strong>3.रिडीम करना:</strong> जीते हुए पैसों से आप हमारे स्टोर से मोबाइल एक्सेसरीज खरीद सकते हैं </p>
+        <p><strong>4.एक्सेसरीज विकल्प:</strong> मोबाइल कवर, टेम्पर्ड ग्लास, इयरफोन्स, पॉवर बैंक, चार्जर, और अन्य एक्सेसरीज उपलब्ध हैं।</p>
+        <p><strong>5.रिवॉर्ड राशि:</strong> स्पिन से जीती गई राशि नकद में नहीं मिलेगी। यह राशि केवल हमारे स्टोर से प्रोडक्ट्स खरीदने के लिए उपयोग की जा सकती है।</p>
+         <p><strong>6.रिडीम प्रोसेस:</strong> 10₹ या अधिक की राशि रिडीम कर सकते हैं। ऑर्डर कन्फर्मेशन 24 घंटे में मिलेगा।</p>
+         <p><strong>7.प्रोडक्ट उपलब्धता:</strong> सभी प्रोडक्ट्स स्टॉक उपलब्धता के अधीन हैं।</p>
+         <p><strong>8.डिस्काउंट:</strong>जीते हुए पैसों का 2% से 10% तक प्रोडक्ट खरीदने पर डिस्काउंट</p>
+    </div>
+</div>
         </header>
         
-        <!-- लॉगिन सेक्शन -->
-        <div id="login-section" class="section-card" style="text-align:center;">
-            <h2 style="color: var(--primary);">Customer Rewards Program</h2>
-            <p style="color: var(--dark);">Login to access your rewards</p>
-            <button id="google-login-btn" class="btn btn-primary">
-                <i class="fab fa-google"></i> Login with Google
+        <!-- Top Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <img src="https://drive.google.com/file/d/1Jn3LNX1Wy8YUb4bVRHIxTd6EgN8ub2VY/view?usp=drivesdk" alt="Spin and Win Offers" id="top-ad">
+        </div>
+        
+        <!-- Login Section -->
+        <div id="login-section">
+            <h2>Customer Rewards Program</h2>
+            <p>Login with Google to access your rewards</p>
+            <button class="login-btn" id="google-login-btn">
+                <i class="fab fa-google" style="margin-right: 10px;"></i> Login with Google
             </button>
         </div>
         
-        <!-- यूजर सेक्शन (लॉगिन के बाद दिखेगा) -->
-        <div id="user-section" class="section-card" style="display:none;">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+        <!-- User Section -->
+        <div id="user-section">
+            <div class="user-info">
                 <div>
-                    <h3 style="margin:0; color: var(--secondary);">Welcome, <span id="user-name"></span></h3>
-                    <p style="margin:5px 0 0; color: var(--dark);"><i class="fas fa-envelope"></i> <span id="user-email"></span></p>
+                    <h3 style="margin: 0; font-size: 1.1rem;">Welcome, <span id="user-name"></span></h3>
+                    <p style="margin: 5px 0 0; font-size: 0.9rem;"><i class="fas fa-envelope"></i> <span id="user-email"></span></p>
                 </div>
-                <button id="logout-btn" class="btn btn-pink">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+                <button class="logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
         </div>
         
-        <!-- वॉलेट सेक्शन -->
-        <div id="wallet-section" class="section-card" style="display:none;">
-            <h3 style="color: var(--primary);"><i class="fas fa-wallet"></i> Your Wallet</h3>
-            <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-                <div>
-                    <p>Current Balance:</p>
-                    <h2 style="margin:5px 0; color: var(--primary);" id="user-balance">₹0</h2>
-                </div>
-                <div>
-                    <p>Total Earned:</p>
-                    <h2 style="margin:5px 0; color: var(--secondary);" id="total-earned">₹0</h2>
-                </div>
-            </div>
+        <!-- Wallet Section -->
+        <div class="wallet-section">
+            <h3 style="margin-top: 0; font-size: 1.1rem;"><i class="fas fa-wallet"></i> Your Reward Wallet</h3>
+            <p>Balance: <span class="balance" id="user-balance">₹0</span></p>
+            <p>Total Earned: <span class="balance" id="total-earned">₹0</span></p>
         </div>
         
-        <!-- स्पिन सेक्शन -->
-        <div id="spin-section" class="section-card" style="display:none; text-align:center;">
-            <h2 style="color: var(--pink);"><i class="fas fa-redo"></i> Spin the Wheel</h2>
-            <p style="color: var(--dark);">Win exciting rewards on every spin!</p>
-            
+        <!-- Spin Section -->
+        <div id="spin-section">
+            <h2 style="margin-top: 0; font-size: 1.2rem;"><i class="fas fa-redo"></i> Spin the Wheel</h2>
+            <p>Spin daily to win rewards!</p>
             <div id="wheel-container">
                 <div id="wheel"></div>
                 <div id="spin-pointer"></div>
             </div>
-            
-            <button id="spin-button" class="btn btn-accent" style="min-width:200px;">
-                <i class="fas fa-sync-alt"></i> SPIN NOW
-            </button>
-            <p id="spin-timer" style="color: var(--secondary); font-weight:bold;"></p>
+            <button id="spin-button"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
+            <p id="spin-timer" style="font-size: 0.9rem;"></p>
         </div>
         
-        <!-- विथड्रॉल सेक्शन -->
-        <div id="withdraw-section" class="section-card" style="display:none;">
-            <h3 style="color: var(--secondary);"><i class="fas fa-rupee-sign"></i> Withdraw Money</h3>
-            <p style="color: var(--dark);">Minimum withdrawal amount: ₹10</p>
-            
-            <div style="margin:15px 0;">
-                <label style="display:block; margin-bottom:5px; color: var(--dark);">Amount (₹)</label>
-                <input type="number" id="withdraw-amount" min="10" placeholder="Enter amount" 
-                       style="width:100%; padding:12px; border:2px solid #ddd; border-radius:8px; font-size:16px;">
-            </div>
-            
-            <div style="margin:15px 0;">
-                <label style="display:block; margin-bottom:5px; color: var(--dark);">UPI ID</label>
-                <input type="text" id="upi-id" placeholder="yourname@upi" 
-                       style="width:100%; padding:12px; border:2px solid #ddd; border-radius:8px; font-size:16px;">
-            </div>
-            
-            <button id="withdraw-btn" class="btn btn-primary" style="width:100%;">
-                <i class="fas fa-hand-holding-usd"></i> Request Withdrawal
-            </button>
+        <!-- Middle Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Special Offer</div>
+            <img src="https://via.placeholder.com/300x250?text=Daily+Rewards" alt="Daily Rewards" id="middle-ad">
         </div>
         
-        <!-- हिस्ट्री सेक्शन -->
-        <div id="history-section" class="section-card" style="display:none;">
-            <h3 style="color: var(--pink);"><i class="fas fa-history"></i> Transaction History</h3>
+        <!-- Withdrawal Section -->
+      <div class="withdraw-section">
+            <h3 style="margin-top: 0; font-size: 1.1rem;"><i class="fas fa-rupee-sign"></i> Request Withdrawal</h3>
+            <p style="font-size: 0.9rem;">Minimum withdrawal: ₹10 </p>
+            <div class="form-group">
+                <label for="withdraw-amount"><i class="fas fa-money-bill-wave"></i> Amount (₹)</label>
+                <input type="number" id="withdraw-amount" min="10" placeholder="10">
+            </div>
+            <div class="form-group">
+                <label for="upi-id"><i class="fas fa-mobile-alt"></i> UPI ID</label>
+                <input type="text" id="upi-id" placeholder="yourname@upi">
+            </div>
+            <button class="withdraw-btn" id="withdraw-btn"><i class="fas fa-hand-holding-usd"></i> Request Withdrawal</button>
+        </div>
+
+<!-- In the JavaScript (update the withdrawal function) -->
+<script>
+    // ... (previous code remains same)
+
+    // Withdrawal functionality
+    document.getElementById('withdraw-btn').addEventListener('click', function() {
+        const amount = parseInt(document.getElementById('withdraw-amount').value);
+        const upiId = document.getElementById('upi-id').value;
+        const purpose = document.getElementById('withdraw-purpose').value || 'No purpose specified';
+        
+        if (!amount || amount < 10) {
+            alert('Minimum withdrawal amount is ₹10');
+            return;
+        }
+        
+        if (!upiId || !upiId.includes('@')) {
+            alert('Please enter a valid UPI ID');
+            return;
+        }
+        
+        const balance = parseInt(document.getElementById('user-balance').textContent.replace('₹', '')) || 0;
+        if (amount > balance) {
+            alert('Insufficient balance');
+            return;
+        }
+        
+        // Process withdrawal
+        const processingFee = Math.round(amount * 0.02);
+        const netAmount = amount - processingFee;
+        
+        // Update balance
+        document.getElementById('user-balance').textContent = `₹${balance - amount}`;
+        
+        // Update total deducted
+        const totalDeductedElement = document.getElementById('total-deducted');
+        const currentDeducted = parseInt(totalDeductedElement.textContent.replace('₹', '')) || 0;
+        totalDeductedElement.textContent = `₹${currentDeducted + amount}`;
+        
+        // Add to transaction history with purpose
+        addTransaction('Withdrawal', amount, processingFee, 'pending', purpose);
+        
+        alert(`Withdrawal request for ₹${amount} (₹${netAmount} after fees) to ${upiId} submitted!\nPurpose: ${purpose}`);
+    });
+    
+    // Update addTransaction function to include purpose
+    function addTransaction(type, amount, deduction, status, purpose = '') {
+        const tableBody = document.getElementById('transaction-history-body');
+        const now = new Date();
+        const dateStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${dateStr}</td>
+            <td>${type}${purpose ? '<br><small>' + purpose + '</small>' : ''}</td>
+            <td><span class="status-badge status-${status}">${status.charAt(0).toUpperCase() + status.slice(1)}</span></td>
+            <td style="text-align: right;">₹${amount}</td>
+            <td style="text-align: right;">₹${deduction || 0}</td>
+        `;
+        
+        tableBody.appendChild(row);
+        
+        // Show table if hidden
+        if (document.getElementById('transaction-history-table').style.display === 'none') {
+            document.getElementById('transaction-history-table').style.display = 'table';
+            document.getElementById('history-loading').style.display = 'none';
+            document.getElementById('no-history').style.display = 'none';
+        }
+    }
+
+    // ... (rest of the code remains same)
+</script>
+        
+        <!-- Referral Section -->
+        <div class="referral-section">
+            <h3 style="margin-top: 0; font-size: 1.1rem;"><i class="fas fa-user-friends"></i> Refer & Earn</h3>
+            <p style="font-size: 0.9rem;">Get ₹10 for every successful referral!</p>
+            <p style="margin-bottom: 5px; font-size: 0.9rem;">Your Referral Code:</p>
+            <div class="referral-code" id="referral-code">LOADING...</div>
+            <p style="margin: 10px 0 5px; font-size: 0.9rem;">Your Referral Link:</p>
+            <div class="referral-code" id="referral-link">LOADING...</div>
+            <button class="copy-btn" id="copy-referral-btn"><i class="fas fa-copy"></i> Copy Link</button>
             
-            <div id="history-stats" style="display:flex; justify-content:space-around; flex-wrap:wrap; margin:20px 0;">
-                <div style="text-align:center; padding:10px; min-width:100px;">
-                    <div style="font-size:24px; font-weight:bold; color: var(--accent);" id="total-spins">0</div>
-                    <div style="color: var(--dark);">Total Spins</div>
-                </div>
-                <div style="text-align:center; padding:10px; min-width:100px;">
-                    <div style="font-size:24px; font-weight:bold; color: var(--primary);" id="total-won">₹0</div>
-                    <div style="color: var(--dark);">Total Won</div>
-                </div>
-                <div style="text-align:center; padding:10px; min-width:100px;">
-                    <div style="font-size:24px; font-weight:bold; color: var(--secondary);" id="total-deducted">₹0</div>
-                    <div style="color: var(--dark);">Total Deducted</div>
+            <!-- Social Share -->
+            <div style="margin-top: 12px;">
+                <p style="margin-bottom: 8px; font-size: 0.9rem;">Share on:</p>
+                <div class="social-share">
+                    <a href="#" id="whatsapp-share" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" id="facebook-share" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" id="telegram-share" class="social-btn telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" id="twitter-share" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
-            
-            <div id="history-loading" style="text-align:center; padding:20px; color: var(--secondary);">
-                <i class="fas fa-spinner fa-spin"></i> Loading your history...
+        </div>
+        
+        <!-- Video Section -->
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GcTJL-FIAHw?si=WTCFpHwa5YQI565n" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <!-- Sponsor Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Our Sponsor</div>
+            <img src="https://youtu.be/pVayQAPOHJA?si=07P2goL5MnJNe4Cr" alt="Sponsor" id="sponsor-ad">
+        </div>
+        
+        <!-- Transaction History -->
+        <div class="history-section">
+            <h3 style="margin-top: 0; font-size: 1.1rem;"><i class="fas fa-history"></i> Transaction History</h3>
+            <div id="history-stats" style="text-align: center; margin-bottom: 12px; background: #f8f9fa; padding: 10px; border-radius: 8px; font-size: 0.9rem;">
+                <div style="display: inline-block; margin: 0 8px;">
+                    <div style="font-size: 16px; font-weight: bold; color: #4CAF50;" id="total-spins">0</div>
+                    <div>Total Spins</div>
+                </div>
+                <div style="display: inline-block; margin: 0 8px;">
+                    <div style="font-size: 16px; font-weight: bold; color: #4CAF50;" id="total-won">₹0</div>
+                    <div>Total Won</div>
+                </div>
+                <div style="display: inline-block; margin: 0 8px;">
+                    <div style="font-size: 16px; font-weight: bold; color: #E91E63;" id="total-deducted">₹0</div>
+                    <div>Total Deducted</div>
+                </div>
             </div>
-            
-            <table class="history-table" id="transaction-history-table" style="display:none;">
+            <div id="history-loading" style="text-align: center; padding: 10px; font-size: 0.9rem;">Loading your history...</div>
+            <table class="history-table" id="transaction-history-table" style="display: none;">
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Type</th>
-                        <th>Amount</th>
                         <th>Status</th>
+                        <th style="text-align: right;">Amount (₹)</th>
+                        <th style="text-align: right;">Deduction</th>
                     </tr>
                 </thead>
                 <tbody id="transaction-history-body">
-                    <!-- ट्रांजैक्शन्स यहाँ लोड होंगे -->
+                    <!-- Data will load here -->
                 </tbody>
             </table>
-            
-            <div id="no-history" style="text-align:center; padding:20px; display:none; color: var(--dark);">
-                <i class="fas fa-info-circle"></i> No transactions yet
+            <div id="no-history" style="text-align: center; padding: 15px; display: none; font-size: 0.9rem;">
+                No transactions yet
             </div>
         </div>
+        
+        <!-- Referral Income -->
+        <div class="history-section">
+            <h3 style="margin-top: 0; font-size: 1.1rem;"><i class="fas fa-user-plus"></i> Referral Income</h3>
+            <div id="referral-stats" style="text-align: center; margin-bottom: 12px; background: #f8f9fa; padding: 10px; border-radius: 8px; font-size: 0.9rem;">
+                <div style="display: inline-block; margin: 0 8px;">
+                    <div style="font-size: 16px; font-weight: bold; color: #4CAF50;" id="total-referrals">0</div>
+                    <div>Total Referrals</div>
+                </div>
+                <div style="display: inline-block; margin: 0 8px;">
+                    <div style="font-size: 16px; font-weight: bold; color: #4CAF50;" id="referral-earnings">₹0</div>
+                    <div>Total Earnings</div>
+                </div>
+            </div>
+            <div id="referral-history-loading" style="text-align: center; padding: 10px; font-size: 0.9rem;">Loading referral history...</div>
+            <table class="history-table" id="referral-history-table" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Referred User</th>
+                        <th style="text-align: right;">Bonus (₹)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="referral-history-body">
+                    <!-- Data will load here -->
+                </tbody>
+            </table>
+            <div id="no-referrals" style="text-align: center; padding: 15px; display: none; font-size: 0.9rem;">
+                No referrals yet
+            </div>
+        </div>
+        
+        <!-- Legal Sections -->
+        <div class="legal-sections" style="margin-top: 15px;">
+            <!-- Terms and Conditions -->
+            <div id="terms" style="margin-bottom: 20px;">
+                <h2 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; font-size: 1.2rem;">Terms and Conditions</h2>
+                <div style="max-height: 200px; overflow-y: auto; padding: 8px; font-size: 0.85rem;">
+                    <p><strong>Last Updated:</strong> 01/01/2023</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">1. Program Eligibility</h3>
+                    <p>This reward program is open to all registered users. You must be at least 18 years old to participate.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">2. Reward Calculation</h3>
+                    <p>You can spin the wheel once every 6 hours to win rewards between ₹5 to ₹100.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">3. Withdrawal Policy</h3>
+                    <p>Minimum withdrawal amount is ₹10. All withdrawals are processed to UPI within 24 hours.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">4. Referral Program</h3>
+                    <p>You earn ₹10 for every successful referral who signs up using your link.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">5. General Terms</h3>
+                    <p>We reserve the right to modify or terminate this program at any time. Fraudulent activities will result in account suspension.</p>
+                </div>
+            </div>
+            
+            <!-- Privacy Policy -->
+            <div id="privacy" style="margin-bottom: 20px;">
+                <h2 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; font-size: 1.2rem;">Privacy Policy</h2>
+                <div style="max-height: 200px; overflow-y: auto; padding: 8px; font-size: 0.85rem;">
+                    <p><strong>Last Updated:</strong> 01/01/2023</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">1. Information Collection</h3>
+                    <p>We collect your name, email, and UPI ID for reward processing.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">2. Data Usage</h3>
+                    <p>Your information is used solely for the reward program and will not be shared with third parties.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">3. Data Security</h3>
+                    <p>We implement security measures to protect your data, but cannot guarantee absolute security.</p>
+                </div>
+            </div>
+            
+            <!-- Disclaimer -->
+            <div id="disclaimer" style="margin-bottom: 20px;">
+                <h2 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; font-size: 1.2rem;">Disclaimer</h2>
+                <div style="max-height: 200px; overflow-y: auto; padding: 8px; font-size: 0.85rem;">
+                    <p>The Spin & Win program is for entertainment purposes only. Actual rewards may vary.</p>
+                    <p>All reward amounts are subject to verification. Fraudulent claims will result in account termination.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ -->
+            <div id="faq">
+                <h2 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; font-size: 1.2rem;">Frequently Asked Questions</h2>
+                <div style="max-height: 200px; overflow-y: auto; padding: 8px; font-size: 0.85rem;">
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">1. How do I earn rewards?</h3>
+                    <p>Spin the wheel every 6 hours to win rewards between ₹5 to ₹100.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">2. When will I receive my withdrawal?</h3>
+                    <p>UPI transfers are processed within 24 hours of request (excluding Sundays and holidays).</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">3. Can I get cash instead of UPI transfer?</h3>
+                    <p>No, all withdrawals are processed digitally to UPI IDs only.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">4. How do referrals work?</h3>
+                    <p>Share your referral link. When someone signs up using your link, you get ₹10 reward.</p>
+                    
+                    <h3 style="color: #2E7D32; font-size: 1rem; margin: 10px 0 5px;">5. Is there an expiry for rewards?</h3>
+                    <p>Reward balance expires after 6 months of inactivity.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="#terms">Terms</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#disclaimer">Disclaimer</a>
+                <a href="#faq">FAQ</a>
+                <a href="/contact">Contact Us</a>
+            </div>
+            <p>&copy; 2025 Spin & Win Rewards.
+              All Rights Reserved
+              RUPESH ELECTRONICS MOB.9334113322</p>
+        </footer>
     </div>
 
-    <!-- फायरबेस और मेन जावास्क्रिप्ट -->
+    <!-- Overlay for Popups -->
+    <div class="overlay" id="overlay" style="display: none;"></div>
+
+    <!-- Firebase and Main JavaScript -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     
     <script>
-        // फायरबेस कॉन्फिगरेशन
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCzQgiXSB8-p0aXFmFFi65Ks11uZWj0KX0",
             authDomain: "spin-and-win-2026.firebaseapp.com",
@@ -357,180 +1121,414 @@
             measurementId: "G-MFZH0J437W"
         };
         
-        // फायरबेस इनिशियलाइज़ करें
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const database = firebase.database();
         const provider = new firebase.auth.GoogleAuthProvider();
 
-        // ग्लोबल वेरिएबल्स
+        // Global Variables
         let currentUser = null;
         let userData = null;
         
-        // DOM रेडी
+        // DOM Ready
         document.addEventListener('DOMContentLoaded', function() {
             initializeWheel();
             setupEventListeners();
             checkAuthState();
+            setupSocialShare();
+            rotateAds();
         });
 
-        // व्हील इनिशियलाइज़ करें
+        // Initialize Wheel
         function initializeWheel() {
             const wheel = document.getElementById('wheel');
             const prizes = [
-                { color: '#FF6384', text: '₹5' },   // लाल
-                { color: '#36A2EB', text: '₹10' },  // नीला
-                { color: '#FFCE56', text: '₹20' },  // पीला
-                { color: '#4BC0C0', text: '₹50' },  // टील
-                { color: '#9966FF', text: '₹100' }, // बैंगनी
-                { color: '#FF9F40', text: '₹5' },   // ऑरेंज
-                { color: '#8AC24A', text: '₹10' },  // हरा
-                { color: '#E03997', text: '₹20' }   // गुलाबी
+                { color: '#4CAF50', text: '₹5' },
+                { color: '#2196F3', text: '₹10' },
+                { color: '#FFC107', text: '₹20' },
+                { color: '#E91E63', text: '₹50' },
+                { color: '#9C27B0', text: '₹100' },
+                { color: '#4CAF50', text: '₹5' },
+                { color: '#2196F3', text: '₹10' },
+                { color: '#FFC107', text: '₹20' }
             ];
             
-            wheel.innerHTML = '';
+            let wheelHTML = '';
             const segmentAngle = 360 / prizes.length;
             
             prizes.forEach((prize, index) => {
                 const angle = segmentAngle * index;
-                const segment = document.createElement('div');
-                segment.className = 'wheel-segment';
-                segment.style.transform = `rotate(${angle}deg) skewY(${90 - segmentAngle}deg)`;
-                segment.style.background = prize.color;
-                
-                const textSpan = document.createElement('span');
-                textSpan.textContent = prize.text;
-                segment.appendChild(textSpan);
-                
-                wheel.appendChild(segment);
+                wheelHTML += `
+                    <div style="
+                        position: absolute;
+                        width: 50%;
+                        height: 50%;
+                        background: ${prize.color};
+                        transform-origin: bottom right;
+                        transform: rotate(${angle}deg) skewY(${90 - segmentAngle}deg);
+                        overflow: hidden;
+                    ">
+                        <span style="
+                            position: absolute;
+                            right: 10px;
+                            top: 10px;
+                            transform: rotate(${segmentAngle/2}deg);
+                            color: white;
+                            font-weight: bold;
+                            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+                            font-size: 14px;
+                        ">${prize.text}</span>
+                    </div>
+                `;
             });
+            
+            wheel.innerHTML = wheelHTML;
+            wheel.style.width = '100%';
+            wheel.style.height = '100%';
+            wheel.style.position = 'relative';
+            wheel.style.borderRadius = '50%';
+            wheel.style.overflow = 'hidden';
+            wheel.style.border = '5px solid #333';
         }
-        
-        // इवेंट लिस्नर्स सेटअप करें
+
+        // Setup Event Listeners
         function setupEventListeners() {
             document.getElementById('google-login-btn').addEventListener('click', loginWithGoogle);
             document.getElementById('logout-btn').addEventListener('click', logoutUser);
             document.getElementById('spin-button').addEventListener('click', spinWheel);
             document.getElementById('withdraw-btn').addEventListener('click', requestWithdraw);
+            document.getElementById('copy-referral-btn').addEventListener('click', copyReferralLink);
         }
-        
-        // ऑथ स्टेट चेक करें
+
+        // Setup Social Share
+        function setupSocialShare() {
+            const referralLink = document.getElementById('referral-link');
+            
+            document.getElementById('whatsapp-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                if(referralLink.textContent && referralLink.textContent !== 'LOADING...') {
+                    window.open(`https://wa.me/?text=${encodeURIComponent("Check out this Spin & Win rewards program! Use my referral code: " + referralLink.textContent)}`, '_blank');
+                }
+            });
+            
+            document.getElementById('facebook-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                if(referralLink.textContent && referralLink.textContent !== 'LOADING...') {
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink.textContent)}`, '_blank');
+                }
+            });
+            
+            document.getElementById('telegram-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                if(referralLink.textContent && referralLink.textContent !== 'LOADING...') {
+                    window.open(`https://t.me/share/url?url=${encodeURIComponent(referralLink.textContent)}&text=${encodeURIComponent("Spin & Win Rewards Program")}`, '_blank');
+                }
+            });
+            
+            document.getElementById('twitter-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                if(referralLink.textContent && referralLink.textContent !== 'LOADING...') {
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent("Win rewards with Spin & Win!")}&url=${encodeURIComponent(referralLink.textContent)}`, '_blank');
+                }
+            });
+        }
+
+        // Rotate Ads
+        function rotateAds() {
+            const adBanner = document.getElementById('top-ad');
+            const middleAd = document.getElementById('middle-ad');
+            const sponsorAd = document.getElementById('sponsor-ad');
+            const adUrls = [
+                'https://via.placeholder.com/728x90?text=Special+Offer+1',
+                'https://via.placeholder.com/728x90?text=Special+Offer+2',
+                'https://via.placeholder.com/728x90?text=Special+Offer+3',
+                'https://via.placeholder.com/300x250?text=Daily+Deal+1',
+                'https://via.placeholder.com/300x250?text=Daily+Deal+2',
+                'https://via.placeholder.com/728x90?text=Premium+Sponsor'
+            ];
+            
+            let counter = 0;
+            setInterval(() => {
+                counter = (counter + 1) % adUrls.length;
+                if(adBanner) {
+                    adBanner.src = adUrls[counter % 3];
+                }
+                if(middleAd) {
+                    middleAd.src = adUrls[3 + (counter % 2)];
+                }
+                if(sponsorAd) {
+                    sponsorAd.src = adUrls[5];
+                }
+            }, 15000); // Change every 15 seconds
+        }
+
+        // Check Auth State
         function checkAuthState() {
             auth.onAuthStateChanged((user) => {
                 if (user) {
                     currentUser = user;
                     loadUserData();
-                    showUserSections();
+                    updateUIForLoggedInUser();
                 } else {
                     currentUser = null;
-                    hideUserSections();
+                    updateUIForLoggedOutUser();
                 }
             });
         }
-        
-        // गूगल से लॉगिन
+
+        // Login with Google
         function loginWithGoogle() {
             auth.signInWithPopup(provider)
                 .then((result) => {
-                    // लॉगिन सफल
+                    // Login successful
                 }).catch((error) => {
-                    alert("Login failed: " + error.message);
+                    console.error("Login error:", error);
+                    showErrorPopup("Login failed: " + error.message);
                 });
         }
-        
-        // लॉगआउट
+
+        // Logout
         function logoutUser() {
             auth.signOut().then(() => {
-                alert("Logged out successfully");
+                // Logout successful
             }).catch((error) => {
-                alert("Logout failed: " + error.message);
+                console.error("Logout error:", error);
+                showErrorPopup("Logout failed");
             });
         }
-        
-        // यूजर सेक्शन्स दिखाएं
-        function showUserSections() {
-            document.getElementById('login-section').style.display = 'none';
-            document.getElementById('user-section').style.display = 'block';
-            document.getElementById('wallet-section').style.display = 'block';
-            document.getElementById('spin-section').style.display = 'block';
-            document.getElementById('withdraw-section').style.display = 'block';
-            document.getElementById('history-section').style.display = 'block';
-        }
-        
-        // यूजर सेक्शन्स छुपाएं
-        function hideUserSections() {
-            document.getElementById('login-section').style.display = 'block';
-            document.getElementById('user-section').style.display = 'none';
-            document.getElementById('wallet-section').style.display = 'none';
-            document.getElementById('spin-section').style.display = 'none';
-            document.getElementById('withdraw-section').style.display = 'none';
-            document.getElementById('history-section').style.display = 'none';
-        }
-        
-        // यूजर डेटा लोड करें
+
+        // Load User Data
         function loadUserData() {
             const userRef = database.ref('users/' + currentUser.uid);
-            
             userRef.on('value', (snapshot) => {
                 userData = snapshot.val();
-                
                 if (!userData) {
                     createNewUser();
                 } else {
                     updateUserDisplay();
+                    loadReferralHistory();
                     loadTransactionHistory();
                 }
             });
         }
-        
-        // नया यूजर क्रिएट करें
+
+        // Create New User
         function createNewUser() {
             const userRef = database.ref('users/' + currentUser.uid);
+            const referralCode = getUrlParameter('ref');
             
             const newUser = {
-                name: currentUser.displayName || currentUser.email.split('@')[0],
+                username: currentUser.displayName || currentUser.email.split('@')[0],
                 email: currentUser.email,
-                balance: 10, // वेलकम बोनस
+                balance: 10, // Give 10 Rs bonus on signup
                 totalEarned: 10,
+                totalWithdrawn: 0,
+                referralCode: generateReferralCode(),
+                referredBy: referralCode,
                 spinCount: 0,
                 lastSpin: null,
                 createdAt: new Date().toISOString()
             };
             
-            userRef.set(newUser)
-                .then(() => {
-                    // वेलकम बोनस ट्रांजैक्शन
-                    addTransaction('bonus', 10);
-                    alert("Welcome! You received ₹10 welcome bonus!");
+            userRef.set(newUser).then(() => {
+                // Record signup bonus transaction
+                database.ref('transactions/' + currentUser.uid).push({
+                    type: 'bonus',
+                    amount: 10,
+                    timestamp: new Date().toISOString(),
+                    status: 'completed'
                 });
+                
+                if (referralCode) {
+                    processReferral(referralCode);
+                }
+            });
         }
-        
-        // यूजर डिस्प्ले अपडेट करें
+
+        // Update UI for Logged In User
+        function updateUIForLoggedInUser() {
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('user-section').style.display = 'block';
+            document.getElementById('spin-section').style.display = 'block';
+        }
+
+        // Update UI for Logged Out User
+        function updateUIForLoggedOutUser() {
+            document.getElementById('login-section').style.display = 'block';
+            document.getElementById('user-section').style.display = 'none';
+            document.getElementById('spin-section').style.display = 'none';
+        }
+
+        // Update User Display
         function updateUserDisplay() {
-            document.getElementById('user-name').textContent = userData.name;
-            document.getElementById('user-email').textContent = userData.email;
-            document.getElementById('user-balance').textContent = '₹' + userData.balance.toFixed(2);
-            document.getElementById('total-earned').textContent = '₹' + userData.totalEarned.toFixed(2);
-            
-            checkSpinAvailability();
-        }
-        
-        // स्पिन व्हील
-        function spinWheel() {
-            if (!canSpin()) {
-                alert("You can spin again in " + document.getElementById('spin-timer').textContent);
-                return;
+            if (userData) {
+                document.getElementById('user-name').textContent = userData.username;
+                document.getElementById('user-email').textContent = userData.email;
+                document.getElementById('user-balance').textContent = '₹' + userData.balance.toFixed(2);
+                document.getElementById('total-earned').textContent = '₹' + userData.totalEarned.toFixed(2);
+                document.getElementById('referral-code').textContent = userData.referralCode;
+                document.getElementById('referral-link').textContent = 
+                    window.location.origin + window.location.pathname + '?ref=' + userData.referralCode;
+                
+                checkSpinAvailability();
             }
+        }
+
+        // Load Referral History
+        function loadReferralHistory() {
+            const referralHistoryRef = database.ref('referrals').orderByChild('referrerId').equalTo(currentUser.uid);
+            
+            document.getElementById('referral-history-loading').style.display = 'block';
+            document.getElementById('referral-history-table').style.display = 'none';
+            document.getElementById('no-referrals').style.display = 'none';
+            
+            referralHistoryRef.once('value').then((snapshot) => {
+                document.getElementById('referral-history-loading').style.display = 'none';
+                
+                if (snapshot.exists()) {
+                    const referrals = snapshot.val();
+                    const referralHistoryBody = document.getElementById('referral-history-body');
+                    referralHistoryBody.innerHTML = '';
+                    
+                    let totalReferrals = 0;
+                    let totalEarnings = 0;
+                    
+                    Object.entries(referrals).forEach(([key, referral]) => {
+                        const row = document.createElement('tr');
+                        const statusBadge = '<span class="status-badge status-completed">Completed</span>';
+                        
+                        row.innerHTML = `
+                            <td>${new Date(referral.timestamp).toLocaleDateString()}</td>
+                            <td>${referral.referredEmail || 'N/A'}</td>
+                            <td style="text-align: right;">₹10</td>
+                            <td>${statusBadge}</td>
+                        `;
+                        referralHistoryBody.appendChild(row);
+                        
+                        totalReferrals++;
+                        totalEarnings += 10;
+                    });
+                    
+                    document.getElementById('total-referrals').textContent = totalReferrals;
+                    document.getElementById('referral-earnings').textContent = '₹' + totalEarnings;
+                    document.getElementById('referral-history-table').style.display = 'table';
+                } else {
+                    document.getElementById('no-referrals').style.display = 'block';
+                }
+            });
+        }
+
+        // Load Transaction History
+        function loadTransactionHistory() {
+            if (!currentUser) return;
+            
+            const historyRef = database.ref('transactions/' + currentUser.uid);
+            const withdrawsRef = database.ref('withdraws/' + currentUser.uid);
+            
+            document.getElementById('history-loading').style.display = 'block';
+            document.getElementById('transaction-history-table').style.display = 'none';
+            document.getElementById('no-history').style.display = 'none';
+            
+            // Get both transactions and withdraws data
+            Promise.all([
+                historyRef.once('value'),
+                withdrawsRef.once('value')
+            ]).then(([transactionsSnapshot, withdrawsSnapshot]) => {
+                document.getElementById('history-loading').style.display = 'none';
+                
+                if (transactionsSnapshot.exists()) {
+                    const transactions = transactionsSnapshot.val();
+                    const withdraws = withdrawsSnapshot.exists() ? withdrawsSnapshot.val() : {};
+                    const historyBody = document.getElementById('transaction-history-body');
+                    historyBody.innerHTML = '';
+                    
+                    let totalSpins = 0;
+                    let totalWon = 0;
+                    let totalDeducted = 0;
+                    
+                    Object.entries(transactions).forEach(([key, transaction]) => {
+                        const row = document.createElement('tr');
+                        
+                        let typeText = '';
+                        let amount = 0;
+                        let deduction = 0;
+                        let statusBadge = '';
+                        let status = transaction.status || 'pending';
+                        
+                        // For withdrawals, check the withdraws node for the latest status
+                        if (transaction.type === 'withdrawal' && transaction.transactionId) {
+                            const withdrawData = withdraws[transaction.transactionId];
+                            if (withdrawData) {
+                                status = withdrawData.status || status;
+                            }
+                        }
+                        
+                        if (transaction.type === 'spin') {
+                            typeText = 'Spin Win';
+                            amount = transaction.amount;
+                            totalWon += amount;
+                            totalSpins++;
+                            statusBadge = '<span class="status-badge status-completed">Completed</span>';
+                        } else if (transaction.type === 'withdrawal') {
+                            typeText = 'Withdrawal';
+                            amount = -transaction.amount;
+                            deduction = transaction.deduction || 0;
+                            totalDeducted += deduction;
+                            
+                            if (status === 'pending') {
+                                statusBadge = '<span class="status-badge status-pending">Pending</span>';
+                            } else if (status === 'completed') {
+                                statusBadge = '<span class="status-badge status-completed">Completed</span>';
+                            } else if (status === 'failed') {
+                                statusBadge = '<span class="status-badge status-failed">Failed</span>';
+                            }
+                        } else if (transaction.type === 'bonus') {
+                            typeText = 'Signup Bonus';
+                            amount = transaction.amount;
+                            totalWon += amount;
+                            statusBadge = '<span class="status-badge status-completed">Completed</span>';
+                        } else if (transaction.type === 'referral') {
+                            typeText = 'Referral Bonus';
+                            amount = transaction.amount;
+                            totalWon += amount;
+                            statusBadge = '<span class="status-badge status-completed">Completed</span>';
+                        }
+                        
+                        row.innerHTML = `
+                            <td>${new Date(transaction.timestamp).toLocaleDateString()}</td>
+                            <td>${typeText}</td>
+                            <td>${statusBadge}</td>
+                            <td style="text-align: right; color: ${amount >= 0 ? '#4CAF50' : '#E91E63'}">${amount >= 0 ? '+' : ''}${amount.toFixed(2)}</td>
+                            <td style="text-align: right; color: #E91E63;">${deduction > 0 ? '-'+deduction.toFixed(2) : '-'}</td>
+                        `;
+                        historyBody.appendChild(row);
+                    });
+                    
+                    document.getElementById('total-spins').textContent = totalSpins;
+                    document.getElementById('total-won').textContent = '₹' + totalWon.toFixed(2);
+                    document.getElementById('total-deducted').textContent = '₹' + totalDeducted.toFixed(2);
+                    document.getElementById('transaction-history-table').style.display = 'table';
+                } else {
+                    document.getElementById('no-history').style.display = 'block';
+                }
+            });
+        }
+
+        // Spin Wheel
+        function spinWheel() {
+            if (!canSpin()) return;
             
             const spinButton = document.getElementById('spin-button');
             spinButton.disabled = true;
             spinButton.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Spinning...';
             
             const spinResult = calculateSpinResult();
-            const spinDegrees = 360 * 5 + spinResult.angle;
+            const spinDuration = 2000 + Math.random() * 3000;
             
             const wheel = document.getElementById('wheel');
-            wheel.style.transform = `rotate(${spinDegrees}deg)`;
+            wheel.style.transition = 'transform ' + (spinDuration/1000) + 's cubic-bezier(0.17, 0.67, 0.21, 0.99)';
+            wheel.style.transform = 'rotate(' + (360 * 5 + spinResult.angle) + 'deg)';
             
             setTimeout(() => {
                 const updates = {
@@ -540,50 +1538,41 @@
                     lastSpin: new Date().toISOString()
                 };
                 
-                // ट्रांजैक्शन रिकॉर्ड करें
+                // Record transaction
                 database.ref('transactions/' + currentUser.uid).push({
                     type: 'spin',
                     amount: spinResult.points,
                     timestamp: new Date().toISOString(),
                     status: 'completed'
                 }).then(() => {
-                    // यूजर डेटा अपडेट करें
+                    // Update user data
                     database.ref('users/' + currentUser.uid).update(updates)
                         .then(() => {
-                            alert(`Congratulations! You won ₹${spinResult.points}`);
-                            spinButton.disabled = false;
-                            spinButton.innerHTML = '<i class="fas fa-sync-alt"></i> SPIN NOW';
+                            showRewardPopup(spinResult);
                             checkSpinAvailability();
                             loadTransactionHistory();
                         });
                 });
-            }, 3500);
+            }, spinDuration);
         }
-        
-        // स्पिन रिजल्ट कैलकुलेट करें
+
+        // Calculate Spin Result
         function calculateSpinResult() {
-            const prizes = [
-                { points: 5, probability: 0.4, angle: 22.5 },
-                { points: 10, probability: 0.3, angle: 67.5 },
-                { points: 20, probability: 0.2, angle: 112.5 },
-                { points: 50, probability: 0.08, angle: 157.5 },
-                { points: 100, probability: 0.02, angle: 202.5 }
-            ];
+            const prizes = [5, 10, 20, 50, 100, 5, 10, 20];
+            const segmentAngle = 360 / prizes.length;
             
-            const random = Math.random();
-            let cumulativeProbability = 0;
+            // Weighted probabilities (higher chance for lower amounts)
+            const weightedPrizes = [0, 0, 1, 1, 2, 2, 2, 3, 3, 4];
+            const winningIndex = weightedPrizes[Math.floor(Math.random() * weightedPrizes.length)];
+            const points = prizes[winningIndex];
             
-            for (const prize of prizes) {
-                cumulativeProbability += prize.probability;
-                if (random <= cumulativeProbability) {
-                    return prize;
-                }
-            }
-            
-            return prizes[0];
+            return {
+                points: points,
+                angle: 360 - (winningIndex * segmentAngle + segmentAngle/2)
+            };
         }
-        
-        // स्पिन उपलब्धता चेक करें
+
+        // Check Spin Availability
         function canSpin() {
             if (!userData.lastSpin) return true;
             
@@ -593,15 +1582,14 @@
             
             return hoursSinceLastSpin >= 6;
         }
-        
-        // स्पिन टाइमर चेक करें
+
+        // Check Spin Timer
         function checkSpinAvailability() {
             const spinButton = document.getElementById('spin-button');
-            const spinTimer = document.getElementById('spin-timer');
-            
             if (canSpin()) {
                 spinButton.disabled = false;
-                spinTimer.textContent = '';
+                spinButton.innerHTML = '<i class="fas fa-sync-alt"></i> SPIN NOW';
+                document.getElementById('spin-timer').textContent = '';
             } else {
                 spinButton.disabled = true;
                 const lastSpin = new Date(userData.lastSpin);
@@ -611,186 +1599,241 @@
                 if (timeLeft > 0) {
                     const hours = Math.floor(timeLeft / 60);
                     const minutes = timeLeft % 60;
-                    spinTimer.textContent = `${hours}h ${minutes}m`;
+                    document.getElementById('spin-timer').textContent = `Next spin in: ${hours}h ${minutes}m`;
+                    spinButton.innerHTML = '<i class="fas fa-clock"></i> Wait';
                     
-                    // हर मिनट टाइमर अपडेट करें
-                    setTimeout(checkSpinAvailability, 60000);
+                    // Update timer
+                    const timerInterval = setInterval(() => {
+                        const now = new Date();
+                        if (now >= nextSpin) {
+                            clearInterval(timerInterval);
+                            checkSpinAvailability();
+                        }
+                    }, 60000);
                 }
             }
         }
-        
-        // विथड्रॉल रिक्वेस्ट
+
+        // Request Withdrawal
         function requestWithdraw() {
             const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            const upiId = document.getElementById('upi-id').value.trim();
+            const upiId = document.getElementById('upi-id').value;
             
             if (isNaN(amount)) {
-                alert("कृपया वैध राशि दर्ज करें");
+                showErrorPopup("Please enter valid amount");
                 return;
             }
             
             if (amount < 10) {
-                alert("न्यूनतम निकासी राशि ₹10 है");
+                showErrorPopup("Minimum withdrawal amount is ₹10");
                 return;
             }
             
             if (amount > userData.balance) {
-                alert("आपके पास पर्याप्त बैलेंस नहीं है");
+                showErrorPopup("You don't have enough balance");
                 return;
             }
             
             if (!upiId || !upiId.includes('@')) {
-                alert("कृपया वैध UPI ID दर्ज करें");
+                showErrorPopup("Please enter valid UPI ID");
                 return;
             }
+            
+            // Calculate 2% deduction for amounts above 500
+            const deduction = amount > 500 ? amount * 0.02 : 0;
+            const amountAfterDeduction = amount - deduction;
             
             const withdrawBtn = document.getElementById('withdraw-btn');
             withdrawBtn.disabled = true;
             withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             
-            // 2% डिडक्शन कैलकुलेट करें (500 से अधिक रकम पर)
-            const deduction = amount > 500 ? amount * 0.02 : 0;
-            const amountAfterDeduction = amount - deduction;
+            // Create transaction ID first
+            const newTransactionRef = database.ref('transactions/' + currentUser.uid).push();
+            const transactionId = newTransactionRef.key;
             
-            // विथड्रॉल रिक्वेस्ट क्रिएट करें
-            const withdrawRef = database.ref('withdrawals/' + currentUser.uid).push();
-            const withdrawId = withdrawRef.key;
-            
-            const withdrawData = {
-                id: withdrawId,
-                amount: amountAfterDeduction,
-                originalAmount: amount,
-                deduction: deduction,
-                status: 'pending',
-                timestamp: new Date().toISOString(),
-                upiId: upiId,
-                userEmail: userData.email
-            };
-            
-            // ट्रांजैक्शन रिकॉर्ड करें
-            const transactionData = {
+            // Create withdrawal data
+            const withdrawalData = {
                 type: 'withdrawal',
                 amount: amount,
                 deduction: deduction,
-                status: 'pending',
                 timestamp: new Date().toISOString(),
-                withdrawId: withdrawId
+                status: 'pending',
+                transactionId: transactionId
             };
             
-            // एक साथ सभी अपडेट करें
-            const updates = {};
-            updates['users/' + currentUser.uid + '/balance'] = userData.balance - amount;
-            updates['withdrawals/' + currentUser.uid + '/' + withdrawId] = withdrawData;
-            updates['transactions/' + currentUser.uid + '/' + withdrawId] = transactionData;
-            
-            database.ref().update(updates)
-                .then(() => {
-                    alert(`₹${amountAfterDeduction.toFixed(2)} की निकासी अनुरोधित (₹${deduction.toFixed(2)} कटौती)। 24 घंटे के भीतर प्रोसेस होगी।`);
-                    document.getElementById('withdraw-amount').value = '';
-                    document.getElementById('upi-id').value = '';
-                    loadTransactionHistory();
-                })
-                .catch(error => {
-                    console.error("Withdrawal error:", error);
-                    alert("निकासी विफल हुई। कृपया बाद में पुनः प्रयास करें।");
-                })
-                .finally(() => {
-                    withdrawBtn.disabled = false;
-                    withdrawBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> Request Withdrawal';
+            // Record withdrawal transaction
+            newTransactionRef.set(withdrawalData)
+            .then(() => {
+                // Create withdrawal request in separate node
+                return database.ref('withdraws/' + currentUser.uid + '/' + transactionId).set({
+                    amount: amount,
+                    upiId: upiId,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending'
                 });
+            })
+            .then(() => {
+                // Update user balance
+                return database.ref('users/' + currentUser.uid).update({
+                    balance: userData.balance - amount,
+                    totalWithdrawn: (userData.totalWithdrawn || 0) + amount
+                });
+            })
+            .then(() => {
+                showSuccessPopup(`Withdrawal request of ₹${amount} submitted!`);
+                document.getElementById('withdraw-amount').value = '';
+                document.getElementById('upi-id').value = '';
+                withdrawBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> Request Withdrawal';
+                withdrawBtn.disabled = false;
+                loadTransactionHistory();
+            })
+            .catch((error) => {
+                console.error("Withdrawal error:", error);
+                showErrorPopup("Withdrawal failed. Please try again.");
+                withdrawBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> Request Withdrawal';
+                withdrawBtn.disabled = false;
+            });
         }
-        
-        // ट्रांजैक्शन हिस्ट्री लोड करें
-        function loadTransactionHistory() {
-            const historyRef = database.ref('transactions/' + currentUser.uid).orderByChild('timestamp');
+
+        // Copy Referral Link
+        function copyReferralLink() {
+            const referralLink = document.getElementById('referral-link');
+            const textArea = document.createElement('textarea');
+            textArea.value = referralLink.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
             
-            document.getElementById('history-loading').style.display = 'block';
-            document.getElementById('transaction-history-table').style.display = 'none';
-            document.getElementById('no-history').style.display = 'none';
-            
-            historyRef.once('value').then((snapshot) => {
-                document.getElementById('history-loading').style.display = 'none';
-                
+            showSuccessPopup("Referral link copied to clipboard!");
+        }
+
+        // Process Referral
+        function processReferral(referralCode) {
+            // Find referrer by code
+            database.ref('users').orderByChild('referralCode').equalTo(referralCode).once('value')
+            .then((snapshot) => {
                 if (snapshot.exists()) {
-                    const transactions = snapshot.val();
-                    const tbody = document.getElementById('transaction-history-body');
-                    tbody.innerHTML = '';
+                    const referrerData = Object.values(snapshot.val())[0];
+                    const referrerId = Object.keys(snapshot.val())[0];
                     
-                    let totalSpins = 0;
-                    let totalWon = 0;
-                    let totalDeducted = 0;
+                    // Give referrer their bonus
+                    const updates = {
+                        balance: referrerData.balance + 10,
+                        totalEarned: referrerData.totalEarned + 10
+                    };
                     
-                    // ऐरे में कन्वर्ट करें और नए से पुराने सॉर्ट करें
-                    const transactionsArray = Object.entries(transactions).map(([key, value]) => {
-                        return { id: key, ...value };
-                    }).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                    database.ref('users/' + referrerId).update(updates);
                     
-                    transactionsArray.forEach(transaction => {
-                        const row = document.createElement('tr');
-                        
-                        let typeText = '';
-                        let amount = 0;
-                        let deduction = 0;
-                        let status = '';
-                        
-                        if (transaction.type === 'spin') {
-                            typeText = 'Spin Win';
-                            amount = transaction.amount;
-                            totalWon += amount;
-                            totalSpins++;
-                            status = '<span class="status-completed">Completed</span>';
-                        } else if (transaction.type === 'withdrawal') {
-                            typeText = 'Withdrawal';
-                            amount = -transaction.amount;
-                            deduction = transaction.deduction || 0;
-                            totalDeducted += deduction;
-                            
-                            if (transaction.status === 'pending') {
-                                status = '<span class="status-pending">Pending</span>';
-                            } else if (transaction.status === 'completed') {
-                                status = '<span class="status-completed">Completed</span>';
-                            } else {
-                                status = '<span class="status-failed">Failed</span>';
-                            }
-                        } else if (transaction.type === 'bonus') {
-                            typeText = 'Bonus';
-                            amount = transaction.amount;
-                            totalWon += amount;
-                            status = '<span class="status-completed">Completed</span>';
-                        }
-                        
-                        row.innerHTML = `
-                            <td>${new Date(transaction.timestamp).toLocaleString()}</td>
-                            <td>${typeText}</td>
-                            <td style="color: ${amount >= 0 ? 'var(--primary)' : 'var(--pink)'}; font-weight:bold;">
-                                ${amount >= 0 ? '+' : ''}₹${Math.abs(amount).toFixed(2)}
-                            </td>
-                            <td>${status}</td>
-                        `;
-                        
-                        tbody.appendChild(row);
+                    // Record referral transaction for referrer
+                    database.ref('transactions/' + referrerId).push({
+                        type: 'referral',
+                        amount: 10,
+                        timestamp: new Date().toISOString(),
+                        status: 'completed',
+                        referredEmail: currentUser.email
                     });
                     
-                    // स्टैट्स अपडेट करें
-                    document.getElementById('total-spins').textContent = totalSpins;
-                    document.getElementById('total-won').textContent = '₹' + totalWon.toFixed(2);
-                    document.getElementById('total-deducted').textContent = '₹' + totalDeducted.toFixed(2);
+                    // Record referral in referrals node
+                    database.ref('referrals').push({
+                        referrerId: referrerId,
+                        referredId: currentUser.uid,
+                        referredEmail: currentUser.email,
+                        timestamp: new Date().toISOString()
+                    });
                     
-                    document.getElementById('transaction-history-table').style.display = 'table';
-                } else {
-                    document.getElementById('no-history').style.display = 'block';
+                    // Give the new user their referral bonus (10 Rs)
+                    database.ref('users/' + currentUser.uid).update({
+                        balance: firebase.database.ServerValue.increment(10),
+                        totalEarned: firebase.database.ServerValue.increment(10)
+                    });
+                    
+                    // Record bonus for new user
+                    database.ref('transactions/' + currentUser.uid).push({
+                        type: 'referral',
+                        amount: 10,
+                        timestamp: new Date().toISOString(),
+                        status: 'completed',
+                        note: 'Referral signup bonus'
+                    });
                 }
             });
         }
-        
-        // ट्रांजैक्शन ऐड करें
-        function addTransaction(type, amount, status = 'completed') {
-            return database.ref('transactions/' + currentUser.uid).push({
-                type: type,
-                amount: amount,
-                status: status,
-                timestamp: new Date().toISOString()
-            });
+
+        // Generate Referral Code
+        function generateReferralCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let result = '';
+            for (let i = 0; i < 6; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Get URL Parameter
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Show Reward Popup
+        function showRewardPopup(result) {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'block';
+            
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+                <h2>Congratulations!</h2>
+                <p>You won ₹${result.points}</p>
+                <p>Your balance has been updated</p>
+                <button onclick="closePopup()">OK</button>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        // Show Success Popup
+        function showSuccessPopup(message) {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'block';
+            
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+                <h2>Success!</h2>
+                <p>${message}</p>
+                <button onclick="closePopup()">OK</button>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        // Show Error Popup
+        function showErrorPopup(message) {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'block';
+            
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.style.background = 'linear-gradient(135deg, #E91E63, #C2185B)';
+            popup.innerHTML = `
+                <h2>Error!</h2>
+                <p>${message}</p>
+                <button onclick="closePopup()">OK</button>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        // Close Popup
+        function closePopup() {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'none';
+            
+            const popup = document.querySelector('.popup');
+            if (popup) {
+                popup.remove();
+            }
         }
     </script>
 </body>
