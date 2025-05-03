@@ -1,6 +1,1 @@
-/**
- * Run update and print output to terminal.
- */
-declare function updateDb(print?: (str: string) => void): void
-
-export = updateDb
+google.com, pub-4134333140441390, DIRECT, f08c47fec0942fa0
