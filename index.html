@@ -3,158 +3,996 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUPESH ELECTRONICS - स्पिन & जीतें</title>
+    <title>????? ?? ????</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
+        /* ????? ????????? */
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #f5f5f5;
+            color: #333;
         }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f0f2f5;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
             padding: 20px;
         }
-
-        .container {
+        
+        header {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            color: #333;
+            font-size: 2.2rem;
+        }
+        
+        /* ????? ?????? */
+        #login-section {
+            text-align: center;
+            margin: 30px auto;
+            max-width: 400px;
             background: white;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        .wheel-container {
-            width: 250px;
-            height: 250px;
+        
+        .login-btn {
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin: 20px auto;
+            transition: all 0.3s;
+        }
+        
+        /* ???? ?????? */
+        #user-section {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* ????? ?????? */
+        .wallet-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .balance {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+        
+        /* ????? ?????? */
+        #spin-section {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        #spin-button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* ????? ??????? */
+        #wheel-container {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
             position: relative;
         }
-
+        
         #wheel {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            border: 5px solid #4CAF50;
-            position: relative;
-            overflow: hidden;
-            transition: transform 3s ease-out;
         }
-
-        .slice {
+        
+        #spin-pointer {
             position: absolute;
-            width: 50%;
-            height: 50%;
-            transform-origin: bottom right;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-        }
-
-        .pointer {
-            position: absolute;
-            top: -15px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 25px solid #e91e63;
-            z-index: 2;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 30px solid red;
+            z-index: 10;
         }
-
-        button {
-            background: #4CAF50;
+        
+        /* ?????? ?????? */
+        .withdraw-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .withdraw-btn {
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 12px 24px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin: 10px;
-            transition: 0.3s;
+            width: 100%;
         }
-
-        button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
+        
+        /* ????? ?????? */
+        .referral-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .referral-code {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 1.2rem;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .copy-btn {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        /* ????? ???????? ?????? */
+        .referral-history {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .history-table th, .history-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .history-table th {
+            background-color: #f2f2f2;
+        }
+        
+        /* ???? */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background: #333;
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .social-icons {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+        }
+        
+        /* ????? ????????? */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FFD700;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        .popup h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .popup button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        /* ??????????? ??????? */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            #wheel-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-links a {
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 style="color: #4CAF50; margin-bottom: 20px;">RUPESH ELECTRONICS</h1>
+        <header>
+            <h1><i class="fas fa-trophy"></i>RUPESH ELECTRONICS</h1>
+            <p>????? ?? ???? ???? ????!</p>
+        </header>
         
-        <div class="wheel-container">
-            <div class="pointer"></div>
-            <div id="wheel"></div>
+        <!-- ????? ?????? -->
+        <div id="login-section">
+            <h2>???? ?????? ??</h2>
+            <p>????? ?? ???? ????? ?? ??? ???? ?? ????? ????</p>
+            <button class="login-btn" id="google-login-btn">
+                <i class="fab fa-google" style="margin-right: 10px;"></i> ???? ?? ????? ????
+            </button>
         </div>
-
-        <button id="spinBtn" onclick="spinWheel()">स्पिन करें</button>
-        <p id="result" style="margin: 15px 0; color: #666;"></p>
         
-        <div style="margin-top: 20px;">
-            <p>आपका रेफरल कोड: <strong id="refCode">XXXXXX</strong></p>
-            <button onclick="copyRefCode()">कोड कॉपी करें</button>
+        <!-- ???? ?????? -->
+        <div id="user-section">
+            <div class="user-info">
+                <div>
+                    <h3>??????, <span id="user-name"></span></h3>
+                    <p><i class="fas fa-envelope"></i> <span id="user-email"></span></p>
+                </div>
+                <button class="logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> ??????</button>
+            </div>
         </div>
+        
+        <!-- ????? ?????? -->
+        <div class="wallet-section">
+            <h3><i class="fas fa-wallet"></i> ???? ?????</h3>
+            <p>??????: <span class="balance" id="user-balance">0</span> ?</p>
+            <p>??? ????: <span class="balance" id="total-earned">0</span> ?</p>
+        </div>
+        
+        <!-- ????? ?????? -->
+        <div id="spin-section">
+            <h2><i class="fas fa-redo"></i> ????? ??????</h2>
+            <p>?? 6 ???? ??? ?? ??? ?????? ?? ???? ?????!</p>
+            <div id="wheel-container">
+                <div id="wheel"></div>
+                <div id="spin-pointer"></div>
+            </div>
+            <button id="spin-button"><i class="fas fa-sync-alt"></i> SPIN NOW</button>
+            <p id="spin-timer"></p>
+        </div>
+        
+        <!-- ?????? ?????? -->
+        <div class="withdraw-section">
+            <h3><i class="fas fa-rupee-sign"></i> ???? ???????</h3>
+            <p>??????? ?????? ????: ?500</p>
+            <div class="form-group">
+                <label for="withdraw-amount"><i class="fas fa-money-bill-wave"></i> ???? (?)</label>
+                <input type="number" id="withdraw-amount" min="500" placeholder="500">
+            </div>
+            <div class="form-group">
+                <label for="payment-method"><i class="fas fa-money-check-alt"></i> ?????? ????</label>
+                <select id="payment-method">
+                    <option value="UPI" selected>UPI</option>
+                </select>
+            </div>
+            <div class="form-group" id="upi-id-container">
+                <label for="upi-id"><i class="fas fa-mobile-alt"></i> UPI ID</label>
+                <input type="text" id="upi-id" placeholder="yourname@upi">
+            </div>
+            <button class="withdraw-btn" id="withdraw-btn"><i class="fas fa-hand-holding-usd"></i> ?????? ??????</button>
+        </div>
+        
+        <!-- ????? ?????? -->
+        <div class="referral-section">
+            <h3><i class="fas fa-user-friends"></i> ??????? ?? ????? ?? ?????</h3>
+            <p>???????? ??? ????? ?? ??? ?10 ?????!</p>
+            <p>???? ????? ???:</p>
+            <div class="referral-code" id="referral-code">LOADING...</div>
+            <p>???? ???? ???? ????:</p>
+            <div class="referral-code" id="referral-link">LOADING...</div>
+            <button class="copy-btn" id="copy-referral-btn"><i class="fas fa-copy"></i> ???? ???? ????</button>
+        </div>
+        
+        <!-- ????? ???????? ?????? -->
+        <div class="referral-history">
+            <h3><i class="fas fa-history"></i> ???? ????? ???????</h3>
+            <div id="referral-stats" style="text-align: center; margin-bottom: 20px;">
+                <div style="display: inline-block; margin: 0 20px;">
+                    <div style="font-size: 24px; font-weight: bold; color: #FFD700;" id="total-referrals">0</div>
+                    <div>??? ?????</div>
+                </div>
+                <div style="display: inline-block; margin: 0 20px;">
+                    <div style="font-size: 24px; font-weight: bold; color: #28a745;" id="referral-earnings">?0</div>
+                    <div>??? ????</div>
+                </div>
+            </div>
+            <div id="referral-history-loading">??? ?? ??? ??...</div>
+            <table class="history-table" id="referral-history-table" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>????</th>
+                        <th>?????</th>
+                        <th style="text-align: right;">????</th>
+                    </tr>
+                </thead>
+                <tbody id="referral-history-body">
+                    <!-- ???? ???? ??? ???? -->
+                </tbody>
+            </table>
+            <div id="no-referrals" style="text-align: center; padding: 20px; display: none;">
+                ??? ?? ??? ????? ???? ???? ???
+            </div>
+        </div>
+        
+        <!-- ???? -->
+        <footer>
+            <div class="footer-links">
+                <a href="/terms.html"><i class="fas fa-file-contract"></i> ???? ?? ??????</a>
+                <a href="/privacy.html"><i class="fas fa-lock"></i> ???????? ????</a>
+                <a href="/faq.html"><i class="fas fa-question-circle"></i> ??????? ??????</a>
+                <a href="/contact.html"><i class="fas fa-envelope"></i> ?????? ????</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p>&copy; 2023 ????? ?? ????. ?????????? ????????.</p>
+        </footer>
     </div>
 
+    <!-- ??????? ?? ????? ????????????? -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
     <script>
-        // स्पिन व्हील सेटअप
-        const prizes = ['₹10', '₹20', '₹50', '₹100', '₹10', '₹20'];
-        const colors = ['#4CAF50', '#2196F3', '#E91E63', '#FF9800', '#4CAF50', '#2196F3'];
-        const wheel = document.getElementById('wheel');
-        const spinBtn = document.getElementById('spinBtn');
+        // ??????? ???????????
+        const firebaseConfig = {
+            apiKey: "AIzaSyCzQgiXSB8-p0aXFmFFi65Ks11uZWj0KX0",
+            authDomain: "spin-and-win-2026.firebaseapp.com",
+            databaseURL: "https://spin-and-win-2026-default-rtdb.firebaseio.com",
+            projectId: "spin-and-win-2026",
+            storageBucket: "spin-and-win-2026.appspot.com",
+            messagingSenderId: "369303979305",
+            appId: "1:369303979305:web:08b2c9eaf670c471842338",
+            measurementId: "G-MFZH0J437W"
+        };
         
-        // व्हील बनाएं
-        function createWheel() {
-            const sliceAngle = 360 / prizes.length;
-            prizes.forEach((prize, index) => {
-                const slice = document.createElement('div');
-                slice.className = 'slice';
-                slice.style.transform = `rotate(${sliceAngle * index}deg) skewY(${90 - sliceAngle}deg)`;
-                slice.style.backgroundColor = colors[index];
-                slice.innerHTML = `<div style="transform: rotate(${sliceAngle/2}deg)">${prize}</div>`;
-                wheel.appendChild(slice);
+        // ??????? ???????????
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // ?????? ?????????
+        let currentUser = null;
+        let userData = null;
+        
+        // ??? ????? ???? ??
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWheel();
+            setupEventListeners();
+            checkAuthState();
+        });
+
+        // ????? ??????? ?????
+        function setupEventListeners() {
+            document.getElementById('google-login-btn').addEventListener('click', loginWithGoogle);
+            document.getElementById('logout-btn').addEventListener('click', logoutUser);
+            document.getElementById('spin-button').addEventListener('click', spinWheel);
+            document.getElementById('withdraw-btn').addEventListener('click', requestWithdraw);
+            document.getElementById('copy-referral-btn').addEventListener('click', copyReferralLink);
+            document.getElementById('payment-method').addEventListener('change', toggleUpiField);
+        }
+
+        // ?? ????? ???
+        function checkAuthState() {
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    currentUser = user;
+                    loadUserData();
+                    updateUIForLoggedInUser();
+                } else {
+                    currentUser = null;
+                    updateUIForLoggedOutUser();
+                }
             });
         }
 
-        // स्पिन फंक्शन
-        function spinWheel() {
-            spinBtn.disabled = true;
-            const extraSpins = 5; // कम से कम 5 चक्कर
-            const resultAngle = Math.floor(Math.random() * 360);
-            const totalRotation = (360 * extraSpins) + resultAngle;
+        // ????? ??????????????
+        function initializeWheel() {
+            const wheel = document.getElementById('wheel');
+            const prizes = [
+                { color: '#FF6384', text: '?5' },
+                { color: '#36A2EB', text: '?10' },
+                { color: '#FFCE56', text: '?20' },
+                { color: '#4BC0C0', text: '?50' },
+                { color: '#9966FF', text: '?100' },
+                { color: '#FF9F40', text: '?5' },
+                { color: '#8AC24A', text: '?10' },
+                { color: '#E03997', text: '?20' }
+            ];
             
-            wheel.style.transform = `rotate(${totalRotation}deg)`;
+            let wheelHTML = '';
+            const segmentAngle = 360 / prizes.length;
+            
+            prizes.forEach((prize, index) => {
+                const angle = segmentAngle * index;
+                wheelHTML += `
+                    <div style="
+                        position: absolute;
+                        width: 50%;
+                        height: 50%;
+                        background: ${prize.color};
+                        transform-origin: bottom right;
+                        transform: rotate(${angle}deg) skewY(${90 - segmentAngle}deg);
+                        overflow: hidden;
+                    ">
+                        <span style="
+                            position: absolute;
+                            right: 10px;
+                            top: 10px;
+                            transform: rotate(${segmentAngle/2}deg);
+                            color: white;
+                            font-weight: bold;
+                            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+                        ">${prize.text}</span>
+                    </div>
+                `;
+            });
+            
+            wheel.innerHTML = wheelHTML;
+            wheel.style.width = '100%';
+            wheel.style.height = '100%';
+            wheel.style.position = 'relative';
+            wheel.style.borderRadius = '50%';
+            wheel.style.overflow = 'hidden';
+            wheel.style.border = '5px solid #333';
+        }
+
+        // ???? ?????
+        function loginWithGoogle() {
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // ????? ???
+                }).catch((error) => {
+                    console.error("????? ???:", error);
+                    showErrorPopup("????? ????: " + error.message);
+                });
+        }
+
+        // ??????
+        function logoutUser() {
+            auth.signOut().then(() => {
+                // ?????? ???
+            }).catch((error) => {
+                console.error("?????? ???:", error);
+                showErrorPopup("?????? ??? ?????? ??");
+            });
+        }
+
+        // ???? ???? ??? ????
+        function loadUserData() {
+            const userRef = database.ref('users/' + currentUser.uid);
+            userRef.on('value', (snapshot) => {
+                userData = snapshot.val();
+                if (!userData) {
+                    createNewUser();
+                } else {
+                    updateUserDisplay();
+                    loadReferralHistory(); // ????? ???????? ??? ????
+                }
+            });
+        }
+
+        // ??? ???? ?????
+        function createNewUser() {
+            const userRef = database.ref('users/' + currentUser.uid);
+            const newUser = {
+                username: currentUser.displayName || currentUser.email.split('@')[0],
+                email: currentUser.email,
+                balance: 10, // ?? ???? ?? 10 ????? ????
+                totalEarned: 10,
+                totalWithdrawn: 0,
+                referralCode: generateReferralCode(),
+                referredBy: getUrlParameter('ref'),
+                spinCount: 0,
+                lastSpin: null,
+                createdAt: new Date().toISOString()
+            };
+            
+            userRef.set(newUser).then(() => {
+                if (newUser.referredBy) {
+                    processReferral(newUser.referredBy);
+                }
+                showSuccessPopup("???? ?10 ?? ?????? ???? ???? ??!");
+            });
+        }
+
+        // UI ????? (?????)
+        function updateUIForLoggedInUser() {
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('user-section').style.display = 'block';
+            document.getElementById('spin-section').style.display = 'block';
+            
+            // UPI ????? ????
+            toggleUpiField();
+        }
+
+        // UI ????? (??????)
+        function updateUIForLoggedOutUser() {
+            document.getElementById('login-section').style.display = 'block';
+            document.getElementById('user-section').style.display = 'none';
+            document.getElementById('spin-section').style.display = 'none';
+        }
+
+        // ???? ???????? ?????
+        function updateUserDisplay() {
+            if (userData) {
+                document.getElementById('user-name').textContent = userData.username;
+                document.getElementById('user-email').textContent = userData.email;
+                document.getElementById('user-balance').textContent = userData.balance.toFixed(2);
+                document.getElementById('total-earned').textContent = userData.totalEarned.toFixed(2);
+                document.getElementById('referral-code').textContent = userData.referralCode;
+                document.getElementById('referral-link').textContent = 
+                    window.location.origin + window.location.pathname + '?ref=' + userData.referralCode;
+                
+                checkSpinAvailability();
+            }
+        }
+
+        // ????? ???????? ??? ????
+        function loadReferralHistory() {
+            const referralHistoryRef = database.ref('referrals').orderByChild('referrerId').equalTo(currentUser.uid);
+            
+            document.getElementById('referral-history-loading').style.display = 'block';
+            document.getElementById('referral-history-table').style.display = 'none';
+            document.getElementById('no-referrals').style.display = 'none';
+            
+            referralHistoryRef.once('value').then((snapshot) => {
+                document.getElementById('referral-history-loading').style.display = 'none';
+                
+                if (snapshot.exists()) {
+                    const referrals = snapshot.val();
+                    const referralHistoryBody = document.getElementById('referral-history-body');
+                    referralHistoryBody.innerHTML = '';
+                    
+                    let totalReferrals = 0;
+                    let totalEarnings = 0;
+                    
+                    Object.values(referrals).forEach(referral => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${referral.referredEmail || 'N/A'}</td>
+                            <td>${new Date(referral.timestamp).toLocaleDateString()}</td>
+                            <td style="text-align: right;">?10</td>
+                        `;
+                        referralHistoryBody.appendChild(row);
+                        
+                        totalReferrals++;
+                        totalEarnings += 10;
+                    });
+                    
+                    // ???? ??????? ????? ????
+                    document.getElementById('total-referrals').textContent = totalReferrals;
+                    document.getElementById('referral-earnings').textContent = `?${totalEarnings}`;
+                    document.getElementById('referral-history-table').style.display = 'table';
+                } else {
+                    document.getElementById('no-referrals').style.display = 'block';
+                }
+            });
+        }
+
+        // ????? ????? ??????
+        function spinWheel() {
+            if (!canSpin()) return;
+            
+            const spinButton = document.getElementById('spin-button');
+            spinButton.disabled = true;
+            spinButton.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> ??? ??? ??...';
+            
+            const spinResult = calculateSpinResult();
+            const spinDuration = 2000 + Math.random() * 3000;
+            
+            const wheel = document.getElementById('wheel');
+            wheel.style.transition = 'transform ' + (spinDuration/1000) + 's cubic-bezier(0.17, 0.67, 0.21, 0.99)';
+            wheel.style.transform = 'rotate(' + (360 * 5 + spinResult.angle) + 'deg)';
             
             setTimeout(() => {
-                const actualAngle = totalRotation % 360;
-                const prizeIndex = Math.floor(actualAngle / (360 / prizes.length));
-                document.getElementById('result').textContent = `बधाई! आपने जीता: ${prizes[prizeIndex]}`;
-                spinBtn.disabled = false;
-            }, 3500);
+                const updates = {
+                    balance: userData.balance + spinResult.points,
+                    totalEarned: userData.totalEarned + spinResult.points,
+                    spinCount: userData.spinCount + 1,
+                    lastSpin: new Date().toISOString()
+                };
+                
+                database.ref('users/' + currentUser.uid).update(updates)
+                    .then(() => {
+                        showRewardPopup(spinResult);
+                        checkSpinAvailability();
+                    });
+            }, spinDuration);
         }
 
-        // रेफरल कोड कॉपी
-        function copyRefCode() {
-            navigator.clipboard.writeText('REF1234')
-                .then(() => alert('कोड कॉपी हो गया!'))
-                .catch(err => console.error('कॉपी नहीं हो पाया', err));
+        // ????? ???????? ???
+        function canSpin() {
+            if (!userData.lastSpin) return true;
+            
+            const lastSpin = new Date(userData.lastSpin);
+            const now = new Date();
+            const hoursSinceLastSpin = (now - lastSpin) / (1000 * 60 * 60);
+            
+            return hoursSinceLastSpin >= 6;
         }
 
-        // इनिशियलाइजेशन
-        createWheel();
+        // ????? ????? ?????
+        function checkSpinAvailability() {
+            const spinButton = document.getElementById('spin-button');
+            if (canSpin()) {
+                spinButton.disabled = false;
+                spinButton.innerHTML = '<i class="fas fa-sync-alt"></i> SPIN NOW';
+                document.getElementById('spin-timer').textContent = '';
+            } else {
+                spinButton.disabled = true;
+                const lastSpin = new Date(userData.lastSpin);
+                const nextSpin = new Date(lastSpin.getTime() + 6 * 60 * 60 * 1000);
+                const timeLeft = Math.floor((nextSpin - new Date()) / 1000 / 60);
+                
+                if (timeLeft > 0) {
+                    const hours = Math.floor(timeLeft / 60);
+                    const minutes = timeLeft % 60;
+                    document.getElementById('spin-timer').textContent = `???? ?????: ${hours} ???? ${minutes} ???? ???`;
+                    spinButton.innerHTML = '<i class="fas fa-clock"></i> ??????? ????';
+                    
+                    // ????? ?????
+                    const timerInterval = setInterval(() => {
+                        const now = new Date();
+                        if (now >= nextSpin) {
+                            clearInterval(timerInterval);
+                            checkSpinAvailability();
+                        }
+                    }, 60000); // ?? ???? ?????
+                }
+            }
+        }
+
+        // ?????? ??????
+        function requestWithdraw() {
+            const amount = parseFloat(document.getElementById('withdraw-amount').value);
+            const paymentMethod = document.getElementById('payment-method').value;
+            const upiId = document.getElementById('upi-id').value;
+            
+            if (isNaN(amount)) {
+                showErrorPopup("????? ??? ???? ?????");
+                return;
+            }
+            
+            if (amount < 500) {
+                showErrorPopup("??????? ?????? ???? ?500 ??");
+                return;
+            }
+            
+            if (amount > userData.balance) {
+                showErrorPopup("???? ??? ???????? ?????? ???? ??");
+                return;
+            }
+            
+            if (paymentMethod === 'UPI' && !upiId) {
+                showErrorPopup("????? ???? UPI ID ?????");
+                return;
+            }
+            
+            const withdrawData = {
+                amount: amount,
+                status: 'pending',
+                timestamp: new Date().toISOString(),
+                paymentMethod: paymentMethod,
+                paymentDetails: paymentMethod === 'UPI' ? upiId : '',
+                userEmail: userData.email,
+                userName: userData.username
+            };
+            
+            // ?????? ??????
+            const withdrawBtn = document.getElementById('withdraw-btn');
+            withdrawBtn.disabled = true;
+            withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ??????????...';
+            
+            database.ref('withdraws/' + currentUser.uid).push(withdrawData)
+                .then(() => {
+                    // ???? ?????? ????? ????
+                    return database.ref('users/' + currentUser.uid).update({
+                        balance: userData.balance - amount,
+                        totalWithdrawn: userData.totalWithdrawn + amount
+                    });
+                })
+                .then(() => {
+                    showSuccessPopup(`?${amount} ?? ?????? ?????? ??????????? ???? ???!`);
+                    document.getElementById('withdraw-amount').value = '';
+                    document.getElementById('upi-id').value = '';
+                })
+                .catch(error => {
+                    console.error("?????? ???:", error);
+                    showErrorPopup("?????? ??? ?????? ??. ????? ??? ??? ?????? ????.");
+                })
+                .finally(() => {
+                    withdrawBtn.disabled = false;
+                    withdrawBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> ?????? ??????';
+                });
+        }
+
+        // ????? ???? ???? ????
+        function copyReferralLink() {
+            const referralLink = document.getElementById('referral-link').textContent;
+            navigator.clipboard.writeText(referralLink)
+                .then(() => {
+                    showSuccessPopup("????? ???? ???? ?? ???!");
+                })
+                .catch(err => {
+                    console.error('???? ???? ??? ????: ', err);
+                    showErrorPopup('???? ????????? ???? ????: ' + referralLink);
+                });
+        }
+
+        // UPI ????? ????
+        function toggleUpiField() {
+            document.getElementById('upi-id-container').style.display = 
+                document.getElementById('payment-method').value === 'UPI' ? 'block' : 'none';
+        }
+
+        // ????? ???????
+        function processReferral(referralCode) {
+            const usersRef = database.ref('users');
+            const referralQuery = usersRef.orderByChild('referralCode').equalTo(referralCode);
+            
+            referralQuery.once('value').then((snapshot) => {
+                if (snapshot.exists()) {
+                    const referrerId = Object.keys(snapshot.val())[0];
+                    const referrerData = snapshot.val()[referrerId];
+                    
+                    // ????? ??????? ?????? ????
+                    const referralData = {
+                        referrerId: referrerId,
+                        referrerEmail: referrerData.email,
+                        referredUserId: currentUser.uid,
+                        referredEmail: currentUser.email,
+                        bonusAmount: 10,
+                        timestamp: new Date().toISOString(),
+                        status: "completed"
+                    };
+                    
+                    database.ref('referrals').push(referralData);
+                    
+                    // ????? ?? ???? ????? ????
+                    const referrerUpdates = {
+                        referralCount: (referrerData.referralCount || 0) + 1,
+                        balance: (referrerData.balance || 0) + 10,
+                        totalEarned: (referrerData.totalEarned || 0) + 10
+                    };
+                    
+                    database.ref('users/' + referrerId).update(referrerUpdates)
+                        .then(() => {
+                            // ?? ???? ?? ?????????? ??????
+                            showSuccessPopup("???? ${referrerData.email} ?? ????? ??? ?? ????? ???? ??!");
+                        });
+                }
+            });
+        }
+
+        // ??????? ?????
+        function showRewardPopup(result) {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+                <h2><i class="fas fa-trophy"></i> ???? ??!</h2>
+                <p>???? ????: ?${result.points.toFixed(2)}</p>
+                <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i> ??? ????</button>
+            `;
+            document.body.appendChild(popup);
+            
+            // 5 ????? ??? ??? ?????
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 5000);
+        }
+
+        // ?????? ?????
+        function showSuccessPopup(message) {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.style.background = 'linear-gradient(135deg, #28a745, #218838)';
+            popup.style.color = 'white';
+            popup.innerHTML = `
+                <h2><i class="fas fa-check-circle"></i> ?????!</h2>
+                <p>${message}</p>
+                <button onclick="this.parentElement.remove()" style="background-color: white; color: #28a745;">
+                    <i class="fas fa-thumbs-up"></i> ???
+                </button>
+            `;
+            document.body.appendChild(popup);
+            
+            // 5 ????? ??? ??? ?????
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 5000);
+        }
+
+        // ??? ?????
+        function showErrorPopup(message) {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+            popup.style.color = 'white';
+            popup.innerHTML = `
+                <h2><i class="fas fa-exclamation-triangle"></i> ??????!</h2>
+                <p>${message}</p>
+                <button onclick="this.parentElement.remove()" style="background-color: white; color: #dc3545;">
+                    <i class="fas fa-times"></i> ??? ????
+                </button>
+            `;
+            document.body.appendChild(popup);
+            
+            // 5 ????? ??? ??? ?????
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 5000);
+        }
+
+        // ????? ?????? ????????
+        function calculateSpinResult() {
+            const prizes = [
+                { points: 5, probability: 0.4, angle: 0 },
+                { points: 10, probability: 0.3, angle: 45 },
+                { points: 20, probability: 0.2, angle: 90 },
+                { points: 50, probability: 0.08, angle: 135 },
+                { points: 100, probability: 0.02, angle: 180 }
+            ];
+            
+            let random = Math.random();
+            let cumulativeProbability = 0;
+            
+            for (const prize of prizes) {
+                cumulativeProbability += prize.probability;
+                if (random <= cumulativeProbability) {
+                    return prize;
+                }
+            }
+            
+            return prizes[0];
+        }
+
+        // ????? ??? ?????
+        function generateReferralCode() {
+            return Math.random().toString(36).substring(2, 8).toUpperCase();
+        }
+
+        // URL ???????? ?????
+        function getUrlParameter(name) {
+            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
     </script>
 </body>
 </html>
