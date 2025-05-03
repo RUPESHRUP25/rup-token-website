@@ -1230,7 +1230,6 @@
                 }
             });
         }
-
         // Create New User
         function createNewUser() {
             const userRef = database.ref('users/' + currentUser.uid);
@@ -1248,7 +1247,6 @@
                 lastSpin: null,
                 createdAt: new Date().toISOString()
             };
-            
             userRef.set(newUser).then(() => {
                 // Record signup bonus transaction
                 database.ref('transactions/' + currentUser.uid).push({
@@ -1263,7 +1261,6 @@
                 }
             });
         }
-
         // Update UI for Logged In User
         function updateUIForLoggedInUser() {
             document.getElementById('login-section').style.display = 'none';
@@ -1292,7 +1289,6 @@
                 checkSpinAvailability();
             }
         }
-
         // Load Referral History
         function loadReferralHistory() {
             const referralHistoryRef = database.ref('referrals').orderByChild('referrerId').equalTo(currentUser.uid);
@@ -1381,7 +1377,6 @@
                                 status = withdrawData.status || status;
                             }
                         }
-                        
                         if (transaction.type === 'spin') {
                             typeText = 'Spin Win';
                             amount = transaction.amount;
@@ -1412,7 +1407,6 @@
                             totalWon += amount;
                             statusBadge = '<span class="status-badge status-completed">Completed</span>';
                         }
-                        
                         row.innerHTML = `
                             <td>${new Date(transaction.timestamp).toLocaleDateString()}</td>
                             <td>${typeText}</td>
@@ -1422,7 +1416,6 @@
                         `;
                         historyBody.appendChild(row);
                     });
-                    
                     document.getElementById('total-spins').textContent = totalSpins;
                     document.getElementById('total-won').textContent = '₹' + totalWon.toFixed(2);
                     document.getElementById('total-deducted').textContent = '₹' + totalDeducted.toFixed(2);
@@ -1432,7 +1425,6 @@
                 }
             });
         }
-
         // Spin Wheel
         function spinWheel() {
             if (!canSpin()) return;
@@ -1473,7 +1465,6 @@
                 });
             }, spinDuration);
         }
-
         // Calculate Spin Result
         function calculateSpinResult() {
             const prizes = [5, 10, 20, 50, 100, 5, 10, 20];
@@ -1489,18 +1480,14 @@
                 angle: 360 - (winningIndex * segmentAngle + segmentAngle/2)
             };
         }
-
         // Check Spin Availability
         function canSpin() {
             if (!userData.lastSpin) return true;
-            
             const lastSpin = new Date(userData.lastSpin);
             const now = new Date();
             const hoursSinceLastSpin = (now - lastSpin) / (1000 * 60 * 60);
-            
             return hoursSinceLastSpin >= 6;
         }
-
         // Check Spin Timer
         function checkSpinAvailability() {
             const spinButton = document.getElementById('spin-button');
@@ -1519,7 +1506,6 @@
                     const minutes = timeLeft % 60;
                     document.getElementById('spin-timer').textContent = `Next spin in: ${hours}h ${minutes}m`;
                     spinButton.innerHTML = '<i class="fas fa-clock"></i> Wait';
-                    
                     // Update timer
                     const timerInterval = setInterval(() => {
                         const now = new Date();
@@ -1687,7 +1673,6 @@
             }
             return result;
         }
-
         // Get URL Parameter
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -1695,7 +1680,6 @@
             const results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
-
         // Show Reward Popup
         function showRewardPopup(result) {
             const overlay = document.getElementById('overlay');
@@ -1711,7 +1695,6 @@
             `;
             document.body.appendChild(popup);
         }
-
         // Show Success Popup
         function showSuccessPopup(message) {
             const overlay = document.getElementById('overlay');
@@ -1731,7 +1714,6 @@
         function showErrorPopup(message) {
             const overlay = document.getElementById('overlay');
             overlay.style.display = 'block';
-            
             const popup = document.createElement('div');
             popup.className = 'popup';
             popup.style.background = 'linear-gradient(135deg, #E91E63, #C2185B)';
@@ -1742,7 +1724,6 @@
             `;
             document.body.appendChild(popup);
         }
-
         // Close Popup
         function closePopup() {
             const overlay = document.getElementById('overlay');
